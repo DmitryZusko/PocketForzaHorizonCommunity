@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PocketForzaHorizonCommunity.Back.Database.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 
@@ -10,45 +11,45 @@ public class TuneOptions
 
     public string EngineDescription { get; set; } = string.Empty;
     [Required]
-    public string Engine { get; set; } = null!;
+    public EngineType Engine { get; set; }
     [Required]
-    public string Aspiration { get; set; } = null!;
+    public AspirationType Aspiration { get; set; }
     [Required]
-    public string Intake { get; set; } = null!;
+    public IntakeType Intake { get; set; }
     [Required]
-    public string Ignition { get; set; } = null!;
+    public IgnitionType Ignition { get; set; }
     [Required]
-    public string Displacement { get; set; } = null!;
+    public DisplasementType Displacement { get; set; }
     [Required]
-    public string Exhaust { get; set; } = null!;
+    public ExhaustType Exhaust { get; set; }
 
     public string HandlingDescription { get; set; } = string.Empty;
     [Required]
-    public string Brakes { get; set; } = null!;
+    public BrakesType Brakes { get; set; }
     [Required]
-    public string Suspension { get; set; } = null!;
+    public SuspensionType Suspension { get; set; }
     [Required]
-    public string AntirollBars { get; set; } = null!;
+    public AntirollBarsType AntirollBars { get; set; }
     [Required]
-    public string RollCage { get; set; } = null!;
+    public RollCageType RollCage { get; set; }
 
     public string DrivetrainDescription { get; set; } = string.Empty;
     [Required]
-    public string Clutch { get; set; } = null!;
+    public ClutchType Clutch { get; set; }
     [Required]
-    public string Transmission { get; set; } = null!;
+    public TransmissionType Transmission { get; set; }
     [Required]
-    public string Differential { get; set; } = null!;
+    public DifferentialType Differential { get; set; }
 
     public string TiersDescription { get; set; } = string.Empty;
     [Required]
-    public string Compound { get; set; } = null!;
+    public TiersCompoundType Compound { get; set; }
     [Required]
-    public string FrontTierWidth { get; set; } = null!;
+    public TiersWidthType FrontTierWidth { get; set; }
     [Required]
-    public string RearTierWidth { get; set; } = null!;
+    public TiersWidthType RearTierWidth { get; set; }
     [Required]
-    public string FrontTrackwidth { get; set; } = null!;
+    public TrackWidthType FrontTrackwidth { get; set; }
     [Required]
-    public string RearTrackWidth { get; set; } = null!;
+    public TrackWidthType RearTrackWidth { get; set; }
 }
