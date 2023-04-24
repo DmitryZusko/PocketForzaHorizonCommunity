@@ -23,4 +23,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<GeneralStatistics> GeneralStatistics => Set<GeneralStatistics>();
     public DbSet<OnlineStatistics> OnlineStatistics => Set<OnlineStatistics>();
     public DbSet<RecordStatistics> RecordStatistics => Set<RecordStatistics>();
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.Entity<UsersFriends>().ToTable(x => x.HasCheckConstraint("CK_User_Cannot_Befriend_Himself", "UserId <> FriendId"));
+    }
 }
