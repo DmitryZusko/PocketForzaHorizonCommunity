@@ -6,9 +6,9 @@ namespace PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 public class Tune : EntityBase
 {
     [Required]
-    public string Name { get; set; } = string.Empty;
+    public string Title { get; set; } = null!;
     [Required]
-    public string ForzaShareCode { get; set; } = string.Empty;
+    public string ForzaShareCode { get; set; } = null!;
     [Required]
     public float Rating { get; set; }
     [Required]

@@ -8,6 +8,6 @@ public class DesignOptions
     public Guid DesignId { get; set; }
     public Design Design { get; set; } = null!;
     [Required]
-    public string PathToImages { get; set; } = string.Empty;
+    public string PathToImages { get; set; } = null!;
     public string Description { get; set; } = string.Empty;
 }
