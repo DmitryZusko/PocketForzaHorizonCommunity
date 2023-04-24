@@ -6,7 +6,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 public class Car : EntityBase
 {
     [Required]
-    public string ModelName { get; set; } = string.Empty;
+    public string Model { get; set; } = string.Empty;
     [Required]
     public int Year { get; set; }
     [Required]
