@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 
-public class Tune : BaseEntity
+public class Tune : EntityBase
 {
     [Required]
     public string Name { get; set; } = string.Empty;

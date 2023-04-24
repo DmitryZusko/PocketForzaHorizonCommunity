@@ -8,7 +8,7 @@ using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 
 namespace PocketForzaHorizonCommunity.Back.Database;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>, IApplicationDbContext
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 

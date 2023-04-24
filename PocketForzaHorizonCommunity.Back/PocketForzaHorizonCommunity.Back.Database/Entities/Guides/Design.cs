@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 
-public class Design : BaseEntity
+public class Design : EntityBase
 {
     [Required]
     public string Name { get; set; } = string.Empty;

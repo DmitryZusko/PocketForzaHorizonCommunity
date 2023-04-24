@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 
-public class Car : BaseEntity
+public class Car : EntityBase
 {
     [Required]
     public string ModelName { get; set; } = string.Empty;

@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 
-public class CarType : BaseEntity
+public class CarType : EntityBase
 {
     [Required]
     public string Name { get; set; } = string.Empty;

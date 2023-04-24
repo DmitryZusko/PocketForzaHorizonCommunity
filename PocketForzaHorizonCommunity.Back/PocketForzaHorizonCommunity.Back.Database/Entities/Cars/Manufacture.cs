@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 
-public class Manufacture : BaseEntity
+public class Manufacture : EntityBase
 {
     [Required]
     public string Name { get; set; } = string.Empty;
