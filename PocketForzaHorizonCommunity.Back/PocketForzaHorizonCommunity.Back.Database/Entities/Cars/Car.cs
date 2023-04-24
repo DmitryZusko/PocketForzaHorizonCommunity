@@ -17,8 +17,8 @@ public class Car : BaseEntity
     public Guid ManufactureId { get; set; }
     public Manufacture Manufacture { get; set; } = null!;
     [Required]
-    public Guid TypeId { get; set; }
-    public Type Type { get; set; } = null!;
+    public Guid CarTypeId { get; set; }
+    public CarType CarType { get; set; } = null!;
 
     public ICollection<Tune> Tunes { get; set; } = new List<Tune>();
     public ICollection<Design> Designs { get; set; } = new List<Design>();
