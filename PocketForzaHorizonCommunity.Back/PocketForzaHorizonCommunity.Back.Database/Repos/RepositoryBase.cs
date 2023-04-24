@@ -1,8 +1,9 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
+using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos;
 
-public class RepositoryBase<TEntity> where TEntity : EntityBase
+public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : EntityBase
 {
     protected ApplicationDbContext Context { get; }
 
