@@ -6,13 +6,13 @@ namespace PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 public class Car : EntityBase
 {
     [Required]
-    public string Model { get; set; } = string.Empty;
+    public string Model { get; set; } = null!;
     [Required]
     public int Year { get; set; }
     [Required]
     public int Price { get; set; }
     [Required]
-    public string ImagePath { get; set; } = string.Empty;
+    public string ImagePath { get; set; } = null!;
     [Required]
     public Guid ManufactureId { get; set; }
     public Manufacture Manufacture { get; set; } = null!;
