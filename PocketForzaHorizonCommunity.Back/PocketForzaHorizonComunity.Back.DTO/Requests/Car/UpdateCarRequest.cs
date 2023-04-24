@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.Requests.Car;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 
 public class UpdateCarRequest
 {

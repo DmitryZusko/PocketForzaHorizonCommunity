@@ -19,7 +19,7 @@ public class TuneOptions
     [Required]
     public IgnitionType Ignition { get; set; }
     [Required]
-    public DisplasementType Displacement { get; set; }
+    public DisplacementType Displacement { get; set; }
     [Required]
     public ExhaustType Exhaust { get; set; }
 

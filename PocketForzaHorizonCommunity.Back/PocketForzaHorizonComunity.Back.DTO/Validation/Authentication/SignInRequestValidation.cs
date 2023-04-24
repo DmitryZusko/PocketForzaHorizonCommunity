@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using PocketForzaHorizonComunity.Back.DTO.Requests.Authentication;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
 
-namespace PocketForzaHorizonComunity.Back.DTO.Validation.Authentication;
+namespace PocketForzaHorizonCommunity.Back.DTO.Validation.Authentication;
 
 public class SignInRequestValidation : AbstractValidator<SignInRequest>
 {

@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.Requests.Guides;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 
 public class CreateTuneRequest
 {
@@ -30,6 +30,6 @@ public class CreateTuneRequest
     public string Compound { get; set; } = null!;
     public string FrontTierWidth { get; set; } = null!;
     public string RearTierWidth { get; set; } = null!;
-    public string FrontTrackwidth { get; set; } = null!;
+    public string FrontTrackWidth { get; set; } = null!;
     public string RearTrackWidth { get; set; } = null!;
 }

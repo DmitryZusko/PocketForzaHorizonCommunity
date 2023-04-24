@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.DTOs;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.DTOs;
 
 public class UserDto
 {

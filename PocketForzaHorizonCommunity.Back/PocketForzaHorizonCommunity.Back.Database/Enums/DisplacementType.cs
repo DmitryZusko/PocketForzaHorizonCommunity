@@ -1,6 +1,6 @@
 ﻿namespace PocketForzaHorizonCommunity.Back.Database.Enums;
 
-public enum DisplasementType
+public enum DisplacementType
 {
 
 }

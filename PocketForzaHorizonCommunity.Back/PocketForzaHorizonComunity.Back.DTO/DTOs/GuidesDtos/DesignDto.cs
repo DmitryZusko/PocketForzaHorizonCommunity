@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.DTOs.GuidesDtos;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 
 public class DesignDto
 {

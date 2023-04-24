@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.Requests;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests;
 
 public class PaginationGetRequest
 {

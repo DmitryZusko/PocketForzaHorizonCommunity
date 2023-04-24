@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.Requests.Guides;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 
 public class CreateDesignRequest
 {
