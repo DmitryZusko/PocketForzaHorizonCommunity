@@ -1,6 +1,8 @@
-﻿namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 
-public interface IDesignsRepository
+namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+
+public interface IDesignsRepository : IRepositoryBase<Design>
 {
 
 }

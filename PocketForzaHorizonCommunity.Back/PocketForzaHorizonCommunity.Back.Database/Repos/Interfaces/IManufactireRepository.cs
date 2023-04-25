@@ -1,6 +1,8 @@
-﻿namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 
-public interface IManufactireRepository
+namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+
+public interface IManufactireRepository : IRepositoryBase<Manufacture>
 {
 
 }

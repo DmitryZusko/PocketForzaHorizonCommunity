@@ -1,6 +1,8 @@
-﻿namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 
-public interface ITunesRepository
+namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+
+public interface ITunesRepository : IRepositoryBase<Tune>
 {
 
 }
