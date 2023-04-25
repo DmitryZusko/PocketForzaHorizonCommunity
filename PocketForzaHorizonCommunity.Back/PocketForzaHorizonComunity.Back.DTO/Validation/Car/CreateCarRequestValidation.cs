@@ -25,7 +25,7 @@ public class CreateCarRequestValidation : AbstractValidator<CreateCarRequest>
             .NotEmpty()
             .MaximumLength(64);
 
-        RuleFor(x => x.CarType)
+        RuleFor(x => x.CarTypeId)
             .NotEmpty()
             .MaximumLength(64);
     }

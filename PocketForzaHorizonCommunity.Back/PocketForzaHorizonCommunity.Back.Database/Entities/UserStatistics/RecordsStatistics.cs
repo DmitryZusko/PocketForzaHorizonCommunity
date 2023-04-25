@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 
-public class RecordStatistics
+public class RecordsStatistics
 {
     [Key]
     public Guid UserId { get; set; }
@@ -12,22 +12,22 @@ public class RecordStatistics
     [Required]
     public int HighestDriftScore { get; set; }
     [Required]
-    public float HighestDangerSignScore { get; set; }
+    public double HighestDangerSignScore { get; set; }
     [Required]
-    public float HighestSpeedTrapScore { get; set; }
+    public double HighestSpeedTrapScore { get; set; }
     [Required]
-    public float HighestSpeedZoneScore { get; set; }
+    public double HighestSpeedZoneScore { get; set; }
     [Required]
     [Column(TypeName = "bigint")]
     public long LongestSkillChainInTicks { get; set; }
     [Required]
-    public float TopSpeed { get; set; }
+    public double TopSpeed { get; set; }
     [Required]
-    public float AvarageSpeed { get; set; }
+    public double AvarageSpeed { get; set; }
     [Required]
     public int DistanceDriven { get; set; }
     [Required]
-    public float LongestDrift { get; set; }
+    public double LongestDrift { get; set; }
     [Required]
-    public float LongestJump { get; set; }
+    public double LongestJump { get; set; }
 }

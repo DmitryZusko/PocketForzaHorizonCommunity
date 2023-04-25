@@ -10,7 +10,7 @@ public class Tune : EntityBase
     [Required]
     public string ForzaShareCode { get; set; } = null!;
     [Required]
-    public float Rating { get; set; }
+    public double Rating { get; set; } = 0.0;
     [Required]
     public Guid UserId { get; set; }
     public ApplicationUser User { get; set; } = null!;
