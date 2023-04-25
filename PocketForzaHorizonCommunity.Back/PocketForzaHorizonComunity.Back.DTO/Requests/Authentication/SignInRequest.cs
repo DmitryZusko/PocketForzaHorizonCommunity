@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.Requests.Authentication;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
 
 public class SignInRequest
 {

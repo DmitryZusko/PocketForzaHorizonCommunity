@@ -1,8 +1,9 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
+using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos;
 
-public class RepositoryBase<TEntity> where TEntity : EntityBase
+public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : EntityBase
 {
     protected ApplicationDbContext Context { get; }
 
@@ -17,7 +18,7 @@ public class RepositoryBase<TEntity> where TEntity : EntityBase
 
     public IQueryable<TEntity> GetById(Guid id) => GetAll().Where(i => i.Id == id);
 
-    public async virtual Task Create(TEntity newEntity) => await Context.Set<TEntity>().AddAsync(newEntity);
+    public async virtual Task CreateAsync(TEntity newEntity) => await Context.Set<TEntity>().AddAsync(newEntity);
 
     public virtual void Delete(TEntity entity) => Context.Set<TEntity>().Remove(entity);
 }

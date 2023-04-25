@@ -1,4 +1,6 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.Requests.Guides;
+﻿using PocketForzaHorizonCommunity.Back.Database.Enums;
+
+namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 
 public class CreateTuneRequest
 {
@@ -8,28 +10,29 @@ public class CreateTuneRequest
     public string CarId { get; set; } = null!;
 
     public string EngineDescription { get; set; } = string.Empty;
-    public string Engine { get; set; } = null!;
-    public string Aspiration { get; set; } = null!;
-    public string Intake { get; set; } = null!;
-    public string Ignition { get; set; } = null!;
-    public string Displacement { get; set; } = null!;
-    public string Exhaust { get; set; } = null!;
+    public EngineType Engine { get; set; }
+    public AspirationType Aspiration { get; set; }
+    public IntakeType Intake { get; set; }
+    public IgnitionType Ignition { get; set; }
+    public DisplacementType Displacement { get; set; }
+    public ExhaustType Exhaust { get; set; }
 
     public string HandlingDescription { get; set; } = string.Empty;
-    public string Brakes { get; set; } = null!;
-    public string Suspension { get; set; } = null!;
-    public string AntirollBars { get; set; } = null!;
-    public string RollCage { get; set; } = null!;
+    public BrakesType Brakes { get; set; }
+    public SuspensionType Suspension { get; set; }
+    public AntirollBarsType AntirollBars { get; set; }
+    public RollCageType RollCage { get; set; }
 
     public string DrivetrainDescription { get; set; } = string.Empty;
-    public string Clutch { get; set; } = null!;
-    public string Transmission { get; set; } = null!;
-    public string Differential { get; set; } = null!;
+    public ClutchType Clutch { get; set; }
+    public TransmissionType Transmission { get; set; }
+    public DifferentialType Differential { get; set; }
 
     public string TiersDescription { get; set; } = string.Empty;
-    public string Compound { get; set; } = null!;
-    public string FrontTierWidth { get; set; } = null!;
-    public string RearTierWidth { get; set; } = null!;
-    public string FrontTrackwidth { get; set; } = null!;
-    public string RearTrackWidth { get; set; } = null!;
+    public TiersCompoundType Compound { get; set; }
+    public TiersWidthType FrontTierWidth { get; set; }
+    public TiersWidthType RearTierWidth { get; set; }
+    public TrackWidthType FrontTrackWidth { get; set; }
+    public TrackWidthType RearTrackWidth { get; set; }
+}
 }

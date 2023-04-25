@@ -22,7 +22,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<CampaignStatistics> CampaignStatistics => Set<CampaignStatistics>();
     public DbSet<GeneralStatistics> GeneralStatistics => Set<GeneralStatistics>();
     public DbSet<OnlineStatistics> OnlineStatistics => Set<OnlineStatistics>();
-    public DbSet<RecordStatistics> RecordStatistics => Set<RecordStatistics>();
+    public DbSet<RecordsStatistics> RecordsStatistics => Set<RecordsStatistics>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

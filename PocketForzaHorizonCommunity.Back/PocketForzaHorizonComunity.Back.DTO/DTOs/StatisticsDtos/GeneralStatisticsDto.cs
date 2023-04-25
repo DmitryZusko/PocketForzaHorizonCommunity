@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.DTOs.StatisticsDtos;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.DTOs.StatisticsDtos;
 
 public class GeneralStatisticsDto
 {

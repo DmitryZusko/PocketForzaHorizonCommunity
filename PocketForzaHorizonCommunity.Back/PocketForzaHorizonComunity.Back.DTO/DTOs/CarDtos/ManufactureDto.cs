@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonComunity.Back.DTO.DTOs.CarDtos;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
 
 public class ManufactureDto
 {
