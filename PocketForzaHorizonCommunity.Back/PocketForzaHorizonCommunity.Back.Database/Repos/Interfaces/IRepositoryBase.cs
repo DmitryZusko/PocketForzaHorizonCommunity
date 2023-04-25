@@ -4,7 +4,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces
 {
     public interface IRepositoryBase<TEntity> where TEntity : EntityBase
     {
-        Task Create(TEntity newEntity);
+        Task CreateAsync(TEntity newEntity);
         void Delete(TEntity entity);
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> GetById(Guid id);
