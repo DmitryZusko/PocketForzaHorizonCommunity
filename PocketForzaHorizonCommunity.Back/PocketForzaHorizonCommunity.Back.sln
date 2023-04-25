@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.DTO", "PocketForzaHorizonComunity.Back.DTO\PocketForzaHorizonCommunity.Back.DTO.csproj", "{309964E6-F70B-4D59-B104-478FF69D7A5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketForzaHorizonCommunity.Back.Services", "PocketForzaHorizonCommunity.Back.Services\PocketForzaHorizonCommunity.Back.Services.csproj", "{BAC3D0A5-A32A-4559-9491-E43D467B0E96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

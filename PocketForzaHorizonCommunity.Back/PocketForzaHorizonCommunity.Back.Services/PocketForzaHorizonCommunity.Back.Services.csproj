@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PocketForzaHorizonCommunity.Back.Database\PocketForzaHorizonCommunity.Back.Database.csproj" />
+  </ItemGroup>
+
 </Project>
