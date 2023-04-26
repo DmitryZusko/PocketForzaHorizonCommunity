@@ -4,7 +4,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class DesignService : ServiceBase<IDesignRepository, Design>, IDesginService
+public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignService
 {
     public DesignService(IDesignRepository repository) : base(repository)
     {

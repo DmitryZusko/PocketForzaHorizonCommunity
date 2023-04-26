@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
-public interface IDesginService : IServiceBase<Design>
+public interface IDesignService : IServiceBase<Design>
 {
 
 }

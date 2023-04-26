@@ -4,6 +4,7 @@ using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
+using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
