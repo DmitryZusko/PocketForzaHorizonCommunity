@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
-public interface IManufactireRepository : IRepositoryBase<Manufacture>
+public interface IManufactureRepository : IRepositoryBase<Manufacture>
 {
 
 }

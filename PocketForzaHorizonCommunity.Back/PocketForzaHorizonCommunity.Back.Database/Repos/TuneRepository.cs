@@ -4,9 +4,9 @@ using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos;
 
-public class TunesRepository : RepositoryBase<Tune>, ITunesRepository
+public class TuneRepository : RepositoryBase<Tune>, ITuneRepository
 {
-    public TunesRepository(ApplicationDbContext context) : base(context)
+    public TuneRepository(ApplicationDbContext context) : base(context)
     {
     }
 

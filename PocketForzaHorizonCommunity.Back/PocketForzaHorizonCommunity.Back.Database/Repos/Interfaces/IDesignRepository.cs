@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
-public interface IDesignsRepository : IRepositoryBase<Design>
+public interface IDesignRepository : IRepositoryBase<Design>
 {
 
 }

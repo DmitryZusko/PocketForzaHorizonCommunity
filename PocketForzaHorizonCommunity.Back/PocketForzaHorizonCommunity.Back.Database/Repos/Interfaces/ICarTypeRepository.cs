@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces
 {
-    public interface ICarTypesRepository : IRepositoryBase<CarType>
+    public interface ICarTypeRepository : IRepositoryBase<CarType>
     {
     }
 }

@@ -5,9 +5,9 @@ using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class ManufactureService : ServiceBase<IManufactireRepository, Manufacture>
+public class ManufactureService : ServiceBase<IManufactureRepository, Manufacture>
 {
-    public ManufactureService(IManufactireRepository repository) : base(repository)
+    public ManufactureService(IManufactureRepository repository) : base(repository)
     {
     }
 

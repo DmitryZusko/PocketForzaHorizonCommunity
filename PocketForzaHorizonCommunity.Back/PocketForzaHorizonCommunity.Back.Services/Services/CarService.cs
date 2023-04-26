@@ -7,9 +7,9 @@ using PocketForzaHorizonCommunity.Back.Services.Extensions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarService : ServiceBase<ICarsRepository, Car>
+public class CarService : ServiceBase<ICarRepository, Car>
 {
-    public CarService(ICarsRepository repository) : base(repository)
+    public CarService(ICarRepository repository) : base(repository)
     {
     }
 

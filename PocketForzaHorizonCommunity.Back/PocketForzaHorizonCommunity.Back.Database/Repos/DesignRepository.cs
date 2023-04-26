@@ -4,9 +4,9 @@ using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos;
 
-public class DesignsRepository : RepositoryBase<Design>, IDesignsRepository
+public class DesignRepository : RepositoryBase<Design>, IDesignRepository
 {
-    public DesignsRepository(ApplicationDbContext context) : base(context)
+    public DesignRepository(ApplicationDbContext context) : base(context)
     {
     }
 
