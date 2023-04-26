@@ -5,7 +5,7 @@ using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarTypeService : ServiceBase<ICarTypeRepository, CarType>
+public class CarTypeService : ServiceBase<ICarTypeRepository, CarType>, ICarTypeService
 {
     public CarTypeService(ICarTypeRepository repository) : base(repository)
     {

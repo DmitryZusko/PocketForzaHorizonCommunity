@@ -7,7 +7,7 @@ using PocketForzaHorizonCommunity.Back.Services.Extensions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public abstract class ServiceBase<TRepo, TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
+public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
 {
     protected TRepo _repository;
     public ServiceBase(TRepo repository)
