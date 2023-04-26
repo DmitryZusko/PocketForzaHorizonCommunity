@@ -8,8 +8,8 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
 public abstract class ServiceBase<TRepo, TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
 {
-    protected IRepositoryBase<TEntity> _repository;
-    public ServiceBase(IRepositoryBase<TEntity> repository)
+    protected TRepo _repository;
+    public ServiceBase(TRepo repository)
     {
         _repository = repository;
     }
@@ -25,7 +25,7 @@ public abstract class ServiceBase<TRepo, TEntity> where TEntity : EntityBase whe
 
         if (entity == null)
         {
-            throw new Exception();
+            throw new EntityNotFoundException();
         }
 
         return entity;
@@ -45,12 +45,10 @@ public abstract class ServiceBase<TRepo, TEntity> where TEntity : EntityBase whe
 
         if (entity == null)
         {
-            throw new Exception();
+            throw new EntityNotFoundException();
         }
 
         _repository.Delete(entity);
         await _repository.SaveAsync();
     }
-
-    public abstract Task<TEntity> UpdateAsync(TEntity entity);
 }
