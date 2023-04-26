@@ -4,10 +4,11 @@ using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
+using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public abstract class ServiceBase<TRepo, TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
+public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
 {
     protected TRepo _repository;
     public ServiceBase(TRepo repository)

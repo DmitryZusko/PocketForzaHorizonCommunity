@@ -4,12 +4,13 @@ using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
+using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarService : ServiceBase<ICarsRepository, Car>
+public class CarService : ServiceBase<ICarRepository, Car>, ICarService
 {
-    public CarService(ICarsRepository repository) : base(repository)
+    public CarService(ICarRepository repository) : base(repository)
     {
     }
 
