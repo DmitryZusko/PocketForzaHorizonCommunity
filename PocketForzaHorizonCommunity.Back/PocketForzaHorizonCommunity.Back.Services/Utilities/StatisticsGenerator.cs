@@ -10,7 +10,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 /// with some boilerplate data. This class populate all statistics types with random generated data. So, every new user will 
 /// get statistics info only through this class and randomness will provide some sort of divercity.
 /// </summary>
-public class StatisticsGenerator
+public class StatisticsGenerator : IStatisticsGenerator
 {
     public ICarRepository CarRepo { get; set; }
     public ApplicationUser User { get; set; }

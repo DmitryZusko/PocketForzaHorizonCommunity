@@ -2,6 +2,7 @@
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Services;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
+using PocketForzaHorizonCommunity.Back.Services.Utilities;
 
 namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
 {
@@ -20,6 +21,8 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
             services.AddTransient<IDesignService, DesignService>();
             services.AddTransient<IManufactureService, ManufactureService>();
             services.AddTransient<ITuneService, TuneService>();
+
+            services.AddTransient<IStatisticsGenerator, StatisticsGenerator>();
         }
     }
 }
