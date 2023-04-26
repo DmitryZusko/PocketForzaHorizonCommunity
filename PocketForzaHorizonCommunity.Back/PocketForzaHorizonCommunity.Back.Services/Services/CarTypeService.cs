@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
