@@ -6,7 +6,11 @@ namespace PocketForzaHorizonCommunity.Back.Services.Extensions;
 
 public static class QueryableExtensions
 {
-    public static async Task<PaginationModel<TEntity>> PaginateAsync<TEntity>(this IQueryable<TEntity> query, int page, int pageSize) where TEntity : EntityBase
+    public static async Task<PaginationModel<TEntity>> PaginateAsync<TEntity>(
+        this IQueryable<TEntity> query,
+        int page = 1,
+        int pageSize = 25
+        ) where TEntity : EntityBase
     {
         var total = await query.CountAsync();
 
