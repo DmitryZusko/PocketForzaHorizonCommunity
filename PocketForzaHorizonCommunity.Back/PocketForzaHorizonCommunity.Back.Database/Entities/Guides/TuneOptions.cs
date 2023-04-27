@@ -29,7 +29,7 @@ public class TuneOptions
     [Required]
     public SuspensionType Suspension { get; set; }
     [Required]
-    public AntirollBarsType AntirollBars { get; set; }
+    public AntiRollBarsType AntirollBars { get; set; }
     [Required]
     public RollCageType RollCage { get; set; }
 
