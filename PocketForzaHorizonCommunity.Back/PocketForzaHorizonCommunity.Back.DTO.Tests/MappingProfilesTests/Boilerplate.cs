@@ -11,7 +11,7 @@ namespace PocketForzaHorizonCommunity.Back.DTO.Tests.MappingProfilesTests;
 /// </summary>
 internal static class Boilerplate
 {
-    public static Car GetCarSample()
+    internal static Car GetCarSample()
     {
         return new Car
         {
@@ -31,7 +31,7 @@ internal static class Boilerplate
         };
     }
 
-    public static CreateCarRequest GetCreateCarRequestSample()
+    internal static CreateCarRequest GetCreateCarRequestSample()
     {
 
         var car = GetCarSample();
@@ -45,7 +45,7 @@ internal static class Boilerplate
         };
     }
 
-    public static UpdateCarRequest GetUpdateCarRequestSample()
+    internal static UpdateCarRequest GetUpdateCarRequestSample()
     {
 
         var car = GetCarSample();
@@ -60,7 +60,7 @@ internal static class Boilerplate
         };
     }
 
-    public static CampaignStatistics GetCampaignStatisticsSample()
+    internal static CampaignStatistics GetCampaignStatisticsSample()
     {
         return new CampaignStatistics
         {
@@ -78,7 +78,7 @@ internal static class Boilerplate
         };
     }
 
-    public static GeneralStatistics GetGeneralStatisticsSample()
+    internal static GeneralStatistics GetGeneralStatisticsSample()
     {
         return new GeneralStatistics
         {
@@ -94,7 +94,7 @@ internal static class Boilerplate
         };
     }
 
-    public static Design GetDesignSample()
+    internal static Design GetDesignSample()
     {
 
         var car = GetCarSample();
@@ -132,6 +132,88 @@ internal static class Boilerplate
             AuthorId = design.UserId.ToString(),
             CarId = design.CarId.ToString(),
             Description = design.DesignOptions.Description,
+        };
+    }
+
+    internal static Tune GetTuneSample()
+    {
+        var user = new ApplicationUser { UserName = "UserName" };
+        var car = GetCarSample();
+
+        var tune = new Tune
+        {
+            Title = "Title",
+            ForzaShareCode = "888 555 222",
+            Rating = 4.5,
+            UserId = user.Id,
+            User = user,
+            CarId = car.Id,
+            Car = car,
+        };
+
+        tune.TuneOptions = new TuneOptions
+        {
+            TuneId = tune.Id,
+            EngineDescription = "Engine Description",
+            Engine = Database.Enums.EngineType.RacingI6T,
+            Aspiration = Database.Enums.AspirationType.TwinTurbo,
+            Intake = Database.Enums.IntakeType.RaceIntake,
+            Ignition = Database.Enums.IgnitionType.RaceIgnition,
+            Displacement = Database.Enums.DisplacementType.SportEngineBlock,
+            Exhaust = Database.Enums.ExhaustType.StreetExhaust,
+            HandlingDescription = "Handling Description",
+            Brakes = Database.Enums.BrakesType.StreetBrakes,
+            Suspension = Database.Enums.SuspensionType.DriftSuspension,
+            AntirollBars = Database.Enums.AntiRollBarsType.RaceAntiRollBars,
+            RollCage = Database.Enums.RollCageType.RaceChassisReinforcement,
+            DrivetrainDescription = "Drivetrain Description",
+            Clutch = Database.Enums.ClutchType.RaceClutch,
+            Transmission = Database.Enums.TransmissionType.Race7Speed,
+            Differential = Database.Enums.DifferentialType.DriftDifferential,
+            TiersDescription = "Tiesr Description",
+            Compound = Database.Enums.TiersCompoundType.VintageCompound,
+            FrontTierWidth = Database.Enums.TiersWidthType.MM245,
+            RearTierWidth = Database.Enums.TiersWidthType.MM285,
+            FrontTrackWidth = Database.Enums.TrackWidthType.RaceTrackWidth,
+            RearTrackWidth = Database.Enums.TrackWidthType.RaceTrackWidth,
+        };
+
+        return tune;
+    }
+
+    internal static CreateTuneRequest GetCreateTuneRequestSample()
+    {
+        var tune = GetTuneSample();
+        var car = GetCarSample();
+
+        return new CreateTuneRequest
+        {
+            Title = tune.Title,
+            ForzaShareCode = tune.ForzaShareCode,
+            AuthorId = tune.User.Id.ToString(),
+            CarId = car.Id.ToString(),
+            EngineDescription = tune.TuneOptions.EngineDescription,
+            Engine = tune.TuneOptions.Engine,
+            Aspiration = tune.TuneOptions.Aspiration,
+            Intake = tune.TuneOptions.Intake,
+            Ignition = tune.TuneOptions.Ignition,
+            Displacement = tune.TuneOptions.Displacement,
+            Exhaust = tune.TuneOptions.Exhaust,
+            HandlingDescription = tune.TuneOptions.HandlingDescription,
+            Brakes = tune.TuneOptions.Brakes,
+            Suspension = tune.TuneOptions.Suspension,
+            AntirollBars = tune.TuneOptions.AntirollBars,
+            RollCage = tune.TuneOptions.RollCage,
+            DrivetrainDescription = tune.TuneOptions.DrivetrainDescription,
+            Clutch = tune.TuneOptions.Clutch,
+            Transmission = tune.TuneOptions.Transmission,
+            Differential = tune.TuneOptions.Differential,
+            TiersDescription = tune.TuneOptions.TiersDescription,
+            Compound = tune.TuneOptions.Compound,
+            FrontTierWidth = tune.TuneOptions.FrontTierWidth,
+            RearTierWidth = tune.TuneOptions.RearTierWidth,
+            FrontTrackWidth = tune.TuneOptions.FrontTrackWidth,
+            RearTrackWidth = tune.TuneOptions.RearTrackWidth,
         };
     }
 }
