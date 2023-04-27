@@ -15,7 +15,7 @@ public class TuneFullInfoDto : TuneDto
     public string HandlingDescription { get; set; } = string.Empty;
     public BrakesType Brakes { get; set; }
     public SuspensionType Suspension { get; set; }
-    public AntiRollBarsType AntirollBars { get; set; }
+    public AntiRollBarsType AntiRollBars { get; set; }
     public RollCageType RollCage { get; set; }
 
     public string DrivetrainDescription { get; set; } = string.Empty;
@@ -27,6 +27,6 @@ public class TuneFullInfoDto : TuneDto
     public TiersCompoundType Compound { get; set; }
     public TiersWidthType FrontTierWidth { get; set; }
     public TiersWidthType RearTierWidth { get; set; }
-    public TrackWidthType FrontTrackwidth { get; set; }
+    public TrackWidthType FrontTrackWidth { get; set; }
     public TrackWidthType RearTrackWidth { get; set; }
 }

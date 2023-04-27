@@ -20,7 +20,7 @@ public class CreateTuneRequest
     public string HandlingDescription { get; set; } = string.Empty;
     public BrakesType Brakes { get; set; }
     public SuspensionType Suspension { get; set; }
-    public AntiRollBarsType AntirollBars { get; set; }
+    public AntiRollBarsType AntiRollBars { get; set; }
     public RollCageType RollCage { get; set; }
 
     public string DrivetrainDescription { get; set; } = string.Empty;

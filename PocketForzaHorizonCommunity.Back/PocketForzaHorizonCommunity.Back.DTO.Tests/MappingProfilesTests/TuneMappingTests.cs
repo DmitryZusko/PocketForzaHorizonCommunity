@@ -82,7 +82,7 @@ public class TuneMappingTests
             HandlingDescription = tune.TuneOptions.HandlingDescription,
             Brakes = tune.TuneOptions.Brakes,
             Suspension = tune.TuneOptions.Suspension,
-            AntirollBars = tune.TuneOptions.AntirollBars,
+            AntiRollBars = tune.TuneOptions.AntiRollBars,
             RollCage = tune.TuneOptions.RollCage,
             DrivetrainDescription = tune.TuneOptions.DrivetrainDescription,
             Clutch = tune.TuneOptions.Clutch,

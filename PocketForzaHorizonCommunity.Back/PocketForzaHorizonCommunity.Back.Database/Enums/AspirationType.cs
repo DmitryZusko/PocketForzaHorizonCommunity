@@ -6,7 +6,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Enums;
 [JsonConverter(typeof(StringEnumConverter))]
 public enum AspirationType
 {
-    SingleYurbo,
+    SingleTurbo,
     TwinTurbo,
     PositiveDisplacementSupercharger,
     CentrifugalSupercharger,

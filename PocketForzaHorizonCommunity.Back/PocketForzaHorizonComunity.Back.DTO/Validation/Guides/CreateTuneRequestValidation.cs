@@ -45,7 +45,7 @@ public class CreateTuneRequestValidation : AbstractValidator<CreateTuneRequest>
 
         RuleFor(x => x.Suspension).NotEmpty().IsInEnum();
 
-        RuleFor(x => x.AntirollBars).NotEmpty().IsInEnum();
+        RuleFor(x => x.AntiRollBars).NotEmpty().IsInEnum();
 
         RuleFor(x => x.RollCage).NotEmpty().IsInEnum();
 
