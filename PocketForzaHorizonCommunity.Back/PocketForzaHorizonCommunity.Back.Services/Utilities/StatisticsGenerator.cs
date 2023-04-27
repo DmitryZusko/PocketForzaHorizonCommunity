@@ -12,30 +12,30 @@ namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 /// </summary>
 public class StatisticsGenerator : IStatisticsGenerator
 {
-    public ICarRepository CarRepo { get; set; }
-    public ApplicationUser User { get; set; }
+    private ICarRepository _carRepo { get; set; }
+    private ApplicationUser _user { get; set; } = null!;
 
     private IList<Car> _selectedCars = new List<Car>();
 
-    public StatisticsGenerator(ICarRepository carRepo, ApplicationUser user)
+    public StatisticsGenerator(ICarRepository carRepo)
     {
-        CarRepo = carRepo;
-        User = user;
+        _carRepo = carRepo;
     }
 
-    public void GenerateStatistics()
+    public void GenerateStatistics(ApplicationUser user)
     {
-        User.OwnedCarsByUsers = GenerateUserCars();
-        User.GeneralStatistics = GenerateGeneralStatistics();
-        User.CampaignStatistics = GenerateCampaignStatistics();
-        User.OnlineStatistics = GenerateOnlineStatistics();
-        User.RecordsStatistics = GenerateRecordsStatistics();
+        _user = user;
+        _user.OwnedCarsByUsers = GenerateUserCars();
+        _user.GeneralStatistics = GenerateGeneralStatistics();
+        _user.CampaignStatistics = GenerateCampaignStatistics();
+        _user.OnlineStatistics = GenerateOnlineStatistics();
+        _user.RecordsStatistics = GenerateRecordsStatistics();
     }
 
     private List<OwnedCarsByUsers> GenerateUserCars()
     {
         var rnd = new Random();
-        var cars = CarRepo.GetAll().ToList();
+        var cars = _carRepo.GetAll().ToList();
 
         var _selectedCars = cars.Skip(rnd.Next(0, cars.Count / 2)).Take(rnd.Next(1, cars.Count / 2)).ToList(); ;
 
@@ -46,7 +46,7 @@ public class StatisticsGenerator : IStatisticsGenerator
             result.Add(new OwnedCarsByUsers
             {
                 CarId = car.Id,
-                User = User,
+                User = _user,
             });
         }
 
@@ -57,11 +57,11 @@ public class StatisticsGenerator : IStatisticsGenerator
     {
         var rnd = new Random();
 
-        var cars = CarRepo.GetAll().ToList();
+        var cars = _carRepo.GetAll().ToList();
 
         var statistics = new GeneralStatistics
         {
-            User = User,
+            User = _user,
             GarageValue = _selectedCars.Sum(c => c.Price),
             TimeDrivenInTicks = rnd.NextInt64(TimeSpan.TicksPerHour, 1000 * TimeSpan.TicksPerHour),
             TotalVictories = rnd.Next(10, 1000),
@@ -84,7 +84,7 @@ public class StatisticsGenerator : IStatisticsGenerator
 
         var statistics = new CampaignStatistics
         {
-            User = User,
+            User = _user,
             TotalRaces = rnd.Next(0, 10_000),
             StoriesCompleted = rnd.Next(0, 65),
             StoryStarsEarned = rnd.Next(0, 195),
@@ -108,7 +108,7 @@ public class StatisticsGenerator : IStatisticsGenerator
 
         var statistics = new OnlineStatistics
         {
-            User = User,
+            User = _user,
             RecievedKudos = rnd.Next(0, 1000),
             GivenKudos = rnd.Next(0, 1000),
             FlagRushWon = rnd.Next(0, 1000),
@@ -137,7 +137,7 @@ public class StatisticsGenerator : IStatisticsGenerator
 
         var statistics = new RecordsStatistics
         {
-            User = User,
+            User = _user,
             HighestDriftScore = rnd.Next(100_000, 10_000_000),
             HighestDangerSignScore = rnd.NextDouble() * 1200 + 300,
             HighestSpeedTrapScore = rnd.NextDouble() * 500 + 100,
