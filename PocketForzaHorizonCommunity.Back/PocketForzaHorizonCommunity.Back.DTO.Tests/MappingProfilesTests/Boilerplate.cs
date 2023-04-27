@@ -1,6 +1,9 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
+using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
+using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Tests.MappingProfilesTests;
 /// <summary>
@@ -8,7 +11,7 @@ namespace PocketForzaHorizonCommunity.Back.DTO.Tests.MappingProfilesTests;
 /// </summary>
 internal static class Boilerplate
 {
-    public static Car GetCar()
+    public static Car GetCarSample()
     {
         return new Car
         {
@@ -28,10 +31,10 @@ internal static class Boilerplate
         };
     }
 
-    public static CreateCarRequest GetCreateCarRequest()
+    public static CreateCarRequest GetCreateCarRequestSample()
     {
 
-        var car = GetCar();
+        var car = GetCarSample();
         return new CreateCarRequest
         {
             Model = car.Model,
@@ -42,10 +45,10 @@ internal static class Boilerplate
         };
     }
 
-    public static UpdateCarRequest GetUpdateCarRequest()
+    public static UpdateCarRequest GetUpdateCarRequestSample()
     {
 
-        var car = GetCar();
+        var car = GetCarSample();
         return new UpdateCarRequest
         {
             Id = car.Id.ToString(),
@@ -87,7 +90,48 @@ internal static class Boilerplate
             CollisionsPerRace = 10,
             DailyChallengesCompleted = 10,
             WeeklyChallengesComplited = 10,
-            Car = GetCar(),
+            Car = GetCarSample(),
+        };
+    }
+
+    public static Design GetDesignSample()
+    {
+
+        var car = GetCarSample();
+        var user = new ApplicationUser { UserName = "User000" };
+        var design = new Design
+        {
+            Id = new Guid(),
+            Title = "Design",
+            ForzaShareCode = "888 555 222",
+            Rating = 4.5,
+            UserId = new Guid(),
+            User = user,
+            CarId = car.Id,
+            Car = car,
+        };
+
+        design.DesignOptions = new DesignOptions
+        {
+            DesignId = design.Id,
+            Design = design,
+            Description = "Description",
+        };
+
+        return design;
+    }
+
+    internal static CreateDesignRequest GetCreateDesignRequestSample()
+    {
+        var design = GetDesignSample();
+
+        return new CreateDesignRequest
+        {
+            Title = design.Title,
+            ForzaShareCode = design.ForzaShareCode,
+            AuthorId = design.UserId.ToString(),
+            CarId = design.CarId.ToString(),
+            Description = design.DesignOptions.Description,
         };
     }
 }
