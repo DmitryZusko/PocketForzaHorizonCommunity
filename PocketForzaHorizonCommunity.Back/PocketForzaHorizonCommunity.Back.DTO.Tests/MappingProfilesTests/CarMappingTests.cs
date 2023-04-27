@@ -13,7 +13,7 @@ public class CarMappingTests
     [Test]
     public void Car_To_CarDto_Should_Map()
     {
-        var car = Boilerplate.GetCar();
+        var car = Boilerplate.GetCarSample();
         var expected = MapCarToDto(car);
         var mapper = new MapperConfiguration(cfg => cfg.AddProfile<CarProfile>()).CreateMapper();
 
@@ -25,8 +25,8 @@ public class CarMappingTests
     [Test]
     public void CreateCarRequest_To_Car_Should_Map()
     {
-        var request = Boilerplate.GetCreateCarRequest();
-        var expected = Boilerplate.GetCar();
+        var request = Boilerplate.GetCreateCarRequestSample();
+        var expected = Boilerplate.GetCarSample();
         var mapper = new MapperConfiguration(cfg => cfg.AddProfile<CarProfile>()).CreateMapper();
 
         var actual = mapper.Map<CreateCarRequest, Car>(request);
@@ -37,8 +37,8 @@ public class CarMappingTests
     [Test]
     public void UpdateCarRequest_To_Car_Should_Map()
     {
-        var request = Boilerplate.GetUpdateCarRequest();
-        var expected = Boilerplate.GetCar();
+        var request = Boilerplate.GetUpdateCarRequestSample();
+        var expected = Boilerplate.GetCarSample();
         var mapper = new MapperConfiguration(cfg => cfg.AddProfile<CarProfile>()).CreateMapper();
 
         var actual = mapper.Map<UpdateCarRequest, Car>(request);
@@ -46,7 +46,7 @@ public class CarMappingTests
         Assert.IsTrue(CompareUpdatedCars(expected, actual));
     }
 
-    private CarDto MapCarToDto(Car car)
+    private static CarDto MapCarToDto(Car car)
     {
         return new CarDto
         {
@@ -59,7 +59,7 @@ public class CarMappingTests
         };
     }
 
-    private bool? CompareCars(CarDto expected, CarDto actual)
+    private static bool CompareCars(CarDto expected, CarDto actual)
     {
         foreach (var property in actual.GetType().GetProperties())
         {
@@ -70,7 +70,7 @@ public class CarMappingTests
         return true;
     }
 
-    private bool CompareCreatedCars(Car expected, Car actual)
+    private static bool CompareCreatedCars(Car expected, Car actual)
     {
         foreach (var property in expected.GetType().GetProperties())
         {
@@ -86,7 +86,7 @@ public class CarMappingTests
         return true;
     }
 
-    private bool CompareUpdatedCars(Car expected, Car actual)
+    private static bool CompareUpdatedCars(Car expected, Car actual)
     {
         foreach (var property in expected.GetType().GetProperties())
         {
