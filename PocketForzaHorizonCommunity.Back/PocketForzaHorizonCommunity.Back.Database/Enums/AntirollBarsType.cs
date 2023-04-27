@@ -1,8 +1,15 @@
-﻿namespace PocketForzaHorizonCommunity.Back.Database.Enums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
-public enum AntirollBarsType
+namespace PocketForzaHorizonCommunity.Back.Database.Enums;
+
+[JsonConverter(typeof(StringEnumConverter))]
+public enum AntiRollBarsType
 {
-
+    StockAntiRollBars,
+    StreetAntiRollBars,
+    SportAntiRollBars,
+    RaceAntiRollBars,
 }
 
 

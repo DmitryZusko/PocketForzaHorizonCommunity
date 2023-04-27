@@ -25,11 +25,11 @@ public class UpdateCarRequestValidator : AbstractValidator<UpdateCarRequest>
             .GreaterThanOrEqualTo(5000)
             .LessThanOrEqualTo(1_000_000_000);
 
-        RuleFor(x => x.Manufacture)
+        RuleFor(x => x.ManufactureId)
             .NotEmpty()
             .MaximumLength(64);
 
-        RuleFor(x => x.CarType)
+        RuleFor(x => x.CarTypeId)
             .NotEmpty()
             .MaximumLength(64);
     }

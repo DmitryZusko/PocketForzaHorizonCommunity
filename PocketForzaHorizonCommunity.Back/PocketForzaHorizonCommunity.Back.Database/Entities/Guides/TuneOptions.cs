@@ -29,7 +29,7 @@ public class TuneOptions
     [Required]
     public SuspensionType Suspension { get; set; }
     [Required]
-    public AntirollBarsType AntirollBars { get; set; }
+    public AntiRollBarsType AntiRollBars { get; set; }
     [Required]
     public RollCageType RollCage { get; set; }
 
@@ -49,7 +49,7 @@ public class TuneOptions
     [Required]
     public TiersWidthType RearTierWidth { get; set; }
     [Required]
-    public TrackWidthType FrontTrackwidth { get; set; }
+    public TrackWidthType FrontTrackWidth { get; set; }
     [Required]
     public TrackWidthType RearTrackWidth { get; set; }
 }

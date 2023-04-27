@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.16.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PocketForzaHorizonCommunity.Back.API\PocketForzaHorizonCommunity.Back.API.csproj" />
+    <ProjectReference Include="..\PocketForzaHorizonCommunity.Back.Database\PocketForzaHorizonCommunity.Back.Database.csproj" />
+    <ProjectReference Include="..\PocketForzaHorizonCommunity.Back.Services\PocketForzaHorizonCommunity.Back.Services.csproj" />
+    <ProjectReference Include="..\PocketForzaHorizonComunity.Back.DTO\PocketForzaHorizonCommunity.Back.DTO.csproj" />
+  </ItemGroup>
+
 </Project>
