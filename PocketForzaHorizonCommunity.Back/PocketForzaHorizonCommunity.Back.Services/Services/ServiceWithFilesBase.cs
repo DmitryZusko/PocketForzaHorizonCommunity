@@ -10,7 +10,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public abstract class ServiceWithFilesBase<TRepo, TEntity> : ServiceWithFilesBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
+public abstract class ServiceWithFilesBase<TRepo, TEntity> : IServiceWithFilesBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
 {
     protected readonly IConfiguration _configuration;
     protected readonly TRepo _repository;

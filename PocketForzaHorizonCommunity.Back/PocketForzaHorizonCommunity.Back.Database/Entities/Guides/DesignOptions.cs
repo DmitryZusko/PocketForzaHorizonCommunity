@@ -8,6 +8,7 @@ public class DesignOptions
     public Guid DesignId { get; set; }
     public Design Design { get; set; } = null!;
     [Required]
-    public string PathToImages { get; set; } = null!;
+    public string ThumbnailPath { get; set; } = null!;
     public string Description { get; set; } = string.Empty;
+    public ICollection<GalleryImage> Gallery { get; set; } = null!;
 }

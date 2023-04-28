@@ -8,4 +8,5 @@ public class DesignDto
     public double Rating { get; set; }
     public string AuthorUserName { get; set; } = string.Empty;
     public string CarModel { get; set; } = string.Empty;
+    public byte[] Thumbnail { get; set; } = null!;
 }

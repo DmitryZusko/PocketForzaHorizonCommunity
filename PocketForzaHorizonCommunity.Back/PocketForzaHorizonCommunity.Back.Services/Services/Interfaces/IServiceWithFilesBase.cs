@@ -4,7 +4,7 @@ using PocketForzaHorizonCommunity.Back.Database.Entities;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
 {
-    public interface ServiceWithFilesBase<TEntity> where TEntity : EntityBase
+    public interface IServiceWithFilesBase<TEntity> where TEntity : EntityBase
     {
         Task<TEntity> CreateAsync(TEntity entity, IFormFile thumbnail);
         Task Delete(Guid id);

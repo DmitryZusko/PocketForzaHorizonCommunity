@@ -11,16 +11,46 @@ public class DesignProfile : Profile
     {
         CreateMap<Design, DesignDto>()
             .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(src => src.User.UserName))
-            .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"));
+            .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
+            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)));
 
         CreateMap<Design, DesignFullInfoDto>()
             .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
-            .ForPath(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description));
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
+            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)))
+            .ForMember(dest => dest.Gallery, opt => opt.MapFrom(src => LoadGallery(src.DesignOptions.Gallery)));
 
         CreateMap<CreateDesignRequest, Design>()
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => Guid.Parse(src.AuthorId)))
             .ForMember(dest => dest.CarId, opt => opt.MapFrom(src => Guid.Parse(src.CarId)))
             .ForPath(dest => dest.DesignOptions.Description, opt => opt.MapFrom(src => src.Description));
+    }
+
+    private byte[] LoadThumbnail(string path)
+    {
+        using (var stream = new FileStream(path, FileMode.Open))
+        {
+            var image = new byte[stream.Length];
+            stream.Read(image);
+            return image;
+        }
+    }
+
+    private List<byte[]> LoadGallery(ICollection<GalleryImage> gallery)
+    {
+        var images = new List<byte[]>();
+
+        foreach (var image in gallery)
+        {
+            using (var stream = new FileStream(image.ImagePath, FileMode.Open))
+            {
+                var loadedImage = new byte[stream.Length];
+                stream.Read(loadedImage);
+                images.Add(loadedImage);
+            }
+        }
+
+        return images;
     }
 }
