@@ -16,14 +16,16 @@ public class CarProfile : Profile
 
         CreateMap<CreateCarRequest, Car>()
             .ForMember(dest => dest.ManufactureId, opt => opt.MapFrom(src => Guid.Parse(src.ManufactureId)))
-            .ForMember(dest => dest.CarTypeId, opt => opt.MapFrom(src => Guid.Parse(src.CarTypeId)));
+            .ForMember(dest => dest.CarTypeId, opt => opt.MapFrom(src => Guid.Parse(src.CarTypeId)))
+            .ForSourceMember(src => src.Image, opt => opt.DoNotValidate());
 
         CreateMap<UpdateCarRequest, Car>()
             .ForMember(dest => dest.ManufactureId, opt => opt.MapFrom(src => Guid.Parse(src.ManufactureId)))
-            .ForMember(dest => dest.CarTypeId, opt => opt.MapFrom(src => Guid.Parse(src.CarTypeId)));
+            .ForMember(dest => dest.CarTypeId, opt => opt.MapFrom(src => Guid.Parse(src.CarTypeId)))
+            .ForSourceMember(src => src.Image, opt => opt.DoNotValidate());
     }
 
-    private byte[] LoadImage(string path)
+    private static byte[] LoadImage(string path)
     {
         using (var stream = new FileStream(path, FileMode.Open))
         {
