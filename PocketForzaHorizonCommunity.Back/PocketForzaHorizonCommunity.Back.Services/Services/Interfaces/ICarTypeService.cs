@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
 {
-    public interface ICarTypeService : IServiceBase<CarType>
+    public interface ICarTypeService : ICrudServiceBase<CarType>
     {
         Task<CarType> UpdateAsync(CarType newCarType);
     }

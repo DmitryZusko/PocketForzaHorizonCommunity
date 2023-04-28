@@ -6,7 +6,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class ManufactureService : ServiceBase<IManufactureRepository, Manufacture>, IManufactureService
+public class ManufactureService : CrudServiceBase<IManufactureRepository, Manufacture>, IManufactureService
 {
     public ManufactureService(IManufactureRepository repository) : base(repository)
     {

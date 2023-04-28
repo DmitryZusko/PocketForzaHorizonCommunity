@@ -6,7 +6,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarTypeService : ServiceBase<ICarTypeRepository, CarType>, ICarTypeService
+public class CarTypeService : CrudServiceBase<ICarTypeRepository, CarType>, ICarTypeService
 {
     public CarTypeService(ICarTypeRepository repository) : base(repository)
     {
