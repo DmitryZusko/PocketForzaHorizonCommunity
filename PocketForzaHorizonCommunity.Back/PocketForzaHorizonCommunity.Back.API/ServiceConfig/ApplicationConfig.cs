@@ -8,11 +8,12 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
 {
     public static class ApplicationConfig
     {
-        public static void ConfigureApplication(this IServiceCollection services)
+        public static void ConfigureApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<ICarTypeRepository, CarTypeRepository>();
             services.AddTransient<IDesignRepository, DesignRepository>();
+            services.AddTransient<IGalleryRepository, GalleryRepository>();
             services.AddTransient<IManufactureRepository, ManufactureRepository>();
             services.AddTransient<ITuneRepository, TuneRepository>();
 

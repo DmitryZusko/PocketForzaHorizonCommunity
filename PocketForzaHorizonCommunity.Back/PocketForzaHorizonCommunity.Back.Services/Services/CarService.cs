@@ -10,13 +10,15 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarService : ServiceWithFilesBase<ICarRepository, Car>, ICarService
+public class CarService : ServiceBase<ICarRepository, Car>, ICarService
 {
-    public CarService(ICarRepository repository, IConfiguration config) : base(repository, config)
+    private IConfiguration _configuration;
+    public CarService(ICarRepository repository, IConfiguration config) : base(repository)
     {
+        _configuration = config;
     }
 
-    public override async Task<Car> CreateAsync(Car entity, IFormFile thumbnail)
+    public async Task<Car> CreateAsync(Car entity, IFormFile thumbnail)
     {
         await _repository.CreateAsync(entity);
         await _repository.SaveAsync();
@@ -65,9 +67,9 @@ public class CarService : ServiceWithFilesBase<ICarRepository, Car>, ICarService
         return oldEntity;
     }
 
-    public override async Task Delete(Guid id)
+    public override async Task DeleteAsync(Guid id)
     {
-        var entity = await _repository.GetById(id).FirstAsync() ?? throw new EntityNotFoundException();
+        var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
         File.Delete(entity.ImagePath);
 

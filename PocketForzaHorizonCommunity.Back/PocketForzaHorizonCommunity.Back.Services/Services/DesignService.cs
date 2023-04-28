@@ -8,15 +8,17 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class DesignService : ServiceWithFilesBase<IDesignRepository, Design>, IDesignService
+public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignService
 {
     private IGalleryRepository _galleryRepository;
-    public DesignService(IDesignRepository repository, IConfiguration config, IGalleryRepository galleryRepository) : base(repository, config)
+    private IConfiguration _configuration;
+    public DesignService(IDesignRepository repository, IConfiguration config, IGalleryRepository galleryRepository) : base(repository)
     {
         _galleryRepository = galleryRepository;
+        _configuration = config;
     }
 
-    public override async Task<Design> CreateAsync(Design entity, IFormFile thumbnail)
+    public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail)
     {
         await _repository.CreateAsync(entity);
         await _repository.SaveAsync();
@@ -53,7 +55,7 @@ public class DesignService : ServiceWithFilesBase<IDesignRepository, Design>, ID
         return entity;
     }
 
-    public async override Task Delete(Guid id)
+    public async override Task DeleteAsync(Guid id)
     {
         var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
