@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
-public interface ITuneService : IServiceBase<Tune>
+public interface ITuneService : ICrudServiceBase<Tune>
 {
 
 }

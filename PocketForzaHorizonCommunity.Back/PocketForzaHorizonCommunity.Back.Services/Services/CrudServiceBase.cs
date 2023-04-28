@@ -8,10 +8,10 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
+public abstract class CrudServiceBase<TRepo, TEntity> : ICrudServiceBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
 {
     protected TRepo _repository;
-    public ServiceBase(TRepo repository)
+    public CrudServiceBase(TRepo repository)
     {
         _repository = repository;
     }
@@ -23,14 +23,7 @@ public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where 
 
     public virtual async Task<TEntity> GetByIdAsync(Guid Id)
     {
-        var entity = await _repository.GetById(Id).FirstOrDefaultAsync();
-
-        if (entity == null)
-        {
-            throw new EntityNotFoundException();
-        }
-
-        return entity;
+        return await _repository.GetById(Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
     }
 
     public virtual async Task<TEntity> CreateAsync(TEntity entity)
@@ -43,12 +36,7 @@ public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where 
 
     public virtual async Task DeleteAsync(Guid id)
     {
-        var entity = await _repository.GetById(id).FirstOrDefaultAsync();
-
-        if (entity == null)
-        {
-            throw new EntityNotFoundException();
-        }
+        var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
         _repository.Delete(entity);
         await _repository.SaveAsync();

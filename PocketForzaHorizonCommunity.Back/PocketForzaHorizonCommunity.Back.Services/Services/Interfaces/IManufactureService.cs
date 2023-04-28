@@ -2,7 +2,7 @@
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
 {
-    public interface IManufactureService : IServiceBase<Manufacture>
+    public interface IManufactureService : ICrudServiceBase<Manufacture>
     {
         Task<Manufacture> UpdateAsync(Manufacture newManufacture);
     }
