@@ -19,6 +19,7 @@ public class DesignRepository : RepositoryBase<Design>, IDesignRepository
             .Include(d => d.User)
             .Include(d => d.Car)
             .Include(d => d.DesignOptions)
+            .ThenInclude(o => o.Gallery)
             .AsQueryable();
     }
 }
