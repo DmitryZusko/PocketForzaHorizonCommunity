@@ -48,22 +48,32 @@ public class CarMappingTests
 
     private static CarDto MapCarToDto(Car car)
     {
-        return new CarDto
+        var carDto = new CarDto();
+
+        using (var stream = new FileStream(car.ImagePath, FileMode.Open))
         {
-            Id = car.Id.ToString(),
-            Model = car.Model,
-            Year = car.Year,
-            Price = car.Price,
-            Manufacture = car.Manufacture.Name,
-            Type = car.CarType.Name,
-        };
+            var image = new byte[stream.Length];
+            stream.Read(image);
+            carDto.Image = image;
+        }
+        carDto.Id = car.Id.ToString();
+        carDto.Model = car.Model;
+        carDto.Year = car.Year;
+        carDto.Price = car.Price;
+        carDto.Manufacture = car.Manufacture.Name;
+        carDto.Type = car.CarType.Name;
+
+        return carDto;
     }
 
     private static bool CompareCars(CarDto expected, CarDto actual)
     {
         foreach (var property in actual.GetType().GetProperties())
         {
-            if (property.Name == nameof(expected.Image)) continue;
+            if (property.Name == nameof(actual.Image))
+            {
+                if (Enumerable.SequenceEqual(expected.Image, actual.Image) == true) continue;
+            }
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
         }
 

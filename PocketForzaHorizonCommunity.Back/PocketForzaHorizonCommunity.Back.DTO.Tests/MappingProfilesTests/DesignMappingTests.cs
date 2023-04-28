@@ -52,28 +52,52 @@ public class DesignMappingTests
 
     private DesignDto MapDesignToDto(Design design)
     {
-        return new DesignDto
+        var designDto = new DesignDto();
+
+        using (var stream = new FileStream(design.DesignOptions.ThumbnailPath, FileMode.Open))
         {
-            Id = design.Id.ToString(),
-            Title = design.Title,
-            ForzaShareCode = design.ForzaShareCode,
-            Rating = design.Rating,
-            AuthorUserName = design.User.UserName,
-            CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}",
-        };
+            var thumbnail = new byte[stream.Length];
+            stream.Read(thumbnail);
+            designDto.Thumbnail = thumbnail;
+        }
+
+        designDto.Id = design.Id.ToString();
+        designDto.Title = design.Title;
+        designDto.ForzaShareCode = design.ForzaShareCode;
+        designDto.Rating = design.Rating;
+        designDto.AuthorUserName = design.User.UserName;
+        designDto.CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}";
+
+        return designDto;
     }
 
     private DesignFullInfoDto MapToDesignFullInfoDto(Design design)
     {
+        var desginDto = MapDesignToDto(design);
+        var imageList = new List<byte[]>();
+
+        foreach (var image in design.DesignOptions.Gallery)
+        {
+            using (var stream = new FileStream(image.ImagePath, FileMode.Open))
+            {
+                var nextImage = new byte[stream.Length];
+                stream.Read(nextImage);
+                imageList.Add(nextImage);
+            }
+        }
+
+
         return new DesignFullInfoDto
         {
-            Id = design.Id.ToString(),
-            Title = design.Title,
-            ForzaShareCode = design.ForzaShareCode,
-            Rating = design.Rating,
-            AuthorUserName = design.User.UserName,
-            CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}",
+            Id = desginDto.Id.ToString(),
+            Title = desginDto.Title,
+            ForzaShareCode = desginDto.ForzaShareCode,
+            Rating = desginDto.Rating,
+            AuthorUserName = desginDto.AuthorUserName,
+            CarModel = desginDto.CarModel,
+            Thumbnail = desginDto.Thumbnail,
             Description = design.DesignOptions.Description,
+            Gallery = imageList,
         };
     }
 
@@ -81,6 +105,10 @@ public class DesignMappingTests
     {
         foreach (var property in actual.GetType().GetProperties())
         {
+            if (property.Name == nameof(actual.Thumbnail))
+            {
+                if (Enumerable.SequenceEqual(actual.Thumbnail, expected.Thumbnail) == true) continue;
+            }
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
 
         }
@@ -91,10 +119,19 @@ public class DesignMappingTests
     {
         foreach (var property in actual.GetType().GetProperties())
         {
-            if (property.Name == nameof(actual.Images)) continue;
+            if (property.Name == nameof(actual.Gallery)) continue;
+            if (property.Name == nameof(actual.Thumbnail))
+            {
+                if (Enumerable.SequenceEqual(actual.Thumbnail, expected.Thumbnail) == true) continue;
+            }
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
-
         }
+
+        for (var i = 0; i < actual.Gallery.Count; i++)
+        {
+            if (!Enumerable.SequenceEqual(actual.Gallery[i], expected.Gallery[i])) return false;
+        }
+
         return true;
     }
 
@@ -111,7 +148,8 @@ public class DesignMappingTests
         foreach (var property in actual.DesignOptions.GetType().GetProperties())
         {
             if (property.Name == nameof(actual.DesignOptions.Design)) continue;
-            if (property.Name == nameof(actual.DesignOptions.PathToImages)) continue;
+            if (property.Name == nameof(actual.DesignOptions.ThumbnailPath)) continue;
+            if (property.Name == nameof(actual.DesignOptions.Gallery)) continue;
             if (!property.GetValue(actual.DesignOptions).Equals(property.GetValue(expected.DesignOptions))) return false;
         }
 
