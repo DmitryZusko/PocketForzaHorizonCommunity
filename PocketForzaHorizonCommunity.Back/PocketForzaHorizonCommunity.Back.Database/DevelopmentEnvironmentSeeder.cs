@@ -1,30 +1,37 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
-using PocketForzaHorizonCommunity.Back.Database.Repos;
+using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database;
 
 public class DevelopmentEnvironmentSeeder
 {
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly CarRepository _carRepo;
-    private readonly ManufactureRepository _manufacturerRepo;
-    private readonly CarTypeRepository _carTypeRepo;
-    private readonly DesignRepository _designRepo;
-    private readonly GalleryRepository _galleryRepo;
-    private readonly TuneRepository _tuneRepo;
+    private readonly ICarRepository _carRepo;
+    private readonly IManufactureRepository _manufacturerRepo;
+    private readonly ICarTypeRepository _carTypeRepo;
+    private readonly IDesignRepository _designRepo;
+    private readonly IGalleryRepository _galleryRepo;
+    private readonly ITuneRepository _tuneRepo;
 
-    public DevelopmentEnvironmentSeeder(IServiceProvider serviceProvider)
+    public DevelopmentEnvironmentSeeder(
+        UserManager<ApplicationUser> userManager,
+        ICarRepository carRepo,
+        IManufactureRepository manufacturerRepo,
+        ICarTypeRepository carTypeRepo,
+        IDesignRepository designRepo,
+        IGalleryRepository galleryRepo,
+        ITuneRepository tuneRepo)
     {
-        _userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-        _carRepo = serviceProvider.GetService<CarRepository>();
-        _manufacturerRepo = serviceProvider.GetService<ManufactureRepository>();
-        _carTypeRepo = serviceProvider.GetService<CarTypeRepository>();
-        _designRepo = serviceProvider.GetService<DesignRepository>();
-        _tuneRepo = serviceProvider.GetService<TuneRepository>();
+        _userManager = userManager;
+        _carRepo = carRepo;
+        _manufacturerRepo = manufacturerRepo;
+        _carTypeRepo = carTypeRepo;
+        _designRepo = designRepo;
+        _galleryRepo = galleryRepo;
+        _tuneRepo = tuneRepo;
     }
 
     public async Task Seed()
@@ -126,8 +133,8 @@ public class DevelopmentEnvironmentSeeder
             Year = 1997,
             Price = 35_000,
             ImagePath = mazdaFullPath,
-            ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Retro Sport Car").FirstOrDefault().Id,
-            CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Mazda").FirstOrDefault().Id,
+            ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Mazda").FirstOrDefault().Id,
+            CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Retro Sport Car").FirstOrDefault().Id,
         };
 
         var skyline = new Car
@@ -136,8 +143,8 @@ public class DevelopmentEnvironmentSeeder
             Year = 1997,
             Price = 35_000,
             ImagePath = skylineFullPath,
-            ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Retro Sport Car").FirstOrDefault().Id,
-            CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Nissan").FirstOrDefault().Id,
+            ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Nissan").FirstOrDefault().Id,
+            CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Retro Sport Car").FirstOrDefault().Id,
         };
 
         var golf = new Car
@@ -146,8 +153,8 @@ public class DevelopmentEnvironmentSeeder
             Year = 1997,
             Price = 30_000,
             ImagePath = golfFullPath,
-            ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Hot Hatch").FirstOrDefault().Id,
-            CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Volkswagen").FirstOrDefault().Id,
+            ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Volkswagen").FirstOrDefault().Id,
+            CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Hot Hatch").FirstOrDefault().Id,
         };
 
         await _carRepo.CreateAsync(mazda);
