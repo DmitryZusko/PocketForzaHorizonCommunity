@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
 public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignService
 {
     private IGalleryRepository _galleryRepository;
-    private IConfiguration _configuration;
-    public DesignService(IDesignRepository repository, IConfiguration config, IGalleryRepository galleryRepository) : base(repository)
+    private IImageManager _imageManager;
+    public DesignService(IDesignRepository repository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
     {
         _galleryRepository = galleryRepository;
-        _configuration = config;
+        _imageManager = imageManager;
     }
 
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail)
@@ -23,13 +23,7 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
         await _repository.CreateAsync(entity);
         await _repository.SaveAsync();
 
-        var path = Path.Combine(_configuration["Images:Designs"], entity.Id.ToString(), "_thumbnail");
-        using (var stream = new FileStream(path, FileMode.Create))
-        {
-            await thumbnail.CopyToAsync(stream);
-        }
-
-        entity.DesignOptions.ThumbnailPath = path;
+        entity.DesignOptions.ThumbnailPath = await _imageManager.SaveDesignThumbnail(thumbnail, entity.Id);
         await _repository.SaveAsync();
 
         return entity;
@@ -39,14 +33,10 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
     {
         await CreateAsync(entity, thumbnail);
 
-        for (var i = 0; i < gallery.Count; i++)
-        {
-            var path = Path.Combine(_configuration["Image:Designs"], entity.Id.ToString(), $"_{i}");
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await gallery[i].CopyToAsync(stream);
-            }
+        var galleryPath = await _imageManager.SaveDesignGallery(gallery, entity.Id);
 
+        foreach (var path in galleryPath)
+        {
             await _galleryRepository.CreateAsync(new GalleryImage { DesignOptionsId = entity.Id, ImagePath = path });
         }
 
@@ -69,6 +59,8 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
                 _galleryRepository.Delete(image);
             }
         }
+
+        _imageManager.DeleteDesignImages(entity.DesignOptions.ThumbnailPath, entity.DesignOptions.Gallery.ToList());
 
         await _galleryRepository.SaveAsync();
         _repository.Delete(entity);
