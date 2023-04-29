@@ -18,5 +18,4 @@ public class ApplicationUser : IdentityUser<Guid>
     public ICollection<Tune> Tunes { get; set; } = new List<Tune>();
     public ICollection<Design> Designs { get; set; } = new List<Design>();
     public ICollection<OwnedCarsByUsers> OwnedCarsByUsers { get; set; } = new List<OwnedCarsByUsers>();
-    public ICollection<UsersFriends> UsersFriends { get; set; } = new List<UsersFriends>();
 }

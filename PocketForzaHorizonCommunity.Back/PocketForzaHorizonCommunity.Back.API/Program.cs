@@ -1,13 +1,25 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.API.ServiceConfig;
+using PocketForzaHorizonCommunity.Back.Database;
+using PocketForzaHorizonCommunity.Back.Database.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("TestEnviroment")));
 
 builder.Services.ConfigureApplication(builder.Configuration);
 builder.Services.ConfigureAutoMapper();
@@ -20,6 +32,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        scope.RunDevelopmentEnvironmentSeeder();
+    }
 }
 
 app.UseHttpsRedirection();
