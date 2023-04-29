@@ -60,7 +60,7 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
             }
         }
 
-        _imageManager.DeleteDesignImages(entity.DesignOptions.ThumbnailPath, entity.DesignOptions.Gallery.ToList());
+        _imageManager.DeleteDesignImages(entity.DesignOptions.ThumbnailPath, entity.DesignOptions.Gallery?.ToList());
 
         await _galleryRepository.SaveAsync();
         _repository.Delete(entity);
