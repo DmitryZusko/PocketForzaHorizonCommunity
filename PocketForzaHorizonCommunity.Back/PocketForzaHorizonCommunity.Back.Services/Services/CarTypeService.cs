@@ -14,12 +14,7 @@ public class CarTypeService : CrudServiceBase<ICarTypeRepository, CarType>, ICar
 
     public async Task<CarType> UpdateAsync(CarType newCarType)
     {
-        var oldCarType = await _repository.GetById(newCarType.Id).FirstOrDefaultAsync();
-
-        if (oldCarType == null)
-        {
-            throw new EntityNotFoundException();
-        }
+        var oldCarType = await _repository.GetById(newCarType.Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
         oldCarType.Name = newCarType.Name;
         await _repository.SaveAsync();

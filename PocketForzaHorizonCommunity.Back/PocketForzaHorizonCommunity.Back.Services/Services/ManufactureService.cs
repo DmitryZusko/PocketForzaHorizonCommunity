@@ -14,12 +14,7 @@ public class ManufactureService : CrudServiceBase<IManufactureRepository, Manufa
 
     public async Task<Manufacture> UpdateAsync(Manufacture newManufacture)
     {
-        var oldManufacture = await _repository.GetById(newManufacture.Id).FirstOrDefaultAsync();
-
-        if (oldManufacture == null)
-        {
-            throw new EntityNotFoundException();
-        }
+        var oldManufacture = await _repository.GetById(newManufacture.Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
         oldManufacture.Name = newManufacture.Name;
         oldManufacture.Country = newManufacture.Country;
