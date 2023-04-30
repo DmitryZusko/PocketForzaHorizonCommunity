@@ -30,15 +30,11 @@ public class CarService : ServiceBase<ICarRepository, Car>, ICarService
         return entity;
     }
 
-    public async Task<PaginationModel<Car>> GetDesignsByIdAsync(Guid id, int page, int pageSize)
-    {
-        return await _repository.GetByIdWithTunes(id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
-    }
+    public async Task<PaginationModel<Car>> GetDesignsByIdAsync(Guid id, int page, int pageSize) =>
+        await _repository.GetByIdWithTunes(id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
 
-    public async Task<PaginationModel<Car>> GetTunesByIdAsync(Guid Id, int page, int pageSize)
-    {
-        return await _repository.GetByIdWithDesigns(Id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
-    }
+    public async Task<PaginationModel<Car>> GetTunesByIdAsync(Guid Id, int page, int pageSize) =>
+        await _repository.GetByIdWithDesigns(Id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
 
     public async Task<Car> UpdateAsync(Car newEntity, IFormFile thumbnail)
     {
