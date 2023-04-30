@@ -17,28 +17,23 @@ public class DesignServiceTests
         using var mock = AutoMock.GetLoose();
         var entity = new Design
         {
-            Title = "Design",
-            DesignOptions = new DesignOptions
-            {
-                Description = "Description",
-            }
+            DesignOptions = new DesignOptions()
         };
-        var path = @"path\to\thumbnail";
+        var thumbnailPath = @"path\to\thumbnail";
 
         mock.Mock<IDesignRepository>()
             .Setup(x => x.CreateAsync(entity));
         mock.Mock<IDesignRepository>()
             .Setup(x => x.SaveAsync());
-
         mock.Mock<IImageManager>()
             .Setup(x => x.SaveDesignThumbnail(null, entity.Id))
-            .Returns(Task.Run(() => path));
+            .Returns(Task.Run(() => thumbnailPath));
 
         var designService = mock.Create<DesignService>();
 
         var actual = await designService.CreateAsync(entity, null);
 
-        Assert.IsTrue(path.Equals(actual.DesignOptions.ThumbnailPath));
+        Assert.IsTrue(actual.DesignOptions.ThumbnailPath.Equals(thumbnailPath)));
     }
 
     [Test]
