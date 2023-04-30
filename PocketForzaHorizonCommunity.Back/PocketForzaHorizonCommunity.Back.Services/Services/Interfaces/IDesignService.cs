@@ -5,5 +5,5 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 public interface IDesignService : IServiceBase<Design>
 {
-    Task<Design> CreateAsync(Design entity, IFormFile thumbnail, List<IFormFile> gallery);
+    Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery);
 }

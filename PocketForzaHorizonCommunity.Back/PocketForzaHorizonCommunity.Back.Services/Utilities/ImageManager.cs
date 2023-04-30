@@ -32,7 +32,7 @@ public class ImageManager : IImageManager
         return path;
     }
 
-    public async Task<List<string>> SaveDesignGallery(List<IFormFile> images, Guid designId)
+    public async Task<List<string>> SaveDesignGallery(IList<IFormFile> images, Guid designId)
     {
         var galleryPath = new List<string>();
 
