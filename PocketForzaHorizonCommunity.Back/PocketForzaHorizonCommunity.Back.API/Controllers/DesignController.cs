@@ -37,13 +37,18 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task CreateDesign([FromBody] CreateDesignRequest request)
     {
         var entity = _mapper.Map<Design>(request);
         await _service.CreateAsync(entity, request.Thumbnail, request.Gallery);
+
+        Response.StatusCode = StatusCodes.Status201Created;
     }
 
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task Delete(string id)
     {
         if (!Guid.TryParse(id, out var designId)) throw new BadRequestException();
