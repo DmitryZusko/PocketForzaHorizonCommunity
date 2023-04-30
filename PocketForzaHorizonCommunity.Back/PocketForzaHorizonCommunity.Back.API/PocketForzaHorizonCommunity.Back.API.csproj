@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PocketForzaHorizonCommunity.Back.Database\PocketForzaHorizonCommunity.Back.Database.csproj" />
     <ProjectReference Include="..\PocketForzaHorizonCommunity.Back.Services\PocketForzaHorizonCommunity.Back.Services.csproj" />
     <ProjectReference Include="..\PocketForzaHorizonComunity.Back.DTO\PocketForzaHorizonCommunity.Back.DTO.csproj" />
