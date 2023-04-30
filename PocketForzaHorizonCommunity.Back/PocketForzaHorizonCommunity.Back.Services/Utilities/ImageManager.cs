@@ -8,10 +8,8 @@ namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 public class ImageManager : IImageManager
 {
     private IConfiguration _config;
-    public ImageManager(IConfiguration config)
-    {
-        _config = config;
-    }
+    public ImageManager(IConfiguration config) => _config = config;
+
     public async Task<string> SaveCarThumbnail(IFormFile image, Guid carId)
     {
         var path = Path.Combine(_config["Images:Cars"], carId.ToString());

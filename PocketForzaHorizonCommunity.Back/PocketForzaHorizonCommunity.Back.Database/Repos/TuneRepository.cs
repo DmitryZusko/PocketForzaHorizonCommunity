@@ -10,7 +10,8 @@ public class TuneRepository : RepositoryBase<Tune>, ITuneRepository
     {
     }
 
-    public override IQueryable<Tune> GetAll() => Context.Set<Tune>().Include(t => t.User).Include(t => t.Car).AsQueryable();
+    public override IQueryable<Tune> GetAll() =>
+        Context.Set<Tune>().Include(t => t.User).Include(t => t.Car).AsQueryable();
 
     public override IQueryable<Tune> GetById(Guid id)
     {

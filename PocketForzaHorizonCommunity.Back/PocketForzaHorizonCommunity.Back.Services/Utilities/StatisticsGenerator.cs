@@ -18,10 +18,7 @@ public class StatisticsGenerator : IStatisticsGenerator
 
     private IList<Car> _selectedCars = new List<Car>();
 
-    public StatisticsGenerator(ICarRepository carRepo)
-    {
-        _carRepo = carRepo;
-    }
+    public StatisticsGenerator(ICarRepository carRepo) => _carRepo = carRepo;
 
     public void GenerateStatistics(ApplicationUser user)
     {
