@@ -44,7 +44,8 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
 
         _imageManager.DeleteDesignImages(entity.DesignOptions.ThumbnailPath, entity.DesignOptions.Gallery?.ToList());
 
-        await _galleryRepository.SaveAsync();
+        if (entity.DesignOptions.Gallery != null) await DeleteImagesFromGallery(entity.DesignOptions.Gallery.ToList());
+
         _repository.Delete(entity);
         await _repository.SaveAsync();
     }
@@ -56,6 +57,16 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
         foreach (var path in galleryPath)
         {
             await _galleryRepository.CreateAsync(new GalleryImage { DesignOptionsId = entityId, ImagePath = path });
+        }
+
+        await _galleryRepository.SaveAsync();
+    }
+
+    private async Task DeleteImagesFromGallery(List<GalleryImage> images)
+    {
+        foreach (var image in images)
+        {
+            _galleryRepository.Delete(image);
         }
 
         await _galleryRepository.SaveAsync();

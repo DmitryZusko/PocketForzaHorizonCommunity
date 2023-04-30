@@ -33,7 +33,7 @@ public class DesignServiceTests
 
         var actual = await designService.CreateAsync(entity, null);
 
-        Assert.IsTrue(actual.DesignOptions.ThumbnailPath.Equals(thumbnailPath)));
+        Assert.IsTrue(actual.DesignOptions.ThumbnailPath.Equals(thumbnailPath));
     }
 
     [Test]
