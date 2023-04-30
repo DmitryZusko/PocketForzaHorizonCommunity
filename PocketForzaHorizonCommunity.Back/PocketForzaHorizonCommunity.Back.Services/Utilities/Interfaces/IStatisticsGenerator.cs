@@ -4,6 +4,6 @@ namespace PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces
 {
     public interface IStatisticsGenerator
     {
-        void GenerateStatistics(ApplicationUser user);
+        public void GenerateStatistics(ApplicationUser user);
     }
 }

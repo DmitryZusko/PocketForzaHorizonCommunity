@@ -41,7 +41,7 @@ public class ImageManager : IImageManager
         var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
         var galleryPath = new List<string>();
 
-        for (var i = 0; i < images.Count, i++)
+        for (var i = 0; i < images.Count; i++)
         {
             var path = Path.Combine(_config["Images:Designs"], designId.ToString(), $"_{i}");
             using (var stream = new FileStream(path, FileMode.Create))
