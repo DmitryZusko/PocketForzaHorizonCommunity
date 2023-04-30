@@ -11,20 +11,13 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services;
 public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
 {
     protected TRepo _repository;
-    public ServiceBase(TRepo repository)
-    {
-        _repository = repository;
-    }
+    public ServiceBase(TRepo repository) => _repository = repository;
 
-    public virtual async Task<PaginationModel<TEntity>> GetAllAsync(int page, int pageSize)
-    {
-        return await _repository.GetAll().PaginateAsync(page, pageSize);
-    }
+    public virtual async Task<PaginationModel<TEntity>> GetAllAsync(int page, int pageSize) =>
+        await _repository.GetAll().PaginateAsync(page, pageSize);
 
-    public virtual async Task<TEntity> GetByIdAsync(Guid Id)
-    {
-        return await _repository.GetById(Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
-    }
+    public virtual async Task<TEntity> GetByIdAsync(Guid Id) =>
+         await _repository.GetById(Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
     public virtual async Task DeleteAsync(Guid id)
     {
