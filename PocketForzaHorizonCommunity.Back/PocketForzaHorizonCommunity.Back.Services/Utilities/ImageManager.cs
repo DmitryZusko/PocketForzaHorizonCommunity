@@ -14,7 +14,6 @@ public class ImageManager : IImageManager
     }
     public async Task<string> SaveCarThumbnail(IFormFile image, Guid carId)
     {
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
         var path = Path.Combine(_config["Images:Cars"], carId.ToString());
         using (var stream = new FileStream(path, FileMode.Create))
         {
@@ -26,7 +25,6 @@ public class ImageManager : IImageManager
 
     public async Task<string> SaveDesignThumbnail(IFormFile image, Guid designId)
     {
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
         var path = Path.Combine(_config["Images:Designs"], designId.ToString(), "_thumbnail");
         using (var stream = new FileStream(path, FileMode.Create))
         {
@@ -38,7 +36,6 @@ public class ImageManager : IImageManager
 
     public async Task<List<string>> SaveDesignGallery(List<IFormFile> images, Guid designId)
     {
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
         var galleryPath = new List<string>();
 
         for (var i = 0; i < images.Count; i++)
