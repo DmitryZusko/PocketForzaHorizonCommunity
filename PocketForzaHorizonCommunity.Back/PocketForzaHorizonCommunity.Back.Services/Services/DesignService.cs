@@ -33,14 +33,7 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
     {
         await CreateAsync(entity, thumbnail);
 
-        var galleryPath = await _imageManager.SaveDesignGallery(gallery, entity.Id);
-
-        foreach (var path in galleryPath)
-        {
-            await _galleryRepository.CreateAsync(new GalleryImage { DesignOptionsId = entity.Id, ImagePath = path });
-        }
-
-        await _galleryRepository.SaveAsync();
+        await AddImagesToGallery(gallery, entity.Id);
 
         return entity;
     }
@@ -49,21 +42,22 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
     {
         var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
-        File.Delete(entity.DesignOptions.ThumbnailPath);
-
-        if (entity.DesignOptions.Gallery != null && entity.DesignOptions.Gallery.Count > 0)
-        {
-            foreach (var image in entity.DesignOptions.Gallery)
-            {
-                File.Delete(image.ImagePath);
-                _galleryRepository.Delete(image);
-            }
-        }
-
         _imageManager.DeleteDesignImages(entity.DesignOptions.ThumbnailPath, entity.DesignOptions.Gallery?.ToList());
 
         await _galleryRepository.SaveAsync();
         _repository.Delete(entity);
         await _repository.SaveAsync();
+    }
+
+    private async Task AddImagesToGallery(List<IFormFile> gallery, Guid entityId)
+    {
+        var galleryPath = await _imageManager.SaveDesignGallery(gallery, entityId);
+
+        foreach (var path in galleryPath)
+        {
+            await _galleryRepository.CreateAsync(new GalleryImage { DesignOptionsId = entityId, ImagePath = path });
+        }
+
+        await _galleryRepository.SaveAsync();
     }
 }
