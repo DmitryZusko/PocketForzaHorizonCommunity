@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PocketForzaHorizonCommunity.Back.API.Middlewares;
 using PocketForzaHorizonCommunity.Back.API.ServiceConfig;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
         scope.RunDevelopmentEnvironmentSeeder();
     }
 }
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
