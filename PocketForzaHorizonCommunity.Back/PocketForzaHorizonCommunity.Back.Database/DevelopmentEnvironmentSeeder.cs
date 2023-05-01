@@ -248,6 +248,7 @@ public class DevelopmentEnvironmentSeeder
 
     private async Task SeedTunes()
     {
+        if (_tuneRepo.GetAll().Any()) return;
         var tune = new Tune
         {
             Title = "Rx-7 tune",

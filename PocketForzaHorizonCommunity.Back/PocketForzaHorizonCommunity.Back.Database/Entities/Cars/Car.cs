@@ -11,8 +11,7 @@ public class Car : EntityBase
     public int Year { get; set; }
     [Required]
     public int Price { get; set; }
-    [Required]
-    public string ImagePath { get; set; } = null!;
+    public string? ImagePath { get; set; } = null!;
     [Required]
     public Guid ManufactureId { get; set; }
     public Manufacture Manufacture { get; set; } = null!;

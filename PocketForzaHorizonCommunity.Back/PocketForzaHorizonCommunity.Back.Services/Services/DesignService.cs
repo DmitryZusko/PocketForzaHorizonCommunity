@@ -18,20 +18,11 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
         _imageManager = imageManager;
     }
 
-    public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail)
+    public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
     {
         await _repository.CreateAsync(entity);
-        await _repository.SaveAsync();
-
         entity.DesignOptions.ThumbnailPath = await _imageManager.SaveDesignThumbnail(thumbnail, entity.Id);
         await _repository.SaveAsync();
-
-        return entity;
-    }
-
-    public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, List<IFormFile> gallery)
-    {
-        await CreateAsync(entity, thumbnail);
 
         await AddImagesToGallery(gallery, entity.Id);
 
@@ -50,7 +41,7 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
         await _repository.SaveAsync();
     }
 
-    private async Task AddImagesToGallery(List<IFormFile> gallery, Guid entityId)
+    private async Task AddImagesToGallery(IList<IFormFile> gallery, Guid entityId)
     {
         var galleryPath = await _imageManager.SaveDesignGallery(gallery, entityId);
 

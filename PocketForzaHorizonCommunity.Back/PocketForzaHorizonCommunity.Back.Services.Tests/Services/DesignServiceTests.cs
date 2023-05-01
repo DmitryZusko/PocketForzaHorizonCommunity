@@ -12,31 +12,6 @@ namespace PocketForzaHorizonCommunity.Back.Services.Tests.Services;
 public class DesignServiceTests
 {
     [Test]
-    public async Task CreateAsync_Design_Should_Have_Thumbnail()
-    {
-        using var mock = AutoMock.GetLoose();
-        var entity = new Design
-        {
-            DesignOptions = new DesignOptions()
-        };
-        var thumbnailPath = @"path\to\thumbnail";
-
-        mock.Mock<IDesignRepository>()
-            .Setup(x => x.CreateAsync(entity));
-        mock.Mock<IDesignRepository>()
-            .Setup(x => x.SaveAsync());
-        mock.Mock<IImageManager>()
-            .Setup(x => x.SaveDesignThumbnail(null, entity.Id))
-            .Returns(Task.Run(() => thumbnailPath));
-
-        var designService = mock.Create<DesignService>();
-
-        var actual = await designService.CreateAsync(entity, null);
-
-        Assert.IsTrue(actual.DesignOptions.ThumbnailPath.Equals(thumbnailPath));
-    }
-
-    [Test]
     public async Task DeleteAsync_Should_Delete_All_Images()
     {
         var entity = new Design

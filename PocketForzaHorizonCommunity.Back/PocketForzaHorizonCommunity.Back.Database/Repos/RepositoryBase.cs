@@ -7,10 +7,7 @@ public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where T
 {
     protected ApplicationDbContext Context { get; }
 
-    public RepositoryBase(ApplicationDbContext context)
-    {
-        Context = context;
-    }
+    public RepositoryBase(ApplicationDbContext context) => Context = context;
 
     public async Task<int> SaveAsync() => await Context.SaveChangesAsync();
 

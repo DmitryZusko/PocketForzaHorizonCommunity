@@ -26,49 +26,49 @@ public class CreateTuneRequestValidation : AbstractValidator<CreateTuneRequest>
         RuleFor(x => x.EngineDescription)
             .MaximumLength(511);
 
-        RuleFor(x => x.Engine).NotEmpty().IsInEnum().IsInEnum();
+        RuleFor(x => x.Engine).IsInEnum();
 
-        RuleFor(x => x.Aspiration).NotEmpty().IsInEnum().IsInEnum();
+        RuleFor(x => x.Aspiration).IsInEnum();
 
-        RuleFor(x => x.Intake).NotEmpty().IsInEnum();
+        RuleFor(x => x.Intake).IsInEnum();
 
-        RuleFor(x => x.Ignition).NotEmpty().IsInEnum();
+        RuleFor(x => x.Ignition).IsInEnum();
 
-        RuleFor(x => x.Displacement).NotEmpty().IsInEnum();
+        RuleFor(x => x.Displacement).IsInEnum();
 
-        RuleFor(x => x.Exhaust).NotEmpty().IsInEnum();
+        RuleFor(x => x.Exhaust).IsInEnum();
 
         RuleFor(x => x.HandlingDescription)
             .MaximumLength(511);
 
-        RuleFor(x => x.Brakes).NotEmpty().IsInEnum();
+        RuleFor(x => x.Brakes).IsInEnum();
 
-        RuleFor(x => x.Suspension).NotEmpty().IsInEnum();
+        RuleFor(x => x.Suspension).IsInEnum();
 
-        RuleFor(x => x.AntiRollBars).NotEmpty().IsInEnum();
+        RuleFor(x => x.AntiRollBars).IsInEnum();
 
-        RuleFor(x => x.RollCage).NotEmpty().IsInEnum();
+        RuleFor(x => x.RollCage).IsInEnum();
 
         RuleFor(x => x.DrivetrainDescription)
             .MaximumLength(511);
 
-        RuleFor(x => x.Clutch).NotEmpty().IsInEnum();
+        RuleFor(x => x.Clutch).IsInEnum();
 
-        RuleFor(x => x.Transmission).NotEmpty().IsInEnum();
+        RuleFor(x => x.Transmission).IsInEnum();
 
-        RuleFor(x => x.Differential).NotEmpty().IsInEnum();
+        RuleFor(x => x.Differential).IsInEnum();
 
         RuleFor(x => x.TiersDescription)
             .MaximumLength(511);
 
-        RuleFor(x => x.Compound).NotEmpty().IsInEnum();
+        RuleFor(x => x.Compound).IsInEnum();
 
-        RuleFor(x => x.FrontTierWidth).NotEmpty().IsInEnum();
+        RuleFor(x => x.FrontTierWidth).IsInEnum();
 
-        RuleFor(x => x.RearTierWidth).NotEmpty().IsInEnum();
+        RuleFor(x => x.RearTierWidth).IsInEnum();
 
-        RuleFor(x => x.FrontTrackWidth).NotEmpty().IsInEnum();
+        RuleFor(x => x.FrontTrackWidth).IsInEnum();
 
-        RuleFor(x => x.RearTrackWidth).NotEmpty().IsInEnum();
+        RuleFor(x => x.RearTrackWidth).IsInEnum();
     }
 }
