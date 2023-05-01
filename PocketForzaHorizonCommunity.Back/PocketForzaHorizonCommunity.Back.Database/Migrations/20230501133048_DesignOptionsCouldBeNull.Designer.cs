@@ -12,8 +12,8 @@ using PocketForzaHorizonCommunity.Back.Database;
 namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230429104634_InitialCommit")]
-    partial class InitialCommit
+    [Migration("20230501133048_DesignOptionsCouldBeNull")]
+    partial class DesignOptionsCouldBeNull
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,7 +232,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ManufactureId")
@@ -333,7 +332,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbnailPath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DesignId");
@@ -920,8 +918,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Design", b =>
                 {
-                    b.Navigation("DesignOptions")
-                        .IsRequired();
+                    b.Navigation("DesignOptions");
                 });
 
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.DesignOptions", b =>
