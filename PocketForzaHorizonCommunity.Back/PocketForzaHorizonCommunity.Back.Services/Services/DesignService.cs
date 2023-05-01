@@ -21,8 +21,6 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
     {
         await _repository.CreateAsync(entity);
-        await _repository.SaveAsync();
-
         entity.DesignOptions.ThumbnailPath = await _imageManager.SaveDesignThumbnail(thumbnail, entity.Id);
         await _repository.SaveAsync();
 
