@@ -35,7 +35,6 @@ public class ErrorHandlingMiddleware
         {
             Message = ex.Message,
             Errors = ex.Data,
-            StackTrace = ex.StackTrace,
             StatusCode = statusCode
         };
 
