@@ -23,7 +23,7 @@ public class ImageManager : IImageManager
 
     public async Task<string> SaveDesignThumbnail(IFormFile image, Guid designId)
     {
-        var path = Path.Combine(_config["Images:Designs"], designId.ToString(), "_thumbnail");
+        var path = Path.Combine(_config["Images:Designs"], $"{designId}_thumbnail");
         using (var stream = new FileStream(path, FileMode.Create))
         {
             await image.CopyToAsync(stream);
@@ -38,11 +38,12 @@ public class ImageManager : IImageManager
 
         for (var i = 0; i < images.Count; i++)
         {
-            var path = Path.Combine(_config["Images:Designs"], designId.ToString(), $"_{i}");
+            var path = Path.Combine(_config["Images:Designs"], $"{designId}_{i}");
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await images[i].CopyToAsync(stream);
             }
+            galleryPath.Add(path);
         }
 
         return galleryPath;
