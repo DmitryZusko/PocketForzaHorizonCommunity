@@ -5,8 +5,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Consumes("application/json")]
-[Produces("a[[lication/json")]
+[Produces("application/json")]
 public class ApplicationControllerBase : Controller
 {
     protected readonly IMapper _mapper;

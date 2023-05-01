@@ -27,7 +27,7 @@ public class DesignController : ApplicationControllerBase
 
     [HttpGet("{id}/info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<DesignFullInfoDto> GetFullInfo([FromForm] string id)
+    public async Task<DesignFullInfoDto> GetFullInfo([FromQuery] string id)
     {
         if (!Guid.TryParse(id, out var designId)) throw new BadRequestException();
 
@@ -38,7 +38,7 @@ public class DesignController : ApplicationControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task CreateDesign([FromBody] CreateDesignRequest request)
+    public async Task CreateDesign([FromForm] CreateDesignRequest request)
     {
         var entity = _mapper.Map<Design>(request);
         await _service.CreateAsync(entity, request.Thumbnail, request.Gallery);

@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 [Ee]nvseeder/
+[Ss]ource/
 
 # User-specific files
 *.rsuser

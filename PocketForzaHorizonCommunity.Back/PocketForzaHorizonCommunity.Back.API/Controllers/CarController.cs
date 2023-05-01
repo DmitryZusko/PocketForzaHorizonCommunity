@@ -27,7 +27,7 @@ public class CarController : ApplicationControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<CarDto> CreateCar([FromBody] CreateCarRequest request)
+    public async Task<CarDto> CreateCar([FromForm] CreateCarRequest request)
     {
         var newEntity = _mapper.Map<Car>(request);
         var createdEntity = await _service.CreateAsync(newEntity, request.Image);
@@ -39,7 +39,7 @@ public class CarController : ApplicationControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<CarDto> UpdateCar([FromBody] UpdateCarRequest request)
+    public async Task<CarDto> UpdateCar([FromForm] UpdateCarRequest request)
     {
         var newEntity = _mapper.Map<Car>(request);
         var updateEntity = await _service.UpdateAsync(newEntity, request.Image);
