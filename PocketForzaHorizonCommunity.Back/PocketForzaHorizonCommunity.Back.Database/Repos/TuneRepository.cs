@@ -11,13 +11,16 @@ public class TuneRepository : RepositoryBase<Tune>, ITuneRepository
     }
 
     public override IQueryable<Tune> GetAll() =>
-        Context.Set<Tune>().Include(t => t.User).Include(t => t.Car).AsQueryable();
+        Context.Set<Tune>()
+        .Include(t => t.User)
+        .Include(t => t.Car.Manufacture)
+        .AsQueryable();
 
     public override IQueryable<Tune> GetById(Guid id)
     {
         return Context.Set<Tune>()
             .Where(t => t.Id == id)
-            .Include(t => t.Car)
+            .Include(t => t.Car.Manufacture)
             .Include(t => t.User)
             .Include(t => t.TuneOptions)
             .AsQueryable();

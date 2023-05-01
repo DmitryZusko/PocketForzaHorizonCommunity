@@ -10,16 +10,18 @@ public class DesignRepository : RepositoryBase<Design>, IDesignRepository
     {
     }
 
-    public override IQueryable<Design> GetAll() => Context.Set<Design>().Include(d => d.User).Include(d => d.Car).AsQueryable();
+    public override IQueryable<Design> GetAll() =>
+        Context.Set<Design>()
+        .Include(d => d.User)
+        .Include(d => d.Car.Manufacture)
+        .Include(d => d.DesignOptions)
+        .AsQueryable();
 
-    public override IQueryable<Design> GetById(Guid id)
-    {
-        return Context.Set<Design>()
+    public override IQueryable<Design> GetById(Guid id) =>
+        Context.Set<Design>()
             .Where(d => d.Id == id)
             .Include(d => d.User)
-            .Include(d => d.Car)
-            .Include(d => d.DesignOptions)
-            .ThenInclude(o => o.Gallery)
+            .Include(d => d.Car.Manufacture)
+            .Include(d => d.DesignOptions.Gallery)
             .AsQueryable();
-    }
 }
