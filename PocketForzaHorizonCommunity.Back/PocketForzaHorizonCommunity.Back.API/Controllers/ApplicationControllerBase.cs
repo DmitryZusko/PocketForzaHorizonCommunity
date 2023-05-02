@@ -5,6 +5,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Consumes("application/json")]
 [Produces("application/json")]
 public class ApplicationControllerBase : Controller
 {

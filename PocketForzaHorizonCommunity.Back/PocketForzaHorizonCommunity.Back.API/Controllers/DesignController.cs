@@ -27,6 +27,9 @@ public class DesignController : ApplicationControllerBase
 
     [HttpGet("{id}/info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<DesignFullInfoDto> GetFullInfo([FromQuery] string id)
     {
         if (!Guid.TryParse(id, out var designId)) throw new BadRequestException();
@@ -37,7 +40,10 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpPost]
+    [Consumes("multipart/form-data")]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task CreateDesign([FromForm] CreateDesignRequest request)
     {
         var entity = _mapper.Map<Design>(request);
@@ -49,6 +55,8 @@ public class DesignController : ApplicationControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task Delete(string id)
     {
         if (!Guid.TryParse(id, out var designId)) throw new BadRequestException();

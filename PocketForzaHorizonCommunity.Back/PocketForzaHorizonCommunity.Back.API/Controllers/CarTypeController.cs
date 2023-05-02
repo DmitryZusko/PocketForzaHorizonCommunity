@@ -18,6 +18,8 @@ public class CarTypeController : ApplicationControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<CarTypeDto> CreateCarType([FromBody] CreateCarTypeRequest request)
     {
         var createdEntity = await _service.CreateAsync(_mapper.Map<CarType>(request));
@@ -28,6 +30,8 @@ public class CarTypeController : ApplicationControllerBase
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<CarTypeDto> UpdateCarType([FromBody] UpdateCarTypeRequest request)
     {
         var updatedEntity = await _service.UpdateAsync(_mapper.Map<CarType>(request));
@@ -38,6 +42,8 @@ public class CarTypeController : ApplicationControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task Delete(string id)
     {
         if (!Guid.TryParse(id, out var entityId)) throw new BadRequestException();
