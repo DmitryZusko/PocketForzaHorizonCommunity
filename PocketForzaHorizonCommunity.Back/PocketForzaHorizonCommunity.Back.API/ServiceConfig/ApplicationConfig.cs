@@ -23,6 +23,7 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
             services.AddTransient<IDesignService, DesignService>();
             services.AddTransient<IManufactureService, ManufactureService>();
             services.AddTransient<ITuneService, TuneService>();
+            services.AddTransient<ISteamService, SteamService>();
 
             services.AddTransient<IImageManager, ImageManager>();
 
