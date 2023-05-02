@@ -18,6 +18,8 @@ public class ManufactureController : ApplicationControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ManufactureDto> CreateManufacture([FromBody] CreateManufactureRequest request)
     {
         var newEntity = await _service.CreateAsync(_mapper.Map<Manufacture>(request));
@@ -28,6 +30,9 @@ public class ManufactureController : ApplicationControllerBase
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ManufactureDto> UpdateManufacture(UpdateManufactureRequest request)
     {
         var updatedEntity = await _service.UpdateAsync(_mapper.Map<Manufacture>(request));
@@ -38,6 +43,8 @@ public class ManufactureController : ApplicationControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task Delete(string id)
     {
         if (!Guid.TryParse(id, out Guid manufacturerId)) throw new BadRequestException();
