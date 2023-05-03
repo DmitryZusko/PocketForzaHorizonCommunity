@@ -7,5 +7,6 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
     {
         Task<AppNews> GetNews(int count, int maxLength);
         Task<List<GlobalAchivement>> GetGlobalAchivementStats();
+        Task<int> GetOnlineCount();
     }
 }

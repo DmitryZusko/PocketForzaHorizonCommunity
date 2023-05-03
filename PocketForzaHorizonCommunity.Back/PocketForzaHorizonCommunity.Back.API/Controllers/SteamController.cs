@@ -29,5 +29,14 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         {
             return _mapper.Map<List<GlobalAchivement>, List<GlobalAchivementDto>>(await _service.GetGlobalAchivementStats());
         }
+
+        [HttpGet("GetCurrentOnlineCount")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<int> GetCurrentOnlineCount()
+        {
+            return await _service.GetOnlineCount();
+        }
     }
 }

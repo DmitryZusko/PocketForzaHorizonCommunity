@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto;
+using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.OnlinePlayerCount;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamAchivementStats;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamGameScheme;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamNews;
@@ -36,6 +37,17 @@ public class SteamService : ISteamService
         var globalAchivementStat = response.Content.ReadAsAsync<AchivementStats>().Result.AchievementPercentages.Achievements;
 
         return await CreateGlobalAchivements(globalAchivementStat);
+    }
+
+    public async Task<int> GetOnlineCount()
+    {
+        using var client = HttpClientFactory.Create();
+        var response = await client.GetAsync($"{_config["SteamApi:BaseUrl"]}" +
+            $"ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid={_config["SteamApi:AppId"]}");
+
+        if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
+
+        return response.Content.ReadAsAsync<PlayerCountResponse>().Result.PlayerCount.PlayersCount;
     }
 
     private async Task<List<GlobalAchivement>> CreateGlobalAchivements(List<Achievement> achievements)
