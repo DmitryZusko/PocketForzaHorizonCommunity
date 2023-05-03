@@ -5,6 +5,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const getNews = createAsyncThunk(
   "news/GetNews",
   async ({ count, maxLength }: IGetNewsRequest) => {
-    return steamService.GetNews({ count, maxLength });
+    return steamService.getNews({ count, maxLength });
   },
 );

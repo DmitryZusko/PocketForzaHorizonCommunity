@@ -1,13 +1,7 @@
-import { INewsItem } from "@/data-transfer-objects/entities/NewsItem";
 import { extractImagesFromContent } from "@/utilities/extract-images-from-content";
 import { createSlice } from "@reduxjs/toolkit";
+import { INewsState } from "../types";
 import { getNews } from "./thunks";
-
-interface INewsState {
-  isLoading: boolean;
-  news: INewsItem[];
-  count: number;
-}
 
 const initialState: INewsState = {
   isLoading: false,

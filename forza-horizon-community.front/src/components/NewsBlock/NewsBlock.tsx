@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
+import { gameStatisticsSelector, getAchievementStats } from "@/redux/game-statistics";
 import { newsSelector } from "@/redux/news/selectors";
 import { getNews } from "@/redux/news/thunks";
 import { Grid, Tooltip, Typography } from "@mui/material";
@@ -7,13 +8,14 @@ import NavigationCard from "../NavigationCard/NavigationCard";
 
 const NewsBlock = ({ ...props }) => {
   const { isLoading: isNewsLoading, news } = useAppSelector(newsSelector);
+  const { achievements } = useAppSelector(gameStatisticsSelector);
 
   const dispatch = useAppDispatch();
 
   const loadNews = useCallback(async () => {
     await dispatch(getNews({ count: 9, maxLength: 500 }));
+    await dispatch(getAchievementStats());
   }, [dispatch]);
-  console.log(news);
 
   useEffect(() => {
     loadNews();

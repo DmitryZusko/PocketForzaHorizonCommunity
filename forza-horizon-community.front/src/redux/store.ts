@@ -10,6 +10,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import { gameStatisticsReducer } from "./game-statistics";
 import { newsReducer } from "./news";
 
 let store: EnhancedStore;
@@ -22,6 +23,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   news: newsReducer,
+  gameStatistics: gameStatisticsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
