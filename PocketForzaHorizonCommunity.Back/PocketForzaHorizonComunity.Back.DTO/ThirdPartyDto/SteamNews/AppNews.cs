@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto;
+namespace PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamNews;
 
 public class AppNews
 {
