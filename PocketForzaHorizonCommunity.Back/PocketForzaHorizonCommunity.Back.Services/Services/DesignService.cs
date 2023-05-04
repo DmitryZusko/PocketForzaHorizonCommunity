@@ -41,6 +41,8 @@ public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignServ
         await _repository.SaveAsync();
     }
 
+    public async Task<List<Design>> GetLastDesigns(int dessignAmount) => await _repository.GetAll().OrderByDescending(d => d.CreationDate).Take(dessignAmount).ToListAsync();
+
     private async Task AddImagesToGallery(IList<IFormFile> gallery, Guid entityId)
     {
         var galleryPath = await _imageManager.SaveDesignGallery(gallery, entityId);

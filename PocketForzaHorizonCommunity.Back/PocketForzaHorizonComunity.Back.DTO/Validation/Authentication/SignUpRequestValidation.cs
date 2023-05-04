@@ -13,12 +13,12 @@ public class SignUpRequestValidation : AbstractValidator<SignUpRequest>
             .MaximumLength(255)
             .WithMessage("Please, enter a valid email");
 
-        RuleFor(x => x.UserName)
+        RuleFor(x => x.Username)
             .NotEmpty()
             .MinimumLength(3)
             .MaximumLength(16)
             .Matches("\\w")
-            .WithMessage("UserName should be 3-16 characters long and containt only letters and numbers");
+            .WithMessage("Username should be 3-16 characters long and containt only letters and numbers");
 
         RuleFor(x => x.Password)
             .NotEmpty()

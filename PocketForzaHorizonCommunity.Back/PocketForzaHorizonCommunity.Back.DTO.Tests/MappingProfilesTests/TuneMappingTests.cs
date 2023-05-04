@@ -57,7 +57,7 @@ public class TuneMappingTests
             Title = tune.Title,
             ForzaShareCode = tune.ForzaShareCode,
             Rating = tune.Rating,
-            AuthorUserName = tune.User.UserName,
+            AuthorUsername = tune.User.UserName,
             CarModel = $"{tune.Car.Manufacture.Name} {tune.Car.Model} {tune.Car.Year}",
         };
     }
@@ -70,7 +70,7 @@ public class TuneMappingTests
             Title = tune.Title,
             ForzaShareCode = tune.ForzaShareCode,
             Rating = tune.Rating,
-            AuthorUserName = tune.User.UserName,
+            AuthorUsername = tune.User.UserName,
             CarModel = $"{tune.Car.Manufacture.Name} {tune.Car.Model} {tune.Car.Year}",
             EngineDescription = tune.TuneOptions.EngineDescription,
             Engine = tune.TuneOptions.Engine,

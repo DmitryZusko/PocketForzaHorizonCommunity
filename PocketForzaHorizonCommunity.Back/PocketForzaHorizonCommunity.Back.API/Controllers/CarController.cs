@@ -21,7 +21,7 @@ public class CarController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<CarDto>> GetAllCars([FromQuery] int page, int pageSize)
+    public async Task<PaginatedResponse<CarDto>> GetAllCars([FromQuery] int page, int pageSize = 25)
     {
         var cars = await _service.GetAllAsync(page, pageSize);
         return _mapper.Map<PaginatedResponse<CarDto>>(cars);

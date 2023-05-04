@@ -65,7 +65,7 @@ public class DesignMappingTests
         designDto.Title = design.Title;
         designDto.ForzaShareCode = design.ForzaShareCode;
         designDto.Rating = design.Rating;
-        designDto.AuthorUserName = design.User.UserName;
+        designDto.AuthorUsername = design.User.UserName;
         designDto.CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}";
 
         return designDto;
@@ -93,7 +93,7 @@ public class DesignMappingTests
             Title = desginDto.Title,
             ForzaShareCode = desginDto.ForzaShareCode,
             Rating = desginDto.Rating,
-            AuthorUserName = desginDto.AuthorUserName,
+            AuthorUsername = desginDto.AuthorUsername,
             CarModel = desginDto.CarModel,
             Thumbnail = desginDto.Thumbnail,
             Description = design.DesignOptions.Description,
