@@ -1,18 +1,19 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore, EnhancedStore } from "@reduxjs/toolkit";
 import {
+  persistStore,
+  persistReducer,
   FLUSH,
+  REHYDRATE,
   PAUSE,
   PERSIST,
-  persistReducer,
-  persistStore,
   PURGE,
   REGISTER,
-  REHYDRATE,
 } from "redux-persist";
 import { designReducer } from "./design";
 import { gameStatisticsReducer } from "./game-statistics";
 import { newsReducer } from "./news";
+import { tuneReducer } from "./tune";
 
 let store: EnhancedStore;
 
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   news: newsReducer,
   gameStatistics: gameStatisticsReducer,
   design: designReducer,
+  tune: tuneReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

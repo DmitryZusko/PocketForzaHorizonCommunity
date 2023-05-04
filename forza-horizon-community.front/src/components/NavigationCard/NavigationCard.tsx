@@ -5,14 +5,15 @@ import { INavigationCard } from "./types";
 const NavigationCard = ({
   thumbnail,
   cardTitle,
-  body,
   navigationLink,
+  body,
+  footer,
   ...props
 }: INavigationCard) => {
   return (
     <CardActionArea {...props}>
       <Link href={navigationLink} target="_blank" underline="none">
-        <BaseCard thumbnail={thumbnail} cardTitle={cardTitle} body={body} />
+        <BaseCard thumbnail={thumbnail} cardTitle={cardTitle} body={body} footer={footer} />
       </Link>
     </CardActionArea>
   );

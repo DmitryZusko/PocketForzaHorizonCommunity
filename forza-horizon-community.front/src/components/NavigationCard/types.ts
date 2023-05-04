@@ -1,4 +1,4 @@
-import { IBaseCard } from "../BaseCard/BaseCard";
+import { IBaseCard } from "../BaseCard/types";
 
 export interface INavigationCard extends IBaseCard {
   navigationLink: string;
