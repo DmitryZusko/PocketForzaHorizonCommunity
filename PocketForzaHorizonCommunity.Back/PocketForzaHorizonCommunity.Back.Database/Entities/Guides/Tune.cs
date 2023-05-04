@@ -19,4 +19,6 @@ public class Tune : EntityBase
     public Car Car { get; set; } = null!;
     [Required]
     public TuneOptions TuneOptions { get; set; } = null!;
+    [Required]
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 }

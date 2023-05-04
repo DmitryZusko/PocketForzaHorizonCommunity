@@ -19,4 +19,6 @@ public class Design : EntityBase
     public Car Car { get; set; } = null!;
     [Required]
     public DesignOptions DesignOptions { get; set; } = null!;
+    [Required]
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 }

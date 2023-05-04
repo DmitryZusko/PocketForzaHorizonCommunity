@@ -28,7 +28,7 @@ public class TuneController : ApplicationControllerBase
         return _mapper.Map<PaginatedResponse<TuneDto>>(tunes);
     }
 
-    [HttpGet("{id}/info")]
+    [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -41,6 +41,14 @@ public class TuneController : ApplicationControllerBase
 
         return _mapper.Map<TuneFullInfoDto>(tune);
     }
+
+    [HttpGet("GetLastTunes")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<List<TuneDto>> GetLastTunes([FromQuery] GetLastTunesRequest request) =>
+        _mapper.Map<List<TuneDto>>(await _service.GetLastTunes(request.TunesAmount));
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]

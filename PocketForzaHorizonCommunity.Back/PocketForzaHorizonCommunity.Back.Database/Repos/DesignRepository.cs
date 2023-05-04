@@ -24,4 +24,5 @@ public class DesignRepository : RepositoryBase<Design>, IDesignRepository
             .Include(d => d.Car.Manufacture)
             .Include(d => d.DesignOptions.Gallery)
             .AsQueryable();
+
 }

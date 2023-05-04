@@ -25,7 +25,7 @@ public class DesignController : ApplicationControllerBase
         return _mapper.Map<PaginatedResponse<DesignDto>>(designs);
     }
 
-    [HttpGet("{id}/info")]
+    [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -38,6 +38,14 @@ public class DesignController : ApplicationControllerBase
 
         return _mapper.Map<DesignFullInfoDto>(design);
     }
+
+    [HttpGet("GetLastDesigns")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<List<DesignDto>> GetLastDesigns([FromQuery] GetLastDesignsRequest request) =>
+        _mapper.Map<List<DesignDto>>(await _service.GetLastDesigns(request.DesignsAmount));
 
     [HttpPost]
     [Consumes("multipart/form-data")]
