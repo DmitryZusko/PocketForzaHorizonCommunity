@@ -10,11 +10,11 @@ public class TuneProfile : Profile
     public TuneProfile()
     {
         CreateMap<Tune, TuneDto>()
-            .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"));
 
         CreateMap<Tune, TuneFullInfoDto>()
-            .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.EngineDescription, opt => opt.MapFrom(src => src.TuneOptions.EngineDescription))
             .ForMember(dest => dest.Engine, opt => opt.MapFrom(src => src.TuneOptions.Engine))

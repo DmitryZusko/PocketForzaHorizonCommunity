@@ -10,12 +10,12 @@ public class DesignProfile : Profile
     public DesignProfile()
     {
         CreateMap<Design, DesignDto>()
-            .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)));
 
         CreateMap<Design, DesignFullInfoDto>()
-            .ForMember(dest => dest.AuthorUserName, opt => opt.MapFrom(src => src.User.UserName))
+            .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
             .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)))

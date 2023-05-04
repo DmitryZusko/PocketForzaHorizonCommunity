@@ -11,5 +11,5 @@ public class TuneService : CrudServiceBase<ITuneRepository, Tune>, ITuneService
     {
     }
 
-    public async Task<List<Tune>> GetLastTunes(int tunesAmount) => await _repository.GetAll().OrderBy(t => t.CreationDate).Take(tunesAmount).ToListAsync();
+    public async Task<List<Tune>> GetLastTunes(int tunesAmount) => await _repository.GetAll().OrderByDescending(t => t.CreationDate).Take(tunesAmount).ToListAsync();
 }

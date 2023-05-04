@@ -7,6 +7,6 @@ public class TuneDto
     public string ForzaShareCode { get; set; } = string.Empty;
     public double Rating { get; set; }
     public DateTime CreationDate { get; set; }
-    public string AuthorUserName { get; set; } = string.Empty;
+    public string AuthorUsername { get; set; } = string.Empty;
     public string CarModel { get; set; } = string.Empty;
 }
