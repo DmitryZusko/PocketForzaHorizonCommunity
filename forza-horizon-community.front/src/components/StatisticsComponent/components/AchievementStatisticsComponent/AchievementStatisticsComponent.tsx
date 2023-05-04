@@ -4,7 +4,6 @@ import useAchievementStatisticsComponent from "./useAchievementStatisticsCompone
 
 const AchievementStatisticsComponent = () => {
   const { isLoadingAchievements, achievements } = useAchievementStatisticsComponent();
-  console.log(achievements);
 
   return (
     <Grid container spacing={2}>

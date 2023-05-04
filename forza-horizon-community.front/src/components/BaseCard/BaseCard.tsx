@@ -3,7 +3,7 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 export interface IBaseCard {
   thumbnail?: string;
   cardTitle: string;
-  body: string;
+  body: string | JSX.Element;
 }
 
 const BaseCard = ({ thumbnail, cardTitle, body, ...props }: IBaseCard) => {

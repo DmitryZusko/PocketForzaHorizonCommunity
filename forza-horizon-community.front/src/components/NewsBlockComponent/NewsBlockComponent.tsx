@@ -6,7 +6,7 @@ import { Grid, Tooltip, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import NavigationCard from "../NavigationCard/NavigationCard";
 
-const NewsBlock = ({ ...props }) => {
+const NewsBlockComponent = ({ ...props }) => {
   const { isLoading: isNewsLoading, news } = useAppSelector(newsSelector);
   const { achievements } = useAppSelector(gameStatisticsSelector);
 
@@ -46,4 +46,4 @@ const NewsBlock = ({ ...props }) => {
   );
 };
 
-export default NewsBlock;
+export default NewsBlockComponent;

@@ -1,4 +1,5 @@
-import NewsBlock from "@/components/NewsBlock/NewsBlock";
+import LatestGuidesComponent from "@/components/LatestGuidesComponent/LatestGuidesComponent";
+import NewsBlockComponent from "@/components/NewsBlockComponent/NewsBlockComponent";
 import StatisticsComponent from "@/components/StatisticsComponent/StatisticsComponent";
 import { Grid, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
@@ -29,7 +30,10 @@ const HomeContent = () => {
           </Container>
         </Grid>
         <Grid item xs={12}>
-          <NewsBlock />
+          <NewsBlockComponent />
+        </Grid>
+        <Grid item xs={12}>
+          <LatestGuidesComponent />
         </Grid>
         <Grid item>
           <StatisticsComponent />
