@@ -1,18 +1,22 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { IBaseCard } from "./types";
 
-export interface IBaseCard {
-  thumbnail?: string;
-  cardTitle: string;
-  body: string | JSX.Element;
-}
-
-const BaseCard = ({ thumbnail, cardTitle, body, ...props }: IBaseCard) => {
+const BaseCard = ({ thumbnail, cardTitle, body, footer, ...props }: IBaseCard) => {
   return (
     <Card {...props}>
       <CardMedia component="img" image={thumbnail} alt="thumbnail" />
       <CardContent>
-        <Typography variant="h5">{cardTitle}</Typography>
-        <Typography variant="body1">{body}</Typography>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="h5">{cardTitle}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1">{body}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            {footer}
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );
