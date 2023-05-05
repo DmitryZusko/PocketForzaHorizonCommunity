@@ -68,15 +68,16 @@ export default function CarTableComponent() {
             </TableRow>
           ))}
         </TableBody>
-        <TablePagination
-          rowsPerPageOptions={[1, 5, 10, 25, { value: totalEntities, label: "All" }]}
-          count={totalEntities}
-          page={currentPage}
-          rowsPerPage={pageSize}
-          onPageChange={handlePageChange}
-          onRowsPerPageChange={handlePageSizeChange}
-        />
       </Table>
+      <TablePagination
+        component={"div"}
+        rowsPerPageOptions={[1, 5, 10, 25, { value: totalEntities, label: "All" }]}
+        count={totalEntities}
+        page={currentPage}
+        rowsPerPage={pageSize}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handlePageSizeChange}
+      />
     </TableContainer>
   );
 }
