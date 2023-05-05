@@ -10,6 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { carReducer } from "./car";
 import { designReducer } from "./design";
 import { gameStatisticsReducer } from "./game-statistics";
 import { newsReducer } from "./news";
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   gameStatistics: gameStatisticsReducer,
   design: designReducer,
   tune: tuneReducer,
+  car: carReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

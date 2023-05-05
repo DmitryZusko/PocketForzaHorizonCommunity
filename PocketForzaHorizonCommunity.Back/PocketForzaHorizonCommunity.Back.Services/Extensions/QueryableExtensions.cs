@@ -8,7 +8,7 @@ public static class QueryableExtensions
 {
     public static async Task<PaginationModel<TEntity>> PaginateAsync<TEntity>(
         this IQueryable<TEntity> query,
-        int page = 1,
+        int page = 0,
         int pageSize = 25
         ) where TEntity : EntityBase
     {
@@ -16,7 +16,7 @@ public static class QueryableExtensions
 
         var totalPages = (int)Math.Ceiling((double)total / pageSize);
 
-        var result = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        var result = query.Skip(page * pageSize).Take(pageSize).ToList();
 
         return new PaginationModel<TEntity>
         {

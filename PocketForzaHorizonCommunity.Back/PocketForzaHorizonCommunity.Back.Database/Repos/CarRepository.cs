@@ -10,6 +10,12 @@ public class CarRepository : RepositoryBase<Car>, ICarRepository
     {
     }
 
+    public override IQueryable<Car> GetAll() =>
+        Context.Set<Car>()
+        .Include(c => c.Manufacture)
+        .Include(c => c.CarType)
+        .AsQueryable();
+
     public IQueryable<Car> GetByIdWithTunes(Guid id) =>
         Context.Set<Car>()
         .Where(c => c.Id == id)
