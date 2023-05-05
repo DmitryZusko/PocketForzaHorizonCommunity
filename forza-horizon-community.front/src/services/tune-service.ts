@@ -1,4 +1,4 @@
-import { ITune } from "@/data-transfer-objects/entities/ITune";
+import { ITune } from "@/data-transfer-objects/entities/Tune";
 import customAxios from "@/utilities/custom-axios";
 
 const getLatestTunes = (amount: number) => {
