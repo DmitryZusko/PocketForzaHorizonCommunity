@@ -88,9 +88,11 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     {
         foreach (var item in result.Entities)
         {
-            var descriptionLendth = item.DesignOptions.Description.Length;
-            item.DesignOptions.Description = item.DesignOptions.Description
-                .Substring(0, descriptionLimit < descriptionLendth ? descriptionLimit : descriptionLendth);
+            if (descriptionLimit > item.DesignOptions.Description.Length)
+            {
+                item.DesignOptions.Description = item.DesignOptions.Description
+                    .Substring(0, descriptionLimit) + "...";
+            }
         }
         return result;
     }
