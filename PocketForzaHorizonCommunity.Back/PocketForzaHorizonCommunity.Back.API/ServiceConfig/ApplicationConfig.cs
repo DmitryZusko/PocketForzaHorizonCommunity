@@ -1,4 +1,6 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
+﻿using PocketForzaHorizonCommunity.Back.Database.RepoAdapters;
+using PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces;
+using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
 using PocketForzaHorizonCommunity.Back.Database.Repos;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Services;
@@ -14,9 +16,9 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
         {
 
             services.AddTransient<ICarRepoAdapter, CarRepoAdapter>();
+            services.AddTransient<IDesignRepoAdapter, DesignRepoAdapter>();
 
             services.AddTransient<ICarTypeRepository, CarTypeRepository>();
-            services.AddTransient<IDesignRepository, DesignRepository>();
             services.AddTransient<IGalleryRepository, GalleryRepository>();
             services.AddTransient<IManufactureRepository, ManufactureRepository>();
             services.AddTransient<ITuneRepository, TuneRepository>();

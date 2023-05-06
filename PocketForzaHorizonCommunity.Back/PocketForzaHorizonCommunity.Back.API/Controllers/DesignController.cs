@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
-using PocketForzaHorizonCommunity.Back.DTO.Requests;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
@@ -19,12 +18,9 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpGet]
-    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] PaginationGetRequestBase request)
-    {
-        var designs = await _service.GetAllAsync(request);
+    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] FilteredDesignsGetRequest request) =>
+        _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetAllAsync(request));
 
-        return _mapper.Map<PaginatedResponse<DesignDto>>(designs);
-    }
 
     [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]

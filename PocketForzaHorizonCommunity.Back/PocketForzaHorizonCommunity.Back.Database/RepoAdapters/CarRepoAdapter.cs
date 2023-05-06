@@ -1,4 +1,5 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
+using PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces;
 using PocketForzaHorizonCommunity.Back.Database.Repos;
 
 namespace PocketForzaHorizonCommunity.Back.Database.RepoDecorators;

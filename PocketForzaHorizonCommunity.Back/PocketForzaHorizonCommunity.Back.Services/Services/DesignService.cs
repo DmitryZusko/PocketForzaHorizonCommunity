@@ -1,22 +1,32 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
+using PocketForzaHorizonCommunity.Back.Services.Extensions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class DesignService : ServiceBase<IDesignRepository, Design, PaginationGetRequestBase>, IDesignService
+public class DesignService : ServiceBase<IDesignRepoAdapter, Design, FilteredDesignsGetRequest>, IDesignService
 {
     private IGalleryRepository _galleryRepository;
     private IImageManager _imageManager;
-    public DesignService(IDesignRepository repository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
+    public DesignService(IDesignRepoAdapter repository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
     {
         _galleryRepository = galleryRepository;
         _imageManager = imageManager;
+    }
+
+    public override async Task<PaginationModel<Design>> GetAllAsync(FilteredDesignsGetRequest request)
+    {
+        var result = await _repository.GetAllFiltered(request.SearchQuery).PaginateAsync(request.Page, request.PageSize);
+
+        return SetDescriptionLendth(result, request.DescriptionMaxLength);
     }
 
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
@@ -64,5 +74,16 @@ public class DesignService : ServiceBase<IDesignRepository, Design, PaginationGe
         }
 
         await _galleryRepository.SaveAsync();
+    }
+
+    private PaginationModel<Design> SetDescriptionLendth(PaginationModel<Design> result, int descriptionMaxLength)
+    {
+        foreach (var item in result.Entities)
+        {
+            var descriptionLendth = item.DesignOptions.Description.Length;
+            item.DesignOptions.Description = item.DesignOptions.Description
+                .Substring(0, descriptionMaxLength < descriptionLendth ? descriptionMaxLength : descriptionLendth);
+        }
+        return result;
     }
 }

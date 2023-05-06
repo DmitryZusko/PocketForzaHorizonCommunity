@@ -1,7 +1,7 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
-using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
+using PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Utilities;

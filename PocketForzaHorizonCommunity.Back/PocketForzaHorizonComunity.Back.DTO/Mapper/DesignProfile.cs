@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Mapper;
 
@@ -12,6 +12,7 @@ public class DesignProfile : Profile
         CreateMap<Design, DesignDto>()
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
             .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)));
 
         CreateMap<Design, DesignFullInfoDto>()
