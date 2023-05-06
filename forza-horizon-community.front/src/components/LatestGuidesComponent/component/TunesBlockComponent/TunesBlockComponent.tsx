@@ -3,16 +3,17 @@ import { Star } from "@mui/icons-material";
 import { Grid, Tooltip, Typography } from "@mui/material";
 import useTunesBlockComponent from "./useTunesBlockComponent";
 
-const TunesBlockComponent = () => {
+const TunesBlockComponent = ({ ...props }) => {
   const { isLoading, latestTunes } = useTunesBlockComponent();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       {latestTunes.map((tune) => (
         <Tooltip key={tune.id} title="Go to tune page">
           <Grid item key={tune.id} xs={12} md={3}>
             <NavigationCard
               thumbnail="TuneThumbnail.png"
+              imageHeight={200}
               cardTitle={tune.title}
               navigationLink=""
               body=""

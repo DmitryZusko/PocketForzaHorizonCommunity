@@ -3,4 +3,6 @@ export interface IBaseCard {
   cardTitle: string;
   body: string;
   footer?: JSX.Element;
+  imageWidth?: number;
+  imageHeight?: number;
 }

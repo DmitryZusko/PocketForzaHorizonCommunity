@@ -3,11 +3,11 @@ import { Grid, Tooltip, Typography } from "@mui/material";
 import useDesignBlockComponent from "./useDesignBlockComponent";
 import { Star } from "@mui/icons-material";
 
-const DesignBlockComponent = () => {
+const DesignBlockComponent = ({ ...props }) => {
   const { isLoading, latestDesigns } = useDesignBlockComponent();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       {latestDesigns.map((design) => (
         <Tooltip key={design.id} title="Go to design page">
           <Grid item key={design.id} xs={12} md={3}>

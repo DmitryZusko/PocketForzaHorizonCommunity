@@ -1,10 +1,24 @@
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { IBaseCard } from "./types";
 
-const BaseCard = ({ thumbnail, cardTitle, body, footer, ...props }: IBaseCard) => {
+const BaseCard = ({
+  thumbnail,
+  cardTitle,
+  body,
+  footer,
+  imageWidth,
+  imageHeight,
+  ...props
+}: IBaseCard) => {
   return (
     <Card {...props}>
-      <CardMedia component="img" image={thumbnail} alt="thumbnail" />
+      <CardMedia
+        component="img"
+        image={thumbnail}
+        alt="thumbnail"
+        width={imageWidth}
+        height={imageHeight}
+      />
       <CardContent>
         <Grid container>
           <Grid item xs={12}>

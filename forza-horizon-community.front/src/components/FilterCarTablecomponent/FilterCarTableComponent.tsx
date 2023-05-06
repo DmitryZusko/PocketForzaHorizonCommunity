@@ -3,7 +3,7 @@ import CustomCheckboxListComponent from "./components/CustomCheckboxListComponen
 import CustomRangeSliderComponent from "./components/CustomRangeSlider/CustomRangeSliderComponent";
 import useFilterCarTableComponent from "./useFilterCarTableComponent";
 
-export default function FilterCarTableComponent() {
+export default function FilterCarTableComponent({ ...props }) {
   const {
     isLoading,
     manufactures,
@@ -23,7 +23,7 @@ export default function FilterCarTableComponent() {
   } = useFilterCarTableComponent();
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column" }}>
+    <Container sx={{ display: "flex", flexDirection: "column" }} {...props}>
       <Typography>Select Country</Typography>
       <CustomCheckboxListComponent entities={countries()} applyChanges={handleSelectedCountry} />
       <Typography>Select Manufacture</Typography>

@@ -2,9 +2,9 @@ import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { IAchievementItemComponentProps } from "../../types";
 
-const AchievementItemComponent = ({ achievement }: IAchievementItemComponentProps) => {
+const AchievementItemComponent = ({ achievement, ...props }: IAchievementItemComponentProps) => {
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} {...props}>
       <Grid item xs={4}>
         <Image alt="icon" src={achievement.icon} width={100} height={100} />
         <Grid />

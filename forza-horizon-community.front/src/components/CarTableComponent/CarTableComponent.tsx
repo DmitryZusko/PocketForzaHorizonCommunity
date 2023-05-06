@@ -13,7 +13,7 @@ import { headerCells } from "./components/constants";
 import SortingTableHead from "./components/SortingTableHead/SortingTableHead";
 import useCarTableComponent from "./useCarTableComponent";
 
-export default function CarTableComponent() {
+export default function CarTableComponent({ ...props }) {
   const {
     currentPage,
     pageSize,
@@ -29,7 +29,7 @@ export default function CarTableComponent() {
     handleSorting,
   } = useCarTableComponent();
   return (
-    <TableContainer>
+    <TableContainer {...props}>
       <Table>
         <SortingTableHead<ICar>
           headerCells={headerCells}

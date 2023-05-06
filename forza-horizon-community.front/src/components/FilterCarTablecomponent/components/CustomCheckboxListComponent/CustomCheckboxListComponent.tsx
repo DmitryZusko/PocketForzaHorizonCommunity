@@ -6,10 +6,11 @@ import useCustomCheckboxListComponent from "./useCustomCheckboxListComponent";
 export default function CustomCheckboxListComponent({
   entities,
   applyChanges,
+  ...props
 }: ICustomCheckboxListComponentProprs) {
   const { handleChange } = useCustomCheckboxListComponent({ applyChanges });
   return (
-    <Container>
+    <Container {...props}>
       {entities.map((entity) => (
         <FormControlLabel
           key={entity}
