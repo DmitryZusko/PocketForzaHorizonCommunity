@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
-using PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
@@ -12,22 +11,18 @@ using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class DesignService : ServiceBase<IDesignRepoAdapter, Design, FilteredDesignsGetRequest>, IDesignService
+public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesignsGetRequest>, IDesignService
 {
     private IGalleryRepository _galleryRepository;
     private IImageManager _imageManager;
-    public DesignService(IDesignRepoAdapter repository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
+    public DesignService(IDesignRepository repository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
     {
         _galleryRepository = galleryRepository;
         _imageManager = imageManager;
     }
 
     public override async Task<PaginationModel<Design>> GetAllAsync(FilteredDesignsGetRequest request)
-    {
-        var result = await _repository.GetAllFiltered(request.SearchQuery).PaginateAsync(request.Page, request.PageSize);
-
-        return SetDescriptionLendth(result, request.DescriptionMaxLength);
-    }
+        => await ApplyFiltersAsync(_repository.GetAll(), request);
 
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
     {
@@ -52,7 +47,8 @@ public class DesignService : ServiceBase<IDesignRepoAdapter, Design, FilteredDes
         await _repository.SaveAsync();
     }
 
-    public async Task<List<Design>> GetLastDesigns(int dessignAmount) => await _repository.GetAll().OrderByDescending(d => d.CreationDate).Take(dessignAmount).ToListAsync();
+    public async Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request) =>
+        SetDescriptionLendth(await _repository.GetAll().OrderByDescending(d => d.CreationDate).PaginateAsync(request.Page, request.PageSize), request.DescriptionLimit);
 
     private async Task AddImagesToGallery(IList<IFormFile> gallery, Guid entityId)
     {
@@ -76,13 +72,25 @@ public class DesignService : ServiceBase<IDesignRepoAdapter, Design, FilteredDes
         await _galleryRepository.SaveAsync();
     }
 
-    private PaginationModel<Design> SetDescriptionLendth(PaginationModel<Design> result, int descriptionMaxLength)
+    private async Task<PaginationModel<Design>> ApplyFiltersAsync(IQueryable<Design> query, FilteredDesignsGetRequest request)
+    {
+        var lowerSearch = request.SearchQuery.ToLower();
+
+        query = query.Where(
+            x => x.Title.ToLower().Contains(lowerSearch)
+            || x.User.UserName.ToLower().Contains(lowerSearch)
+            || x.DesignOptions.Description.ToLower().Contains(lowerSearch));
+
+        return SetDescriptionLendth(await query.PaginateAsync(request.Page, request.PageSize), request.DescriptionLimit);
+    }
+
+    private PaginationModel<Design> SetDescriptionLendth(PaginationModel<Design> result, int descriptionLimit)
     {
         foreach (var item in result.Entities)
         {
             var descriptionLendth = item.DesignOptions.Description.Length;
             item.DesignOptions.Description = item.DesignOptions.Description
-                .Substring(0, descriptionMaxLength < descriptionLendth ? descriptionMaxLength : descriptionLendth);
+                .Substring(0, descriptionLimit < descriptionLendth ? descriptionLimit : descriptionLendth);
         }
         return result;
     }

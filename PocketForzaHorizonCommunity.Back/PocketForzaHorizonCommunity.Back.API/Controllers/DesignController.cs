@@ -41,8 +41,8 @@ public class DesignController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<List<DesignDto>> GetLastDesigns([FromQuery] GetLastDesignsRequest request) =>
-        _mapper.Map<List<DesignDto>>(await _service.GetLastDesigns(request.DesignsAmount));
+    public async Task<PaginatedResponse<DesignDto>> GetLastDesigns([FromQuery] GetLastDesignsRequest request) =>
+        _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetLastDesigns(request));
 
     [HttpPost]
     [Consumes("multipart/form-data")]

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
-using PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig;
@@ -18,10 +17,10 @@ public static class DevelopmentEnviromentSeederConfig
             connection.Open();
             var seeder = new DevelopmentEnvironmentSeeder(
                 scope.ServiceProvider.GetService<UserManager<ApplicationUser>>(),
-                scope.ServiceProvider.GetService<ICarRepoAdapter>(),
+                scope.ServiceProvider.GetService<ICarRepository>(),
                 scope.ServiceProvider.GetService<IManufactureRepository>(),
                 scope.ServiceProvider.GetService<ICarTypeRepository>(),
-                scope.ServiceProvider.GetService<IDesignRepoAdapter>(),
+                scope.ServiceProvider.GetService<IDesignRepository>(),
                 scope.ServiceProvider.GetService<IGalleryRepository>(),
                 scope.ServiceProvider.GetService<ITuneRepository>()
                 );

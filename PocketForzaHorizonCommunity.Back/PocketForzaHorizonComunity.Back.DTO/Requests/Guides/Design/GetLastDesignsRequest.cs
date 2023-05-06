@@ -1,6 +1,6 @@
 ﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 
-public class GetLastDesignsRequest
+public class GetLastDesignsRequest : PaginationGetRequestBase
 {
-    public int DesignsAmount { get; set; }
+    public int DescriptionLimit { get; set; } = 50;
 }
