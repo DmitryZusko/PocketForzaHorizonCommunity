@@ -15,7 +15,7 @@ const DesignBlockComponent = () => {
               thumbnail={`data:image/jpeg;base64,${design.thumbnail}`}
               cardTitle={design.title}
               navigationLink=""
-              body=""
+              body={design.description}
               footer={
                 <Grid container spacing={1}>
                   <Grid item xs={5}>

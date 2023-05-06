@@ -16,7 +16,7 @@ const designSlice = createSlice({
       state.isLoadingLatest = true;
     });
     builder.addCase(getLatestDesigns.fulfilled, (state, { payload }) => {
-      state.latestDesigns = payload.data;
+      state.latestDesigns = payload.data.entities;
       state.isLoadingLatest = false;
     });
     builder.addCase(getLatestDesigns.rejected, (state) => {
