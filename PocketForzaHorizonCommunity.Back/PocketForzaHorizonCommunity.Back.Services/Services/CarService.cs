@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
-using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.Database.Entities.Cars;
+using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -10,13 +12,11 @@ using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarService : ServiceBase<ICarRepository, Car>, ICarService
+public class CarService : ServiceBase<ICarRepoAdapter, Car, FilteredCarsGetRequest>, ICarService
 {
     private IImageManager _imageManager;
-    public CarService(ICarRepository repository, IImageManager imageManager) : base(repository)
-    {
-        _imageManager = imageManager;
-    }
+
+    public CarService(ICarRepoAdapter repository, IImageManager imageManager) : base(repository) => _imageManager = imageManager;
 
     public async Task<Car> CreateAsync(Car entity, IFormFile thumbnail)
     {
@@ -29,6 +29,12 @@ public class CarService : ServiceBase<ICarRepository, Car>, ICarService
 
         return entity;
     }
+
+    public async override Task<PaginationModel<Car>> GetAllAsync(FilteredCarsGetRequest request) =>
+        await _repository
+        .GetAllFiltered(request.MinPrice, request.MaxPrice, request.MinYear, request.MaxYear,
+            request.SelectedManufactures, request.SelectedCarTypes, request.SelectedCountries)
+        .PaginateAsync(request.Page, request.PageSize);
 
     public async Task<PaginationModel<Car>> GetDesignsByIdAsync(Guid id, int page, int pageSize) =>
         await _repository.GetByIdWithTunes(id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
@@ -59,5 +65,16 @@ public class CarService : ServiceBase<ICarRepository, Car>, ICarService
 
         _repository.Delete(entity);
         await _repository.SaveAsync();
+    }
+
+    public async Task<CarFilterScheme> GetCarFilterMarginsAsync()
+    {
+        return new CarFilterScheme
+        {
+            MinPrice = await _repository.GetMinPriceAsync(),
+            MaxPrice = await _repository.GetMaxPriceAsync(),
+            MinYear = await _repository.GetMinYearAsync(),
+            MaxYear = await _repository.GetMaxYearAsync(),
+        };
     }
 }

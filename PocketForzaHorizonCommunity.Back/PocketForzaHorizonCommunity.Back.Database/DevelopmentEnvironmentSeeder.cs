@@ -2,6 +2,7 @@
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database;
@@ -9,7 +10,7 @@ namespace PocketForzaHorizonCommunity.Back.Database;
 public class DevelopmentEnvironmentSeeder
 {
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly ICarRepository _carRepo;
+    private readonly ICarRepoAdapter _carRepo;
     private readonly IManufactureRepository _manufacturerRepo;
     private readonly ICarTypeRepository _carTypeRepo;
     private readonly IDesignRepository _designRepo;
@@ -18,7 +19,7 @@ public class DevelopmentEnvironmentSeeder
 
     public DevelopmentEnvironmentSeeder(
         UserManager<ApplicationUser> userManager,
-        ICarRepository carRepo,
+        ICarRepoAdapter carRepo,
         IManufactureRepository manufacturerRepo,
         ICarTypeRepository carTypeRepo,
         IDesignRepository designRepo,

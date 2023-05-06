@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
+using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
@@ -16,15 +18,22 @@ public class CarTypeController : ApplicationControllerBase
         _service = carTypeService;
     }
 
-    [HttpPost]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<PaginatedResponse<CarTypeDto>> Getall([FromQuery] PaginationGetRequest request)
+        => _mapper.Map<PaginatedResponse<CarTypeDto>>(await _service.GetAllAsync(request));
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<CarTypeDto> CreateCarType([FromBody] CreateCarTypeRequest request)
     {
         var createdEntity = await _service.CreateAsync(_mapper.Map<CarType>(request));
 
-        Response.StatusCode = StatusCodes.Status200OK;
+        Response.StatusCode = StatusCodes.Status201Created;
         return _mapper.Map<CarTypeDto>(createdEntity);
     }
 
