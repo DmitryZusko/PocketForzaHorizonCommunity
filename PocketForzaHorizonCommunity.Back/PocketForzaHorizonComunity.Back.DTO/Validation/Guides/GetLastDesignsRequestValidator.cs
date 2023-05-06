@@ -7,7 +7,7 @@ public class GetLastDesignsRequestValidator : AbstractValidator<GetLastDesignsRe
 {
     public GetLastDesignsRequestValidator()
     {
-        RuleFor(x => x.DesignsAmount)
+        RuleFor(x => x.DescriptionLimit)
             .NotEmpty()
             .GreaterThan(0)
             .LessThan(100);
