@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -19,7 +19,7 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpGet]
-    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] PaginationGetRequest request)
+    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] PaginationGetRequestBase request)
     {
         var designs = await _service.GetAllAsync(request);
 

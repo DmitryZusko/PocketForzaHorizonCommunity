@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -22,7 +22,7 @@ public class TuneController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<TuneDto>> GetAllTunes([FromQuery] PaginationGetRequest request)
+    public async Task<PaginatedResponse<TuneDto>> GetAllTunes([FromQuery] PaginationGetRequestBase request)
     {
         var tunes = await _service.GetAllAsync(request);
 

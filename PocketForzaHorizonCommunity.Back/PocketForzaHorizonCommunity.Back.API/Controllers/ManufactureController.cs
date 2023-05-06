@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
+using PocketForzaHorizonCommunity.Back.DTO.Requests;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -22,7 +22,7 @@ public class ManufactureController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<ManufactureDto>> GetAll([FromQuery] PaginationGetRequest request) =>
+    public async Task<PaginatedResponse<ManufactureDto>> GetAll([FromQuery] PaginationGetRequestBase request) =>
         _mapper.Map<PaginatedResponse<ManufactureDto>>(await _service.GetAllAsync(request));
 
     [HttpPost]

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Mapper;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Tests.MappingProfilesTests;
 

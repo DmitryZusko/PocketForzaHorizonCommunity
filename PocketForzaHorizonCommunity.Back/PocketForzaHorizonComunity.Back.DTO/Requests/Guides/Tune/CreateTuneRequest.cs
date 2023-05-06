@@ -1,6 +1,6 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Enums;
 
-namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 public class CreateTuneRequest
 {

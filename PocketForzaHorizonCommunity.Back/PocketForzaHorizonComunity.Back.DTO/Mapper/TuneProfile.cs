@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Mapper;
 

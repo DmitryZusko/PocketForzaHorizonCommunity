@@ -2,14 +2,14 @@
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
+using PocketForzaHorizonCommunity.Back.DTO.Requests;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public abstract class ServiceBase<TRepo, TEntity, TGetRequest> : IServiceBase<TEntity, TGetRequest> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity> where TGetRequest : PaginationGetRequest
+public abstract class ServiceBase<TRepo, TEntity, TGetRequest> : IServiceBase<TEntity, TGetRequest> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity> where TGetRequest : PaginationGetRequestBase
 {
     protected TRepo _repository;
     public ServiceBase(TRepo repository) => _repository = repository;

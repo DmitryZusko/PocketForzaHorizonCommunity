@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
+using PocketForzaHorizonCommunity.Back.DTO.Requests;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class ManufactureService : CrudServiceBase<IManufactureRepository, Manufacture, PaginationGetRequest>, IManufactureService
+public class ManufactureService : CrudServiceBase<IManufactureRepository, Manufacture, PaginationGetRequestBase>, IManufactureService
 {
     public ManufactureService(IManufactureRepository repository) : base(repository)
     {
