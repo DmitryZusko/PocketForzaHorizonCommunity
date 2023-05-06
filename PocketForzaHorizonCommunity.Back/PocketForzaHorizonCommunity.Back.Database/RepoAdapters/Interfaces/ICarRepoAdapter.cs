@@ -1,7 +1,7 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
-namespace PocketForzaHorizonCommunity.Back.Database.RepoDecorators
+namespace PocketForzaHorizonCommunity.Back.Database.RepoAdapters.Interfaces
 {
     public interface ICarRepoAdapter : ICarRepository
     {
