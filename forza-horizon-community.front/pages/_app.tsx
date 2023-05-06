@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const persistor = useMemo(() => {
     return initializePersistor(store);
   }, [store]);
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>

@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore, EnhancedStore } from "@reduxjs/toolkit";
 import {
   persistStore,
@@ -10,8 +9,10 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { carReducer } from "./car";
 import { designReducer } from "./design";
+import { filterSchemeReducer } from "./filter-scheme";
 import { gameStatisticsReducer } from "./game-statistics";
 import { newsReducer } from "./news";
 import { tuneReducer } from "./tune";
@@ -20,7 +21,7 @@ let store: EnhancedStore;
 
 const persistConfig = {
   key: "root",
-  storage: AsyncStorage,
+  storage: storage,
   whitelist: [],
 };
 
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   design: designReducer,
   tune: tuneReducer,
   car: carReducer,
+  filterScheme: filterSchemeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
