@@ -8,7 +8,7 @@ public static class QueryableExtensions
 {
     public static async Task<PaginationModel<TEntity>> PaginateAsync<TEntity>(
         this IQueryable<TEntity> query,
-        int page = 1,
+        int page = 0,
         int pageSize = 25
         ) where TEntity : EntityBase
     {
@@ -32,6 +32,4 @@ public static class QueryableExtensions
         };
     }
 
-    public static async Task<VocabularyModel<TEntity>> ToVocabulary<TEntity>(this IQueryable<TEntity> query) =>
-        new VocabularyModel<TEntity> { Total = await query.CountAsync(), Entities = await query.ToListAsync() };
 }

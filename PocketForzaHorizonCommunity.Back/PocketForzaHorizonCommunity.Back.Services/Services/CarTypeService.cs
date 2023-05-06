@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarTypeService : CrudServiceBase<ICarTypeRepository, CarType>, ICarTypeService
+public class CarTypeService : CrudServiceBase<ICarTypeRepository, CarType, PaginationGetRequest>, ICarTypeService
 {
     public CarTypeService(ICarTypeRepository repository) : base(repository)
     {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -21,11 +22,17 @@ public class CarController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<CarDto>> GetAllCars([FromQuery] int page, int pageSize = 25)
+    public async Task<PaginatedResponse<CarDto>> GetAllCars([FromQuery] FilteredCarsGetRequest request)
     {
-        var cars = await _service.GetAllAsync(page, pageSize);
+        var cars = await _service.GetAllAsync(request);
         return _mapper.Map<PaginatedResponse<CarDto>>(cars);
     }
+
+    [HttpGet("FilterScheme")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<CarFilterSchemeDto> GetCarFilterScheme() =>
+        _mapper.Map<CarFilterSchemeDto>(await _service.GetCarFilterMarginsAsync());
 
     [HttpPost]
     [Consumes("multipart/form-data")]
