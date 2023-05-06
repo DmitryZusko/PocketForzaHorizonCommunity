@@ -1,21 +1,55 @@
 import { ICar } from "@/data-transfer-objects/entities/Car";
 import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { getCars, paginatedCarsSelector, setSortedCars } from "@/redux/car";
+import { getCars, paginatedCarsSelector, setPage, setPageSize, setSortedCars } from "@/redux/car";
+import { filterSelectedValuesSelector } from "@/redux/filter-scheme";
 import React, { useCallback, useEffect, useState } from "react";
 import { OrderDirection } from "./components/SortingTableHead/SortingTableHead";
 
 export default function useCarTableComponent() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, setPageSize] = useState(25);
   const [orderBy, setOrderBy] = useState<keyof ICar>("manufacture");
   const [order, setOrder] = useState<OrderDirection>("asc");
-  const { isLoadingCars, cars, totalEntities } = useAppSelector(paginatedCarsSelector);
+  const {
+    isLoadingCars,
+    cars,
+    totalEntities,
+    page: currentPage,
+    pageSize,
+  } = useAppSelector(paginatedCarsSelector);
+
+  const {
+    selectedPriceRange,
+    selectedYearRange,
+    selectedManufactures,
+    selectedCarTypes,
+    selectedCountries,
+  } = useAppSelector(filterSelectedValuesSelector);
 
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
-    dispatch(getCars({ page: currentPage, pageSize: pageSize }));
-  }, [currentPage, pageSize, dispatch]);
+    return dispatch(
+      getCars({
+        page: currentPage,
+        pageSize,
+        minPrice: selectedPriceRange[0],
+        maxPrice: selectedPriceRange[1],
+        minYear: selectedYearRange[0],
+        maxYear: selectedYearRange[1],
+        selectedCountries: selectedCountries.toLocaleString(),
+        selectedManufactures: selectedManufactures.toLocaleString(),
+        selectedCarTypes: selectedCarTypes.toLocaleString(),
+      }),
+    );
+  }, [
+    currentPage,
+    pageSize,
+    selectedPriceRange,
+    selectedYearRange,
+    selectedCountries,
+    selectedManufactures,
+    selectedCarTypes,
+    dispatch,
+  ]);
 
   const handleSorting = useCallback(
     (newOrder: OrderDirection, newProperty: keyof ICar) => {
@@ -25,18 +59,23 @@ export default function useCarTableComponent() {
   );
 
   const handlePageChange = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setCurrentPage(newPage);
+    dispatch(setPage(newPage));
   };
 
   const handlePageSizeChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setPageSize(parseInt(event.target.value, 10));
-    setCurrentPage(0);
+    dispatch(setPageSize(parseInt(event.target.value, 10)));
+    dispatch(setPage(0));
   };
 
   useEffect(() => {
-    loadCars();
+    let isDispatched: boolean;
+    var dispatchPromise = loadCars();
+    dispatchPromise.then(() => (isDispatched = true));
+    return () => {
+      if (!isDispatched) dispatchPromise.abort();
+    };
   }, [loadCars]);
 
   return {

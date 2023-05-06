@@ -5,6 +5,8 @@ import { INewsItem } from "@/data-transfer-objects/entities/NewsItem";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { ICar } from "@/data-transfer-objects/entities/Car";
 import { OrderDirection } from "@/components/CarTableComponent/components/SortingTableHead/SortingTableHead";
+import { IManufacture } from "@/data-transfer-objects/entities/Manufacture";
+import { ICarType } from "@/data-transfer-objects/entities/CarType";
 
 export type ActionWithPayload<Payload> = ReturnType<ActionCreatorWithPayload<Payload>>;
 
@@ -39,6 +41,25 @@ export interface ITuneState {
 export interface ICarState {
   isLoadingCars: boolean;
   cars: ICar[];
+  page: number;
+  pageSize: number;
   totalEntities: number;
   totalPages: number;
+}
+
+export interface IFiltetSchemeState {
+  isLoading: boolean;
+  carTypes: ICarType[];
+  totalCarTypes: number;
+  manufactures: IManufacture[];
+  totalManufactures: number;
+  minPrice: number;
+  maxPrice: number;
+  minYear: number;
+  maxYear: number;
+  selectedPriceRange: number[];
+  selectedYearRange: number[];
+  selectedManufactures: string[];
+  selectedCarTypes: string[];
+  selectedCountries: string[];
 }

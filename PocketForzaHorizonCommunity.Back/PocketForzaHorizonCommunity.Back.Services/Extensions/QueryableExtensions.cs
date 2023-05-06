@@ -13,6 +13,10 @@ public static class QueryableExtensions
         ) where TEntity : EntityBase
     {
         var total = await query.CountAsync();
+        if (pageSize < 1)
+        {
+            pageSize = total;
+        }
 
         var totalPages = (int)Math.Ceiling((double)total / pageSize);
 
@@ -27,4 +31,5 @@ public static class QueryableExtensions
             Entities = result,
         };
     }
+
 }

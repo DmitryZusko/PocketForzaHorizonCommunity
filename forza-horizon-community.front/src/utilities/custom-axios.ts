@@ -7,6 +7,10 @@ const getAxiosInstance = () => {
   });
 };
 
-const customAxios = { getAxiosInstance };
+const getCancelationToken = () => {
+  return axios.CancelToken.source();
+};
+
+const customAxios = { getAxiosInstance, getCancelationToken };
 
 export default customAxios;

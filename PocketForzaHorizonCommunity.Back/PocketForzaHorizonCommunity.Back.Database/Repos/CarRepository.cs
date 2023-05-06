@@ -27,4 +27,12 @@ public class CarRepository : RepositoryBase<Car>, ICarRepository
         .Where(c => c.Id == id)
         .Include(c => c.Designs)
         .AsQueryable();
+
+    public Task<int> GetMinPriceAsync() => Context.Set<Car>().MinAsync(c => c.Price);
+
+    public Task<int> GetMaxPriceAsync() => Context.Set<Car>().MaxAsync(c => c.Price);
+
+    public Task<int> GetMinYearAsync() => Context.Set<Car>().MinAsync(c => c.Year);
+
+    public Task<int> GetMaxYearAsync() => Context.Set<Car>().MaxAsync(c => c.Year);
 }

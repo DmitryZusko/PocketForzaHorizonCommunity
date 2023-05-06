@@ -2,13 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class DesignService : ServiceBase<IDesignRepository, Design>, IDesignService
+public class DesignService : ServiceBase<IDesignRepository, Design, PaginationGetRequest>, IDesignService
 {
     private IGalleryRepository _galleryRepository;
     private IImageManager _imageManager;

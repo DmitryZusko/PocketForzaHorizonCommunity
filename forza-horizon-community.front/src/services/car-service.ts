@@ -1,18 +1,44 @@
 import { ICar } from "@/data-transfer-objects/entities/Car";
-import { IGetCarsRequest } from "@/data-transfer-objects/requests/GetCarsRequest";
+import {} from "@/data-transfer-objects/requests/PaginatedRequest";
+import { ICarFilterSchemeResponse } from "@/data-transfer-objects/responses/CarFilterSchemeResponse";
 import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
 import customAxios from "@/utilities/custom-axios";
+import { IAxiosFilteredCarsRequest } from "./types";
 
-const getCars = ({ page, pageSize }: IGetCarsRequest) => {
+const getCars = ({
+  page,
+  pageSize,
+  minPrice,
+  maxPrice,
+  minYear,
+  maxYear,
+  selectedCountries,
+  selectedManufactures,
+  selectedCarTypes,
+  cancelToken,
+}: IAxiosFilteredCarsRequest) => {
   const axios = customAxios.getAxiosInstance();
   return axios.get<IPaginatedResponse<ICar>>("car", {
+    cancelToken: cancelToken,
     params: {
       Page: page,
       PageSize: pageSize,
+      MinPrice: minPrice,
+      MaxPrice: maxPrice,
+      MinYear: minYear,
+      MaxYear: maxYear,
+      SelectedCountries: selectedCountries,
+      SelectedManufactures: selectedManufactures,
+      SelectedCarTypes: selectedCarTypes,
     },
   });
 };
 
-const carService = { getCars };
+const getCarFilterScheme = async () => {
+  const axios = customAxios.getAxiosInstance();
+  return axios.get<ICarFilterSchemeResponse>("car/filterscheme");
+};
+
+const carService = { getCars, getCarFilterScheme };
 
 export default carService;

@@ -2,19 +2,20 @@
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public abstract class ServiceBase<TRepo, TEntity> : IServiceBase<TEntity> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity>
+public abstract class ServiceBase<TRepo, TEntity, TGetRequest> : IServiceBase<TEntity, TGetRequest> where TEntity : EntityBase where TRepo : IRepositoryBase<TEntity> where TGetRequest : PaginationGetRequest
 {
     protected TRepo _repository;
     public ServiceBase(TRepo repository) => _repository = repository;
 
-    public virtual async Task<PaginationModel<TEntity>> GetAllAsync(int page, int pageSize) =>
-        await _repository.GetAll().PaginateAsync(page, pageSize);
+    public virtual async Task<PaginationModel<TEntity>> GetAllAsync(TGetRequest request) =>
+        await _repository.GetAll().PaginateAsync(request.Page, request.PageSize);
 
     public virtual async Task<TEntity> GetByIdAsync(Guid Id) =>
          await _repository.GetById(Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
