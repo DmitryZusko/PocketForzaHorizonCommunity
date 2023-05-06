@@ -6,8 +6,6 @@ import { Star } from "@mui/icons-material";
 const DesignBlockComponent = () => {
   const { isLoading, latestDesigns } = useDesignBlockComponent();
 
-  console.log(latestDesigns[0]);
-
   return (
     <Grid container spacing={2}>
       {latestDesigns.map((design) => (
