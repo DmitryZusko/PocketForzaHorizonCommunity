@@ -33,6 +33,12 @@ public class CarController : ApplicationControllerBase
     public async Task<CarFilterSchemeDto> GetCarFilterScheme() =>
         _mapper.Map<CarFilterSchemeDto>(await _service.GetCarFilterMarginsAsync());
 
+    [HttpGet("CarNames")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<PaginatedResponse<SimplifiedCarDto>> GetAllCarNamesAsync() =>
+        _mapper.Map<PaginatedResponse<SimplifiedCarDto>>(await _service.GetAllAsync(new FilteredCarsGetRequest { PageSize = -1 }));
+
     [HttpPost]
     [Consumes("multipart/form-data")]
     [ProducesResponseType(StatusCodes.Status201Created)]
