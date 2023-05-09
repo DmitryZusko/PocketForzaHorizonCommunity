@@ -10,6 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import {
+  defaultCarThumbnailSize,
+  defaultRowsPerPageOptions,
+} from "../constants/applicationConstants";
 import { headerCells } from "./components/constants";
 import SortingTableHead from "./components/SortingTableHead/SortingTableHead";
 import useCarTableComponent from "./useCarTableComponent";
@@ -47,8 +51,8 @@ export default function CarTableComponent({ ...props }) {
                 <Image
                   alt="car"
                   src={imageConverter.addJpgHeader(car.image)}
-                  width={300}
-                  height={300}
+                  width={defaultCarThumbnailSize.width}
+                  height={defaultCarThumbnailSize.height}
                 />
               </TableCell>
               <TableCell>
@@ -72,7 +76,7 @@ export default function CarTableComponent({ ...props }) {
       </Table>
       <TablePagination
         component={"div"}
-        rowsPerPageOptions={[1, 5, 10, 25, { value: totalEntities, label: "All" }]}
+        rowsPerPageOptions={[...defaultRowsPerPageOptions, { value: totalEntities, label: "All" }]}
         count={totalEntities}
         page={currentPage}
         rowsPerPage={pageSize}

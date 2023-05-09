@@ -1,3 +1,4 @@
+import { defaultTuneImageHeight } from "@/components/constants/applicationConstants";
 import { GuideCardFooterComponent } from "@/components/GuideCardFooterComponent/GuideCardFooterComponent";
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
 import { TuneCardBodyComponent } from "@/components/TuneCardBodyComponent/TuneCardBodyComponent";
@@ -15,7 +16,7 @@ const TunesBlockComponent = ({ ...props }) => {
           <Grid item key={tune.id} xs={12} md={3}>
             <NavigationCard
               thumbnail="TuneThumbnail.png"
-              imageHeight={200}
+              imageHeight={defaultTuneImageHeight}
               cardTitle={tune.title}
               navigationLink=""
               body={
