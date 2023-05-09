@@ -1,3 +1,7 @@
+import {
+  defaultCardDescriptionLimit,
+  defaultLatestGuidesAmount,
+} from "@/components/constants/applicationConstants";
 import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
 import { getLatestDesigns, latestDesignsSelector } from "@/redux/design";
 import { useCallback, useEffect } from "react";
@@ -15,7 +19,7 @@ const useDesignBlockComponent = () => {
   );
 
   useEffect(() => {
-    loadLatestDesigns(0, 3, 100);
+    loadLatestDesigns(0, defaultLatestGuidesAmount, defaultCardDescriptionLimit);
   }, [loadLatestDesigns]);
 
   return { isLoading, latestDesigns };

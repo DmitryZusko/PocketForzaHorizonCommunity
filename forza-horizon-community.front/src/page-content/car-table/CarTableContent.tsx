@@ -1,5 +1,5 @@
 import CarTableComponent from "@/components/CarTableComponent/CarTableComponent";
-import FilterCarTableComponent from "@/components/FilterCarTablecomponent/FilterCarTablecomponent";
+import FilterCarTableComponent from "@/components/FilterCarTableComponent/FilterCarTableComponent";
 import { Grid } from "@mui/material";
 
 export default function CarTableContent() {

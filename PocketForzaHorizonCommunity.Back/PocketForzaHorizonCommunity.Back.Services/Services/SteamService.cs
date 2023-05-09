@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using PocketForzaHorizonCommunity.Back.API.Constants;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.OnlinePlayerCount;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamAchivementStats;
@@ -18,7 +19,7 @@ public class SteamService : ISteamService
     {
         using var client = HttpClientFactory.Create();
         var response = await client.GetAsync(
-            $"{_config["SteamApi:BaseUrl"]}ISteamNews/GetNewsForApp/v0002/?appid={_config["SteamApi:AppId"]}" +
+            $"{ApplicationConstants.STEAM_BASE_URL}ISteamNews/GetNewsForApp/v0002/?appid={ApplicationConstants.APP_ID}" +
             $"&count={count}&maxlength={maxLength}");
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
@@ -29,8 +30,8 @@ public class SteamService : ISteamService
     public async Task<List<GlobalAchivement>> GetGlobalAchivementStats()
     {
         using var client = HttpClientFactory.Create();
-        var response = await client.GetAsync($"{_config["SteamApi:BaseUrl"]}" +
-            $"ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid={_config["SteamApi:AppId"]}");
+        var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}}" +
+            $"ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid={ApplicationConstants.APP_ID}");
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
 
@@ -42,8 +43,8 @@ public class SteamService : ISteamService
     public async Task<int> GetOnlineCount()
     {
         using var client = HttpClientFactory.Create();
-        var response = await client.GetAsync($"{_config["SteamApi:BaseUrl"]}" +
-            $"ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid={_config["SteamApi:AppId"]}");
+        var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}" +
+            $"ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid={ApplicationConstants.APP_ID}");
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
 
@@ -75,8 +76,8 @@ public class SteamService : ISteamService
     private async Task<List<AchievementScheme>> GetAchivementScheme()
     {
         using var client = HttpClientFactory.Create();
-        var response = await client.GetAsync($"{_config["SteamApi:BaseUrl"]}" +
-            $"ISteamUserStats/GetSchemaForGame/v2/?key={_config["SteamApi:Key"]}&appid={_config["SteamApi:AppId"]}");
+        var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}" +
+            $"ISteamUserStats/GetSchemaForGame/v2/?key={_config["SteamApi:Key"]}&appid={ApplicationConstants.APP_ID}");
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
 

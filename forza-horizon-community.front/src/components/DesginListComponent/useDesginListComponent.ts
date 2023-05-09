@@ -8,6 +8,10 @@ import {
 } from "@/redux/design";
 import { carNamesSelector, getCarNames } from "@/redux/filter-scheme";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  defaultCardDescriptionLimit,
+  defaultInfinitLoaderAdjustment,
+} from "../constants/applicationConstants";
 
 export const useDesginListComponent = () => {
   const defaultPageSize = 1;
@@ -31,13 +35,18 @@ export const useDesginListComponent = () => {
           page: 0,
           pageSize,
           searchQuery: searchQuery,
-          descriptionLimit: 300,
+          descriptionLimit: defaultCardDescriptionLimit,
           carId: selectedCar,
         }),
       );
     }
     return dispatch(
-      getDesigns({ page: 0, pageSize, searchQuery: searchQuery, descriptionLimit: 300 }),
+      getDesigns({
+        page: 0,
+        pageSize,
+        searchQuery: searchQuery,
+        descriptionLimit: defaultCardDescriptionLimit,
+      }),
     );
   }, [searchQuery, pageSize, selectedCar, dispatch]);
 
@@ -65,7 +74,7 @@ export const useDesginListComponent = () => {
   );
 
   const makePageSizeBigger = useCallback(() => {
-    dispatch(addToPageSize(10));
+    dispatch(addToPageSize(defaultInfinitLoaderAdjustment));
   }, [dispatch]);
 
   useEffect(() => {

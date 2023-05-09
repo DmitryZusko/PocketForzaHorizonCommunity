@@ -1,4 +1,5 @@
 import { Container, Typography } from "@mui/material";
+import { defaultPriceStep } from "../constants/applicationConstants";
 import CustomCheckboxListComponent from "./components/CustomCheckboxListComponent/CustomCheckboxListComponent";
 import CustomRangeSliderComponent from "./components/CustomRangeSlider/CustomRangeSliderComponent";
 import useFilterCarTableComponent from "./useFilterCarTableComponent";
@@ -42,7 +43,7 @@ export default function FilterCarTableComponent({ ...props }) {
         validRange={selectedPriceRange}
         min={minPrice}
         max={maxPrice}
-        step={5000}
+        step={defaultPriceStep}
         handleRangeChange={handlePriceRangeChange}
       />
       <Typography variant="h6">Select Car Year</Typography>

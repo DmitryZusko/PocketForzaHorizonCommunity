@@ -4,6 +4,7 @@ import { newsSelector } from "@/redux/news/selectors";
 import { getNews } from "@/redux/news/thunks";
 import { Grid, Tooltip, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
+import { defaultNewsAmount, defaultNewsLength } from "../constants/applicationConstants";
 import NavigationCard from "../NavigationCard/NavigationCard";
 
 const NewsBlockComponent = ({ ...props }) => {
@@ -12,7 +13,7 @@ const NewsBlockComponent = ({ ...props }) => {
   const dispatch = useAppDispatch();
 
   const loadNews = useCallback(async () => {
-    await dispatch(getNews({ count: 9, maxLength: 500 }));
+    await dispatch(getNews({ count: defaultNewsAmount, maxLength: defaultNewsLength }));
     await dispatch(getAchievementStats());
   }, [dispatch]);
 
