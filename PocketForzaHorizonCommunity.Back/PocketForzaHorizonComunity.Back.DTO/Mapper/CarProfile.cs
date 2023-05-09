@@ -23,6 +23,9 @@ public class CarProfile : Profile
             .ForMember(dest => dest.ManufactureId, opt => opt.MapFrom(src => Guid.Parse(src.ManufactureId)))
             .ForMember(dest => dest.CarTypeId, opt => opt.MapFrom(src => Guid.Parse(src.CarTypeId)))
             .ForSourceMember(src => src.Image, opt => opt.DoNotValidate());
+
+        CreateMap<Car, SimplifiedCarDto>()
+            .ForMember(dest => dest.CarName, opt => opt.MapFrom(src => $"{src.Manufacture.Name} {src.Model} {src.Year}"));
     }
 
     private static byte[] LoadImage(string path)

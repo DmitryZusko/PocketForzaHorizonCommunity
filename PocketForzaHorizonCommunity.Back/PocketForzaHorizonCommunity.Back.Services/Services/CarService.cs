@@ -33,12 +33,6 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
     public async override Task<PaginationModel<Car>> GetAllAsync(FilteredCarsGetRequest request) =>
         await AplyFiltersAsync(_repository.GetAll(), request);
 
-    public async Task<PaginationModel<Car>> GetDesignsByIdAsync(Guid id, int page, int pageSize) =>
-        await _repository.GetByIdWithTunes(id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
-
-    public async Task<PaginationModel<Car>> GetTunesByIdAsync(Guid Id, int page, int pageSize) =>
-        await _repository.GetByIdWithDesigns(Id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
-
     public async Task<Car> UpdateAsync(Car newEntity, IFormFile thumbnail)
     {
         var oldEntity = await _repository.GetById(newEntity.Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
@@ -83,7 +77,7 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
         var carTypes = request.SelectedCarTypes?.Split(",").ToList();
 
         query = query.Where(c => c.Price >= request.MinPrice && c.Price <= request.MaxPrice);
-        query = query.Where(c => c.Year >= request.MinPrice && c.Year <= request.MaxPrice);
+        query = query.Where(c => c.Year >= request.MinYear && c.Year <= request.MaxYear);
 
         if (manufactures?.Count > 0) query = query.Where(c => manufactures.Contains(c.Manufacture.Name));
         if (countries?.Count > 0) query = query.Where(c => countries.Contains(c.Manufacture.Country));

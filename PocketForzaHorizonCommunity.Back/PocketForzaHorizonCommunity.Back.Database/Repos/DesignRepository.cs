@@ -25,4 +25,12 @@ public class DesignRepository : RepositoryBase<Design>, IDesignRepository
             .Include(d => d.DesignOptions.Gallery)
             .AsQueryable();
 
+    public IQueryable<Design> GetAllByCarId(Guid carId) =>
+        Context.Set<Design>()
+        .Where(d => d.CarId == carId)
+        .Include(d => d.User)
+        .Include(d => d.Car.Manufacture)
+        .Include(d => d.DesignOptions.Gallery)
+        .AsQueryable();
+
 }

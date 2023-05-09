@@ -24,6 +24,9 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     public override async Task<PaginationModel<Design>> GetAllAsync(FilteredDesignsGetRequest request)
         => await ApplyFiltersAsync(_repository.GetAll(), request);
 
+    public async Task<PaginationModel<Design>> GetAllByCarIdAsync(FilteredCarDesignsGetRequest request) =>
+        await ApplyFiltersAsync(_repository.GetAllByCarId(request.CarId), request);
+
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
     {
         await _repository.CreateAsync(entity);
