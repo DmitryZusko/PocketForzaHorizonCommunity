@@ -58,14 +58,14 @@ public class CreateTuneRequestValidation : AbstractValidator<CreateTuneRequest>
 
         RuleFor(x => x.Differential).IsInEnum();
 
-        RuleFor(x => x.TiersDescription)
+        RuleFor(x => x.TiresDescription)
             .MaximumLength(511);
 
         RuleFor(x => x.Compound).IsInEnum();
 
-        RuleFor(x => x.FrontTierWidth).IsInEnum();
+        RuleFor(x => x.FrontTireWidth).IsInEnum();
 
-        RuleFor(x => x.RearTierWidth).IsInEnum();
+        RuleFor(x => x.RearTireWidth).IsInEnum();
 
         RuleFor(x => x.FrontTrackWidth).IsInEnum();
 

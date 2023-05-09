@@ -41,13 +41,13 @@ public class TuneOptions
     [Required]
     public DifferentialType Differential { get; set; }
 
-    public string TiersDescription { get; set; } = string.Empty;
+    public string TiresDescription { get; set; } = string.Empty;
     [Required]
-    public TiersCompoundType Compound { get; set; }
+    public TiresCompoundType Compound { get; set; }
     [Required]
-    public TiersWidthType FrontTierWidth { get; set; }
+    public TiresWidthType FrontTireWidth { get; set; }
     [Required]
-    public TiersWidthType RearTierWidth { get; set; }
+    public TiresWidthType RearTireWidth { get; set; }
     [Required]
     public TrackWidthType FrontTrackWidth { get; set; }
     [Required]

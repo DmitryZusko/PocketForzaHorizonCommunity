@@ -88,10 +88,10 @@ public class TuneMappingTests
             Clutch = tune.TuneOptions.Clutch,
             Transmission = tune.TuneOptions.Transmission,
             Differential = tune.TuneOptions.Differential,
-            TiersDescription = tune.TuneOptions.TiersDescription,
+            TiresDescription = tune.TuneOptions.TiresDescription,
             Compound = tune.TuneOptions.Compound,
-            FrontTierWidth = tune.TuneOptions.FrontTierWidth,
-            RearTierWidth = tune.TuneOptions.RearTierWidth,
+            FrontTireWidth = tune.TuneOptions.FrontTireWidth,
+            RearTireWidth = tune.TuneOptions.RearTireWidth,
             FrontTrackWidth = tune.TuneOptions.FrontTrackWidth,
             RearTrackWidth = tune.TuneOptions.RearTrackWidth,
         };
