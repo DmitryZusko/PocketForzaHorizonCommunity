@@ -51,7 +51,6 @@ export interface ICarState {
   page: number;
   pageSize: number;
   totalEntities: number;
-  totalPages: number;
 }
 
 export interface IFiltetSchemeState {
