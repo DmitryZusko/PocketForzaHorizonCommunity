@@ -2,25 +2,37 @@ import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
 import { setPage } from "@/redux/car";
 import {
   filterSchemeSelector,
-  filterSelectedValuesSelector,
   getCarFilterScheme,
   getCarTypes,
   getManufactures,
+} from "@/redux/filter-scheme";
+import {
+  selectedFilterRangesSelector,
   setSelectedCarTypes,
   setSelectedCountries,
   setSelectedManufactures,
   setSelectedPriceRange,
   setSelectedYearRange,
-} from "@/redux/filter-scheme";
+} from "@/redux/selectedFilterParams";
 import { useCallback, useEffect } from "react";
 
 export default function useFilterCarTableComponent() {
-  const { isLoading, manufactures, carTypes, minPrice, maxPrice, minYear, maxYear } =
-    useAppSelector(filterSchemeSelector);
+  const {
+    isLoadingManufacture,
+    manufactures,
+    totalManufactures,
+    isLoadingCarTypes,
+    carTypes,
+    totalCarTypes,
+    minPrice,
+    maxPrice,
+    minYear,
+    maxYear,
+  } = useAppSelector(filterSchemeSelector);
+
+  const { selectedPriceRange, selectedYearRange } = useAppSelector(selectedFilterRangesSelector);
 
   const dispatch = useAppDispatch();
-
-  const { selectedPriceRange, selectedYearRange } = useAppSelector(filterSelectedValuesSelector);
 
   const loadParameters = useCallback(() => {
     dispatch(getManufactures({}));
@@ -89,8 +101,9 @@ export default function useFilterCarTableComponent() {
   }, [loadParameters]);
 
   return {
-    isLoading,
+    isLoadingManufacture,
     manufactures,
+    isLoadingCarTypes,
     carTypes,
     minPrice,
     maxPrice,

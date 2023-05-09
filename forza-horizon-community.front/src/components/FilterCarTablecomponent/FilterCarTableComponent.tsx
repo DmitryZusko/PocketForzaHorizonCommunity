@@ -5,8 +5,9 @@ import useFilterCarTableComponent from "./useFilterCarTableComponent";
 
 export default function FilterCarTableComponent({ ...props }) {
   const {
-    isLoading,
+    isLoadingManufacture,
     manufactures,
+    isLoadingCarTypes,
     carTypes,
     minPrice,
     maxPrice,
