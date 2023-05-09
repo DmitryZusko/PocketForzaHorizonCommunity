@@ -1,4 +1,5 @@
 import { ICar } from "@/data-transfer-objects/entities/Car";
+import imageConverter from "@/utilities/imageConverter";
 import {
   Table,
   TableBody,
@@ -45,7 +46,7 @@ export default function CarTableComponent({ ...props }) {
               <TableCell>
                 <Image
                   alt="car"
-                  src={`data:image/jpeg;base64,${car.image}`}
+                  src={imageConverter.addJpgHeader(car.image)}
                   width={300}
                   height={300}
                 />
