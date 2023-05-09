@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { gameStatisticsSelector, getAchievementStats } from "@/redux/game-statistics";
+import { getAchievementStats } from "@/redux/game-statistics";
 import { newsSelector } from "@/redux/news/selectors";
 import { getNews } from "@/redux/news/thunks";
 import { Grid, Tooltip, Typography } from "@mui/material";
@@ -8,7 +8,6 @@ import NavigationCard from "../NavigationCard/NavigationCard";
 
 const NewsBlockComponent = ({ ...props }) => {
   const { isLoading: isNewsLoading, news } = useAppSelector(newsSelector);
-  const { achievements } = useAppSelector(gameStatisticsSelector);
 
   const dispatch = useAppDispatch();
 

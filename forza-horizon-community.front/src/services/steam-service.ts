@@ -15,7 +15,6 @@ const getAchievementStatistics = async () => {
 
 const getCurrentOnlineNumber = async () => {
   const axios = customAxios.getAxiosInstance();
-
   return axios.get<number>("steam/getcurrentonlinecount");
 };
 

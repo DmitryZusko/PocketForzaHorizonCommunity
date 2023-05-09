@@ -37,7 +37,6 @@ export interface IDesignState {
   page: number;
   pageSize: number;
   totalEntities: number;
-  totalPages: number;
 }
 
 export interface ITuneState {
