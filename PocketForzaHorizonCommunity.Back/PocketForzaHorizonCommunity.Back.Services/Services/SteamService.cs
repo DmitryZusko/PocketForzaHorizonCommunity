@@ -30,7 +30,7 @@ public class SteamService : ISteamService
     public async Task<List<GlobalAchivement>> GetGlobalAchivementStats()
     {
         using var client = HttpClientFactory.Create();
-        var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}}" +
+        var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}" +
             $"ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid={ApplicationConstants.APP_ID}");
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
