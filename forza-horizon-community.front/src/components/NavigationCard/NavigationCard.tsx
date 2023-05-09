@@ -8,12 +8,21 @@ const NavigationCard = ({
   navigationLink,
   body,
   footer,
+  imageWidth,
+  imageHeight,
   ...props
 }: INavigationCard) => {
   return (
     <CardActionArea {...props}>
       <Link href={navigationLink} target="_blank" underline="none">
-        <BaseCard thumbnail={thumbnail} cardTitle={cardTitle} body={body} footer={footer} />
+        <BaseCard
+          thumbnail={thumbnail}
+          cardTitle={cardTitle}
+          body={body}
+          footer={footer}
+          imageWidth={imageWidth}
+          imageHeight={imageHeight}
+        />
       </Link>
     </CardActionArea>
   );

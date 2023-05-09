@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 namespace PocketForzaHorizonCommunity.Back.Database.Enums;
 
 [JsonConverter(typeof(StringEnumConverter))]
-public enum TiersCompoundType
+public enum TiresCompoundType
 {
     StockCompound,
     StreetCompound,
@@ -14,7 +14,7 @@ public enum TiersCompoundType
     DriftCompound,
     DragCompound,
     RallyCompound,
-    OfroadCompound,
+    OffroadCompound,
     SnowCompound,
     VintageCompound,
 }

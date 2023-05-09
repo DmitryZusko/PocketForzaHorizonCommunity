@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -19,12 +18,20 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpGet]
-    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] PaginationGetRequest request)
-    {
-        var designs = await _service.GetAllAsync(request);
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] FilteredDesignsGetRequest request) =>
+        _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetAllAsync(request));
 
-        return _mapper.Map<PaginatedResponse<DesignDto>>(designs);
-    }
+    [HttpGet("ByCar")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<PaginatedResponse<DesignDto>> GetAllDesignsByCarId([FromQuery] FilteredCarDesignsGetRequest request) =>
+        _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetAllByCarIdAsync(request));
+
 
     [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -45,8 +52,8 @@ public class DesignController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<List<DesignDto>> GetLastDesigns([FromQuery] GetLastDesignsRequest request) =>
-        _mapper.Map<List<DesignDto>>(await _service.GetLastDesigns(request.DesignsAmount));
+    public async Task<PaginatedResponse<DesignDto>> GetLastDesigns([FromQuery] GetLastDesignsRequest request) =>
+        _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetLastDesigns(request));
 
     [HttpPost]
     [Consumes("multipart/form-data")]

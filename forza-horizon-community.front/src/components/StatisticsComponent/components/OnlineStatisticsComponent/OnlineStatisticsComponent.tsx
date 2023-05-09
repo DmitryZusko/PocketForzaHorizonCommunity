@@ -2,9 +2,9 @@ import { Grid } from "@mui/material";
 import HourOnlineComponent from "./components/HourOnlineComponent/HourOnlineComponent";
 import WeeklyOnlineComponent from "./components/WeeklyOnlineComponent/WeeklyOnlineComponent";
 
-const OnlineStatisticsComponent = () => {
+const OnlineStatisticsComponent = ({ ...props }) => {
   return (
-    <Grid container>
+    <Grid container {...props}>
       <Grid item xs={12}>
         <HourOnlineComponent />
       </Grid>

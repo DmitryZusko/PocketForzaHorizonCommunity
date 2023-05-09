@@ -1,4 +1,5 @@
 import { ICar } from "@/data-transfer-objects/entities/Car";
+import imageConverter from "@/utilities/imageConverter";
 import {
   Table,
   TableBody,
@@ -13,7 +14,7 @@ import { headerCells } from "./components/constants";
 import SortingTableHead from "./components/SortingTableHead/SortingTableHead";
 import useCarTableComponent from "./useCarTableComponent";
 
-export default function CarTableComponent() {
+export default function CarTableComponent({ ...props }) {
   const {
     currentPage,
     pageSize,
@@ -29,7 +30,7 @@ export default function CarTableComponent() {
     handleSorting,
   } = useCarTableComponent();
   return (
-    <TableContainer>
+    <TableContainer {...props}>
       <Table>
         <SortingTableHead<ICar>
           headerCells={headerCells}
@@ -45,7 +46,7 @@ export default function CarTableComponent() {
               <TableCell>
                 <Image
                   alt="car"
-                  src={`data:image/jpeg;base64,${car.image}`}
+                  src={imageConverter.addJpgHeader(car.image)}
                   width={300}
                   height={300}
                 />

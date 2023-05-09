@@ -8,11 +8,12 @@ export default function CustomRangeSliderComponent({
   max,
   step,
   handleRangeChange,
+  ...props
 }: ICustomRangeSliderComponentProps) {
   const { selectedRange, handleSignleChange, validateMin, validateMax } =
     useCustomRangeSliderComponent({ min, max, validRange, handleRangeChange });
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       <Grid item xs={6}>
         <TextField
           type="number"

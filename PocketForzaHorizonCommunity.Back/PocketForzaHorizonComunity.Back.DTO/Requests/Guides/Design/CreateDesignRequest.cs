@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 
 public class CreateDesignRequest
 {

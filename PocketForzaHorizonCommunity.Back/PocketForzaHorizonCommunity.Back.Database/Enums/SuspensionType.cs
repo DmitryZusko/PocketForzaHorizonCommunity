@@ -12,7 +12,7 @@ public enum SuspensionType
     RaceSuspension,
     RallySuspension,
     DriftSuspension,
-    OfroadSuspension,
+    OffroadSuspension,
 }
 
 

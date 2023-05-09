@@ -427,7 +427,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<int>("Exhaust")
                         .HasColumnType("int");
 
-                    b.Property<int>("FrontTierWidth")
+                    b.Property<int>("FrontTireWidth")
                         .HasColumnType("int");
 
                     b.Property<int>("FrontTrackWidth")
@@ -443,7 +443,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<int>("Intake")
                         .HasColumnType("int");
 
-                    b.Property<int>("RearTierWidth")
+                    b.Property<int>("RearTireWidth")
                         .HasColumnType("int");
 
                     b.Property<int>("RearTrackWidth")
@@ -455,7 +455,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<int>("Suspension")
                         .HasColumnType("int");
 
-                    b.Property<string>("TiersDescription")
+                    b.Property<string>("TiresDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

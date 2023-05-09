@@ -2,11 +2,11 @@ import { Chart, PieSeries } from "@devexpress/dx-react-chart-material-ui";
 import { Grid, Typography } from "@mui/material";
 import useHourOnlineComponent from "./useHourOnlineComponent";
 
-const HourOnlineComponent = () => {
+const HourOnlineComponent = ({ ...props }) => {
   const { isLoading, totalPlayers, getFakeHourOnline } = useHourOnlineComponent();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       <Grid item xs={12} md={9}>
         <Chart data={getFakeHourOnline}>
           <PieSeries valueField="onlineCount" argumentField="hour" />

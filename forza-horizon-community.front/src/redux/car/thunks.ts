@@ -24,6 +24,7 @@ export const getCars = createAsyncThunk(
     signal.addEventListener("abort", () => {
       cancelationToken.cancel();
     });
+
     return carService.getCars({
       page,
       pageSize,

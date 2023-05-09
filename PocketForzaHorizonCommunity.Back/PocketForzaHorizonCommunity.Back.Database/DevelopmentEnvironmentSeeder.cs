@@ -2,7 +2,6 @@
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
-using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Database;
@@ -10,7 +9,7 @@ namespace PocketForzaHorizonCommunity.Back.Database;
 public class DevelopmentEnvironmentSeeder
 {
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly ICarRepoAdapter _carRepo;
+    private readonly ICarRepository _carRepo;
     private readonly IManufactureRepository _manufacturerRepo;
     private readonly ICarTypeRepository _carTypeRepo;
     private readonly IDesignRepository _designRepo;
@@ -19,7 +18,7 @@ public class DevelopmentEnvironmentSeeder
 
     public DevelopmentEnvironmentSeeder(
         UserManager<ApplicationUser> userManager,
-        ICarRepoAdapter carRepo,
+        ICarRepository carRepo,
         IManufactureRepository manufacturerRepo,
         ICarTypeRepository carTypeRepo,
         IDesignRepository designRepo,
@@ -281,10 +280,10 @@ public class DevelopmentEnvironmentSeeder
             Clutch = Enums.ClutchType.RaceClutch,
             Transmission = Enums.TransmissionType.Race7Speed,
             Differential = Enums.DifferentialType.DriftDifferential,
-            TiersDescription = "Tiesr Description",
-            Compound = Enums.TiersCompoundType.VintageCompound,
-            FrontTierWidth = Enums.TiersWidthType.MM245,
-            RearTierWidth = Enums.TiersWidthType.MM285,
+            TiresDescription = "Tires Description",
+            Compound = Enums.TiresCompoundType.VintageCompound,
+            FrontTireWidth = Enums.TiresWidthType.MM245,
+            RearTireWidth = Enums.TiresWidthType.MM285,
             FrontTrackWidth = Enums.TrackWidthType.RaceTrackWidth,
             RearTrackWidth = Enums.TrackWidthType.RaceTrackWidth,
         };

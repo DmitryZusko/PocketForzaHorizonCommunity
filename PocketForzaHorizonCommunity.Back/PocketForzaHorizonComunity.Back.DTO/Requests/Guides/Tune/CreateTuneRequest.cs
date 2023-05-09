@@ -1,6 +1,6 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Enums;
 
-namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 public class CreateTuneRequest
 {
@@ -28,10 +28,10 @@ public class CreateTuneRequest
     public TransmissionType Transmission { get; set; }
     public DifferentialType Differential { get; set; }
 
-    public string TiersDescription { get; set; } = string.Empty;
-    public TiersCompoundType Compound { get; set; }
-    public TiersWidthType FrontTierWidth { get; set; }
-    public TiersWidthType RearTierWidth { get; set; }
+    public string TiresDescription { get; set; } = string.Empty;
+    public TiresCompoundType Compound { get; set; }
+    public TiresWidthType FrontTireWidth { get; set; }
+    public TiresWidthType RearTireWidth { get; set; }
     public TrackWidthType FrontTrackWidth { get; set; }
     public TrackWidthType RearTrackWidth { get; set; }
 }

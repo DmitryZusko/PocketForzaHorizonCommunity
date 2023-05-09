@@ -16,18 +16,6 @@ public class CarRepository : RepositoryBase<Car>, ICarRepository
         .Include(c => c.CarType)
         .AsQueryable();
 
-    public IQueryable<Car> GetByIdWithTunes(Guid id) =>
-        Context.Set<Car>()
-        .Where(c => c.Id == id)
-        .Include(c => c.Tunes)
-        .AsQueryable();
-
-    public IQueryable<Car> GetByIdWithDesigns(Guid id) =>
-        Context.Set<Car>()
-        .Where(c => c.Id == id)
-        .Include(c => c.Designs)
-        .AsQueryable();
-
     public Task<int> GetMinPriceAsync() => Context.Set<Car>().MinAsync(c => c.Price);
 
     public Task<int> GetMaxPriceAsync() => Context.Set<Car>().MaxAsync(c => c.Price);

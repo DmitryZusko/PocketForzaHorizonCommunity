@@ -55,3 +55,7 @@ export const filterSelectedValuesSelector = createSelector(
     selectedCountries,
   }),
 );
+
+export const carNamesSelector = createSelector(filterSchemeStateSelector, ({ carNames }) => ({
+  carNames,
+}));

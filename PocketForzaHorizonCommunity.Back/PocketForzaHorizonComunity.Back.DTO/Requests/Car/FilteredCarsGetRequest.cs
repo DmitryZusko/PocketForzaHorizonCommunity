@@ -1,6 +1,6 @@
-﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
+﻿namespace PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 
-public class FilteredCarsGetRequest : PaginationGetRequest
+public class FilteredCarsGetRequest : PaginationGetRequestBase
 {
     public int MinPrice { get; set; } = 0;
     public int MaxPrice { get; set; } = int.MaxValue;

@@ -2,9 +2,9 @@ import { Grid, Typography } from "@mui/material";
 import AchievementStatisticsComponent from "./components/AchievementStatisticsComponent/AchievementStatisticsComponent";
 import OnlineStatisticsComponent from "./components/OnlineStatisticsComponent/OnlineStatisticsComponent";
 
-export const StatisticsComponent = () => {
+export const StatisticsComponent = ({ ...props }) => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       <Grid item xs={12}>
         <Typography variant="h4">In-Game Statistics</Typography>
       </Grid>

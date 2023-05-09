@@ -1,7 +1,7 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
-using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
+using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
@@ -13,12 +13,12 @@ namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 /// </summary>
 public class StatisticsGenerator : IStatisticsGenerator
 {
-    private ICarRepoAdapter _carRepo { get; set; }
+    private ICarRepository _carRepo { get; set; }
     private ApplicationUser _user { get; set; } = null!;
 
     private IList<Car> _selectedCars = new List<Car>();
 
-    public StatisticsGenerator(ICarRepoAdapter carRepo) => _carRepo = carRepo;
+    public StatisticsGenerator(ICarRepository carRepo) => _carRepo = carRepo;
 
     public void GenerateStatistics(ApplicationUser user)
     {

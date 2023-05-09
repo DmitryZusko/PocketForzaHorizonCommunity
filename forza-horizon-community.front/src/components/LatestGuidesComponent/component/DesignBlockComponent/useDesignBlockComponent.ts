@@ -8,14 +8,14 @@ const useDesignBlockComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadLatestDesigns = useCallback(
-    (amount: number) => {
-      dispatch(getLatestDesigns(amount));
+    (page: number, amount: number, descriptionLimit: number) => {
+      dispatch(getLatestDesigns({ page, pageSize: amount, descriptionLimit }));
     },
     [dispatch],
   );
 
   useEffect(() => {
-    loadLatestDesigns(3);
+    loadLatestDesigns(0, 3, 100);
   }, [loadLatestDesigns]);
 
   return { isLoading, latestDesigns };

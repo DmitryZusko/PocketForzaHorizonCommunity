@@ -3,7 +3,8 @@ using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Tests.MappingProfilesTests;
 /// <summary>
@@ -186,10 +187,10 @@ internal static class Boilerplate
             Clutch = Database.Enums.ClutchType.RaceClutch,
             Transmission = Database.Enums.TransmissionType.Race7Speed,
             Differential = Database.Enums.DifferentialType.DriftDifferential,
-            TiersDescription = "Tiesr Description",
-            Compound = Database.Enums.TiersCompoundType.VintageCompound,
-            FrontTierWidth = Database.Enums.TiersWidthType.MM245,
-            RearTierWidth = Database.Enums.TiersWidthType.MM285,
+            TiresDescription = "Tiesr Description",
+            Compound = Database.Enums.TiresCompoundType.VintageCompound,
+            FrontTireWidth = Database.Enums.TiresWidthType.MM245,
+            RearTireWidth = Database.Enums.TiresWidthType.MM285,
             FrontTrackWidth = Database.Enums.TrackWidthType.RaceTrackWidth,
             RearTrackWidth = Database.Enums.TrackWidthType.RaceTrackWidth,
         };
@@ -224,10 +225,10 @@ internal static class Boilerplate
             Clutch = tune.TuneOptions.Clutch,
             Transmission = tune.TuneOptions.Transmission,
             Differential = tune.TuneOptions.Differential,
-            TiersDescription = tune.TuneOptions.TiersDescription,
+            TiresDescription = tune.TuneOptions.TiresDescription,
             Compound = tune.TuneOptions.Compound,
-            FrontTierWidth = tune.TuneOptions.FrontTierWidth,
-            RearTierWidth = tune.TuneOptions.RearTierWidth,
+            FrontTireWidth = tune.TuneOptions.FrontTireWidth,
+            RearTireWidth = tune.TuneOptions.RearTireWidth,
             FrontTrackWidth = tune.TuneOptions.FrontTrackWidth,
             RearTrackWidth = tune.TuneOptions.RearTrackWidth,
         };

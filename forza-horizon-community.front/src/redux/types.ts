@@ -7,6 +7,7 @@ import { ICar } from "@/data-transfer-objects/entities/Car";
 import { OrderDirection } from "@/components/CarTableComponent/components/SortingTableHead/SortingTableHead";
 import { IManufacture } from "@/data-transfer-objects/entities/Manufacture";
 import { ICarType } from "@/data-transfer-objects/entities/CarType";
+import { ISimplifiedCar } from "@/data-transfer-objects/entities/SimplifiedCar";
 
 export type ActionWithPayload<Payload> = ReturnType<ActionCreatorWithPayload<Payload>>;
 
@@ -31,6 +32,12 @@ export interface IGameStatisticsState {
 export interface IDesignState {
   isLoadingLatest: boolean;
   latestDesigns: IDesign[];
+  isLoadingDesigns: boolean;
+  designs: IDesign[];
+  page: number;
+  pageSize: number;
+  totalEntities: number;
+  totalPages: number;
 }
 
 export interface ITuneState {
@@ -62,4 +69,5 @@ export interface IFiltetSchemeState {
   selectedManufactures: string[];
   selectedCarTypes: string[];
   selectedCountries: string[];
+  carNames: ISimplifiedCar[];
 }

@@ -2,7 +2,8 @@
 using FluentValidation.AspNetCore;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 using PocketForzaHorizonCommunity.Back.DTO.Validation.Authentication;
 using PocketForzaHorizonCommunity.Back.DTO.Validation.Car;
 using PocketForzaHorizonCommunity.Back.DTO.Validation.Guides;

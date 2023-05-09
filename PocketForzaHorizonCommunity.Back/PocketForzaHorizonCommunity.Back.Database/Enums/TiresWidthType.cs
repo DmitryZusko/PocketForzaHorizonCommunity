@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 namespace PocketForzaHorizonCommunity.Back.Database.Enums;
 
 [JsonConverter(typeof(StringEnumConverter))]
-public enum TiersWidthType
+public enum TiresWidthType
 {
     MM205,
     MM225,

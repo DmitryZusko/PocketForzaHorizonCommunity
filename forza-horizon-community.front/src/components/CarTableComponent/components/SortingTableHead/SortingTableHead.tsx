@@ -11,6 +11,7 @@ export default function SortingTableHead<TEntity>({
   setOrder,
   setOrderBy,
   sortEntities,
+  ...props
 }: ISortingTableHeaderProps<TEntity>) {
   const { handleSortingClick } = useSortingTableHead<TEntity>({
     order,
@@ -20,7 +21,7 @@ export default function SortingTableHead<TEntity>({
     sortEntities,
   });
   return (
-    <TableHead>
+    <TableHead {...props}>
       <TableRow>
         {headerCells.map((cell) => (
           <TableCell key={cell.lable} sortDirection={orderBy === cell.id ? order : false}>

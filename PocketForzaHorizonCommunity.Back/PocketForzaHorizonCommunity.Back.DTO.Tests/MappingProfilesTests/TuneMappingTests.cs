@@ -3,7 +3,7 @@ using NUnit.Framework;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Mapper;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Tests.MappingProfilesTests;
 
@@ -88,10 +88,10 @@ public class TuneMappingTests
             Clutch = tune.TuneOptions.Clutch,
             Transmission = tune.TuneOptions.Transmission,
             Differential = tune.TuneOptions.Differential,
-            TiersDescription = tune.TuneOptions.TiersDescription,
+            TiresDescription = tune.TuneOptions.TiresDescription,
             Compound = tune.TuneOptions.Compound,
-            FrontTierWidth = tune.TuneOptions.FrontTierWidth,
-            RearTierWidth = tune.TuneOptions.RearTierWidth,
+            FrontTireWidth = tune.TuneOptions.FrontTireWidth,
+            RearTireWidth = tune.TuneOptions.RearTireWidth,
             FrontTrackWidth = tune.TuneOptions.FrontTrackWidth,
             RearTrackWidth = tune.TuneOptions.RearTrackWidth,
         };

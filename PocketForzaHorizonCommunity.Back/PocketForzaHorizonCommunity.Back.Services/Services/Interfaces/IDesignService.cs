@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
-public interface IDesignService : IServiceBase<Design, PaginationGetRequest>
+public interface IDesignService : IServiceBase<Design, FilteredDesignsGetRequest>
 {
+    Task<PaginationModel<Design>> GetAllByCarIdAsync(FilteredCarDesignsGetRequest request);
     Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery);
-    Task<List<Design>> GetLastDesigns(int dessignAmount);
+    Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request);
 }

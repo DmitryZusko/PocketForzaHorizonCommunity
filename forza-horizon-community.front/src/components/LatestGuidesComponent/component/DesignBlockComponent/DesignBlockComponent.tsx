@@ -1,34 +1,31 @@
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { Grid, Tooltip } from "@mui/material";
 import useDesignBlockComponent from "./useDesignBlockComponent";
-import { Star } from "@mui/icons-material";
+import { GuideCardFooterComponent } from "@/components/GuideCardFooterComponent/GuideCardFooterComponent";
+import { dateFormater } from "@/utilities/date-formater";
+import imageConverter from "@/utilities/imageConverter";
 
-const DesignBlockComponent = () => {
+const DesignBlockComponent = ({ ...props }) => {
   const { isLoading, latestDesigns } = useDesignBlockComponent();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       {latestDesigns.map((design) => (
         <Tooltip key={design.id} title="Go to design page">
           <Grid item key={design.id} xs={12} md={3}>
             <NavigationCard
-              thumbnail={`data:image/jpeg;base64,${design.thumbnail}`}
+              thumbnail={imageConverter.addJpgHeader(design.thumbnail)}
               cardTitle={design.title}
               navigationLink=""
-              body=""
+              body={design.description}
               footer={
-                <Grid container spacing={1}>
-                  <Grid item xs={5}>
-                    <Typography variant="body1">{design.carModel}</Typography>
-                  </Grid>
-                  <Grid item xs={5}>
-                    <Typography variant="body1">{design.authorUsername}</Typography>
-                  </Grid>
-                  <Grid item xs={1}>
-                    <Star />
-                    <Typography variant="body1">{design.rating}</Typography>
-                  </Grid>
-                </Grid>
+                <GuideCardFooterComponent
+                  shareCode={design.forzaShareCode}
+                  rating={design.rating}
+                  author={design.authorUsername}
+                  creationDate={dateFormater.dateToString(design.creationDate)}
+                  carModel={design.carModel}
+                />
               }
             />
           </Grid>

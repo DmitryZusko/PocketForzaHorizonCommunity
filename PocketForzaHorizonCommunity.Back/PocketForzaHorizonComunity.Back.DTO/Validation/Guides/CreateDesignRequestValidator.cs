@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Validation.Guides;
 

@@ -11,7 +11,7 @@ public enum DifferentialType
     RaceDifferential,
     RallyDifferential,
     DriftDifferential,
-    OfroadDifferential,
+    OffroadDifferential,
 }
 
 

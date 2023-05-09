@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Cars;
-using PocketForzaHorizonCommunity.Back.Database.RepoDecorators;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.GetRequests;
+using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -12,11 +12,11 @@ using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
-public class CarService : ServiceBase<ICarRepoAdapter, Car, FilteredCarsGetRequest>, ICarService
+public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetRequest>, ICarService
 {
     private IImageManager _imageManager;
 
-    public CarService(ICarRepoAdapter repository, IImageManager imageManager) : base(repository) => _imageManager = imageManager;
+    public CarService(ICarRepository repository, IImageManager imageManager) : base(repository) => _imageManager = imageManager;
 
     public async Task<Car> CreateAsync(Car entity, IFormFile thumbnail)
     {
@@ -31,16 +31,7 @@ public class CarService : ServiceBase<ICarRepoAdapter, Car, FilteredCarsGetReque
     }
 
     public async override Task<PaginationModel<Car>> GetAllAsync(FilteredCarsGetRequest request) =>
-        await _repository
-        .GetAllFiltered(request.MinPrice, request.MaxPrice, request.MinYear, request.MaxYear,
-            request.SelectedManufactures, request.SelectedCarTypes, request.SelectedCountries)
-        .PaginateAsync(request.Page, request.PageSize);
-
-    public async Task<PaginationModel<Car>> GetDesignsByIdAsync(Guid id, int page, int pageSize) =>
-        await _repository.GetByIdWithTunes(id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
-
-    public async Task<PaginationModel<Car>> GetTunesByIdAsync(Guid Id, int page, int pageSize) =>
-        await _repository.GetByIdWithDesigns(Id).PaginateAsync(page, pageSize) ?? throw new EntityNotFoundException();
+        await AplyFiltersAsync(_repository.GetAll(), request);
 
     public async Task<Car> UpdateAsync(Car newEntity, IFormFile thumbnail)
     {
@@ -76,5 +67,22 @@ public class CarService : ServiceBase<ICarRepoAdapter, Car, FilteredCarsGetReque
             MinYear = await _repository.GetMinYearAsync(),
             MaxYear = await _repository.GetMaxYearAsync(),
         };
+    }
+
+    private async Task<PaginationModel<Car>> AplyFiltersAsync(IQueryable<Car> query, FilteredCarsGetRequest request)
+    {
+
+        var countries = request.SelectedCountries?.Split(',').ToList();
+        var manufactures = request.SelectedManufactures?.Split(",").ToList();
+        var carTypes = request.SelectedCarTypes?.Split(",").ToList();
+
+        query = query.Where(c => c.Price >= request.MinPrice && c.Price <= request.MaxPrice);
+        query = query.Where(c => c.Year >= request.MinYear && c.Year <= request.MaxYear);
+
+        if (manufactures?.Count > 0) query = query.Where(c => manufactures.Contains(c.Manufacture.Name));
+        if (countries?.Count > 0) query = query.Where(c => countries.Contains(c.Manufacture.Country));
+        if (carTypes?.Count > 0) query = query.Where(c => carTypes.Contains(c.CarType.Name));
+
+        return await query.PaginateAsync(request.Page, request.PageSize);
     }
 }

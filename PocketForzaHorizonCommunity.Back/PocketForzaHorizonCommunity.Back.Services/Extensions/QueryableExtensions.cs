@@ -8,8 +8,8 @@ public static class QueryableExtensions
 {
     public static async Task<PaginationModel<TEntity>> PaginateAsync<TEntity>(
         this IQueryable<TEntity> query,
-        int page = 0,
-        int pageSize = 25
+        int page,
+        int pageSize
         ) where TEntity : EntityBase
     {
         var total = await query.CountAsync();
