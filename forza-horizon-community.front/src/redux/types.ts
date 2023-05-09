@@ -37,7 +37,6 @@ export interface IDesignState {
   page: number;
   pageSize: number;
   totalEntities: number;
-  totalPages: number;
 }
 
 export interface ITuneState {
@@ -51,23 +50,28 @@ export interface ICarState {
   page: number;
   pageSize: number;
   totalEntities: number;
-  totalPages: number;
 }
 
 export interface IFiltetSchemeState {
-  isLoading: boolean;
+  isLoadingCarTypes: boolean;
   carTypes: ICarType[];
   totalCarTypes: number;
+  isLoadingManufacture: boolean;
   manufactures: IManufacture[];
   totalManufactures: number;
+  isLoadingCarNames: boolean;
+  carNames: ISimplifiedCar[];
+  isLoadingCarFilterScheme: boolean;
   minPrice: number;
   maxPrice: number;
   minYear: number;
   maxYear: number;
+}
+
+export interface ISelectedFilterParamsState {
   selectedPriceRange: number[];
   selectedYearRange: number[];
   selectedManufactures: string[];
   selectedCarTypes: string[];
   selectedCountries: string[];
-  carNames: ISimplifiedCar[];
 }

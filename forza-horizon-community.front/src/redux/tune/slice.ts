@@ -19,9 +19,6 @@ const tuneSlice = createSlice({
       state.latestTunes = payload.data;
       state.isLoadingLatest = false;
     });
-    builder.addCase(getLatestTunes.rejected, (state) => {
-      state.isLoadingLatest = false;
-    });
   },
 });
 

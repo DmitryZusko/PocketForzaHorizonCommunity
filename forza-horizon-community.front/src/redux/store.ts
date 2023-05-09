@@ -15,6 +15,7 @@ import { designReducer } from "./design";
 import { filterSchemeReducer } from "./filter-scheme";
 import { gameStatisticsReducer } from "./game-statistics";
 import { newsReducer } from "./news";
+import { selectedFilterParamsReducer } from "./selectedFilterParams";
 import { tuneReducer } from "./tune";
 
 let store: EnhancedStore;
@@ -22,7 +23,7 @@ let store: EnhancedStore;
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: [],
+  whitelist: ["filterScheme"],
 };
 
 const rootReducer = combineReducers({
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   tune: tuneReducer,
   car: carReducer,
   filterScheme: filterSchemeReducer,
+  selectedFilterParams: selectedFilterParamsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

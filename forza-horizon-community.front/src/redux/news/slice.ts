@@ -21,9 +21,6 @@ export const newsSlice = createSlice({
       state.news = extractImagesFromContent(payload.data.newsItems);
       state.isLoading = false;
     });
-    builder.addCase(getNews.rejected, (state) => {
-      state.isLoading = false;
-    });
   },
 });
 

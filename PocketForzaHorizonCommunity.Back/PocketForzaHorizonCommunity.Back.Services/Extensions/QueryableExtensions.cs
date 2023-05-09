@@ -18,14 +18,11 @@ public static class QueryableExtensions
             pageSize = total;
         }
 
-        var totalPages = (int)Math.Ceiling((double)total / pageSize);
-
         var result = query.Skip(page * pageSize).Take(pageSize).ToList();
 
         return new PaginationModel<TEntity>
         {
             Total = total,
-            TotalPages = totalPages,
             Page = page,
             PageSize = pageSize,
             Entities = result,

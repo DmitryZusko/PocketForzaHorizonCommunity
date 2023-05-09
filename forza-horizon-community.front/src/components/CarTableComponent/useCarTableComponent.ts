@@ -1,7 +1,7 @@
 import { ICar } from "@/data-transfer-objects/entities/Car";
 import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
 import { getCars, paginatedCarsSelector, setPage, setPageSize, setSortedCars } from "@/redux/car";
-import { filterSelectedValuesSelector } from "@/redux/filter-scheme";
+import { selectedFilterParamsSelector } from "@/redux/selectedFilterParams";
 import React, { useCallback, useEffect, useState } from "react";
 import { OrderDirection } from "./components/SortingTableHead/SortingTableHead";
 
@@ -22,7 +22,7 @@ export default function useCarTableComponent() {
     selectedManufactures,
     selectedCarTypes,
     selectedCountries,
-  } = useAppSelector(filterSelectedValuesSelector);
+  } = useAppSelector(selectedFilterParamsSelector);
 
   const dispatch = useAppDispatch();
 

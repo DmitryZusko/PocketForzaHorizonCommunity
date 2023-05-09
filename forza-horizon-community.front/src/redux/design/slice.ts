@@ -1,3 +1,4 @@
+import { defaultPageSize } from "@/components/constants/applicationConstants";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IDesignState } from "../types";
 import { getDesigns, getDesignsByCarId, getLatestDesigns } from "./thunks";
@@ -8,9 +9,8 @@ const initialState: IDesignState = {
   isLoadingDesigns: false,
   designs: [],
   page: 0,
-  pageSize: 25,
+  pageSize: defaultPageSize,
   totalEntities: 0,
-  totalPages: 0,
 };
 
 const designSlice = createSlice({
@@ -35,16 +35,12 @@ const designSlice = createSlice({
       state.latestDesigns = payload.data.entities;
       state.isLoadingLatest = false;
     });
-    builder.addCase(getLatestDesigns.rejected, (state) => {
-      state.isLoadingLatest = false;
-    });
     builder.addCase(getDesigns.pending, (state) => {
       state.isLoadingDesigns = true;
     });
     builder.addCase(getDesigns.fulfilled, (state, { payload }) => {
       state.designs = payload.data.entities;
       state.totalEntities = payload.data.total;
-      state.totalPages = payload.data.totalPages;
       state.isLoadingDesigns = false;
     });
     builder.addCase(getDesigns.rejected, (state) => {
@@ -56,7 +52,6 @@ const designSlice = createSlice({
     builder.addCase(getDesignsByCarId.fulfilled, (state, { payload }) => {
       state.designs = payload.data.entities;
       state.totalEntities = payload.data.total;
-      state.totalPages = payload.data.totalPages;
       state.isLoadingDesigns = false;
     });
     builder.addCase(getDesignsByCarId.rejected, (state) => {

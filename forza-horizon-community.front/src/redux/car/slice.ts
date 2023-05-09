@@ -1,3 +1,4 @@
+import { defaultPageSize } from "@/components/constants/applicationConstants";
 import { ICar } from "@/data-transfer-objects/entities/Car";
 import sortEntities from "@/utilities/sort-table-by-header";
 import { createSlice } from "@reduxjs/toolkit";
@@ -8,9 +9,8 @@ const initialState: ICarState = {
   isLoadingCars: false,
   cars: [],
   page: 0,
-  pageSize: 25,
+  pageSize: defaultPageSize,
   totalEntities: 0,
-  totalPages: 0,
 };
 
 const carSlice = createSlice({
@@ -36,7 +36,9 @@ const carSlice = createSlice({
       state.page = payload.data.page;
       state.pageSize = payload.data.pageSize;
       state.totalEntities = payload.data.total;
-      state.totalPages = payload.data.totalPages;
+      state.isLoadingCars = false;
+    });
+    builder.addCase(getCars.rejected, (state) => {
       state.isLoadingCars = false;
     });
   },

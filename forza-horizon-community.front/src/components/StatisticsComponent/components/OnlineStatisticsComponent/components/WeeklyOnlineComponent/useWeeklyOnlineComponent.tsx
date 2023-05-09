@@ -1,9 +1,9 @@
 import { useAppSelector } from "@/redux/app-hooks";
-import { playersCountSelector } from "@/redux/game-statistics";
+import { playerStatisticsSelector } from "@/redux/game-statistics";
 import { useMemo } from "react";
 
 const useWeeklyOnlineComponent = () => {
-  const totalPlayers = useAppSelector(playersCountSelector);
+  const { totalPlayers } = useAppSelector(playerStatisticsSelector);
 
   const getFakeWeeklyOnline = useMemo(() => {
     let data = [];
