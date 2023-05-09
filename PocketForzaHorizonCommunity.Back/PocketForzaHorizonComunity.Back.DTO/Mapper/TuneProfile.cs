@@ -11,7 +11,10 @@ public class TuneProfile : Profile
     {
         CreateMap<Tune, TuneDto>()
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
-            .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"));
+            .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
+            .ForMember(dest => dest.EngineType, opt => opt.MapFrom(src => src.TuneOptions.Engine))
+            .ForMember(dest => dest.AspirationType, opt => opt.MapFrom(src => src.TuneOptions.Aspiration))
+            .ForMember(dest => dest.TiresCompound, opt => opt.MapFrom(src => src.TuneOptions.Compound));
 
         CreateMap<Tune, TuneFullInfoDto>()
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
@@ -32,10 +35,10 @@ public class TuneProfile : Profile
             .ForMember(dest => dest.Clutch, opt => opt.MapFrom(src => src.TuneOptions.Clutch))
             .ForMember(dest => dest.Transmission, opt => opt.MapFrom(src => src.TuneOptions.Transmission))
             .ForMember(dest => dest.Differential, opt => opt.MapFrom(src => src.TuneOptions.Differential))
-            .ForMember(dest => dest.TiersDescription, opt => opt.MapFrom(src => src.TuneOptions.TiersDescription))
+            .ForMember(dest => dest.TiresDescription, opt => opt.MapFrom(src => src.TuneOptions.TiresDescription))
             .ForMember(dest => dest.Compound, opt => opt.MapFrom(src => src.TuneOptions.Compound))
-            .ForMember(dest => dest.FrontTierWidth, opt => opt.MapFrom(src => src.TuneOptions.FrontTierWidth))
-            .ForMember(dest => dest.RearTierWidth, opt => opt.MapFrom(src => src.TuneOptions.RearTierWidth))
+            .ForMember(dest => dest.FrontTireWidth, opt => opt.MapFrom(src => src.TuneOptions.FrontTireWidth))
+            .ForMember(dest => dest.RearTireWidth, opt => opt.MapFrom(src => src.TuneOptions.RearTireWidth))
             .ForMember(dest => dest.FrontTrackWidth, opt => opt.MapFrom(src => src.TuneOptions.FrontTrackWidth))
             .ForMember(dest => dest.RearTrackWidth, opt => opt.MapFrom(src => src.TuneOptions.RearTrackWidth));
 
@@ -59,10 +62,10 @@ public class TuneProfile : Profile
             .ForPath(dest => dest.TuneOptions.Clutch, opt => opt.MapFrom(src => src.Clutch))
             .ForPath(dest => dest.TuneOptions.Transmission, opt => opt.MapFrom(src => src.Transmission))
             .ForPath(dest => dest.TuneOptions.Differential, opt => opt.MapFrom(src => src.Differential))
-            .ForPath(dest => dest.TuneOptions.TiersDescription, opt => opt.MapFrom(src => src.TiersDescription))
+            .ForPath(dest => dest.TuneOptions.TiresDescription, opt => opt.MapFrom(src => src.TiresDescription))
             .ForPath(dest => dest.TuneOptions.Compound, opt => opt.MapFrom(src => src.Compound))
-            .ForPath(dest => dest.TuneOptions.FrontTierWidth, opt => opt.MapFrom(src => src.FrontTierWidth))
-            .ForPath(dest => dest.TuneOptions.RearTierWidth, opt => opt.MapFrom(src => src.RearTierWidth))
+            .ForPath(dest => dest.TuneOptions.FrontTireWidth, opt => opt.MapFrom(src => src.FrontTireWidth))
+            .ForPath(dest => dest.TuneOptions.RearTireWidth, opt => opt.MapFrom(src => src.RearTireWidth))
             .ForPath(dest => dest.TuneOptions.FrontTrackWidth, opt => opt.MapFrom(src => src.FrontTrackWidth))
             .ForPath(dest => dest.TuneOptions.RearTrackWidth, opt => opt.MapFrom(src => src.RearTrackWidth));
     }

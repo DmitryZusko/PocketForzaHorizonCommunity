@@ -1,6 +1,8 @@
+import { GuideCardFooterComponent } from "@/components/GuideCardFooterComponent/GuideCardFooterComponent";
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
-import { Star } from "@mui/icons-material";
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { TuneCardBodyComponent } from "@/components/TuneCardBodyComponent/TuneCardBodyComponent";
+import { dateFormater } from "@/utilities/date-formater";
+import { Grid, Tooltip } from "@mui/material";
 import useTunesBlockComponent from "./useTunesBlockComponent";
 
 const TunesBlockComponent = ({ ...props }) => {
@@ -16,20 +18,21 @@ const TunesBlockComponent = ({ ...props }) => {
               imageHeight={200}
               cardTitle={tune.title}
               navigationLink=""
-              body=""
+              body={
+                <TuneCardBodyComponent
+                  engineType={tune.engineType}
+                  aspirationType={tune.aspirationType}
+                  tiresCompound={tune.tiresCompound}
+                />
+              }
               footer={
-                <Grid container spacing={1}>
-                  <Grid item xs={5}>
-                    <Typography variant="body1">{tune.carModel}</Typography>
-                  </Grid>
-                  <Grid item xs={5}>
-                    <Typography variant="body1">{tune.authorUsername}</Typography>
-                  </Grid>
-                  <Grid item xs={1}>
-                    <Star />
-                    <Typography variant="body1">{tune.rating}</Typography>
-                  </Grid>
-                </Grid>
+                <GuideCardFooterComponent
+                  shareCode={tune.forzaShareCode}
+                  rating={tune.rating}
+                  author={tune.authorUsername}
+                  creationDate={dateFormater.dateToString(tune.creationDate)}
+                  carModel={tune.carModel}
+                />
               }
             />
           </Grid>
