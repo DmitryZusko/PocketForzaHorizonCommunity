@@ -10,3 +10,13 @@ export const latestDesignsSelector = createSelector(
     latestDesigns,
   }),
 );
+
+export const designsSelector = createSelector(
+  designStateSelector,
+  ({ isLoadingDesigns, designs, pageSize, totalEntities }) => ({
+    isLoadingDesigns,
+    designs,
+    pageSize,
+    totalEntities,
+  }),
+);

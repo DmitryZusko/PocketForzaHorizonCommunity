@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IFiltetSchemeState } from "../types";
-import { getCarFilterScheme, getCarTypes, getManufactures } from "./thunks";
+import { getCarFilterScheme, getCarNames, getCarTypes, getManufactures } from "./thunks";
 
 const initialState: IFiltetSchemeState = {
   isLoading: false,
@@ -17,6 +17,7 @@ const initialState: IFiltetSchemeState = {
   selectedManufactures: [],
   selectedCarTypes: [],
   selectedCountries: [],
+  carNames: [],
 };
 
 const filterSchemeSlice = createSlice({
@@ -64,6 +65,9 @@ const filterSchemeSlice = createSlice({
       state.maxPrice = payload.data.maxPrice;
       state.minYear = payload.data.minYear;
       state.maxYear = payload.data.maxYear;
+    });
+    builder.addCase(getCarNames.fulfilled, (state, { payload }) => {
+      state.carNames = payload.data.entities;
     });
   },
 });

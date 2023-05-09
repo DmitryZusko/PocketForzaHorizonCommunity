@@ -21,3 +21,7 @@ export const getCarTypes = createAsyncThunk(
 export const getCarFilterScheme = createAsyncThunk("car/getCarFilterScheme", async () => {
   return carService.getCarFilterScheme();
 });
+
+export const getCarNames = createAsyncThunk("car/CarNames", async () => {
+  return carService.getCarNames();
+});

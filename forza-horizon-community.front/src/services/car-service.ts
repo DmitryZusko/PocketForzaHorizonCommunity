@@ -1,4 +1,5 @@
 import { ICar } from "@/data-transfer-objects/entities/Car";
+import { ISimplifiedCar } from "@/data-transfer-objects/entities/SimplifiedCar";
 import {} from "@/data-transfer-objects/requests/PaginatedRequest";
 import { ICarFilterSchemeResponse } from "@/data-transfer-objects/responses/CarFilterSchemeResponse";
 import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
@@ -18,6 +19,7 @@ const getCars = ({
   cancelToken,
 }: IAxiosFilteredCarsRequest) => {
   const axios = customAxios.getAxiosInstance();
+
   return axios.get<IPaginatedResponse<ICar>>("car", {
     cancelToken: cancelToken,
     params: {
@@ -39,6 +41,11 @@ const getCarFilterScheme = async () => {
   return axios.get<ICarFilterSchemeResponse>("car/filterscheme");
 };
 
-const carService = { getCars, getCarFilterScheme };
+const getCarNames = async () => {
+  const axios = customAxios.getAxiosInstance();
+  return axios.get<IPaginatedResponse<ISimplifiedCar>>("car/CarNames");
+};
+
+const carService = { getCars, getCarFilterScheme, getCarNames };
 
 export default carService;
