@@ -1,4 +1,4 @@
-import { extractImagesFromContent } from "@/utilities/extract-images-from-content";
+import { imageUtil } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { INewsState } from "../types";
 import { getNews } from "./thunks";
@@ -18,7 +18,7 @@ export const newsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getNews.fulfilled, (state, { payload }) => {
-      state.news = extractImagesFromContent(payload.data.newsItems);
+      state.news = imageUtil.extractImagesFromContent(payload.data.newsItems);
       state.isLoading = false;
     });
   },

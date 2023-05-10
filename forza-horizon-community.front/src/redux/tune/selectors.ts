@@ -3,6 +3,17 @@ import { RootState } from "../store";
 
 export const tuneStateSelector = ({ tune }: RootState) => tune;
 
+export const tunesSelector = createSelector(
+  tuneStateSelector,
+  ({ latestTunes, tunes, page, pageSize, totalEntities }) => ({
+    latestTunes,
+    tunes,
+    page,
+    pageSize,
+    totalEntities,
+  }),
+);
+
 export const tuneLastestSelector = createSelector(
   tuneStateSelector,
   ({ isLoadingLatest, latestTunes }) => ({

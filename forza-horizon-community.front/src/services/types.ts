@@ -1,7 +1,9 @@
 import {
   IFilteredCarDesignRequest,
   IFilteredCarsRequest,
+  IFilteredCarTuneRequest,
   IFilteredDesignRequest,
+  IFilteredTuneRequest,
 } from "@/data-transfer-objects";
 import { CancelToken } from "axios";
 
@@ -14,5 +16,13 @@ export interface IAxiosFilteredDesignRequest extends IFilteredDesignRequest {
 }
 
 export interface IAxiosFilteredCarDesignRequest extends IFilteredCarDesignRequest {
+  cancelToken: CancelToken;
+}
+
+export interface IAxiosFilteredTuneRequest extends IFilteredTuneRequest {
+  cancelToken: CancelToken;
+}
+
+export interface IAxiosFilteredCarTuneRequest extends IFilteredCarTuneRequest {
   cancelToken: CancelToken;
 }

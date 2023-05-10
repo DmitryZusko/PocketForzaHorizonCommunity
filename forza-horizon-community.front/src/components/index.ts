@@ -10,3 +10,4 @@ export * from "./SearchComponent";
 export * from "./StatisticsComponent";
 export * from "./TuneCardBodyComponent";
 export * from "./constants";
+export * from "./TuneListComponent";

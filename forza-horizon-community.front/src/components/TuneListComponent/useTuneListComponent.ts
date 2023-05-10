@@ -1,24 +1,24 @@
 import {
   addToTunePageSize,
   carNamesSelector,
-  designsSelector,
   getCarNames,
-  getDesigns,
-  getDesignsByCarId,
-  setDesignPageSize,
+  getTunes,
+  getTunesByCarId,
+  setTunePageSize,
+  tunesSelector,
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
-import { useState, useCallback, useMemo, useEffect } from "react";
-import { defaultCardDescriptionLimit, defaultPageSize } from "../constants";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { defaultPageSize } from "../constants";
 
-export const useDesginListComponent = () => {
+export const useTuneListComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCar, setSelectedCar] = useState<string | undefined>("");
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { isLoadingDesigns, designs, pageSize, totalEntities } = useAppSelector(designsSelector);
+  const { latestTunes, tunes, page, pageSize, totalEntities } = useAppSelector(tunesSelector);
 
   const dispatch = useAppDispatch();
 
@@ -26,27 +26,26 @@ export const useDesginListComponent = () => {
     dispatch(getCarNames());
   }, [dispatch]);
 
-  const loadDesigns = useCallback(() => {
+  const loadTunes = useCallback(() => {
     if (selectedCar) {
       return dispatch(
-        getDesignsByCarId({
+        getTunesByCarId({
           page: 0,
           pageSize,
           searchQuery: searchQuery,
-          descriptionLimit: defaultCardDescriptionLimit,
           carId: selectedCar,
         }),
       );
     }
+
     return dispatch(
-      getDesigns({
+      getTunes({
         page: 0,
         pageSize,
         searchQuery: searchQuery,
-        descriptionLimit: defaultCardDescriptionLimit,
       }),
     );
-  }, [searchQuery, pageSize, selectedCar, dispatch]);
+  }, [selectedCar, searchQuery, pageSize, dispatch]);
 
   const autocompleteOptions = useMemo(() => {
     return carNames.map((item) => ({
@@ -58,17 +57,17 @@ export const useDesginListComponent = () => {
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
       setSearchQuery(newQuery);
-      dispatch(setDesignPageSize(defaultPageSize));
+      dispatch(setTunePageSize(defaultPageSize));
     },
-    [setSearchQuery, dispatch],
+    [dispatch],
   );
 
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
       setSelectedCar(newValue?.id);
-      dispatch(setDesignPageSize(defaultPageSize));
+      dispatch(setTunePageSize(defaultPageSize));
     },
-    [setSelectedCar, dispatch],
+    [dispatch],
   );
 
   const makePageSizeBigger = useCallback(() => {
@@ -80,20 +79,22 @@ export const useDesginListComponent = () => {
   }, [loadCars]);
 
   useEffect(() => {
-    let isDispatched: boolean = false;
-    var dispatchPromise = loadDesigns();
+    let isDispatched: boolean;
+    var dispatchPromise = loadTunes();
+
     dispatchPromise.then(() => (isDispatched = true));
+
     return () => {
       if (!isDispatched) {
         dispatchPromise.abort();
       }
     };
-  }, [loadDesigns]);
+  }, [loadTunes]);
 
   return {
+    tunes,
     searchQuery,
     autocompleteOptions,
-    designs,
     pageSize,
     totalEntities,
     handleSearchQueryChange,

@@ -23,8 +23,8 @@ const designSlice = createSlice({
     setPageSize: (state, { payload }: ActionWithPayload<number>) => {
       state.pageSize = payload;
     },
-    addToPageSize: (state, { payload }: ActionWithPayload<number>) => {
-      state.pageSize += payload;
+    addToPageSize: (state) => {
+      state.pageSize += defaultPageSize;
     },
   },
   extraReducers: (builder) => {

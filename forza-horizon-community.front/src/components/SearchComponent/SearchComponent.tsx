@@ -2,8 +2,8 @@ import { TextField } from "@mui/material";
 import { ISearchComponentProps } from "./types";
 import { useSearchComponent } from "./useSearchComponent";
 
-const SearchComponent = ({ trashhold, handleQueryChange, ...props }: ISearchComponentProps) => {
-  const { value, handleChange } = useSearchComponent({ trashhold, handleQueryChange });
+const SearchComponent = ({ threshold, handleQueryChange, ...props }: ISearchComponentProps) => {
+  const { value, handleChange } = useSearchComponent({ threshold, handleQueryChange });
   return <TextField value={value} onChange={handleChange} {...props} />;
 };
 

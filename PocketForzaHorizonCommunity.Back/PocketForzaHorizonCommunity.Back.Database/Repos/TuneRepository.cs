@@ -25,4 +25,12 @@ public class TuneRepository : RepositoryBase<Tune>, ITuneRepository
             .Include(t => t.TuneOptions)
             .AsQueryable();
 
+    public IQueryable<Tune> GetAllByCarId(Guid carId) =>
+        Context.Set<Tune>()
+        .Where(t => t.CarId == carId)
+        .Include(t => t.User)
+        .Include(t => t.Car.Manufacture)
+        .Include(t => t.TuneOptions)
+        .AsQueryable();
+
 }

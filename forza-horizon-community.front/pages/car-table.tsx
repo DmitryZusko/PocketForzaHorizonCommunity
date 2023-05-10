@@ -1,4 +1,4 @@
-import CarTableContent from "@/page-content/car-table/CarTableContent";
+import { CarTableContent } from "@/page-content";
 
 const CarTable = () => {
   return <CarTableContent />;

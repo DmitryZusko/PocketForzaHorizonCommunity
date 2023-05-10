@@ -1,3 +1,4 @@
+import { dateFormater } from "@/utilities";
 import { Grid, Rating, Typography } from "@mui/material";
 import { IGuideCardFooterComponentProps } from "./types";
 
@@ -36,7 +37,7 @@ const GuideCardFooterComponent = ({
         <Typography variant="body1">{author}</Typography>
       </Grid>
       <Grid item xs={6}>
-        <Typography variant="body1">{creationDate}</Typography>
+        <Typography variant="body1">{dateFormater.dateToString(creationDate)}</Typography>
       </Grid>
     </Grid>
   );
