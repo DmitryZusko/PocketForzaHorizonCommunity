@@ -1,6 +1,6 @@
 import { CardActionArea, Link } from "@mui/material";
-import BaseCard from "../BaseCard/BaseCard";
-import { INavigationCard } from "./types";
+import { BaseCard } from "../BaseCard";
+import { INavigationCardProps } from "./types";
 
 const NavigationCard = ({
   thumbnail,
@@ -11,7 +11,7 @@ const NavigationCard = ({
   imageWidth,
   imageHeight,
   ...props
-}: INavigationCard) => {
+}: INavigationCardProps) => {
   return (
     <CardActionArea {...props}>
       <Link href={navigationLink} target="_blank" underline="none">

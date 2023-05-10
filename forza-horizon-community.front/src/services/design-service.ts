@@ -1,7 +1,5 @@
-import { IDesign } from "@/data-transfer-objects/entities/Design";
-import { IGetLatestDesignsRequest } from "@/data-transfer-objects/requests/GetLatestDesignsRequest";
-import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
-import customAxios from "@/utilities/custom-axios";
+import { IDesign, IGetLatestDesignsRequest, IPaginatedResponse } from "@/data-transfer-objects";
+import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarDesignRequest, IAxiosFilteredDesignRequest } from "./types";
 
 const getLatestDesigns = async ({ page, pageSize, descriptionLimit }: IGetLatestDesignsRequest) => {

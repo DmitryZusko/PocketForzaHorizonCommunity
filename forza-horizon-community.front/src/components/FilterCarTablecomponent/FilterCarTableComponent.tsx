@@ -1,10 +1,9 @@
 import { Container, Typography } from "@mui/material";
-import { defaultPriceStep } from "../constants/applicationConstants";
-import CustomCheckboxListComponent from "./components/CustomCheckboxListComponent/CustomCheckboxListComponent";
-import CustomRangeSliderComponent from "./components/CustomRangeSlider/CustomRangeSliderComponent";
-import useFilterCarTableComponent from "./useFilterCarTableComponent";
+import { defaultPriceStep } from "../constants";
+import { CustomCheckboxListComponent, CustomRangeSliderComponent } from "./components";
+import { useFilterCarTableComponent } from "./useFilterCarTableComponent";
 
-export default function FilterCarTableComponent({ ...props }) {
+const FilterCarTableComponent = ({ ...props }) => {
   const {
     isLoadingManufacture,
     manufactures,
@@ -55,4 +54,6 @@ export default function FilterCarTableComponent({ ...props }) {
       />
     </Container>
   );
-}
+};
+
+export default FilterCarTableComponent;

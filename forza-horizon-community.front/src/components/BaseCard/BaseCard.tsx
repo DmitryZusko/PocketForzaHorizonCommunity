@@ -1,5 +1,5 @@
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
-import { IBaseCard } from "./types";
+import { IBaseCardProps } from "./types";
 
 const BaseCard = ({
   thumbnail,
@@ -9,7 +9,7 @@ const BaseCard = ({
   imageWidth,
   imageHeight,
   ...props
-}: IBaseCard) => {
+}: IBaseCardProps) => {
   return (
     <Card {...props}>
       <CardMedia

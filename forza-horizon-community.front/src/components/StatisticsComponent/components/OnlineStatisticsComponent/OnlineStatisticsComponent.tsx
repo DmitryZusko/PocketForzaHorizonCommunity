@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
-import HourOnlineComponent from "./components/HourOnlineComponent/HourOnlineComponent";
-import WeeklyOnlineComponent from "./components/WeeklyOnlineComponent/WeeklyOnlineComponent";
+import { HourOnlineComponent, WeeklyOnlineComponent } from "./components";
 
 const OnlineStatisticsComponent = ({ ...props }) => {
   return (

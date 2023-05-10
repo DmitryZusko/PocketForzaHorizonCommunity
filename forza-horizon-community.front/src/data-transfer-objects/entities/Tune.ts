@@ -1,6 +1,4 @@
-import { AspirationType } from "@/components/constants/enums/AspirationType";
-import { EngineType } from "@/components/constants/enums/EngineType";
-import { TiresCompoundType } from "@/components/constants/enums/TiresCompoundType";
+import { AspirationType, EngineType, TiresCompoundType } from "@/components";
 
 export interface ITune {
   id: string;

@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import AchievementItemComponent from "./components/AchievementItemComponent/AchievementItemComponent";
-import useAchievementStatisticsComponent from "./useAchievementStatisticsComponent";
+import { AchievementItemComponent } from "./components";
+import { useAchievementStatisticsComponent } from "./useAchievementStatisticsComponent";
 
 const AchievementStatisticsComponent = ({ ...props }) => {
   const { isLoadingAchievements, achievements } = useAchievementStatisticsComponent();

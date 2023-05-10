@@ -1,15 +1,15 @@
 import { Grid, Slider, TextField } from "@mui/material";
 import { ICustomRangeSliderComponentProps } from "../../types";
-import useCustomRangeSliderComponent from "./useCustomRangeSliderComponent";
+import { useCustomRangeSliderComponent } from "./useCustomRangeSliderComponent";
 
-export default function CustomRangeSliderComponent({
+const CustomRangeSliderComponent = ({
   validRange,
   min,
   max,
   step,
   handleRangeChange,
   ...props
-}: ICustomRangeSliderComponentProps) {
+}: ICustomRangeSliderComponentProps) => {
   const { selectedRange, handleSignleChange, validateMin, validateMax } =
     useCustomRangeSliderComponent({ min, max, validRange, handleRangeChange });
   return (
@@ -53,4 +53,6 @@ export default function CustomRangeSliderComponent({
       </Grid>
     </Grid>
   );
-}
+};
+
+export default CustomRangeSliderComponent;

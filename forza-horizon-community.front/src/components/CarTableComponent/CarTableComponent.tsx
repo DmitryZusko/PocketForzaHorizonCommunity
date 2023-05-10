@@ -1,5 +1,5 @@
-import { ICar } from "@/data-transfer-objects/entities/Car";
-import imageConverter from "@/utilities/imageConverter";
+import { ICar } from "@/data-transfer-objects";
+import { imageUtil } from "@/utilities";
 import {
   Table,
   TableBody,
@@ -10,15 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import {
-  defaultCarThumbnailSize,
-  defaultRowsPerPageOptions,
-} from "../constants/applicationConstants";
-import { headerCells } from "./components/constants";
-import SortingTableHead from "./components/SortingTableHead/SortingTableHead";
+import { defaultCarThumbnailSize, defaultRowsPerPageOptions } from "../constants";
+import { headerCells, SortingTableHead } from "./components";
 import useCarTableComponent from "./useCarTableComponent";
 
-export default function CarTableComponent({ ...props }) {
+const CarTableComponent = ({ ...props }) => {
   const {
     currentPage,
     pageSize,
@@ -50,7 +46,7 @@ export default function CarTableComponent({ ...props }) {
               <TableCell>
                 <Image
                   alt="car"
-                  src={imageConverter.addJpgHeader(car.image)}
+                  src={imageUtil.addJpgHeader(car.image)}
                   width={defaultCarThumbnailSize.width}
                   height={defaultCarThumbnailSize.height}
                 />
@@ -85,4 +81,6 @@ export default function CarTableComponent({ ...props }) {
       />
     </TableContainer>
   );
-}
+};
+
+export default CarTableComponent;

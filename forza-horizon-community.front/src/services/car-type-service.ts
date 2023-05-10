@@ -1,7 +1,5 @@
-import { ICarType } from "@/data-transfer-objects/entities/CarType";
-import { IPaginatedRequest } from "@/data-transfer-objects/requests/PaginatedRequest";
-import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
-import customAxios from "@/utilities/custom-axios";
+import { ICarType, IPaginatedRequest, IPaginatedResponse } from "@/data-transfer-objects";
+import { customAxios } from "@/utilities";
 
 const getCarTypes = ({ page, pageSize }: IPaginatedRequest) => {
   const axios = customAxios.getAxiosInstance();

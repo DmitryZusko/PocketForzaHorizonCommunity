@@ -1,9 +1,7 @@
-import NavigationCard from "@/components/NavigationCard/NavigationCard";
+import { GuideCardFooterComponent, NavigationCard } from "@/components";
+import { dateFormater, imageUtil } from "@/utilities";
 import { Grid, Tooltip } from "@mui/material";
 import useDesignBlockComponent from "./useDesignBlockComponent";
-import { GuideCardFooterComponent } from "@/components/GuideCardFooterComponent/GuideCardFooterComponent";
-import { dateFormater } from "@/utilities/date-formater";
-import imageConverter from "@/utilities/imageConverter";
 
 const DesignBlockComponent = ({ ...props }) => {
   const { isLoading, latestDesigns } = useDesignBlockComponent();
@@ -14,7 +12,7 @@ const DesignBlockComponent = ({ ...props }) => {
         <Tooltip key={design.id} title="Go to design page">
           <Grid item key={design.id} xs={12} md={3}>
             <NavigationCard
-              thumbnail={imageConverter.addJpgHeader(design.thumbnail)}
+              thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
               cardTitle={design.title}
               navigationLink=""
               body={design.description}

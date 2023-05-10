@@ -1,17 +1,16 @@
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
 import {
   addToPageSize,
+  carNamesSelector,
   designsSelector,
+  getCarNames,
   getDesigns,
   getDesignsByCarId,
-  setPageSize,
-} from "@/redux/design";
-import { carNamesSelector, getCarNames } from "@/redux/filter-scheme";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  defaultCardDescriptionLimit,
-  defaultInfinitLoaderAdjustment,
-} from "../constants/applicationConstants";
+  setDesignPageSize,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { defaultCardDescriptionLimit, defaultInfinitLoaderAdjustment } from "../constants";
 
 export const useDesginListComponent = () => {
   const defaultPageSize = 1;
@@ -60,7 +59,7 @@ export const useDesginListComponent = () => {
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
       setSearchQuery(newQuery);
-      dispatch(setPageSize(defaultPageSize));
+      dispatch(setDesignPageSize(defaultPageSize));
     },
     [setSearchQuery, dispatch],
   );
@@ -68,7 +67,7 @@ export const useDesginListComponent = () => {
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
       setSelectedCar(newValue?.id);
-      dispatch(setPageSize(defaultPageSize));
+      dispatch(setDesignPageSize(defaultPageSize));
     },
     [setSelectedCar, dispatch],
   );

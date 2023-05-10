@@ -1,14 +1,12 @@
-import { Autocomplete, Grid, TextField } from "@mui/material";
-import { SearchComponent } from "../SearchComponent/SearchComponent";
-import { useDesginListComponent } from "./useDesginListComponent";
+import { dateFormater, imageUtil } from "@/utilities";
+import { Autocomplete, CircularProgress, Grid, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import CircularProgress from "@mui/material/CircularProgress";
-import NavigationCard from "../NavigationCard/NavigationCard";
-import { GuideCardFooterComponent } from "../GuideCardFooterComponent/GuideCardFooterComponent";
-import { dateFormater } from "@/utilities/date-formater";
-import imageConverter from "@/utilities/imageConverter";
+import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
+import { NavigationCard } from "../NavigationCard";
+import { SearchComponent } from "../SearchComponent";
+import { useDesginListComponent } from "./useDesginListComponent";
 
-export const DesginListComponent = () => {
+const DesginListComponent = () => {
   const {
     searchQuery,
     autocompleteOptions,
@@ -46,7 +44,7 @@ export const DesginListComponent = () => {
               navigationLink={""}
               cardTitle={design.title}
               body={design.description}
-              thumbnail={imageConverter.addJpgHeader(design.thumbnail)}
+              thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
               footer={
                 <GuideCardFooterComponent
                   shareCode={design.forzaShareCode}
@@ -63,3 +61,5 @@ export const DesginListComponent = () => {
     </Grid>
   );
 };
+
+export default DesginListComponent;

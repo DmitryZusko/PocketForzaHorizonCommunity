@@ -1,22 +1,21 @@
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { setPage } from "@/redux/car";
 import {
   filterSchemeSelector,
   getCarFilterScheme,
   getCarTypes,
   getManufactures,
-} from "@/redux/filter-scheme";
-import {
   selectedFilterRangesSelector,
+  setCarPage,
   setSelectedCarTypes,
   setSelectedCountries,
   setSelectedManufactures,
   setSelectedPriceRange,
   setSelectedYearRange,
-} from "@/redux/selectedFilterParams";
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
 import { useCallback, useEffect } from "react";
 
-export default function useFilterCarTableComponent() {
+export const useFilterCarTableComponent = () => {
   const {
     isLoadingManufacture,
     manufactures,
@@ -51,7 +50,7 @@ export default function useFilterCarTableComponent() {
   const handlePriceRangeChange = useCallback(
     (event: Event | null, newRange: number | number[]) => {
       dispatch(setSelectedPriceRange(newRange as number[]));
-      dispatch(setPage(0));
+      dispatch(setCarPage(0));
     },
     [dispatch],
   );
@@ -59,7 +58,7 @@ export default function useFilterCarTableComponent() {
   const handleYearRangeChange = useCallback(
     (event: Event | null, newRange: number | number[]) => {
       dispatch(setSelectedYearRange(newRange as number[]));
-      dispatch(setPage(0));
+      dispatch(setCarPage(0));
     },
     [dispatch],
   );
@@ -67,7 +66,7 @@ export default function useFilterCarTableComponent() {
   const handleSelectedManufacture = useCallback(
     (newManufactures: string[]) => {
       dispatch(setSelectedManufactures(newManufactures));
-      dispatch(setPage(0));
+      dispatch(setCarPage(0));
     },
     [dispatch],
   );
@@ -75,7 +74,7 @@ export default function useFilterCarTableComponent() {
   const handleSelectedCarType = useCallback(
     (newCarTypes: string[]) => {
       dispatch(setSelectedCarTypes(newCarTypes));
-      dispatch(setPage(0));
+      dispatch(setCarPage(0));
     },
     [dispatch],
   );
@@ -83,7 +82,7 @@ export default function useFilterCarTableComponent() {
   const handleSelectedCountry = useCallback(
     (newcCountries: string[]) => {
       dispatch(setSelectedCountries(newcCountries));
-      dispatch(setPage(0));
+      dispatch(setCarPage(0));
     },
     [dispatch],
   );
@@ -118,4 +117,4 @@ export default function useFilterCarTableComponent() {
     handleSelectedCarType,
     handleSelectedCountry,
   };
-}
+};

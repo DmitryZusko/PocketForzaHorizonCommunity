@@ -1,8 +1,10 @@
-import { IFilteredCarDesignRequest } from "@/data-transfer-objects/requests/FilteredCarDesignRequest";
-import { IFilteredDesignRequest } from "@/data-transfer-objects/requests/FilteredDesignRequest";
-import { IGetLatestDesignsRequest } from "@/data-transfer-objects/requests/GetLatestDesignsRequest";
-import designService from "@/services/design-service";
-import customAxios from "@/utilities/custom-axios";
+import {
+  IFilteredCarDesignRequest,
+  IFilteredDesignRequest,
+  IGetLatestDesignsRequest,
+} from "@/data-transfer-objects";
+import { designService } from "@/services";
+import { customAxios } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getLatestDesigns = createAsyncThunk(

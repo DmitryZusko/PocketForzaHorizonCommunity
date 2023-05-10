@@ -3,4 +3,6 @@ const dateToString = (isoDate: Date) => {
   return date.toLocaleString("en-US");
 };
 
-export const dateFormater = { dateToString };
+const dateFormater = { dateToString };
+
+export default dateFormater;

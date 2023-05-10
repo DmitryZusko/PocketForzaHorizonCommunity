@@ -1,13 +1,15 @@
-import { IAchivement } from "@/data-transfer-objects/entities/Achivement";
-import { IDesign } from "@/data-transfer-objects/entities/Design";
-import { ITune } from "@/data-transfer-objects/entities/Tune";
-import { INewsItem } from "@/data-transfer-objects/entities/NewsItem";
+import { OrderDirection } from "@/components";
+import {
+  IAchivement,
+  ICar,
+  ICarType,
+  IDesign,
+  IManufacture,
+  INewsItem,
+  ISimplifiedCar,
+  ITune,
+} from "@/data-transfer-objects";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { ICar } from "@/data-transfer-objects/entities/Car";
-import { OrderDirection } from "@/components/CarTableComponent/components/SortingTableHead/SortingTableHead";
-import { IManufacture } from "@/data-transfer-objects/entities/Manufacture";
-import { ICarType } from "@/data-transfer-objects/entities/CarType";
-import { ISimplifiedCar } from "@/data-transfer-objects/entities/SimplifiedCar";
 
 export type ActionWithPayload<Payload> = ReturnType<ActionCreatorWithPayload<Payload>>;
 

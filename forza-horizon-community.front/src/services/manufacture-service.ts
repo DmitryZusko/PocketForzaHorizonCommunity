@@ -1,6 +1,5 @@
-import { IManufacture } from "@/data-transfer-objects/entities/Manufacture";
-import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
-import customAxios from "@/utilities/custom-axios";
+import { IManufacture, IPaginatedResponse } from "@/data-transfer-objects";
+import { customAxios } from "@/utilities";
 
 const getManufactures = (page?: number, pageCount?: number) => {
   const axios = customAxios.getAxiosInstance();

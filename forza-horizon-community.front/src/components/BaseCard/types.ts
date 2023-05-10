@@ -1,4 +1,4 @@
-export interface IBaseCard {
+export interface IBaseCardProps {
   thumbnail?: string;
   cardTitle: string;
   body: string | JSX.Element;

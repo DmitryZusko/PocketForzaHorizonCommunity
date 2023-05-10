@@ -1,6 +1,6 @@
-import { IFilteredCarsRequest } from "@/data-transfer-objects/requests/FilteredCarsRequest";
-import carService from "@/services/car-service";
-import customAxios from "@/utilities/custom-axios";
+import { IFilteredCarsRequest } from "@/data-transfer-objects";
+import { carService } from "@/services";
+import { customAxios } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getCars = createAsyncThunk(

@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ICustomRangeSliderComponentHook } from "../../types";
 
-export default function useCustomRangeSliderComponent({
+export const useCustomRangeSliderComponent = ({
   min,
   max,
   validRange,
   handleRangeChange,
-}: ICustomRangeSliderComponentHook) {
+}: ICustomRangeSliderComponentHook) => {
   const [selectedRange, setSelectedRange] = useState<number[]>([]);
 
   const handleSignleChange = useCallback(
@@ -41,4 +41,4 @@ export default function useCustomRangeSliderComponent({
     setSelectedRange([validRange[0], validRange[1]]);
   }, [validRange]);
   return { selectedRange, handleSignleChange, validateMin, validateMax };
-}
+};

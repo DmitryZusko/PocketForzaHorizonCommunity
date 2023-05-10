@@ -1,9 +1,5 @@
-import LatestGuidesComponent from "@/components/LatestGuidesComponent/LatestGuidesComponent";
-import NewsBlockComponent from "@/components/NewsBlockComponent/NewsBlockComponent";
-import StatisticsComponent from "@/components/StatisticsComponent/StatisticsComponent";
-import { Grid, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import { Container } from "@mui/system";
+import { LatestGuidesComponent, NewsBlockComponent, StatisticsComponent } from "@/components";
+import { Container, Grid, Paper, Typography } from "@mui/material";
 
 const HomeContent = () => {
   return (

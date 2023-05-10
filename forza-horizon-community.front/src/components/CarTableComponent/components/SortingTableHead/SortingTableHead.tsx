@@ -1,10 +1,8 @@
 import { TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
-import { ISortingTableHeaderProps } from "../../types";
+import { ISortingTableHeaderProps } from "./types";
 import useSortingTableHead from "./useSortingTableHead";
 
-export type OrderDirection = "asc" | "desc";
-
-export default function SortingTableHead<TEntity>({
+const SortingTableHead = <TEntity,>({
   headerCells,
   order,
   orderBy,
@@ -12,7 +10,7 @@ export default function SortingTableHead<TEntity>({
   setOrderBy,
   sortEntities,
   ...props
-}: ISortingTableHeaderProps<TEntity>) {
+}: ISortingTableHeaderProps<TEntity>) => {
   const { handleSortingClick } = useSortingTableHead<TEntity>({
     order,
     orderBy,
@@ -37,4 +35,6 @@ export default function SortingTableHead<TEntity>({
       </TableRow>
     </TableHead>
   );
-}
+};
+
+export default SortingTableHead;

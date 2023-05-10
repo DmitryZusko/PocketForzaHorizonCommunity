@@ -1,9 +1,10 @@
-import { ICar } from "@/data-transfer-objects/entities/Car";
-import { ISimplifiedCar } from "@/data-transfer-objects/entities/SimplifiedCar";
-import {} from "@/data-transfer-objects/requests/PaginatedRequest";
-import { ICarFilterSchemeResponse } from "@/data-transfer-objects/responses/CarFilterSchemeResponse";
-import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
-import customAxios from "@/utilities/custom-axios";
+import {
+  ICar,
+  ICarFilterSchemeResponse,
+  IPaginatedResponse,
+  ISimplifiedCar,
+} from "@/data-transfer-objects";
+import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarsRequest } from "./types";
 
 const getCars = ({

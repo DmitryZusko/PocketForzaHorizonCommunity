@@ -1,7 +1,5 @@
-import { IAchivement } from "@/data-transfer-objects/entities/Achivement";
-import { IGetNewsRequest } from "@/data-transfer-objects/requests/GetNewsRequest";
-import { INewsResponse } from "@/data-transfer-objects/responses/NewsResponse";
-import customAxios from "@/utilities/custom-axios";
+import { IAchivement, IGetNewsRequest, INewsResponse } from "@/data-transfer-objects";
+import { customAxios } from "@/utilities";
 
 const getNews = async ({ count, maxLength }: IGetNewsRequest) => {
   const axios = customAxios.getAxiosInstance();

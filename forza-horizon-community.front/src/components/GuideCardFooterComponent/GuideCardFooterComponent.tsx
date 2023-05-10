@@ -1,7 +1,7 @@
 import { Grid, Rating, Typography } from "@mui/material";
 import { IGuideCardFooterComponentProps } from "./types";
 
-export const GuideCardFooterComponent = ({
+const GuideCardFooterComponent = ({
   shareCode,
   rating,
   author,
@@ -41,3 +41,5 @@ export const GuideCardFooterComponent = ({
     </Grid>
   );
 };
+
+export default GuideCardFooterComponent;
