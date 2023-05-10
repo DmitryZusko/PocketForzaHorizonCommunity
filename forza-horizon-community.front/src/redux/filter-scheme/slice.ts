@@ -31,6 +31,9 @@ const filterSchemeSlice = createSlice({
       state.totalCarTypes = payload.data.total;
       state.isLoadingCarTypes = false;
     });
+    builder.addCase(getCarTypes.rejected, (state) => {
+      state.isLoadingCarTypes = false;
+    });
     builder.addCase(getManufactures.pending, (state) => {
       state.isLoadingManufacture = true;
     });
