@@ -25,7 +25,7 @@ const BaseCard = ({
             <Typography variant="h5">{cardTitle}</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="body1">{body}</Typography>
+            {typeof body === typeof String ? <Typography variant="body1">{body}</Typography> : body}
           </Grid>
           <Grid item xs={12}>
             {footer}
