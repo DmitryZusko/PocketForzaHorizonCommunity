@@ -1,6 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import DesignBlockComponent from "./component/DesignBlockComponent/DesignBlockComponent";
-import TunesBlockComponent from "./component/TunesBlockComponent/TunesBlockComponent";
+import { DesignBlockComponent, TunesBlockComponent } from "./component";
 
 const LatestGuidesComponent = ({ ...props }) => {
   return (

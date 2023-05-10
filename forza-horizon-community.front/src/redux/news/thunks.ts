@@ -1,5 +1,5 @@
-import { IGetNewsRequest } from "@/data-transfer-objects/requests/GetNewsRequest";
-import steamService from "@/services/steam-service";
+import { IGetNewsRequest } from "@/data-transfer-objects";
+import { steamService } from "@/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getNews = createAsyncThunk(

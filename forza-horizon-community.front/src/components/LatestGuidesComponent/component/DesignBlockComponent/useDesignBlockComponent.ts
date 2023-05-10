@@ -1,9 +1,5 @@
-import {
-  defaultCardDescriptionLimit,
-  defaultLatestGuidesAmount,
-} from "@/components/constants/applicationConstants";
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { getLatestDesigns, latestDesignsSelector } from "@/redux/design";
+import { defaultCardDescriptionLimit, defaultLatestGuidesAmount } from "@/components/constants";
+import { getLatestDesigns, latestDesignsSelector, useAppDispatch, useAppSelector } from "@/redux";
 import { useCallback, useEffect } from "react";
 
 const useDesignBlockComponent = () => {

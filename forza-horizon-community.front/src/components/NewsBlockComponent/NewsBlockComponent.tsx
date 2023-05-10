@@ -1,25 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { getAchievementStats } from "@/redux/game-statistics";
-import { newsSelector } from "@/redux/news/selectors";
-import { getNews } from "@/redux/news/thunks";
 import { Grid, Tooltip, Typography } from "@mui/material";
-import { useCallback, useEffect } from "react";
-import { defaultNewsAmount, defaultNewsLength } from "../constants/applicationConstants";
-import NavigationCard from "../NavigationCard/NavigationCard";
+import { NavigationCard } from "../NavigationCard";
+import { useNewsBlockComponent } from "./useNewsBlockComponent";
 
 const NewsBlockComponent = ({ ...props }) => {
-  const { isLoading: isNewsLoading, news } = useAppSelector(newsSelector);
-
-  const dispatch = useAppDispatch();
-
-  const loadNews = useCallback(async () => {
-    await dispatch(getNews({ count: defaultNewsAmount, maxLength: defaultNewsLength }));
-    await dispatch(getAchievementStats());
-  }, [dispatch]);
-
-  useEffect(() => {
-    loadNews();
-  }, [loadNews]);
+  const { isLoading, news } = useNewsBlockComponent();
 
   return (
     <Grid container spacing={2} {...props}>

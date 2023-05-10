@@ -1,6 +1,6 @@
 import { Chart, PieSeries } from "@devexpress/dx-react-chart-material-ui";
 import { Grid, Typography } from "@mui/material";
-import useHourOnlineComponent from "./useHourOnlineComponent";
+import { useHourOnlineComponent } from "./useHourOnlineComponent";
 
 const HourOnlineComponent = ({ ...props }) => {
   const { isLoading, totalPlayers, getFakeHourOnline } = useHourOnlineComponent();

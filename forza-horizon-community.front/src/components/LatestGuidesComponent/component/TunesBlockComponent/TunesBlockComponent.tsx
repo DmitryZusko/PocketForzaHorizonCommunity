@@ -1,10 +1,12 @@
-import { defaultTuneImageHeight } from "@/components/constants/applicationConstants";
-import { GuideCardFooterComponent } from "@/components/GuideCardFooterComponent/GuideCardFooterComponent";
-import NavigationCard from "@/components/NavigationCard/NavigationCard";
-import { TuneCardBodyComponent } from "@/components/TuneCardBodyComponent/TuneCardBodyComponent";
-import { dateFormater } from "@/utilities/date-formater";
+import {
+  defaultTuneImageHeight,
+  GuideCardFooterComponent,
+  NavigationCard,
+  TuneCardBodyComponent,
+} from "@/components";
+import { dateFormater } from "@/utilities";
 import { Grid, Tooltip } from "@mui/material";
-import useTunesBlockComponent from "./useTunesBlockComponent";
+import { useTunesBlockComponent } from "./useTunesBlockComponent";
 
 const TunesBlockComponent = ({ ...props }) => {
   const { isLoading, latestTunes } = useTunesBlockComponent();

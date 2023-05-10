@@ -1,4 +1,4 @@
-import { ICar } from "@/data-transfer-objects/entities/Car";
+import { ICar } from "@/data-transfer-objects";
 import { IHeaderCell } from "../types";
 
 export const headerCells: IHeaderCell<ICar>[] = [

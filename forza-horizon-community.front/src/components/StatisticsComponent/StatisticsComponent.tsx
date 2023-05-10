@@ -1,6 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import AchievementStatisticsComponent from "./components/AchievementStatisticsComponent/AchievementStatisticsComponent";
-import OnlineStatisticsComponent from "./components/OnlineStatisticsComponent/OnlineStatisticsComponent";
+import { AchievementStatisticsComponent, OnlineStatisticsComponent } from "./components";
 
 export const StatisticsComponent = ({ ...props }) => {
   return (

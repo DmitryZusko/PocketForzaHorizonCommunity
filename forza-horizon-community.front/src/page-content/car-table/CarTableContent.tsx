@@ -1,8 +1,7 @@
-import CarTableComponent from "@/components/CarTableComponent/CarTableComponent";
-import FilterCarTableComponent from "@/components/FilterCarTableComponent/FilterCarTableComponent";
+import { CarTableComponent, FilterCarTableComponent } from "@/components";
 import { Grid } from "@mui/material";
 
-export default function CarTableContent() {
+const CarTableContent = () => {
   return (
     <Grid container>
       <Grid item xs={3}>
@@ -13,4 +12,6 @@ export default function CarTableContent() {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default CarTableContent;

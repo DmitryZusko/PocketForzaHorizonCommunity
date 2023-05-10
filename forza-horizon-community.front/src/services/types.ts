@@ -1,6 +1,8 @@
-import { IFilteredCarDesignRequest } from "@/data-transfer-objects/requests/FilteredCarDesignRequest";
-import { IFilteredCarsRequest } from "@/data-transfer-objects/requests/FilteredCarsRequest";
-import { IFilteredDesignRequest } from "@/data-transfer-objects/requests/FilteredDesignRequest";
+import {
+  IFilteredCarDesignRequest,
+  IFilteredCarsRequest,
+  IFilteredDesignRequest,
+} from "@/data-transfer-objects";
 import { CancelToken } from "axios";
 
 export interface IAxiosFilteredCarsRequest extends IFilteredCarsRequest {

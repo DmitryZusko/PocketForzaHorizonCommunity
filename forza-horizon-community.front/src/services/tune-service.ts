@@ -1,5 +1,5 @@
-import { ITune } from "@/data-transfer-objects/entities/Tune";
-import customAxios from "@/utilities/custom-axios";
+import { ITune } from "@/data-transfer-objects";
+import { customAxios } from "@/utilities";
 
 const getLatestTunes = (amount: number) => {
   const axios = customAxios.getAxiosInstance();

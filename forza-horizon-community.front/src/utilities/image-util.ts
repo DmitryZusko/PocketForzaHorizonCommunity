@@ -1,5 +1,9 @@
-import { INewsItem } from "@/data-transfer-objects/entities/NewsItem";
+import { INewsItem } from "@/data-transfer-objects";
 import envHandler from "./env-handler";
+
+const addJpgHeader = (byteArray: string) => {
+  return `data:image/jpeg;base64, ${byteArray}`;
+};
 
 export const extractImagesFromContent = (items: INewsItem[]) => {
   items.forEach((item) => {
@@ -15,3 +19,7 @@ export const extractImagesFromContent = (items: INewsItem[]) => {
 
   return items;
 };
+
+const imageUtil = { addJpgHeader, extractImagesFromContent };
+
+export default imageUtil;

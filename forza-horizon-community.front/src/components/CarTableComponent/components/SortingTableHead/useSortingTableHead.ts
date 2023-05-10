@@ -1,13 +1,13 @@
 import { useCallback } from "react";
-import { ISortingTableHeaderHook } from "../../types";
+import { ISortingTableHeaderHook } from "./types";
 
-export default function useSortingTableHead<TEntity>({
+const useSortingTableHead = <TEntity>({
   order,
   orderBy,
   setOrder,
   setOrderBy,
   sortEntities,
-}: ISortingTableHeaderHook<TEntity>) {
+}: ISortingTableHeaderHook<TEntity>) => {
   const handleSortingClick = useCallback(
     (property: keyof TEntity) => () => {
       const isAsc = orderBy === property && order === "asc";
@@ -19,4 +19,6 @@ export default function useSortingTableHead<TEntity>({
   );
 
   return { handleSortingClick };
-}
+};
+
+export default useSortingTableHead;

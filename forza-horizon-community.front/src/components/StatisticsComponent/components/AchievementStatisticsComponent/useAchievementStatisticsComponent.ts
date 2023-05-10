@@ -1,8 +1,7 @@
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { achievementSelector, getAchievementStats } from "@/redux/game-statistics";
+import { achievementSelector, getAchievementStats, useAppDispatch, useAppSelector } from "@/redux";
 import { useCallback, useEffect } from "react";
 
-const useAchievementStatisticsComponent = () => {
+export const useAchievementStatisticsComponent = () => {
   const { isLoadingAchievements, achievements } = useAppSelector(achievementSelector);
 
   const dispatch = useAppDispatch();
@@ -16,5 +15,3 @@ const useAchievementStatisticsComponent = () => {
   }, [loadAchievements]);
   return { isLoadingAchievements, achievements };
 };
-
-export default useAchievementStatisticsComponent;

@@ -1,8 +1,7 @@
-import { useAppSelector } from "@/redux/app-hooks";
-import { playerStatisticsSelector } from "@/redux/game-statistics";
+import { playerStatisticsSelector, useAppSelector } from "@/redux";
 import { useMemo } from "react";
 
-const useWeeklyOnlineComponent = () => {
+export const useWeeklyOnlineComponent = () => {
   const { totalPlayers } = useAppSelector(playerStatisticsSelector);
 
   const getFakeWeeklyOnline = useMemo(() => {
@@ -23,5 +22,3 @@ const useWeeklyOnlineComponent = () => {
     getFakeWeeklyOnline,
   };
 };
-
-export default useWeeklyOnlineComponent;

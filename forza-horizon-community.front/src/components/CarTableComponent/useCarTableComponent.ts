@@ -1,11 +1,18 @@
-import { ICar } from "@/data-transfer-objects/entities/Car";
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { getCars, paginatedCarsSelector, setPage, setPageSize, setSortedCars } from "@/redux/car";
-import { selectedFilterParamsSelector } from "@/redux/selectedFilterParams";
-import React, { useCallback, useEffect, useState } from "react";
-import { OrderDirection } from "./components/SortingTableHead/SortingTableHead";
+import { ICar } from "@/data-transfer-objects";
+import {
+  getCars,
+  paginatedCarsSelector,
+  selectedFilterParamsSelector,
+  setCarPage,
+  setCarPageSize,
+  setSortedCars,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
+import { useCallback, useEffect, useState } from "react";
+import { OrderDirection } from "./components";
 
-export default function useCarTableComponent() {
+const useCarTableComponent = () => {
   const [orderBy, setOrderBy] = useState<keyof ICar>("manufacture");
   const [order, setOrder] = useState<OrderDirection>("asc");
   const {
@@ -59,14 +66,14 @@ export default function useCarTableComponent() {
   );
 
   const handlePageChange = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    dispatch(setPage(newPage));
+    dispatch(setCarPage(newPage));
   };
 
   const handlePageSizeChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    dispatch(setPageSize(parseInt(event.target.value, 10)));
-    dispatch(setPage(0));
+    dispatch(setCarPageSize(parseInt(event.target.value, 10)));
+    dispatch(setCarPage(0));
   };
 
   useEffect(() => {
@@ -92,4 +99,6 @@ export default function useCarTableComponent() {
     setOrderBy,
     handleSorting,
   };
-}
+};
+
+export default useCarTableComponent;

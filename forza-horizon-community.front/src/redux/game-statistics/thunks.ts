@@ -1,4 +1,4 @@
-import steamService from "@/services/steam-service";
+import { steamService } from "@/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getAchievementStats = createAsyncThunk(

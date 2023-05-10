@@ -1,11 +1,9 @@
-import enumConverter from "@/utilities/enum-converter";
+import { enumConverter } from "@/utilities";
 import { Container, Grid, Typography } from "@mui/material";
-import { AspirationType } from "../constants/enums/AspirationType";
-import { EngineType } from "../constants/enums/EngineType";
-import { TiresCompoundType } from "../constants/enums/TiresCompoundType";
+import { AspirationType, EngineType, TiresCompoundType } from "../constants";
 import { ITuneCardBodyComponentProps } from "./types";
 
-export const TuneCardBodyComponent = ({
+const TuneCardBodyComponent = ({
   engineType,
   aspirationType,
   tiresCompound,
@@ -45,3 +43,5 @@ export const TuneCardBodyComponent = ({
     </Container>
   );
 };
+
+export default TuneCardBodyComponent;

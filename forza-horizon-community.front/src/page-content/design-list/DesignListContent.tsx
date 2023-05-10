@@ -1,5 +1,7 @@
-import { DesginListComponent } from "@/components/DesginListComponent/DesginListComponent";
+import { DesginListComponent } from "@/components";
 
-export const DesignListContent = () => {
+const DesignListContent = () => {
   return <DesginListComponent />;
 };
+
+export default DesignListContent;

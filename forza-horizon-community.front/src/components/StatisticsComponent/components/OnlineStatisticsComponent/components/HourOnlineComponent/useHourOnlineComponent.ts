@@ -1,8 +1,12 @@
-import { useAppDispatch, useAppSelector } from "@/redux/app-hooks";
-import { getCurrentOnline, playerStatisticsSelector } from "@/redux/game-statistics";
+import {
+  getCurrentOnline,
+  playerStatisticsSelector,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
 import { useCallback, useEffect, useMemo } from "react";
 
-const useHourOnlineComponent = () => {
+export const useHourOnlineComponent = () => {
   const { isLoadingPlayersNumber: isLoading, totalPlayers } =
     useAppSelector(playerStatisticsSelector);
 
@@ -34,5 +38,3 @@ const useHourOnlineComponent = () => {
     getFakeHourOnline,
   };
 };
-
-export default useHourOnlineComponent;

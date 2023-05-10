@@ -1,12 +1,12 @@
-import { ICarType } from "@/data-transfer-objects/entities/CarType";
-import { IManufacture } from "@/data-transfer-objects/entities/Manufacture";
-import { ISimplifiedCar } from "@/data-transfer-objects/entities/SimplifiedCar";
-import { IPaginatedRequest } from "@/data-transfer-objects/requests/PaginatedRequest";
-import { ICarFilterSchemeResponse } from "@/data-transfer-objects/responses/CarFilterSchemeResponse";
-import { IPaginatedResponse } from "@/data-transfer-objects/responses/PaginatedResponse";
-import carService from "@/services/car-service";
-import carTypeService from "@/services/car-type-service";
-import manufactureService from "@/services/manufacture-service";
+import {
+  ICarFilterSchemeResponse,
+  ICarType,
+  IManufacture,
+  IPaginatedRequest,
+  IPaginatedResponse,
+  ISimplifiedCar,
+} from "@/data-transfer-objects";
+import { carService, carTypeService, manufactureService } from "@/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { RootState } from "../store";

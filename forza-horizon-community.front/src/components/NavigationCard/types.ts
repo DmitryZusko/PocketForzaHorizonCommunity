@@ -1,5 +1,5 @@
-import { IBaseCard } from "../BaseCard/types";
+import { IBaseCardProps } from "../BaseCard";
 
-export interface INavigationCard extends IBaseCard {
+export interface INavigationCardProps extends IBaseCardProps {
   navigationLink: string;
 }

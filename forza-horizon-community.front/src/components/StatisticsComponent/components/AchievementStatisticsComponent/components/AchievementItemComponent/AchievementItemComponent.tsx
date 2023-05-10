@@ -1,7 +1,7 @@
-import { defaultAchievementSize } from "@/components/constants/applicationConstants";
+import { defaultAchievementSize } from "@/components/constants";
 import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import { IAchievementItemComponentProps } from "../../types";
+import { IAchievementItemComponentProps } from "./types";
 
 const AchievementItemComponent = ({ achievement, ...props }: IAchievementItemComponentProps) => {
   return (

@@ -1,13 +1,12 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
-import { Container } from "@mui/system";
+import { Checkbox, Container, FormControlLabel } from "@mui/material";
 import { ICustomCheckboxListComponentProprs } from "../../types";
-import useCustomCheckboxListComponent from "./useCustomCheckboxListComponent";
+import { useCustomCheckboxListComponent } from "./useCustomCheckboxListComponent";
 
-export default function CustomCheckboxListComponent({
+const CustomCheckboxListComponent = ({
   entities,
   applyChanges,
   ...props
-}: ICustomCheckboxListComponentProprs) {
+}: ICustomCheckboxListComponentProprs) => {
   const { handleChange } = useCustomCheckboxListComponent({ applyChanges });
   return (
     <Container {...props}>
@@ -20,4 +19,6 @@ export default function CustomCheckboxListComponent({
       ))}
     </Container>
   );
-}
+};
+
+export default CustomCheckboxListComponent;
