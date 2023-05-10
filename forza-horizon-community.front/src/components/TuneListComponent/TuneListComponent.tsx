@@ -37,7 +37,7 @@ const TuneListComponent = () => {
         <InfiniteScroll
           dataLength={totalEntities}
           next={makePageSizeBigger}
-          hasMore={pageSize > totalEntities}
+          hasMore={pageSize < totalEntities}
           loader={<CircularProgress />}
           endMessage={"this is it"}
         >
