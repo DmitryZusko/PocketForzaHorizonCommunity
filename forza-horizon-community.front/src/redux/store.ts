@@ -45,6 +45,7 @@ const createStore = <T>(preloadedState?: T) =>
       getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          ignoredActionPaths: ["payload.headers", "payload.config", "payload.request"],
         },
       }),
     preloadedState,
