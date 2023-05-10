@@ -21,7 +21,7 @@ public class DesignController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<DesignDto>> GetAllDesigns([FromQuery] FilteredDesignsGetRequest request) =>
+    public async Task<PaginatedResponse<DesignDto>> GetAllDesignsAsync([FromQuery] FilteredDesignsGetRequest request) =>
         _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetAllAsync(request));
 
     [HttpGet("ByCar")]
@@ -29,7 +29,7 @@ public class DesignController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<DesignDto>> GetAllDesignsByCarId([FromQuery] FilteredCarDesignsGetRequest request) =>
+    public async Task<PaginatedResponse<DesignDto>> GetAllDesignsByCarIdAsync([FromQuery] FilteredCarDesignsGetRequest request) =>
         _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetAllByCarIdAsync(request));
 
 

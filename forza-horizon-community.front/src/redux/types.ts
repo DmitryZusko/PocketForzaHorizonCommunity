@@ -44,6 +44,11 @@ export interface IDesignState {
 export interface ITuneState {
   isLoadingLatest: boolean;
   latestTunes: ITune[];
+  isLoadingTunes: boolean;
+  tunes: ITune[];
+  page: number;
+  pageSize: number;
+  totalEntities: number;
 }
 
 export interface ICarState {

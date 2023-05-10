@@ -1,4 +1,4 @@
-import HomeContent from "@/page-content/home/HomeContent";
+import { HomeContent } from "@/page-content";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });

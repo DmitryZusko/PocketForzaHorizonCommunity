@@ -1,4 +1,4 @@
-import { DesignListContent } from "@/page-content/design-list/DesignListContent";
+import { DesignListContent } from "@/page-content";
 
 const DesignList = () => {
   return <DesignListContent />;

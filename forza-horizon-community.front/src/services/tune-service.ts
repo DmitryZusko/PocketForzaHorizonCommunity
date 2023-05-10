@@ -1,5 +1,65 @@
-import { ITune } from "@/data-transfer-objects";
+import { IPaginatedResponse, ITune } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
+import { IAxiosFilteredCarTuneRequest, IAxiosFilteredTuneRequest } from "./types";
+
+const getTunes = async ({
+  page,
+  pageSize,
+  searchQuery,
+  cancelToken,
+}: IAxiosFilteredTuneRequest) => {
+  const axios = customAxios.getAxiosInstance();
+
+  if (searchQuery.length > 0) {
+    return axios.get<IPaginatedResponse<ITune>>("tune", {
+      cancelToken: cancelToken,
+      params: {
+        Page: page,
+        PageSize: pageSize,
+        Searchquery: searchQuery,
+      },
+    });
+  }
+
+  return axios.get<IPaginatedResponse<ITune>>("tune", {
+    cancelToken: cancelToken,
+    params: {
+      Page: page,
+      PageSize: pageSize,
+    },
+  });
+};
+
+const getTunesByCarId = async ({
+  page,
+  pageSize,
+  searchQuery,
+  carId,
+  cancelToken,
+}: IAxiosFilteredCarTuneRequest) => {
+  const axios = customAxios.getAxiosInstance();
+
+  if (searchQuery.length > 0) {
+    return axios.get<IPaginatedResponse<ITune>>("tune/ByCar", {
+      cancelToken: cancelToken,
+      params: {
+        Page: page,
+        PageSize: pageSize,
+        CarId: carId,
+        Searchquery: searchQuery,
+      },
+    });
+  }
+
+  return axios.get<IPaginatedResponse<ITune>>("tune/ByCar", {
+    cancelToken: cancelToken,
+    params: {
+      Page: page,
+      PageSize: pageSize,
+      CarId: carId,
+    },
+  });
+};
 
 const getLatestTunes = (amount: number) => {
   const axios = customAxios.getAxiosInstance();
@@ -7,6 +67,8 @@ const getLatestTunes = (amount: number) => {
 };
 
 const tuneService = {
+  getTunes,
+  getTunesByCarId,
   getLatestTunes,
 };
 

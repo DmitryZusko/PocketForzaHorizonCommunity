@@ -1,5 +1,5 @@
 export interface ISearchComponentHook {
-  trashhold: number;
+  threshold: number;
   handleQueryChange: (newQuery: string) => void;
 }
 

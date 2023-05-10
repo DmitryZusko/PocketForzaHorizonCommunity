@@ -1,16 +1,32 @@
+import { defaultPageSize } from "@/components";
 import { createSlice } from "@reduxjs/toolkit";
-import { ITuneState } from "../types";
-import { getLatestTunes } from "./thunks";
+import { ActionWithPayload, ITuneState } from "../types";
+import { getLatestTunes, getTunes, getTunesByCarId } from "./thunks";
 
 const initialState: ITuneState = {
   isLoadingLatest: false,
   latestTunes: [],
+  isLoadingTunes: false,
+  tunes: [],
+  page: 0,
+  pageSize: defaultPageSize,
+  totalEntities: 0,
 };
 
 const tuneSlice = createSlice({
   name: "tune",
   initialState,
-  reducers: {},
+  reducers: {
+    setPage: (state, { payload }: ActionWithPayload<number>) => {
+      state.page = payload;
+    },
+    setPageSize: (state, { payload }: ActionWithPayload<number>) => {
+      state.pageSize = payload;
+    },
+    addToPageSize: (state) => {
+      state.pageSize += defaultPageSize;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getLatestTunes.pending, (state) => {
       state.isLoadingLatest = false;
@@ -19,7 +35,35 @@ const tuneSlice = createSlice({
       state.latestTunes = payload.data;
       state.isLoadingLatest = false;
     });
+    builder.addCase(getTunes.pending, (state) => {
+      state.isLoadingTunes = true;
+    });
+    builder.addCase(getTunes.fulfilled, (state, { payload }) => {
+      state.tunes = payload.data.entities;
+      state.page = payload.data.page;
+      state.pageSize = payload.data.pageSize;
+      state.totalEntities = payload.data.total;
+      state.isLoadingTunes = false;
+    });
+    builder.addCase(getTunes.rejected, (state) => {
+      state.isLoadingTunes = false;
+    });
+    builder.addCase(getTunesByCarId.pending, (state) => {
+      state.isLoadingTunes = true;
+    });
+    builder.addCase(getTunesByCarId.fulfilled, (state, { payload }) => {
+      state.tunes = payload.data.entities;
+      state.page = payload.data.page;
+      state.pageSize = payload.data.pageSize;
+      state.totalEntities = payload.data.total;
+      state.isLoadingTunes = false;
+    });
+    builder.addCase(getTunesByCarId.rejected, (state) => {
+      state.isLoadingTunes = false;
+    });
   },
 });
+
+export const { setPage, setPageSize, addToPageSize } = tuneSlice.actions;
 
 export default tuneSlice.reducer;

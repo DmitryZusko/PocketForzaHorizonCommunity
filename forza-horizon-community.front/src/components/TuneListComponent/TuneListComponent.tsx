@@ -1,26 +1,25 @@
-import { imageUtil } from "@/utilities";
 import { Autocomplete, CircularProgress, Grid, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { defaultSearchTreshhold } from "../constants";
+import { defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
 import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { NavigationCard } from "../NavigationCard";
 import { SearchComponent } from "../SearchComponent";
-import { useDesginListComponent } from "./useDesginListComponent";
+import { TuneCardBodyComponent } from "../TuneCardBodyComponent";
+import { useTuneListComponent } from "./useTuneListComponent";
 
-const DesginListComponent = () => {
+const TuneListComponent = () => {
   const {
+    tunes,
     searchQuery,
     autocompleteOptions,
-    designs,
     pageSize,
     totalEntities,
     handleSearchQueryChange,
     handleAutocompleteChange,
     makePageSizeBigger,
-  } = useDesginListComponent();
-
+  } = useTuneListComponent();
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <SearchComponent
           threshold={defaultSearchTreshhold}
@@ -38,24 +37,31 @@ const DesginListComponent = () => {
         <InfiniteScroll
           dataLength={totalEntities}
           next={makePageSizeBigger}
-          hasMore={pageSize < totalEntities}
+          hasMore={pageSize > totalEntities}
           loader={<CircularProgress />}
           endMessage={"this is it"}
         >
-          {designs.map((design) => (
+          {tunes.map((tune) => (
             <NavigationCard
-              key={design.id}
-              navigationLink={""}
-              cardTitle={design.title}
-              body={design.description}
-              thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
+              key={tune.id}
+              thumbnail="TuneThumbnail.png"
+              cardTitle={tune.title}
+              navigationLink=""
+              imageHeight={defaultTuneImageHeight}
+              body={
+                <TuneCardBodyComponent
+                  engineType={tune.engineType}
+                  aspirationType={tune.aspirationType}
+                  tiresCompound={tune.tiresCompound}
+                />
+              }
               footer={
                 <GuideCardFooterComponent
-                  shareCode={design.forzaShareCode}
-                  rating={design.rating}
-                  author={design.authorUsername}
-                  creationDate={design.creationDate}
-                  carModel={design.carModel}
+                  shareCode={tune.forzaShareCode}
+                  rating={tune.rating}
+                  author={tune.authorUsername}
+                  creationDate={tune.creationDate}
+                  carModel={tune.carModel}
                 />
               }
             />
@@ -66,4 +72,4 @@ const DesginListComponent = () => {
   );
 };
 
-export default DesginListComponent;
+export default TuneListComponent;
