@@ -6,3 +6,4 @@ export * from "./Manufacture";
 export * from "./NewsItem";
 export * from "./SimplifiedCar";
 export * from "./Tune";
+export * from "./DesignFullInfo";

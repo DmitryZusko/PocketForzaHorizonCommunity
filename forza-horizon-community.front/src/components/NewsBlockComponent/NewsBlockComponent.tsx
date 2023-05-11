@@ -4,7 +4,6 @@ import { useNewsBlockComponent } from "./useNewsBlockComponent";
 
 const NewsBlockComponent = ({ ...props }) => {
   const { isLoading, news } = useNewsBlockComponent();
-
   return (
     <Grid container spacing={2} {...props}>
       <Grid item xs={12}>

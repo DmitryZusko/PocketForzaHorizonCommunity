@@ -1,7 +1,7 @@
 import { defaultPageSize } from "@/components/constants/applicationConstants";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IDesignState } from "../types";
-import { getDesigns, getDesignsByCarId, getLatestDesigns } from "./thunks";
+import { getDesignById, getDesigns, getDesignsByCarId, getLatestDesigns } from "./thunks";
 
 const initialState: IDesignState = {
   isLoadingLatest: false,
@@ -11,6 +11,8 @@ const initialState: IDesignState = {
   page: 0,
   pageSize: defaultPageSize,
   totalEntities: 0,
+  isLoadingSelected: false,
+  selectedDesign: undefined,
 };
 
 const designSlice = createSlice({
@@ -56,6 +58,13 @@ const designSlice = createSlice({
     });
     builder.addCase(getDesignsByCarId.rejected, (state) => {
       state.isLoadingDesigns = false;
+    });
+    builder.addCase(getDesignById.pending, (state) => {
+      state.isLoadingSelected = true;
+    });
+    builder.addCase(getDesignById.fulfilled, (state, { payload }) => {
+      state.selectedDesign = payload.data;
+      state.isLoadingSelected = false;
     });
   },
 });

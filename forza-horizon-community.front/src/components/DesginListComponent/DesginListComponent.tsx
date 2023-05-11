@@ -45,7 +45,7 @@ const DesginListComponent = () => {
           {designs.map((design) => (
             <NavigationCard
               key={design.id}
-              navigationLink={""}
+              navigationLink={`designs/${design.id}`}
               cardTitle={design.title}
               body={design.description}
               thumbnail={imageUtil.addJpgHeader(design.thumbnail)}

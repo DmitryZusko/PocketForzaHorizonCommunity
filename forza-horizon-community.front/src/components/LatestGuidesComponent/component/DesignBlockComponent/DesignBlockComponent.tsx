@@ -1,5 +1,5 @@
 import { GuideCardFooterComponent, NavigationCard } from "@/components";
-import { dateFormater, imageUtil } from "@/utilities";
+import { imageUtil } from "@/utilities";
 import { Grid, Tooltip } from "@mui/material";
 import useDesignBlockComponent from "./useDesignBlockComponent";
 
@@ -14,14 +14,14 @@ const DesignBlockComponent = ({ ...props }) => {
             <NavigationCard
               thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
               cardTitle={design.title}
-              navigationLink=""
+              navigationLink={`designs/${design.id}`}
               body={design.description}
               footer={
                 <GuideCardFooterComponent
                   shareCode={design.forzaShareCode}
                   rating={design.rating}
                   author={design.authorUsername}
-                  creationDate={dateFormater.dateToString(design.creationDate)}
+                  creationDate={design.creationDate}
                   carModel={design.carModel}
                 />
               }

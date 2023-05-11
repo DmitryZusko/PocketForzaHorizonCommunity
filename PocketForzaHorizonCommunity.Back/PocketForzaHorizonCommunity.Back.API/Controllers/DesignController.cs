@@ -32,6 +32,12 @@ public class DesignController : ApplicationControllerBase
     public async Task<PaginatedResponse<DesignDto>> GetAllDesignsByCarIdAsync([FromQuery] FilteredCarDesignsGetRequest request) =>
         _mapper.Map<PaginatedResponse<DesignDto>>(await _service.GetAllByCarIdAsync(request));
 
+    [HttpGet("Ids")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<List<Guid>> GetAllIds() => await _service.GetAllIds();
+
 
     [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]

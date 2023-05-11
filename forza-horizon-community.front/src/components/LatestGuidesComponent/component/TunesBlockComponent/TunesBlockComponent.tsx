@@ -4,7 +4,6 @@ import {
   NavigationCard,
   TuneCardBodyComponent,
 } from "@/components";
-import { dateFormater } from "@/utilities";
 import { Grid, Tooltip } from "@mui/material";
 import { useTunesBlockComponent } from "./useTunesBlockComponent";
 
@@ -33,7 +32,7 @@ const TunesBlockComponent = ({ ...props }) => {
                   shareCode={tune.forzaShareCode}
                   rating={tune.rating}
                   author={tune.authorUsername}
-                  creationDate={dateFormater.dateToString(tune.creationDate)}
+                  creationDate={tune.creationDate}
                   carModel={tune.carModel}
                 />
               }
