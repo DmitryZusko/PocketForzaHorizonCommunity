@@ -20,3 +20,8 @@ export const designsSelector = createSelector(
     totalEntities,
   }),
 );
+
+export const selectedDesignSelector = createSelector(
+  designStateSelector,
+  ({ isLoadingSelected, selectedDesign }) => ({ isLoadingSelected, selectedDesign }),
+);

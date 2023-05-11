@@ -1,6 +1,7 @@
 import {
   IFilteredCarDesignRequest,
   IFilteredDesignRequest,
+  IGetByIdRequest,
   IGetLatestDesignsRequest,
 } from "@/data-transfer-objects";
 import { designService } from "@/services";
@@ -51,3 +52,7 @@ export const getDesignsByCarId = createAsyncThunk(
     });
   },
 );
+
+export const getDesignById = createAsyncThunk("design/getById", async ({ id }: IGetByIdRequest) => {
+  return designService.getById({ id });
+});

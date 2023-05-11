@@ -18,4 +18,6 @@ public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where T
     public async virtual Task CreateAsync(TEntity newEntity) => await Context.Set<TEntity>().AddAsync(newEntity);
 
     public virtual void Delete(TEntity entity) => Context.Set<TEntity>().Remove(entity);
+
+    public virtual IQueryable<Guid> GetAllIds() => Context.Set<TEntity>().Select(x => x.Id);
 }

@@ -1,4 +1,9 @@
-import { IDesign, IGetLatestDesignsRequest, IPaginatedResponse } from "@/data-transfer-objects";
+import {
+  IDesign,
+  IGetByIdRequest,
+  IGetLatestDesignsRequest,
+  IPaginatedResponse,
+} from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarDesignRequest, IAxiosFilteredDesignRequest } from "./types";
 
@@ -72,6 +77,20 @@ const getDesignsByCarId = ({
   });
 };
 
-const designService = { getLatestDesigns, getDesigns, getDesignsByCarId };
+const getAllIds = async () => {
+  const axios = customAxios.getAxiosInstance();
+  return axios.get<string[]>("design/Ids");
+};
+
+const getById = async ({ id }: IGetByIdRequest) => {
+  const axios = customAxios.getAxiosInstance();
+  return axios.get("design/info", {
+    params: {
+      id: id,
+    },
+  });
+};
+
+const designService = { getLatestDesigns, getDesigns, getDesignsByCarId, getAllIds, getById };
 
 export default designService;

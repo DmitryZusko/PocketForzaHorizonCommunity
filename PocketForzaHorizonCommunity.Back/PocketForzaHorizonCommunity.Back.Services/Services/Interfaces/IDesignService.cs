@@ -10,4 +10,5 @@ public interface IDesignService : IServiceBase<Design, FilteredDesignsGetRequest
     Task<PaginationModel<Design>> GetAllByCarIdAsync(FilteredCarDesignsGetRequest request);
     Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery);
     Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request);
+    Task<List<Guid>> GetAllIds();
 }

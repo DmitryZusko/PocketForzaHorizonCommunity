@@ -9,5 +9,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> GetById(Guid id);
         Task<int> SaveAsync();
+        IQueryable<Guid> GetAllIds();
     }
 }

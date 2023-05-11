@@ -4,6 +4,7 @@ import {
   ICar,
   ICarType,
   IDesign,
+  IDesignFullInfo,
   IManufacture,
   INewsItem,
   ISimplifiedCar,
@@ -39,6 +40,8 @@ export interface IDesignState {
   page: number;
   pageSize: number;
   totalEntities: number;
+  isLoadingSelected: boolean;
+  selectedDesign: IDesignFullInfo | undefined;
 }
 
 export interface ITuneState {
