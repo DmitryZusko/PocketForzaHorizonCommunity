@@ -1,3 +1,4 @@
+import { imageUtil } from "@/utilities";
 import { Grid } from "@mui/material";
 import { GuideDetailsHeader } from "../GuideDetailsHeader";
 import { DesignDetailsBodyComponent } from "./components";
@@ -12,7 +13,7 @@ const DesignDetailsComponent = ({ id }: IDesignDetailsComponentProps) => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <GuideDetailsHeader
-              thumbnail={selectedDesign?.thumbnail}
+              thumbnail={imageUtil.addJpgHeader(selectedDesign?.thumbnail)}
               title={selectedDesign?.title || ""}
               authorName={selectedDesign?.authorUsername || ""}
               shareCode={selectedDesign?.forzaShareCode || ""}
