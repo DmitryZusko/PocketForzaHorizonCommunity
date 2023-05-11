@@ -1,5 +1,6 @@
 import {
   IDesign,
+  IDesignFullInfo,
   IGetByIdRequest,
   IGetLatestDesignsRequest,
   IPaginatedResponse,
@@ -84,7 +85,7 @@ const getAllIds = async () => {
 
 const getById = async ({ id }: IGetByIdRequest) => {
   const axios = customAxios.getAxiosInstance();
-  return axios.get("design/info", {
+  return axios.get<IDesignFullInfo>("design/info", {
     params: {
       id: id,
     },

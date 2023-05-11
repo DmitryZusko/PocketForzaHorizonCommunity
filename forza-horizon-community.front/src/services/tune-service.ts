@@ -1,4 +1,4 @@
-import { IPaginatedResponse, ITune } from "@/data-transfer-objects";
+import { IGetByIdRequest, IPaginatedResponse, ITune, ITuneFullInfo } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarTuneRequest, IAxiosFilteredTuneRequest } from "./types";
 
@@ -28,6 +28,11 @@ const getTunes = async ({
       PageSize: pageSize,
     },
   });
+};
+
+const getAllIds = () => {
+  const axios = customAxios.getAxiosInstance();
+  return axios.get<string[]>("tune/Ids");
 };
 
 const getTunesByCarId = async ({
@@ -66,10 +71,17 @@ const getLatestTunes = (amount: number) => {
   return axios.get<ITune[]>("tune/getlasttunes", { params: { TunesAmount: amount } });
 };
 
+const getById = ({ id }: IGetByIdRequest) => {
+  const axios = customAxios.getAxiosInstance();
+  return axios.get<ITuneFullInfo>("tune/info", { params: { id: id } });
+};
+
 const tuneService = {
   getTunes,
+  getAllIds,
   getTunesByCarId,
   getLatestTunes,
+  getById,
 };
 
 export default tuneService;

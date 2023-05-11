@@ -1,15 +1,17 @@
-import { DesignDetailsContent } from "@/page-content";
-import { designService } from "@/services";
+import { TuneDetailsContent } from "@/page-content";
+import { tuneService } from "@/services";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   let ids: string[] = [];
 
-  designService.getAllIds().then((result) => (ids = result.data));
+  tuneService.getAllIds().then((result) => (ids = result.data));
 
   const paths = ids.map((path) => {
     return {
-      params: { id: path },
+      params: {
+        id: path,
+      },
     };
   });
 
@@ -27,8 +29,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-const DesignDetails = (props: { id: string }) => {
-  return <DesignDetailsContent id={props.id} />;
+const TuneDetails = (props: { id: string }) => {
+  return <TuneDetailsContent id={props.id} />;
 };
 
-export default DesignDetails;
+export default TuneDetails;

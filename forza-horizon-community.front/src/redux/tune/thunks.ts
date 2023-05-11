@@ -1,4 +1,8 @@
-import { IFilteredCarTuneRequest, IFilteredTuneRequest } from "@/data-transfer-objects";
+import {
+  IFilteredCarTuneRequest,
+  IFilteredTuneRequest,
+  IGetByIdRequest,
+} from "@/data-transfer-objects";
 import { tuneService } from "@/services";
 import { customAxios } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -41,3 +45,7 @@ export const getTunesByCarId = createAsyncThunk(
     });
   },
 );
+
+export const getTuneById = createAsyncThunk("tune/getTuneById", async ({ id }: IGetByIdRequest) => {
+  return tuneService.getById({ id });
+});

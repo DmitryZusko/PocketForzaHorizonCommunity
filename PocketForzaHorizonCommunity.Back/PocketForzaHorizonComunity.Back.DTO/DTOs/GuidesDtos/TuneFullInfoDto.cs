@@ -5,8 +5,6 @@ namespace PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 public class TuneFullInfoDto : TuneDto
 {
     public string EngineDescription { get; set; } = string.Empty;
-    public EngineType Engine { get; set; }
-    public AspirationType Aspiration { get; set; }
     public IntakeType Intake { get; set; }
     public IgnitionType Ignition { get; set; }
     public DisplacementType Displacement { get; set; }
@@ -24,7 +22,6 @@ public class TuneFullInfoDto : TuneDto
     public DifferentialType Differential { get; set; }
 
     public string TiresDescription { get; set; } = string.Empty;
-    public TiresCompoundType Compound { get; set; }
     public TiresWidthType FrontTireWidth { get; set; }
     public TiresWidthType RearTireWidth { get; set; }
     public TrackWidthType FrontTrackWidth { get; set; }

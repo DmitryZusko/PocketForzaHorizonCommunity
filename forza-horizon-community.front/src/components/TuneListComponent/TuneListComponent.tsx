@@ -46,7 +46,7 @@ const TuneListComponent = () => {
               key={tune.id}
               thumbnail="TuneThumbnail.png"
               cardTitle={tune.title}
-              navigationLink=""
+              navigationLink={`tunes/${tune.id}`}
               imageHeight={defaultTuneImageHeight}
               body={
                 <TuneCardBodyComponent

@@ -31,6 +31,12 @@ public class TuneController : ApplicationControllerBase
     public async Task<PaginatedResponse<TuneDto>> GetAllTunesByCarIdAsync([FromQuery] FilteredCarTuneGetRequest request) =>
         _mapper.Map<PaginatedResponse<TuneDto>>(await _service.GetAllByCarIdAsync(request));
 
+    [HttpGet("Ids")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<List<Guid>> GetallIds() => await _service.GetAllIds();
+
     [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

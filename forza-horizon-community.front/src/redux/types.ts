@@ -9,6 +9,7 @@ import {
   INewsItem,
   ISimplifiedCar,
   ITune,
+  ITuneFullInfo,
 } from "@/data-transfer-objects";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
@@ -52,6 +53,8 @@ export interface ITuneState {
   page: number;
   pageSize: number;
   totalEntities: number;
+  isLoadingSelected: boolean;
+  selectedTune: ITuneFullInfo | undefined;
 }
 
 export interface ICarState {
