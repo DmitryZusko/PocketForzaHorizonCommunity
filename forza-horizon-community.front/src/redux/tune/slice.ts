@@ -1,7 +1,7 @@
 import { defaultPageSize } from "@/components";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, ITuneState } from "../types";
-import { getLatestTunes, getTunes, getTunesByCarId } from "./thunks";
+import { getLatestTunes, getTuneById, getTunes, getTunesByCarId } from "./thunks";
 
 const initialState: ITuneState = {
   isLoadingLatest: false,
@@ -11,6 +11,8 @@ const initialState: ITuneState = {
   page: 0,
   pageSize: defaultPageSize,
   totalEntities: 0,
+  isLoadingSelected: false,
+  selectedTune: undefined,
 };
 
 const tuneSlice = createSlice({
@@ -60,6 +62,13 @@ const tuneSlice = createSlice({
     });
     builder.addCase(getTunesByCarId.rejected, (state) => {
       state.isLoadingTunes = false;
+    });
+    builder.addCase(getTuneById.pending, (state) => {
+      state.isLoadingSelected = true;
+    });
+    builder.addCase(getTuneById.fulfilled, (state, { payload }) => {
+      state.selectedTune = payload.data;
+      state.isLoadingSelected = false;
     });
   },
 });

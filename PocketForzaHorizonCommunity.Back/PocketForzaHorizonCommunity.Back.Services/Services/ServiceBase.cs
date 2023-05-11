@@ -17,6 +17,9 @@ public abstract class ServiceBase<TRepo, TEntity, TGetRequest> : IServiceBase<TE
     public virtual async Task<PaginationModel<TEntity>> GetAllAsync(TGetRequest request) =>
         await _repository.GetAll().PaginateAsync(request.Page, request.PageSize);
 
+    public async Task<List<Guid>> GetAllIds() =>
+        await _repository.GetAllIds().ToListAsync();
+
     public virtual async Task<TEntity> GetByIdAsync(Guid Id) =>
          await _repository.GetById(Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 

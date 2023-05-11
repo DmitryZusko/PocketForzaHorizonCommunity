@@ -8,6 +8,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
     {
         Task DeleteAsync(Guid id);
         Task<PaginationModel<TEntity>> GetAllAsync(TGetRequest request);
+        Task<List<Guid>> GetAllIds();
         Task<TEntity> GetByIdAsync(Guid Id);
     }
 }

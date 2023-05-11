@@ -21,3 +21,8 @@ export const tuneLastestSelector = createSelector(
     latestTunes,
   }),
 );
+
+export const selectedTuneSelector = createSelector(
+  tuneStateSelector,
+  ({ isLoadingSelected, selectedTune }) => ({ isLoadingSelected, selectedTune }),
+);
