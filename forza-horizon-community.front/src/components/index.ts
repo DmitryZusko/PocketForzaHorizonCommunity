@@ -16,3 +16,4 @@ export * from "./GuideDetailsHeader";
 export * from "./TuneDetailsComponent";
 export * from "./forms";
 export * from "./ImageUploaderComponent";
+export * from "./FormButtonGroupComponent";
