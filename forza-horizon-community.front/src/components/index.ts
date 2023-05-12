@@ -14,3 +14,5 @@ export * from "./TuneListComponent";
 export * from "./DesignDetailsComponent";
 export * from "./GuideDetailsHeader";
 export * from "./TuneDetailsComponent";
+export * from "./forms";
+export * from "./ImageUploaderComponent";

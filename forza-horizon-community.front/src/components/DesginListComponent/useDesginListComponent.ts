@@ -1,5 +1,5 @@
 import {
-  addToTunePageSize,
+  addToDesignPageSize,
   carNamesSelector,
   designsSelector,
   getCarNames,
@@ -72,7 +72,7 @@ export const useDesginListComponent = () => {
   );
 
   const makePageSizeBigger = useCallback(() => {
-    dispatch(addToTunePageSize());
+    dispatch(addToDesignPageSize());
   }, [dispatch]);
 
   useEffect(() => {

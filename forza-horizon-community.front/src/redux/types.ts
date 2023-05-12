@@ -88,3 +88,10 @@ export interface ISelectedFilterParamsState {
   selectedCarTypes: string[];
   selectedCountries: string[];
 }
+
+export interface IGuideUploaderState {
+  isDesignThumbnailError: boolean;
+  designThumbnail: File | undefined;
+  isDesignGalleryError: boolean;
+  designGallery: File[];
+}

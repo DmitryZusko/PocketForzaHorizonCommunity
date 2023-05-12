@@ -1,4 +1,3 @@
-import { imageUtil } from "@/utilities";
 import { Grid } from "@mui/material";
 import Image from "next/image";
 import { defaultCardImageSize } from "../constants";
@@ -18,7 +17,7 @@ const GuideDetailsHeader = ({
       <Grid item xs={12}>
         <Image
           alt="thumbnail"
-          src={imageUtil.addJpgHeader(thumbnail || "")}
+          src={thumbnail || "/TuneThumbnail.png"}
           width={defaultCardImageSize}
           height={defaultCardImageSize}
         />
