@@ -1,7 +1,15 @@
-const convertTo = (value: string, enumerator: any) => {
+const getValueByStringKey = (value: string, enumerator: any) => {
   return enumerator[value as keyof typeof enumerator];
 };
 
-const enumConverter = { convertTo };
+const getKeyByStringValue = (value: string, enumerator: any) => {
+  return Object.keys(enumerator)[Object.values(enumerator).find((e) => e === value) as number];
+};
 
-export default enumConverter;
+const getAllValues = (enumerator: any) => {
+  return Object.keys(enumerator).map((item) => enumerator[item]);
+};
+
+const enumFormater = { getValueByStringKey, getKeyByStringValue, getAllValues };
+
+export default enumFormater;
