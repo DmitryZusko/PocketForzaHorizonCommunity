@@ -38,7 +38,7 @@ export const useAddNewTuneFormComponent = () => {
     console.log(values.frontTrackWidth);
     console.log(values.rearTrackWidth);
 
-    //cleanInput();
+    cleanInput();
   };
 
   const handleCancel = () => {
@@ -47,6 +47,7 @@ export const useAddNewTuneFormComponent = () => {
   };
 
   const formik = useFormik({
+    validateOnChange: false,
     initialValues: initialValues,
     validationSchema: validationScheme,
     onSubmit: (values) => handleSubmit(values),
