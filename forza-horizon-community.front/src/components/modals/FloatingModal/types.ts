@@ -1,5 +1,5 @@
 export interface IFloatingModalHook {
-  setIsOpen: (newValue: boolean) => void;
+  handleClose: () => void;
 }
 
 export interface IFloatingModalProps extends IFloatingModalHook {
