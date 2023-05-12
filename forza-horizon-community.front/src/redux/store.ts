@@ -14,6 +14,7 @@ import { carReducer } from "./car";
 import { designReducer } from "./design";
 import { filterSchemeReducer } from "./filter-scheme";
 import { gameStatisticsReducer } from "./game-statistics";
+import { guideUploaderReducer } from "./guide-uploader";
 import { newsReducer } from "./news";
 import { selectedFilterParamsReducer } from "./selectedFilterParams";
 import { tuneReducer } from "./tune";
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   car: carReducer,
   filterScheme: filterSchemeReducer,
   selectedFilterParams: selectedFilterParamsReducer,
+  guideUploader: guideUploaderReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

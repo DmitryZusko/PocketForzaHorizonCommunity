@@ -30,23 +30,6 @@ export const filterSchemeSelector = createSelector(
   }),
 );
 
-// export const filterSelectedValuesSelector = createSelector(
-//   filterSchemeStateSelector,
-//   ({
-//     selectedPriceRange,
-//     selectedYearRange,
-//     selectedManufactures,
-//     selectedCarTypes,
-//     selectedCountries,
-//   }) => ({
-//     selectedPriceRange,
-//     selectedYearRange,
-//     selectedManufactures,
-//     selectedCarTypes,
-//     selectedCountries,
-//   }),
-// );
-
 export const carNamesSelector = createSelector(
   filterSchemeStateSelector,
   ({ isLoadingCarNames, carNames }) => ({

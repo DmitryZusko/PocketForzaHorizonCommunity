@@ -9,3 +9,4 @@ export * from "./game-statistics";
 export * from "./news";
 export * from "./selectedFilterParams";
 export * from "./tune";
+export * from "./guide-uploader";

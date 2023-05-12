@@ -25,3 +25,5 @@ export const defaultInfinitLoaderAdjustment = 10;
 export const defaultPriceStep = 5000;
 
 export const defaultSearchTreshhold = 3;
+
+export const maxImageSizeInMB = 3;
