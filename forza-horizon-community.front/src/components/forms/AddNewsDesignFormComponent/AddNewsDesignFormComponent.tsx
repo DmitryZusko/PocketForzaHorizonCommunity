@@ -93,7 +93,7 @@ const AddNewsDesignFormComponent = () => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                name="car"
+                name="selectedCarId"
                 label="Car"
                 error={Boolean(formik.errors.selectedCarId)}
                 helperText={formik.errors.selectedCarId}

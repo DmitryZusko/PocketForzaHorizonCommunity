@@ -1,4 +1,4 @@
-import { enumConverter } from "@/utilities";
+import { enumFormater } from "@/utilities";
 import { Container, Grid, Typography } from "@mui/material";
 import { AspirationType, EngineType, TiresCompoundType } from "../constants";
 import { ITuneCardBodyComponentProps } from "./types";
@@ -17,7 +17,9 @@ const TuneCardBodyComponent = ({
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="h6">{enumConverter.convertTo(engineType, EngineType)}</Typography>
+          <Typography variant="h6">
+            {enumFormater.getValueByStringKey(engineType, EngineType)}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h6" fontWeight={700}>
@@ -26,7 +28,7 @@ const TuneCardBodyComponent = ({
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h6">
-            {enumConverter.convertTo(aspirationType, AspirationType)}
+            {enumFormater.getValueByStringKey(aspirationType, AspirationType)}
           </Typography>
         </Grid>
         <Grid item xs={6}>
@@ -36,7 +38,7 @@ const TuneCardBodyComponent = ({
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h6">
-            {enumConverter.convertTo(tiresCompound, TiresCompoundType)}
+            {enumFormater.getValueByStringKey(tiresCompound, TiresCompoundType)}
           </Typography>
         </Grid>
       </Grid>
