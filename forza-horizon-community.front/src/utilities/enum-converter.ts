@@ -3,7 +3,7 @@ const getValueByStringKey = (value: string, enumerator: any) => {
 };
 
 const getKeyByStringValue = (value: string, enumerator: any) => {
-  return Object.keys(enumerator)[Object.values(enumerator).find((e) => e === value) as number];
+  return Object.keys(enumerator)[Object.values(enumerator).indexOf(value)];
 };
 
 const getAllValues = (enumerator: any) => {
