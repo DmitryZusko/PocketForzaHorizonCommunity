@@ -3,6 +3,7 @@ import { ActionWithPayload, IModalState } from "../types";
 
 const initialState: IModalState = {
   isAddManufactureOpen: false,
+  isAddCarTypeOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -12,9 +13,12 @@ const modalSlice = createSlice({
     setIsAddManufactureOpen: (state, { payload }: ActionWithPayload<boolean>) => {
       state.isAddManufactureOpen = payload;
     },
+    setIsAddCarTypeOpen: (state, { payload }: ActionWithPayload<boolean>) => {
+      state.isAddCarTypeOpen = payload;
+    },
   },
 });
 
-export const { setIsAddManufactureOpen } = modalSlice.actions;
+export const { setIsAddManufactureOpen, setIsAddCarTypeOpen } = modalSlice.actions;
 
 export default modalSlice.reducer;

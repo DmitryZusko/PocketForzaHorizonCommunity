@@ -8,3 +8,4 @@ export * from "./FilteredCarTuneRequest";
 export * from "./FilteredTuneRequest";
 export * from "./GetByIdRequest";
 export * from "./ManufactureRequests";
+export * from "./CarTypeRequests";

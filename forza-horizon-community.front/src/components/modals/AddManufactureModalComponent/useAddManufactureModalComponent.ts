@@ -1,5 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@/redux";
-import { addManufactureSelector, setIsAddManufactureOpen } from "@/redux/modal";
+import {
+  addManufactureSelector,
+  setIsAddManufactureOpen,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
 import { useCallback } from "react";
 
 export const useAddManufactureModalComponent = () => {

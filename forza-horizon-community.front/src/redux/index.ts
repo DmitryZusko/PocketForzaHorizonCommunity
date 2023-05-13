@@ -10,3 +10,4 @@ export * from "./news";
 export * from "./selectedFilterParams";
 export * from "./tune";
 export * from "./guide-uploader";
+export * from "./modal";
