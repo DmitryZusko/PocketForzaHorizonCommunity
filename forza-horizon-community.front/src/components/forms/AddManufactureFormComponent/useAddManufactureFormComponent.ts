@@ -2,10 +2,10 @@ import {
   getManufactures,
   manufacturesSelector,
   postManufacture,
+  setIsAddManufactureOpen,
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
-import { setIsAddManufactureOpen } from "@/redux/modal";
 import { showToast } from "@/utilities";
 import { useFormik } from "formik";
 import { useCallback, useEffect } from "react";
