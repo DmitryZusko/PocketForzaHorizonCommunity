@@ -1,6 +1,7 @@
-import { IFilteredCarsRequest } from "@/data-transfer-objects";
+import { defaultPageSize } from "@/components";
+import { IFilteredCarsRequest, IPostCarRequest } from "@/data-transfer-objects";
 import { carService } from "@/services";
-import { customAxios } from "@/utilities";
+import { customAxios, showToast } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getCars = createAsyncThunk(
@@ -36,6 +37,20 @@ export const getCars = createAsyncThunk(
       selectedCarTypes: selectedCarTypes,
       selectedManufactures: selectedManufactures,
       cancelToken: cancelationToken.token,
+    });
+  },
+);
+
+export const postCar = createAsyncThunk(
+  "car/postCar",
+  async (request: IPostCarRequest, { dispatch }) => {
+    const promise = carService.postCar(request);
+
+    promise.then((r) => {
+      if (r.status === 201) {
+        showToast.showSuccess("New car is added!");
+        dispatch(getCars({ page: 0, pageSize: defaultPageSize }));
+      }
     });
   },
 );

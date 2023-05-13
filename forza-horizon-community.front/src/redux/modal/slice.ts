@@ -4,6 +4,7 @@ import { ActionWithPayload, IModalState } from "../types";
 const initialState: IModalState = {
   isAddManufactureOpen: false,
   isAddCarTypeOpen: false,
+  isAddCarOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -16,9 +17,12 @@ const modalSlice = createSlice({
     setIsAddCarTypeOpen: (state, { payload }: ActionWithPayload<boolean>) => {
       state.isAddCarTypeOpen = payload;
     },
+    setIsAddCarOpen: (state, { payload }: ActionWithPayload<boolean>) => {
+      state.isAddCarOpen = payload;
+    },
   },
 });
 
-export const { setIsAddManufactureOpen, setIsAddCarTypeOpen } = modalSlice.actions;
+export const { setIsAddManufactureOpen, setIsAddCarTypeOpen, setIsAddCarOpen } = modalSlice.actions;
 
 export default modalSlice.reducer;

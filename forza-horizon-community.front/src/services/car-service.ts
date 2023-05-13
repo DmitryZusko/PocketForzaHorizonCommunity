@@ -2,6 +2,7 @@ import {
   ICar,
   ICarFilterSchemeResponse,
   IPaginatedResponse,
+  IPostCarRequest,
   ISimplifiedCar,
 } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
@@ -20,6 +21,7 @@ const getCars = ({
   cancelToken,
 }: IAxiosFilteredCarsRequest) => {
   const axios = customAxios.getAxiosInstance();
+
   return axios.get<IPaginatedResponse<ICar>>("car", {
     cancelToken: cancelToken,
     params: {
@@ -46,6 +48,18 @@ const getCarNames = async () => {
   return axios.get<IPaginatedResponse<ISimplifiedCar>>("car/CarNames");
 };
 
-const carService = { getCars, getCarFilterScheme, getCarNames };
+const postCar = async (request: IPostCarRequest) => {
+  const axios = customAxios.getAxiosInstance();
+  const data = new FormData();
+  data.append("carTypeId", request.carTypeId);
+  data.append("image", request.image);
+  data.append("manufactureId", request.manufactureId);
+  data.append("model", request.model);
+  data.append("price", request.price.toString());
+  data.append("year", request.year.toString());
+  return axios.post<ICar>("car", data);
+};
+
+const carService = { getCars, getCarFilterScheme, getCarNames, postCar };
 
 export default carService;
