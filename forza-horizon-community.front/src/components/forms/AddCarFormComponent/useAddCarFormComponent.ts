@@ -25,12 +25,6 @@ export const useAddCarFormComponent = () => {
   const handleSubmit = (values: IFormikNewCarValues) => {
     if (thumbnail.current === undefined) return;
 
-    console.log(values.carTypeId);
-    console.log(values.manufactureId);
-    console.log(values.model);
-    console.log(values.price);
-    console.log(values.year);
-
     dispatch(
       postCar({
         model: values.model,

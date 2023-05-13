@@ -21,6 +21,7 @@ const getCars = ({
   cancelToken,
 }: IAxiosFilteredCarsRequest) => {
   const axios = customAxios.getAxiosInstance();
+
   return axios.get<IPaginatedResponse<ICar>>("car", {
     cancelToken: cancelToken,
     params: {
