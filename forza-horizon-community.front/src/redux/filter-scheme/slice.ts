@@ -6,6 +6,7 @@ import {
   getCarNames,
   getCarTypes,
   getManufactures,
+  postCarType,
   postManufacture,
 } from "./thunks";
 
@@ -67,7 +68,11 @@ const filterSchemeSlice = createSlice({
     });
     builder.addCase(postManufacture.fulfilled, (state, { payload }) => {
       state.manufactures.push(payload.data);
-      showToast.showSuccess("New Manufacture is added");
+      showToast.showSuccess("New Manufacture is added!");
+    });
+    builder.addCase(postCarType.fulfilled, (state, { payload }) => {
+      state.carTypes.push(payload.data);
+      showToast.showSuccess("New car type is added!");
     });
   },
 });

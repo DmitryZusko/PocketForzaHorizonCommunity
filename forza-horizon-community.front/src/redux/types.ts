@@ -98,4 +98,5 @@ export interface IGuideUploaderState {
 
 export interface IModalState {
   isAddManufactureOpen: boolean;
+  isAddCarTypeOpen: boolean;
 }
