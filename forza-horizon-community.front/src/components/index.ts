@@ -22,3 +22,4 @@ export * from "./NavBarComponent";
 export * from "./CustomLinkComponent";
 export * from "./ButtonWithMenuComponent";
 export * from "./ImageBackgroundComponent";
+export * from "./PageFooterComponent";
