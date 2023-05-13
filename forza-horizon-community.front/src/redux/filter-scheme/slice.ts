@@ -1,6 +1,13 @@
+import { showToast } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { IFiltetSchemeState } from "../types";
-import { getCarFilterScheme, getCarNames, getCarTypes, getManufactures } from "./thunks";
+import {
+  getCarFilterScheme,
+  getCarNames,
+  getCarTypes,
+  getManufactures,
+  postManufacture,
+} from "./thunks";
 
 const initialState: IFiltetSchemeState = {
   isLoadingCarTypes: false,
@@ -57,6 +64,10 @@ const filterSchemeSlice = createSlice({
       state.minYear = payload.data.minYear;
       state.maxYear = payload.data.maxYear;
       state.isLoadingCarFilterScheme = false;
+    });
+    builder.addCase(postManufacture.fulfilled, (state, { payload }) => {
+      state.manufactures.push(payload.data);
+      showToast.showSuccess("New Manufacture is added");
     });
   },
 });

@@ -4,6 +4,7 @@ import {
   IManufacture,
   IPaginatedRequest,
   IPaginatedResponse,
+  IPostManufactureRequest,
   ISimplifiedCar,
 } from "@/data-transfer-objects";
 import { carService, carTypeService, manufactureService } from "@/services";
@@ -64,3 +65,10 @@ export const getCarNames = createAsyncThunk<
   if (carNames.length > 0) return rejectWithValue(stateAlreadyUploadedMessage);
   return carService.getCarNames();
 });
+
+export const postManufacture = createAsyncThunk(
+  "filterScheme/postManufacture",
+  async ({ name, country }: IPostManufactureRequest) => {
+    return manufactureService.postManufacture({ name, country });
+  },
+);

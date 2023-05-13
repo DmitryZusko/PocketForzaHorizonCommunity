@@ -7,3 +7,4 @@ export * from "./PaginatedRequest";
 export * from "./FilteredCarTuneRequest";
 export * from "./FilteredTuneRequest";
 export * from "./GetByIdRequest";
+export * from "./ManufactureRequests";
