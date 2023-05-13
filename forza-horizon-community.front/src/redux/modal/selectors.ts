@@ -3,11 +3,18 @@ import { RootState } from "../store";
 
 export const modalStateSelector = ({ modal }: RootState) => modal;
 
-export const addManufactureSelector = createSelector(
+export const addManufactureModalSelector = createSelector(
   modalStateSelector,
   ({ isAddManufactureOpen }) => ({ isAddManufactureOpen }),
 );
 
-export const addCarTypeSelector = createSelector(modalStateSelector, ({ isAddCarTypeOpen }) => ({
-  isAddCarTypeOpen,
+export const addCarTypeModalSelector = createSelector(
+  modalStateSelector,
+  ({ isAddCarTypeOpen }) => ({
+    isAddCarTypeOpen,
+  }),
+);
+
+export const addCarModalSelector = createSelector(modalStateSelector, ({ isAddCarOpen }) => ({
+  isAddCarOpen,
 }));
