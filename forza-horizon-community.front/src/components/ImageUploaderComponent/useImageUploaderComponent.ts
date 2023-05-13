@@ -1,4 +1,4 @@
-import fileSizeConverter from "@/utilities/file-size-converter";
+import { fileSizeConverter } from "@/utilities";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ErrorColor, IImageUploaderComponentHook } from "./types";
 

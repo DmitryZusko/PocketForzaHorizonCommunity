@@ -15,6 +15,7 @@ import { designReducer } from "./design";
 import { filterSchemeReducer } from "./filter-scheme";
 import { gameStatisticsReducer } from "./game-statistics";
 import { guideUploaderReducer } from "./guide-uploader";
+import { modalReducer } from "./modal";
 import { newsReducer } from "./news";
 import { selectedFilterParamsReducer } from "./selectedFilterParams";
 import { tuneReducer } from "./tune";
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   filterScheme: filterSchemeReducer,
   selectedFilterParams: selectedFilterParamsReducer,
   guideUploader: guideUploaderReducer,
+  modal: modalReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

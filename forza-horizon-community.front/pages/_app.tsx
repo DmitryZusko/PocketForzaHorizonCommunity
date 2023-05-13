@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { initializePersistor, initializeStore } from "@/redux";
+import { LeftBottomToastComponent } from "@/components";
 
 export default function App({ Component, pageProps }: AppProps) {
   const store = useMemo(() => {
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Component {...pageProps} />
+        <LeftBottomToastComponent />
       </PersistGate>
     </Provider>
   );

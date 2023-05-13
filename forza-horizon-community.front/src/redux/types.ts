@@ -95,3 +95,7 @@ export interface IGuideUploaderState {
   isDesignGalleryError: boolean;
   designGallery: File[];
 }
+
+export interface IModalState {
+  isAddManufactureOpen: boolean;
+}

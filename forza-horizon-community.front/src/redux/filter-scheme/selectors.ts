@@ -37,3 +37,21 @@ export const carNamesSelector = createSelector(
     carNames,
   }),
 );
+
+export const manufacturesSelector = createSelector(
+  filterSchemeStateSelector,
+  ({ isLoadingManufacture, manufactures, totalManufactures }) => ({
+    isLoadingManufacture,
+    manufactures,
+    totalManufactures,
+  }),
+);
+
+export const carTypesSelector = createSelector(
+  filterSchemeStateSelector,
+  ({ isLoadingCarTypes, carTypes, totalCarTypes }) => ({
+    isLoadingCarTypes,
+    carTypes,
+    totalCarTypes,
+  }),
+);
