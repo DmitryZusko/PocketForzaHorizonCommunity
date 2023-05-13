@@ -1,4 +1,4 @@
-import { IPaginatedRequest } from "./PaginatedRequest";
+import { IPaginatedRequest } from "../PaginatedRequest";
 
 export interface IFilteredCarsRequest extends IPaginatedRequest {
   minPrice?: number;
