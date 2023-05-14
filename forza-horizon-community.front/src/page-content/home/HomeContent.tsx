@@ -7,10 +7,8 @@ import {
 } from "@/components";
 import { Box, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
-import { useHomeContent } from "./useHomeContent";
 
 const HomeContent = () => {
-  const { isNewsLoading } = useHomeContent();
   return (
     <Box sx={styles.outerBlock}>
       <NavBarComponent />
