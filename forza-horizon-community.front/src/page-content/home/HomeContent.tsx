@@ -41,7 +41,7 @@ const HomeContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <CustomAccordionComponent title="News">
+      <CustomAccordionComponent title="News" isExpandedByDefault={true}>
         <NewsBlockComponent />
       </CustomAccordionComponent>
       <ScrollUpFabComponent />

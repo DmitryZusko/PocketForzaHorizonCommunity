@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { ICustomAccordionComponentHook } from "./types";
 
-export const useCustomAccordionComponent = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+export const useCustomAccordionComponent = ({
+  isExpandedByDefault,
+}: ICustomAccordionComponentHook) => {
+  const [isExpanded, setIsExpanded] = useState(isExpandedByDefault);
 
   const handleChange = () => {
     setIsExpanded(!isExpanded);

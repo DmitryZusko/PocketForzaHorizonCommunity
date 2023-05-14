@@ -7,10 +7,11 @@ import { styles } from "./styles";
 
 const CustomAccordionComponent = ({
   title,
+  isExpandedByDefault,
   unmountOnExit,
   children,
 }: PropsWithChildren<ICustomAccordionComponentProps>) => {
-  const { isExpanded, handleChange } = useCustomAccordionComponent();
+  const { isExpanded, handleChange } = useCustomAccordionComponent({ isExpandedByDefault });
   return (
     <Accordion
       expanded={isExpanded}
