@@ -12,7 +12,7 @@ const BaseCard = ({
   ...props
 }: IBaseCardProps) => {
   return (
-    <Card {...props}>
+    <Card sx={styles.baseCard} {...props}>
       <CardMedia
         component="img"
         image={thumbnail}

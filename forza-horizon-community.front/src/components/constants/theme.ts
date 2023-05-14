@@ -67,7 +67,7 @@ export const baseTheme = createTheme({
   components: {
     MuiGrid: {
       defaultProps: {
-        spacing: 2,
+        spacing: 5,
       },
     },
   },

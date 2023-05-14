@@ -5,4 +5,8 @@ export const styles = {
     mt: baseTheme.spacing(10),
     mb: baseTheme.spacing(10),
   },
+
+  baseCard: {
+    m: baseTheme.spacing(5),
+  },
 };
