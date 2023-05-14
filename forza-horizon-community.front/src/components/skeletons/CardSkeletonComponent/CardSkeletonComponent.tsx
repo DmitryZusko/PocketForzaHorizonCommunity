@@ -1,8 +1,9 @@
 import { Card, CardContent, CardMedia, Container, Skeleton, Typography } from "@mui/material";
+import { styles } from "./styles";
 
 const CardSkeletonComponent = () => {
   return (
-    <Card>
+    <Card sx={styles.skeleton}>
       <CardMedia>
         <Skeleton variant="rectangular" width="100vw" height={150} />
       </CardMedia>
