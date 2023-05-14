@@ -1,4 +1,5 @@
 import {
+  CustomAccordionComponent,
   ImageBackgroundComponent,
   NavBarComponent,
   NewsBlockComponent,
@@ -6,8 +7,10 @@ import {
 } from "@/components";
 import { Box, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
+import { useHomeContent } from "./useHomeContent";
 
 const HomeContent = () => {
+  const { isNewsLoading } = useHomeContent();
   return (
     <Box sx={styles.outerBlock}>
       <NavBarComponent />
@@ -38,7 +41,9 @@ const HomeContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <NewsBlockComponent />
+      <CustomAccordionComponent title="News">
+        <NewsBlockComponent />
+      </CustomAccordionComponent>
       <ScrollUpFabComponent />
     </Box>
   );

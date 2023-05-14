@@ -13,4 +13,8 @@ export const styles = {
   textBlock: {
     m: baseTheme.spacing(7),
   },
+
+  accordion: {
+    mx: baseTheme.spacing(10),
+  },
 };
