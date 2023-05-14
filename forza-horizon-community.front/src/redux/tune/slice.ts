@@ -31,11 +31,13 @@ const tuneSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getLatestTunes.pending, (state) => {
-      state.isLoadingLatest = false;
+      state.isLoadingLatest = true;
     });
     builder.addCase(getLatestTunes.fulfilled, (state, { payload }) => {
       state.latestTunes = payload.data;
-      state.isLoadingLatest = false;
+      setTimeout(() => {
+        state.isLoadingLatest = false;
+      }, 5000);
     });
     builder.addCase(getTunes.pending, (state) => {
       state.isLoadingTunes = true;
