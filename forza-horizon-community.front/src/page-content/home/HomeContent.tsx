@@ -1,6 +1,7 @@
 import {
   CustomAccordionComponent,
   ImageBackgroundComponent,
+  LatestGuidesComponent,
   NavBarComponent,
   NewsBlockComponent,
   ScrollUpFabComponent,
@@ -41,6 +42,9 @@ const HomeContent = () => {
       </ImageBackgroundComponent>
       <CustomAccordionComponent title="News" isExpandedByDefault={true}>
         <NewsBlockComponent />
+      </CustomAccordionComponent>
+      <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={true}>
+        <LatestGuidesComponent />
       </CustomAccordionComponent>
       <ScrollUpFabComponent />
     </Box>

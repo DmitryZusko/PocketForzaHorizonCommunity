@@ -35,9 +35,7 @@ const tuneSlice = createSlice({
     });
     builder.addCase(getLatestTunes.fulfilled, (state, { payload }) => {
       state.latestTunes = payload.data;
-      setTimeout(() => {
-        state.isLoadingLatest = false;
-      }, 5000);
+      state.isLoadingLatest = false;
     });
     builder.addCase(getTunes.pending, (state) => {
       state.isLoadingTunes = true;
