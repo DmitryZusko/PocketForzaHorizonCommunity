@@ -1,4 +1,4 @@
-import { IPaginatedRequest } from "./PaginatedRequest";
+import { IPaginatedRequest } from "@/data-transfer-objects";
 
 export interface IFilteredDesignRequest extends IPaginatedRequest {
   searchQuery: string;

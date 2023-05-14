@@ -1,4 +1,4 @@
-import { IPaginatedRequest } from "./PaginatedRequest";
+import { IPaginatedRequest } from "@/data-transfer-objects";
 
 export interface IGetLatestDesignsRequest extends IPaginatedRequest {
   descriptionLimit: number;
