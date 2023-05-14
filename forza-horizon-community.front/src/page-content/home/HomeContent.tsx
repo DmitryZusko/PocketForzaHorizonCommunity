@@ -20,10 +20,10 @@ const HomeContent = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="imageHeader" align="center">
+          <Typography variant="imageHeader" align="center" sx={styles.textBlock}>
             Welcome to the Horizon Community!
           </Typography>
-          <Typography variant="imageBody" align="center">
+          <Typography variant="imageBody" align="center" sx={styles.textBlock}>
             Here you can explore all available in-game{" "}
             <Box component="span" color="white">
               cars and discover variouse
@@ -33,7 +33,7 @@ const HomeContent = () => {
               by our team
             </Box>
           </Typography>
-          <Typography variant="imageBody" align="center">
+          <Typography variant="imageBody" align="center" sx={styles.textBlock}>
             Enjoy Yourself!
           </Typography>
         </Container>

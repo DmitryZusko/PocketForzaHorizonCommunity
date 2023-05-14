@@ -1,3 +1,5 @@
+import { baseTheme } from "@/components";
+
 export const styles = {
   outerBlock: {
     margin: "0px",
@@ -6,5 +8,9 @@ export const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  textBlock: {
+    m: baseTheme.spacing(7),
   },
 };
