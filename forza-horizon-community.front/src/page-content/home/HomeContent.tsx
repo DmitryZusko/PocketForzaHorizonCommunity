@@ -1,53 +1,38 @@
-import {
-  ImageBackgroundComponent,
-  LatestGuidesComponent,
-  NavBarComponent,
-  NewsBlockComponent,
-  PageFooterComponent,
-  ScrollUpFabComponent,
-  StatisticsComponent,
-} from "@/components";
-import { Container, Grid, Paper, Typography } from "@mui/material";
+import { ImageBackgroundComponent } from "@/components";
+import { Box, Container, Typography } from "@mui/material";
+import { styles } from "./styles";
 
 const HomeContent = () => {
   return (
-    <Paper>
-      <ScrollUpFabComponent />
-      <NavBarComponent />
-      <ImageBackgroundComponent />
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography variant="h1" align="center">
+    <Box sx={styles.outerBlock}>
+      <ImageBackgroundComponent>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="imageHeader" align="center">
             Welcome to the Horizon Community!
           </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Container>
-            <Typography variant="h4" align="center">
-              Here you can explore all available in-game cars and discover variouse tunes and
-              designs created by our team.
-            </Typography>
-          </Container>
-        </Grid>
-        <Grid item xs={12}>
-          <Container>
-            <Typography variant="h4" align="center">
-              Enjoy Yourself!
-            </Typography>
-          </Container>
-        </Grid>
-        <Grid item xs={12}>
-          <NewsBlockComponent />
-        </Grid>
-        <Grid item xs={12}>
-          <LatestGuidesComponent />
-        </Grid>
-        <Grid item>
-          <StatisticsComponent />
-        </Grid>
-      </Grid>
-      <PageFooterComponent />
-    </Paper>
+          <Typography variant="imageBody" align="center">
+            Here you can explore all available in-game{" "}
+            <Box component="span" color="white">
+              cars and discover variouse
+            </Box>{" "}
+            tunes and designs created{" "}
+            <Box component="span" color="white">
+              by our team
+            </Box>
+          </Typography>
+          <Typography variant="imageBody" align="center">
+            Enjoy Yourself!
+          </Typography>
+        </Container>
+      </ImageBackgroundComponent>
+    </Box>
   );
 };
 
