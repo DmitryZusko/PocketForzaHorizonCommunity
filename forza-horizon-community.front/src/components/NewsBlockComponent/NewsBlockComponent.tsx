@@ -21,6 +21,7 @@ const NewsBlockComponent = ({ ...props }) => {
               thumbnail={item.thumbnail}
               cardTitle={item.title}
               body={item.contents}
+              target={"_blank"}
             />
           </Grid>
         </Tooltip>

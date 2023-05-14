@@ -1,9 +1,20 @@
-import { LatestGuidesComponent, NewsBlockComponent, StatisticsComponent } from "@/components";
+import {
+  ImageBackgroundComponent,
+  LatestGuidesComponent,
+  NavBarComponent,
+  NewsBlockComponent,
+  PageFooterComponent,
+  ScrollUpFabComponent,
+  StatisticsComponent,
+} from "@/components";
 import { Container, Grid, Paper, Typography } from "@mui/material";
 
 const HomeContent = () => {
   return (
     <Paper>
+      <ScrollUpFabComponent />
+      <NavBarComponent />
+      <ImageBackgroundComponent />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h1" align="center">
@@ -35,6 +46,7 @@ const HomeContent = () => {
           <StatisticsComponent />
         </Grid>
       </Grid>
+      <PageFooterComponent />
     </Paper>
   );
 };

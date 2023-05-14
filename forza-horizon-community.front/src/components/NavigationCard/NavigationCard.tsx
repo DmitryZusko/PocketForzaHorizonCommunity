@@ -1,12 +1,13 @@
 import { CardActionArea } from "@mui/material";
-import Link from "next/link";
 import { BaseCard } from "../BaseCard";
+import { CustomLinkComponent } from "../CustomLinkComponent";
 import { INavigationCardProps } from "./types";
 
 const NavigationCard = ({
   thumbnail,
   cardTitle,
   navigationLink,
+  target,
   body,
   footer,
   imageWidth,
@@ -15,7 +16,7 @@ const NavigationCard = ({
 }: INavigationCardProps) => {
   return (
     <CardActionArea {...props}>
-      <Link href={navigationLink}>
+      <CustomLinkComponent href={navigationLink} target={target}>
         <BaseCard
           thumbnail={thumbnail}
           cardTitle={cardTitle}
@@ -24,7 +25,7 @@ const NavigationCard = ({
           imageWidth={imageWidth}
           imageHeight={imageHeight}
         />
-      </Link>
+      </CustomLinkComponent>
     </CardActionArea>
   );
 };
