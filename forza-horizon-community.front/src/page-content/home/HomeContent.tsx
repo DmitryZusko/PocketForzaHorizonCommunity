@@ -1,4 +1,9 @@
-import { ImageBackgroundComponent, NavBarComponent, NewsBlockComponent } from "@/components";
+import {
+  ImageBackgroundComponent,
+  NavBarComponent,
+  NewsBlockComponent,
+  ScrollUpFabComponent,
+} from "@/components";
 import { Box, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
 
@@ -34,6 +39,7 @@ const HomeContent = () => {
         </Container>
       </ImageBackgroundComponent>
       <NewsBlockComponent />
+      <ScrollUpFabComponent />
     </Box>
   );
 };
