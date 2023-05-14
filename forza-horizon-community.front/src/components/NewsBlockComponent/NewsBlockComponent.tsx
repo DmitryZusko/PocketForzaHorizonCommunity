@@ -23,7 +23,7 @@ const NewsBlockComponent = ({ ...props }) => {
           </Grid>
         </Grow>
       ) : (
-        <Slide direction="right" in={!isLoading} mountOnEnter unmountOnExit timeout={500}>
+        <Slide direction="right" in={!isLoading} mountOnEnter timeout={500}>
           <Grid container {...props}>
             {news.map((item) => (
               <CustomTooltipComponent key={item.gid} title={"Open in Steam"}>
