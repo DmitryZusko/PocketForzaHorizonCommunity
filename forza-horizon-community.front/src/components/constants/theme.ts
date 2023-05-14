@@ -28,6 +28,30 @@ export const baseTheme = createTheme({
         fontSize: "2rem",
       },
     },
+    blockTitle: {
+      fontSize: "2rem",
+      fontFamily: ["Anuphan", "sans-serif"].join(","),
+      fontWeight: "700",
+      "@media (min-width:900px)": {
+        fontSize: "2.5rem",
+      },
+    },
+    textTitle: {
+      fontSize: "1.5rem",
+      fontFamily: ["Urbanist", "sans-serif"].join(","),
+      fontWeight: "600",
+      "@media (min-width:900px)": {
+        fontSize: "2rem",
+      },
+    },
+    textBody: {
+      fontSize: "1.2rem",
+      fontFamily: ["Urbanist", "sans-serif"].join(","),
+      fontWeight: "400",
+      "@media (min-width:900px)": {
+        fontSize: "1.4rem",
+      },
+    },
   },
 
   spacing: 2,
@@ -49,12 +73,18 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     imageHeader: React.CSSProperties;
     imageBody: React.CSSProperties;
+    blockTitle: React.CSSProperties;
+    textTitle: React.CSSProperties;
+    textBody: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     imageHeader?: React.CSSProperties;
     imageBody?: React.CSSProperties;
+    blockTitle?: React.CSSProperties;
+    textTitle?: React.CSSProperties;
+    textBody?: React.CSSProperties;
   }
 }
 
@@ -63,5 +93,8 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     imageHeader: true;
     imageBody: true;
+    blockTitle: true;
+    textTitle: true;
+    textBody: true;
   }
 }

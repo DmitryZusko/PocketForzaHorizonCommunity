@@ -20,7 +20,7 @@ const NewsBlockComponent = ({ ...props }) => {
               navigationLink={item.url}
               thumbnail={item.thumbnail}
               cardTitle={item.title}
-              body={item.contents}
+              body={<Typography variant="textBody">{item.contents}</Typography>}
               target={"_blank"}
             />
           </Grid>
