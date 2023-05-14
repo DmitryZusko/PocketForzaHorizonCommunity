@@ -4,6 +4,7 @@ import { baseTheme } from "../constants";
 
 const AppThemeProvider = ({ children }: PropsWithChildren) => {
   const [theme, setTheme] = useState<Theme>(baseTheme);
+
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 

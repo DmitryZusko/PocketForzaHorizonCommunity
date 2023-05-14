@@ -11,16 +11,22 @@ export const baseTheme = createTheme({
 
   typography: {
     imageHeader: {
-      fontSize: "4rem",
+      fontSize: "2rem",
       color: "#ed4384",
       fontFamily: ["Anuphan", "sans-serif"].join(","),
       fontWeight: 700,
+      "@media (min-width:900px)": {
+        fontSize: "4rem",
+      },
     },
     imageBody: {
-      fontSize: "2rem",
+      fontSize: "1.5rem",
       color: "#da206a",
       fontFamily: ["Anuphan", "sans-serif"].join(","),
       fontWeight: 700,
+      "@media (min-width:900px)": {
+        fontSize: "2rem",
+      },
     },
   },
 

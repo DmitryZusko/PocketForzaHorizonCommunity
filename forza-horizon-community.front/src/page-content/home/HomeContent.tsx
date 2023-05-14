@@ -1,10 +1,11 @@
-import { ImageBackgroundComponent } from "@/components";
+import { ImageBackgroundComponent, NavBarComponent, NewsBlockComponent } from "@/components";
 import { Box, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
 
 const HomeContent = () => {
   return (
     <Box sx={styles.outerBlock}>
+      <NavBarComponent />
       <ImageBackgroundComponent>
         <Container
           sx={{
@@ -32,6 +33,7 @@ const HomeContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
+      <NewsBlockComponent />
     </Box>
   );
 };
