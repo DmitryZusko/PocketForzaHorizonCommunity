@@ -1,4 +1,5 @@
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import { CustomTooltipComponent } from "../CustomTooltipComponent";
 import { NavigationCard } from "../NavigationCard";
 import { useNewsBlockComponent } from "./useNewsBlockComponent";
 
@@ -10,12 +11,8 @@ const NewsBlockComponent = ({ ...props }) => {
         <Typography variant="h4">Recent News</Typography>
       </Grid>
       {news.map((item) => (
-        <Tooltip
-          key={item.gid}
-          arrow
-          title={<Typography variant="body1">Open is Steam</Typography>}
-        >
-          <Grid item key={item.gid} xs={12} md={6} xl={4}>
+        <CustomTooltipComponent key={item.gid} title={"Open in Steam"}>
+          <Grid item xs={12} md={6} xl={4}>
             <NavigationCard
               navigationLink={item.url}
               thumbnail={item.thumbnail}
@@ -24,7 +21,7 @@ const NewsBlockComponent = ({ ...props }) => {
               target={"_blank"}
             />
           </Grid>
-        </Tooltip>
+        </CustomTooltipComponent>
       ))}
     </Grid>
   );

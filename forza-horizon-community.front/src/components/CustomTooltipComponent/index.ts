@@ -1,1 +1,1 @@
-export * from "./CustomTooltipComponent";
+export { default as CustomTooltipComponent } from "./CustomTooltipComponent";
