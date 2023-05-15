@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.API.Constants;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Steam;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.OnlinePlayerCount;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamAchivementStats;
@@ -27,7 +28,7 @@ public class SteamService : ISteamService
         return response.Content.ReadAsAsync<News>().Result.AppNews;
     }
 
-    public async Task<List<GlobalAchivement>> GetGlobalAchivementStats()
+    public async Task<List<GlobalAchivement>> GetGlobalAchivementStats(GetAchievementsRequest request)
     {
         using var client = HttpClientFactory.Create();
         var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}" +
@@ -37,7 +38,7 @@ public class SteamService : ISteamService
 
         var globalAchivementStat = response.Content.ReadAsAsync<AchivementStats>().Result.AchievementPercentages.Achievements;
 
-        return await CreateGlobalAchivements(globalAchivementStat);
+        return await CreateGlobalAchivements(globalAchivementStat, request.Amount);
     }
 
     public async Task<int> GetOnlineCount()
@@ -51,13 +52,15 @@ public class SteamService : ISteamService
         return response.Content.ReadAsAsync<PlayerCountResponse>().Result.PlayerCount.PlayersCount;
     }
 
-    private async Task<List<GlobalAchivement>> CreateGlobalAchivements(List<Achievement> achievements)
+    private async Task<List<GlobalAchivement>> CreateGlobalAchivements(List<Achievement> achievements, int amount)
     {
         var achivementSchemes = await GetAchivementScheme();
 
+        if (amount < 0) amount = achivementSchemes.Count;
+
         var globalAchivementStats = new List<GlobalAchivement>();
 
-        foreach (var scheme in achivementSchemes)
+        foreach (var scheme in achivementSchemes.Take(amount))
         {
             var achivementStat = achievements.FirstOrDefault(a => a.Name == scheme.Name);
             globalAchivementStats.Add(new GlobalAchivement
@@ -70,7 +73,7 @@ public class SteamService : ISteamService
             });
         }
 
-        return globalAchivementStats;
+        return globalAchivementStats.OrderBy(a => a.GlobalScorePercent).ToList();
     }
 
     private async Task<List<AchievementScheme>> GetAchivementScheme()
