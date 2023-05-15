@@ -14,7 +14,8 @@ export const styles = {
     m: baseTheme.spacing(7),
   },
 
-  accordion: {
-    mx: baseTheme.spacing(10),
+  accordionBox: {
+    m: baseTheme.spacing(7),
+    width: "98%",
   },
 };

@@ -8,10 +8,19 @@ import {
   ScrollUpFabComponent,
   StatisticsComponent,
 } from "@/components";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Fade, Typography } from "@mui/material";
 import { styles } from "./styles";
+import { useHomeContent } from "./useHomeContent";
 
 const HomeContent = () => {
+  const {
+    newsAccordionInView,
+    guidesAccordionInView,
+    statisticsAccordionInView,
+    newsAccordionRef,
+    guidesAccordionRef,
+    statisticsAccordionRef,
+  } = useHomeContent();
   return (
     <Box sx={styles.outerBlock}>
       <NavBarComponent />
@@ -42,19 +51,47 @@ const HomeContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <CustomAccordionComponent title="News" isExpandedByDefault={false}>
-        <NewsBlockComponent />
-      </CustomAccordionComponent>
-      <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={false}>
-        <LatestGuidesComponent />
-      </CustomAccordionComponent>
-      <CustomAccordionComponent
-        title="In-Game Statistics"
-        isExpandedByDefault={true}
-        unmountOnExit={true}
-      >
-        <StatisticsComponent />
-      </CustomAccordionComponent>
+
+      <Box sx={styles.accordionBox} ref={newsAccordionRef}>
+        <Fade
+          in={newsAccordionInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <CustomAccordionComponent title="News" isExpandedByDefault={true}>
+            <NewsBlockComponent />
+          </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <Box sx={styles.accordionBox} ref={guidesAccordionRef}>
+        <Fade
+          in={guidesAccordionInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={true}>
+            <LatestGuidesComponent />
+          </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <Box sx={styles.accordionBox} ref={statisticsAccordionRef}>
+        <Fade
+          in={statisticsAccordionInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <CustomAccordionComponent
+            title="In-Game Statistics"
+            isExpandedByDefault={false}
+            unmountOnExit={true}
+          >
+            <StatisticsComponent />
+          </CustomAccordionComponent>
+        </Fade>
+      </Box>
       <ScrollUpFabComponent />
     </Box>
   );
