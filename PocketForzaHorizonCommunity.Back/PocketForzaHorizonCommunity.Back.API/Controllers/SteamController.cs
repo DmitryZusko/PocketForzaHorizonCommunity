@@ -25,9 +25,9 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<List<GlobalAchivementDto>> GetAchivementStats()
+        public async Task<List<GlobalAchivementDto>> GetAchivementStats([FromQuery] GetAchievementsRequest request)
         {
-            return _mapper.Map<List<GlobalAchivement>, List<GlobalAchivementDto>>(await _service.GetGlobalAchivementStats());
+            return _mapper.Map<List<GlobalAchivement>, List<GlobalAchivementDto>>(await _service.GetGlobalAchivementStats(request));
         }
 
         [HttpGet("GetCurrentOnlineCount")]

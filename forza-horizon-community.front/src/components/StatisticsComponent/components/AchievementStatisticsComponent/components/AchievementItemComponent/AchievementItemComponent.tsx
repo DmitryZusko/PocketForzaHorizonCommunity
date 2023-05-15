@@ -1,33 +1,25 @@
 import { defaultAchievementSize } from "@/components/constants";
-import { Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { styles } from "./styles";
 import { IAchievementItemComponentProps } from "./types";
 
 const AchievementItemComponent = ({ achievement, ...props }: IAchievementItemComponentProps) => {
   return (
-    <Grid container spacing={1} {...props}>
-      <Grid item xs={4}>
-        <Image
-          alt="icon"
-          src={achievement.icon}
-          width={defaultAchievementSize}
-          height={defaultAchievementSize}
-        />
-        <Grid />
-        <Grid item xs={8}>
-          <Grid container>
-            <Grid item xs={12}>
-              <Typography variant="h5" align="center" fontWeight={700}>
-                {achievement.displayName}
-              </Typography>
-              <Typography variant="body2" align="center">
-                {achievement.globalScorePercent}% of all players
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+    <Box sx={styles.achievementContainer}>
+      <Image
+        alt="icon"
+        src={achievement.icon}
+        width={defaultAchievementSize}
+        height={defaultAchievementSize}
+      />
+      <Typography variant="textTitle" align="center">
+        {achievement.displayName}
+      </Typography>
+      <Typography variant="textBody" align="center">
+        {achievement.globalScorePercent.toFixed(2)}% of all players
+      </Typography>
+    </Box>
   );
 };
 

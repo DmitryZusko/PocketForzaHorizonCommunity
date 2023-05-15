@@ -1,6 +1,8 @@
+import { Box } from "@mui/material";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import { ICustomLinkComponentProps } from "./types";
+import classes from "./styles.module.css";
 
 const CustomLinkComponent = ({
   href,
@@ -9,9 +11,11 @@ const CustomLinkComponent = ({
   ...props
 }: PropsWithChildren<ICustomLinkComponentProps>) => {
   return (
-    <Link href={href} target={target} {...props}>
-      {children}
-    </Link>
+    <Box {...props}>
+      <Link href={href} target={target} className={classes.link}>
+        {children}
+      </Link>
+    </Box>
   );
 };
 

@@ -1,53 +1,99 @@
 import {
+  baseTheme,
+  CustomAccordionComponent,
   ImageBackgroundComponent,
   LatestGuidesComponent,
   NavBarComponent,
   NewsBlockComponent,
-  PageFooterComponent,
   ScrollUpFabComponent,
   StatisticsComponent,
 } from "@/components";
-import { Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Container, Fade, Typography } from "@mui/material";
+import { styles } from "./styles";
+import { useHomeContent } from "./useHomeContent";
 
 const HomeContent = () => {
+  const {
+    newsAccordionInView,
+    guidesAccordionInView,
+    statisticsAccordionInView,
+    newsAccordionRef,
+    guidesAccordionRef,
+    statisticsAccordionRef,
+  } = useHomeContent();
   return (
-    <Paper>
-      <ScrollUpFabComponent />
+    <Box sx={styles.outerBlock}>
       <NavBarComponent />
-      <ImageBackgroundComponent />
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography variant="h1" align="center">
+      <ImageBackgroundComponent>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="imageHeader" align="center" sx={styles.textBlock}>
             Welcome to the Horizon Community!
           </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Container>
-            <Typography variant="h4" align="center">
-              Here you can explore all available in-game cars and discover variouse tunes and
-              designs created by our team.
-            </Typography>
-          </Container>
-        </Grid>
-        <Grid item xs={12}>
-          <Container>
-            <Typography variant="h4" align="center">
-              Enjoy Yourself!
-            </Typography>
-          </Container>
-        </Grid>
-        <Grid item xs={12}>
-          <NewsBlockComponent />
-        </Grid>
-        <Grid item xs={12}>
-          <LatestGuidesComponent />
-        </Grid>
-        <Grid item>
-          <StatisticsComponent />
-        </Grid>
-      </Grid>
-      <PageFooterComponent />
-    </Paper>
+          <Typography variant="imageBody" align="center" sx={styles.textBlock}>
+            Here you can explore all available in-game{" "}
+            <Box component="span" color={baseTheme.palette.secondary.light}>
+              cars and discover variouse
+            </Box>{" "}
+            tunes and designs created{" "}
+            <Box component="span" color={baseTheme.palette.secondary.light}>
+              by our team
+            </Box>
+          </Typography>
+          <Typography variant="imageBody" align="center" sx={styles.textBlock}>
+            Enjoy Yourself!
+          </Typography>
+        </Container>
+      </ImageBackgroundComponent>
+
+      <Box sx={styles.accordionBox} ref={newsAccordionRef}>
+        <Fade
+          in={newsAccordionInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <CustomAccordionComponent title="News" isExpandedByDefault={true}>
+            <NewsBlockComponent />
+          </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <Box sx={styles.accordionBox} ref={guidesAccordionRef}>
+        <Fade
+          in={guidesAccordionInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={true}>
+            <LatestGuidesComponent />
+          </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <Box sx={styles.accordionBox} ref={statisticsAccordionRef}>
+        <Fade
+          in={statisticsAccordionInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <CustomAccordionComponent
+            title="In-Game Statistics"
+            isExpandedByDefault={false}
+            unmountOnExit={true}
+          >
+            <StatisticsComponent />
+          </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <ScrollUpFabComponent />
+    </Box>
   );
 };
 

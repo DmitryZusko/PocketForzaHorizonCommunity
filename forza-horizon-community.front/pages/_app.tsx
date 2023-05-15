@@ -1,13 +1,11 @@
 import type { AppProps } from "next/app";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import "@/styles/globals.css";
 import { useMemo } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { initializePersistor, initializeStore } from "@/redux";
-import { LeftBottomToastComponent } from "@/components";
+import { AppThemeProvider, LeftBottomToastComponent } from "@/components";
+import { CssBaseline } from "@mui/material";
 
 export default function App({ Component, pageProps }: AppProps) {
   const store = useMemo(() => {
@@ -21,8 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <Component {...pageProps} />
-        <LeftBottomToastComponent />
+        <AppThemeProvider>
+          <CssBaseline />
+          <Component {...pageProps} />
+          <LeftBottomToastComponent />
+        </AppThemeProvider>
       </PersistGate>
     </Provider>
   );

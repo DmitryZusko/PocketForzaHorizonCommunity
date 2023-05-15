@@ -1,3 +1,4 @@
 export interface ICustomTooltipComponentProps {
-  text: string;
+  title: string;
+  children: JSX.Element;
 }

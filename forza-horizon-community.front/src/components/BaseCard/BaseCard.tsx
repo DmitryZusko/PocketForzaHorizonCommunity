@@ -1,4 +1,5 @@
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { styles } from "./styles";
 import { IBaseCardProps } from "./types";
 
 const BaseCard = ({
@@ -11,7 +12,7 @@ const BaseCard = ({
   ...props
 }: IBaseCardProps) => {
   return (
-    <Card {...props}>
+    <Card sx={styles.baseCard} {...props}>
       <CardMedia
         component="img"
         image={thumbnail}
@@ -21,11 +22,11 @@ const BaseCard = ({
       />
       <CardContent>
         <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="h5">{cardTitle}</Typography>
+          <Grid item xs={12} sx={styles.title}>
+            <Typography variant="textTitle">{cardTitle}</Typography>
           </Grid>
           <Grid item xs={12}>
-            {typeof body === typeof String ? <Typography variant="body1">{body}</Typography> : body}
+            {body}
           </Grid>
           <Grid item xs={12}>
             {footer}

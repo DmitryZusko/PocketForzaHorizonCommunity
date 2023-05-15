@@ -31,7 +31,7 @@ const tuneSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getLatestTunes.pending, (state) => {
-      state.isLoadingLatest = false;
+      state.isLoadingLatest = true;
     });
     builder.addCase(getLatestTunes.fulfilled, (state, { payload }) => {
       state.latestTunes = payload.data;

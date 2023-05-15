@@ -1,21 +1,10 @@
 import { Tooltip, Typography } from "@mui/material";
-import { PropsWithChildren } from "react";
 import { ICustomTooltipComponentProps } from "./types";
 
-const CustomTooltipComponent = ({
-  text,
-  children,
-}: PropsWithChildren<ICustomTooltipComponentProps>) => {
+const CustomTooltipComponent = ({ title, children, ...props }: ICustomTooltipComponentProps) => {
   return (
-    <Tooltip
-      arrow
-      title={
-        <Typography variant="body1" align="center">
-          {text}
-        </Typography>
-      }
-    >
-      <>{children}</>
+    <Tooltip arrow title={<Typography variant="tooltip">{title}</Typography>} {...props}>
+      {children}
     </Tooltip>
   );
 };

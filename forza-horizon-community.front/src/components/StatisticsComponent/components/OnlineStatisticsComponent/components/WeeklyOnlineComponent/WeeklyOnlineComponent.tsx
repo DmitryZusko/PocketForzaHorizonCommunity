@@ -1,15 +1,23 @@
-import { BarSeries, Chart } from "@devexpress/dx-react-chart-material-ui";
-import { Box } from "@mui/material";
+import { baseTheme } from "@/components/constants";
+import { Container, Typography } from "@mui/material";
+import { Bar, BarChart, Tooltip, XAxis } from "recharts";
+import { CustomBarTooltipComponent } from "./components";
+import { styles } from "./styles";
+import { IWeeklyOnlineComponentProps } from "./types";
 import { useWeeklyOnlineComponent } from "./useWeeklyOnlineComponent";
 
-const WeeklyOnlineComponent = ({ ...props }) => {
-  const { getFakeWeeklyOnline } = useWeeklyOnlineComponent();
+const WeeklyOnlineComponent = ({ totalPlayers, ...props }: IWeeklyOnlineComponentProps) => {
+  const { getFakeWeeklyOnline } = useWeeklyOnlineComponent({ totalPlayers });
+
   return (
-    <Box {...props}>
-      <Chart data={getFakeWeeklyOnline}>
-        <BarSeries valueField="onlineCount" argumentField="date" />
-      </Chart>
-    </Box>
+    <Container sx={styles.outerContainer} {...props}>
+      <Typography variant="textTitle">Wheekly-Avarage Online</Typography>
+      <BarChart width={400} height={400} data={getFakeWeeklyOnline}>
+        <Bar dataKey={"onlineCount"} fill={baseTheme.palette.primary.main} />
+        <XAxis dataKey={"date"} fontFamily={"Urbanist"} interval={0} />
+        <Tooltip content={<CustomBarTooltipComponent />} />
+      </BarChart>
+    </Container>
   );
 };
 

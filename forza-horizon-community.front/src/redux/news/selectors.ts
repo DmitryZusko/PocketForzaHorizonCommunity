@@ -7,3 +7,7 @@ export const newsSelector = createSelector(newsStateSelector, ({ isLoading, news
   isLoading,
   news,
 }));
+
+export const isNewsLoadingSelector = createSelector(newsStateSelector, ({ isLoading }) => ({
+  isLoading,
+}));

@@ -1,0 +1,14 @@
+.image {
+  object-fit: cover;
+  width: 100vw;
+  filter: brightness(80%);
+}
+
+.text {
+  position: relative;
+}
+
+.outerBlock {
+  position: relative;
+  width: 100vw;
+}

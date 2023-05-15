@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.API.Constants;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Steam;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.OnlinePlayerCount;
 using PocketForzaHorizonCommunity.Back.DTO.ThirdPartyDto.SteamAchivementStats;
@@ -27,7 +28,7 @@ public class SteamService : ISteamService
         return response.Content.ReadAsAsync<News>().Result.AppNews;
     }
 
-    public async Task<List<GlobalAchivement>> GetGlobalAchivementStats()
+    public async Task<List<GlobalAchivement>> GetGlobalAchivementStats(GetAchievementsRequest request)
     {
         using var client = HttpClientFactory.Create();
         var response = await client.GetAsync($"{ApplicationConstants.STEAM_BASE_URL}" +
@@ -35,9 +36,9 @@ public class SteamService : ISteamService
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
 
-        var globalAchivementStat = response.Content.ReadAsAsync<AchivementStats>().Result.AchievementPercentages.Achievements;
+        var globalAchivementStat = response.Content.ReadAsAsync<AchivementStats>().Result.AchievementPercentages.Achievements.OrderByDescending(a => a.Percent).ToList();
 
-        return await CreateGlobalAchivements(globalAchivementStat);
+        return await CreateGlobalAchivements(globalAchivementStat, request.Amount);
     }
 
     public async Task<int> GetOnlineCount()
@@ -51,22 +52,25 @@ public class SteamService : ISteamService
         return response.Content.ReadAsAsync<PlayerCountResponse>().Result.PlayerCount.PlayersCount;
     }
 
-    private async Task<List<GlobalAchivement>> CreateGlobalAchivements(List<Achievement> achievements)
+    private async Task<List<GlobalAchivement>> CreateGlobalAchivements(List<Achievement> achievements, int amount)
     {
         var achivementSchemes = await GetAchivementScheme();
 
+        if (amount < 0) amount = achivementSchemes.Count;
+
         var globalAchivementStats = new List<GlobalAchivement>();
 
-        foreach (var scheme in achivementSchemes)
+        foreach (var achievement in achievements.Take(amount))
         {
-            var achivementStat = achievements.FirstOrDefault(a => a.Name == scheme.Name);
+            var achievementScheme = achivementSchemes.FirstOrDefault(a => a.Name == achievement.Name);
+
             globalAchivementStats.Add(new GlobalAchivement
             {
-                Name = scheme.Name,
-                DisplayName = scheme.DisplayName,
-                Description = scheme.Description,
-                Icon = scheme.Icon,
-                GlobalScorePercent = achivementStat != null ? achivementStat.Percent : 0.0,
+                Name = achievement.Name,
+                DisplayName = achievementScheme.DisplayName,
+                Description = achievementScheme.Description,
+                Icon = achievementScheme.Icon,
+                GlobalScorePercent = achievement.Percent
             });
         }
 
