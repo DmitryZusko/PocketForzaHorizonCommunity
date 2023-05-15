@@ -1,3 +1,4 @@
+import { baseTheme } from "@/components/constants";
 import { Sector } from "recharts";
 
 const SelectedSectorComponent = (props: any) => {
@@ -9,7 +10,7 @@ const SelectedSectorComponent = (props: any) => {
       outerRadius={props.outerRadius + 5}
       startAngle={props.startAngle}
       endAngle={props.endAngle}
-      fill={"#ccc"}
+      fill={baseTheme.palette.secondary.main}
     />
   );
 };

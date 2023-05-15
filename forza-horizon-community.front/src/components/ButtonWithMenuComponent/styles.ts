@@ -1,4 +1,5 @@
 import { keyframes } from "@emotion/react";
+import { baseTheme } from "../constants";
 
 const arrowRotationInKeyframes = keyframes`
 0% {
@@ -30,7 +31,8 @@ export const styles = {
     animation: `${arrowRotationOutKeyframes} 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`,
   },
   mainButton: {
-    border: "1px solid #eee",
+    border: "1px solid",
+    borderColor: baseTheme.palette.secondary.light,
   },
   nestedBlock: {
     display: "flex",
