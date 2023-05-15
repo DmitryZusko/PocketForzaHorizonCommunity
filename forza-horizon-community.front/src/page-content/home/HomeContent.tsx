@@ -27,17 +27,17 @@ const HomeContent = () => {
     <Box sx={pageStyles.outerBlock}>
       <NavBarComponent />
       <ImageBackgroundComponent>
-        <Container sx={styles.imageTextBlock}>
+        <Container sx={pageStyles.imageTextBlock}>
           <Typography variant="imageHeader" align="center" sx={styles.textBlock}>
             Welcome to the Horizon Community!
           </Typography>
           <Typography variant="imageBody" align="center" sx={styles.textBlock}>
             Here you can explore all available in-game{" "}
-            <Box component="span" color={baseTheme.palette.secondary.light}>
+            <Box component="span" color={baseTheme.palette.secondary.main}>
               cars and discover variouse
             </Box>{" "}
             tunes and designs created{" "}
-            <Box component="span" color={baseTheme.palette.secondary.light}>
+            <Box component="span" color={baseTheme.palette.secondary.main}>
               by our team
             </Box>
           </Typography>
