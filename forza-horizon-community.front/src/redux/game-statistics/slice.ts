@@ -27,7 +27,6 @@ const gameStatisticsSlice = createSlice({
     builder.addCase(getCurrentOnline.fulfilled, (state, { payload }) => {
       state.totalPlayers = payload.data;
       state.isLoadingPlayersNumber = false;
-      console.log(state.isLoadingPlayersNumber);
     });
   },
 });
