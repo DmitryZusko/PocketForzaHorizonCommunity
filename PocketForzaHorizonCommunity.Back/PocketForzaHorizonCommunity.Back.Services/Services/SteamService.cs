@@ -36,7 +36,7 @@ public class SteamService : ISteamService
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
 
-        var globalAchivementStat = response.Content.ReadAsAsync<AchivementStats>().Result.AchievementPercentages.Achievements;
+        var globalAchivementStat = response.Content.ReadAsAsync<AchivementStats>().Result.AchievementPercentages.Achievements.OrderByDescending(a => a.Percent).ToList();
 
         return await CreateGlobalAchivements(globalAchivementStat, request.Amount);
     }
@@ -60,20 +60,21 @@ public class SteamService : ISteamService
 
         var globalAchivementStats = new List<GlobalAchivement>();
 
-        foreach (var scheme in achivementSchemes.Take(amount))
+        foreach (var achievement in achievements.Take(amount))
         {
-            var achivementStat = achievements.FirstOrDefault(a => a.Name == scheme.Name);
+            var achievementScheme = achivementSchemes.FirstOrDefault(a => a.Name == achievement.Name);
+
             globalAchivementStats.Add(new GlobalAchivement
             {
-                Name = scheme.Name,
-                DisplayName = scheme.DisplayName,
-                Description = scheme.Description,
-                Icon = scheme.Icon,
-                GlobalScorePercent = achivementStat != null ? achivementStat.Percent : 0.0,
+                Name = achievement.Name,
+                DisplayName = achievementScheme.DisplayName,
+                Description = achievementScheme.Description,
+                Icon = achievementScheme.Icon,
+                GlobalScorePercent = achievement.Percent
             });
         }
 
-        return globalAchivementStats.OrderBy(a => a.GlobalScorePercent).ToList();
+        return globalAchivementStats;
     }
 
     private async Task<List<AchievementScheme>> GetAchivementScheme()
