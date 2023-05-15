@@ -20,7 +20,7 @@ export const defaultNewsAmount = 9;
 
 export const defaultLatestGuidesAmount = 3;
 
-export const defaultAchievementsAmaount = 10;
+export const defaultAchievementsAmount = 10;
 
 export const defaultInfinitLoaderAdjustment = 10;
 
