@@ -1,9 +1,7 @@
-import { playerStatisticsSelector, useAppSelector } from "@/redux";
 import { useMemo } from "react";
+import { IWeeklyOnlineComponentHook } from "./types";
 
-export const useWeeklyOnlineComponent = () => {
-  const { totalPlayers } = useAppSelector(playerStatisticsSelector);
-
+export const useWeeklyOnlineComponent = ({ totalPlayers }: IWeeklyOnlineComponentHook) => {
   const getFakeWeeklyOnline = useMemo(() => {
     let data = [];
     for (let i = 1; i <= 7; i++) {
@@ -15,7 +13,7 @@ export const useWeeklyOnlineComponent = () => {
       });
     }
 
-    return data;
+    return data.reverse();
   }, [totalPlayers]);
 
   return {

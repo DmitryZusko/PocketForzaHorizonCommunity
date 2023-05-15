@@ -1,20 +1,16 @@
-import {
-  getCurrentOnline,
-  playerStatisticsSelector,
-  useAppDispatch,
-  useAppSelector,
-} from "@/redux";
-import { useCallback, useEffect, useMemo } from "react";
+import { useMemo, useState } from "react";
+import { IHourOnlineComponentHook } from "./types";
 
-export const useHourOnlineComponent = () => {
-  const { isLoadingPlayersNumber: isLoading, totalPlayers } =
-    useAppSelector(playerStatisticsSelector);
+export const useHourOnlineComponent = ({ totalPlayers }: IHourOnlineComponentHook) => {
+  const [activeIndex, setActiveInex] = useState<number | undefined>(undefined);
 
-  const dispatch = useAppDispatch();
+  const handleHover = (props: any, index: number) => {
+    setActiveInex(index);
+  };
 
-  const loadPlayersCount = useCallback(() => {
-    dispatch(getCurrentOnline());
-  }, [dispatch]);
+  const handleHoverEnd = () => {
+    setActiveInex(undefined);
+  };
 
   const getFakeHourOnline = useMemo(() => {
     let data = [];
@@ -28,13 +24,5 @@ export const useHourOnlineComponent = () => {
     return data;
   }, [totalPlayers]);
 
-  useEffect(() => {
-    loadPlayersCount();
-  }, [loadPlayersCount]);
-
-  return {
-    isLoading,
-    totalPlayers,
-    getFakeHourOnline,
-  };
+  return { activeIndex, getFakeHourOnline, handleHover, handleHoverEnd };
 };

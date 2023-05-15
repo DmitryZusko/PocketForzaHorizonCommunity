@@ -60,6 +60,16 @@ export const baseTheme = createTheme({
         fontSize: "1rem",
       },
     },
+    smallText: {
+      fontSize: ".85rem",
+      fontFamily: ["Urbanist", "sans-serif"].join(","),
+      fontWeight: "200",
+    },
+    smallBoldText: {
+      fontSize: ".85rem",
+      fontFamily: ["Urbanist", "sans-serif"].join(","),
+      fontWeight: "bold",
+    },
   },
 
   spacing: 2,
@@ -85,6 +95,8 @@ declare module "@mui/material/styles" {
     textTitle: React.CSSProperties;
     textBody: React.CSSProperties;
     tooltip: React.CSSProperties;
+    smallText: React.CSSProperties;
+    smallBoldText: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -95,6 +107,8 @@ declare module "@mui/material/styles" {
     textTitle?: React.CSSProperties;
     textBody?: React.CSSProperties;
     tooltip?: React.CSSProperties;
+    smallText?: React.CSSProperties;
+    smallBoldText?: React.CSSProperties;
   }
 }
 
@@ -107,5 +121,7 @@ declare module "@mui/material/Typography" {
     textTitle: true;
     textBody: true;
     tooltip: true;
+    smallText: true;
+    smallBoldText: true;
   }
 }

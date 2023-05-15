@@ -41,15 +41,15 @@ const HomeContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <CustomAccordionComponent title="News" isExpandedByDefault={true}>
+      <CustomAccordionComponent title="News" isExpandedByDefault={false}>
         <NewsBlockComponent />
       </CustomAccordionComponent>
-      <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={true}>
+      <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={false}>
         <LatestGuidesComponent />
       </CustomAccordionComponent>
       <CustomAccordionComponent
         title="In-Game Statistics"
-        isExpandedByDefault={false}
+        isExpandedByDefault={true}
         unmountOnExit={true}
       >
         <StatisticsComponent />

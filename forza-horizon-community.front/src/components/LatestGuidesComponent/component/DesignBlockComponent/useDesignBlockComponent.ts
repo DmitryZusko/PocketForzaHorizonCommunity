@@ -7,8 +7,6 @@ const useDesignBlockComponent = () => {
 
   const dispatch = useAppDispatch();
 
-  console.log(isLoading);
-
   const loadLatestDesigns = useCallback(
     (page: number, amount: number, descriptionLimit: number) => {
       dispatch(getLatestDesigns({ page, pageSize: amount, descriptionLimit }));
