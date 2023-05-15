@@ -15,14 +15,14 @@ const DesignBlockComponent = ({ ...props }) => {
       </Typography>
 
       <Box sx={styles.cardBox}>
-        {latestDesigns.map((design) =>
-          isLoading ? (
-            <Grow key={design.id} in={isLoading} unmountOnExit>
-              <Box sx={styles.cardBlock}>
-                <CardSkeletonComponent />
-              </Box>
-            </Grow>
-          ) : (
+        {isLoading ? (
+          <Grow in={isLoading} unmountOnExit>
+            <Box sx={styles.cardBlock}>
+              <CardSkeletonComponent />
+            </Box>
+          </Grow>
+        ) : (
+          latestDesigns.map((design) => (
             <Slide key={design.id} direction="right" in={!isLoading} mountOnEnter timeout={500}>
               <Box>
                 <CustomTooltipComponent title="Go to Design" sx={styles.cardBlock}>
@@ -47,7 +47,7 @@ const DesignBlockComponent = ({ ...props }) => {
                 </CustomTooltipComponent>
               </Box>
             </Slide>
-          ),
+          ))
         )}
       </Box>
     </Box>

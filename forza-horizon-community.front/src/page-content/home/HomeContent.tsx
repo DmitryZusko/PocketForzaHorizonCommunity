@@ -5,6 +5,7 @@ import {
   NavBarComponent,
   NewsBlockComponent,
   ScrollUpFabComponent,
+  StatisticsComponent,
 } from "@/components";
 import { Box, Container, Typography } from "@mui/material";
 import { styles } from "./styles";
@@ -45,6 +46,13 @@ const HomeContent = () => {
       </CustomAccordionComponent>
       <CustomAccordionComponent title="Our Latest Guides" isExpandedByDefault={true}>
         <LatestGuidesComponent />
+      </CustomAccordionComponent>
+      <CustomAccordionComponent
+        title="In-Game Statistics"
+        isExpandedByDefault={false}
+        unmountOnExit={true}
+      >
+        <StatisticsComponent />
       </CustomAccordionComponent>
       <ScrollUpFabComponent />
     </Box>

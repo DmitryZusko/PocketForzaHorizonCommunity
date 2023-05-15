@@ -19,14 +19,14 @@ const TunesBlockComponent = ({ ...props }) => {
         Newest Tunes
       </Typography>
       <Box sx={styles.cardBox}>
-        {latestTunes.map((tune) =>
-          isLoading ? (
-            <Grow key={tune.id} in={isLoading} unmountOnExit>
-              <Box>
-                <CardSkeletonComponent />
-              </Box>
-            </Grow>
-          ) : (
+        {isLoading ? (
+          <Grow in={isLoading} unmountOnExit>
+            <Box>
+              <CardSkeletonComponent />
+            </Box>
+          </Grow>
+        ) : (
+          latestTunes.map((tune) => (
             <Slide key={tune.id} in={!isLoading} direction="right" mountOnEnter timeout={500}>
               <Box>
                 <CustomTooltipComponent key={tune.id} title={"Go to Tune"} sx={styles.tooltip}>
@@ -58,7 +58,7 @@ const TunesBlockComponent = ({ ...props }) => {
                 </CustomTooltipComponent>
               </Box>
             </Slide>
-          ),
+          ))
         )}
       </Box>
     </Box>
