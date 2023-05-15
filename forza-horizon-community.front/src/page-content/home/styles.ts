@@ -1,9 +1,7 @@
 import { baseTheme } from "@/components";
 
 export const styles = {
-  outerBlock: {
-    margin: "0px",
-    padding: "0px, 0px, 0px, 0px",
+  imageTextBlock: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

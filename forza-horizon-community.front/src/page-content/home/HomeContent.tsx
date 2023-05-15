@@ -10,6 +10,8 @@ import {
 } from "@/components";
 import { Box, Container, Fade, Typography } from "@mui/material";
 import { styles } from "./styles";
+import { styles as pageStyles } from "../styles";
+
 import { useHomeContent } from "./useHomeContent";
 
 const HomeContent = () => {
@@ -22,17 +24,10 @@ const HomeContent = () => {
     statisticsAccordionRef,
   } = useHomeContent();
   return (
-    <Box sx={styles.outerBlock}>
+    <Box sx={pageStyles.outerBlock}>
       <NavBarComponent />
       <ImageBackgroundComponent>
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Container sx={styles.imageTextBlock}>
           <Typography variant="imageHeader" align="center" sx={styles.textBlock}>
             Welcome to the Horizon Community!
           </Typography>
