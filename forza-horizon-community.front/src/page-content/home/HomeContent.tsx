@@ -13,6 +13,7 @@ import { styles } from "./styles";
 import { styles as pageStyles } from "../styles";
 
 import { useHomeContent } from "./useHomeContent";
+import { globalStyles } from "@/styles";
 
 const HomeContent = () => {
   const {
@@ -24,7 +25,7 @@ const HomeContent = () => {
     statisticsAccordionRef,
   } = useHomeContent();
   return (
-    <Box sx={pageStyles.outerBlock}>
+    <Box sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
         <Container sx={pageStyles.imageTextBlock}>

@@ -5,12 +5,13 @@ import {
   ImageBackgroundComponent,
   NavBarComponent,
 } from "@/components";
+import { globalStyles } from "@/styles";
 import { Box, Grid, Typography } from "@mui/material";
 import { styles as pageStyles } from "../styles";
 
 const CarTableContent = () => {
   return (
-    <Box sx={pageStyles.outerBlock}>
+    <Box sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
         <Box sx={pageStyles.imageTextBlock}>
