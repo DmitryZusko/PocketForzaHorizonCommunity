@@ -1,12 +1,14 @@
 import { FormButtonGroupComponent } from "@/components";
-import { Container, TextField } from "@mui/material";
+import { globalStyles } from "@/styles";
+import { Paper, TextField } from "@mui/material";
+import { styles } from "../styles";
 import { useAddManufactureFormComponent } from "./useAddManufactureFormComponent";
 
 const AddManufactureFormComponent = () => {
   const { formik, handleCancel } = useAddManufactureFormComponent();
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Container>
+      <Paper sx={[globalStyles.centeredColumnFlexContainer, styles.outerContainer]}>
         <TextField
           name="manufactureName"
           label="Manufacture"
@@ -15,6 +17,7 @@ const AddManufactureFormComponent = () => {
           onBlur={formik.handleBlur}
           error={formik.touched.manufactureName && Boolean(formik.errors.manufactureName)}
           helperText={formik.touched.manufactureName && formik.errors.manufactureName}
+          sx={styles.textField}
         />
         <TextField
           name="country"
@@ -24,9 +27,10 @@ const AddManufactureFormComponent = () => {
           onBlur={formik.handleBlur}
           error={formik.touched.country && Boolean(formik.errors.country)}
           helperText={formik.touched.country && formik.errors.country}
+          sx={styles.textField}
         />
         <FormButtonGroupComponent handleCancel={handleCancel} />
-      </Container>
+      </Paper>
     </form>
   );
 };
