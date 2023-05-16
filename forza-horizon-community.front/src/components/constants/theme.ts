@@ -16,7 +16,7 @@ export const baseTheme = createTheme({
 
   typography: {
     fontFamily: ["Anuphan", "sans-serif"].join(","),
-    fontSize: "1.5rem",
+    fontSize: 16,
     imageHeader: {
       fontSize: "2rem",
       color: "#ed4384",
