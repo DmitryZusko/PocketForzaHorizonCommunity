@@ -38,16 +38,14 @@ const CarTableComponent = ({ ...props }) => {
   return (
     <TableContainer {...props} sx={styles.tableContainer}>
       <Table>
-        <Grow in={true}>
-          <SortingTableHead<ICar>
-            headerCells={headerCells}
-            order={order}
-            orderBy={orderBy}
-            setOrder={setOrder}
-            setOrderBy={setOrderBy}
-            sortEntities={handleSorting}
-          />
-        </Grow>
+        <SortingTableHead<ICar>
+          headerCells={headerCells}
+          order={order}
+          orderBy={orderBy}
+          setOrder={setOrder}
+          setOrderBy={setOrderBy}
+          sortEntities={handleSorting}
+        />
         <TableBody>
           {isLoadingCars ? (
             <TableRow>
