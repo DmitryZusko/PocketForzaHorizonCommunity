@@ -5,6 +5,7 @@ import {
   LatestGuidesComponent,
   NavBarComponent,
   NewsBlockComponent,
+  PageFooterComponent,
   ScrollUpFabComponent,
   StatisticsComponent,
 } from "@/components";
@@ -20,9 +21,11 @@ const HomeContent = () => {
     newsAccordionInView,
     guidesAccordionInView,
     statisticsAccordionInView,
+    footerInView,
     newsAccordionRef,
     guidesAccordionRef,
     statisticsAccordionRef,
+    footerRef,
   } = useHomeContent();
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer}>
@@ -86,6 +89,16 @@ const HomeContent = () => {
           >
             <StatisticsComponent />
           </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <Box ref={footerRef}>
+        <Fade
+          in={footerInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <PageFooterComponent />
         </Fade>
       </Box>
       <ScrollUpFabComponent />
