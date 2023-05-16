@@ -8,16 +8,35 @@ import {
   ScrollUpFabComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
-import { Box, Button, Drawer, Grid, Slide, Typography } from "@mui/material";
+import { Box, Button, Container, Drawer, Grid, Slide, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styles as pageStyles } from "../styles";
 import { styles } from "./styles";
 import { useCarTableContent } from "./useCarTableContent";
+import {
+  AddCarModalComponent,
+  AddCarTypeModalComponent,
+  AddManufactureModalComponent,
+} from "@/components/modals";
 
 const CarTableContent = () => {
-  const { isDesktop, isOpen, handleOpen, handleClose } = useCarTableContent();
+  const {
+    isDesktop,
+    isFilterMenuOpen,
+    isAddCarOpen,
+    isAddManufactureOpen,
+    isAddCarTypeOpen,
+    handleFilterMenuOpen,
+    handleFilterMenuClose,
+    handleAddCarModalOpen,
+    handleAddManufactureModalOpen,
+    handleAddCarTypeModalOpen,
+  } = useCarTableContent();
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer}>
+      {isAddCarOpen && <AddCarModalComponent />}
+      {isAddCarTypeOpen && <AddCarTypeModalComponent />}
+      {isAddManufactureOpen && <AddManufactureModalComponent />}
       <NavBarComponent />
       <ImageBackgroundComponent>
         <Box sx={pageStyles.imageTextBlock}>
@@ -32,9 +51,32 @@ const CarTableContent = () => {
           </Typography>
         </Box>
       </ImageBackgroundComponent>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          marginTop: baseTheme.spacing(10),
+        }}
+      >
+        <Button variant="contained" onClick={handleAddCarModalOpen}>
+          Add Car
+        </Button>
+        <Button variant="contained" onClick={handleAddManufactureModalOpen}>
+          Add Manufacture
+        </Button>
+        <Button variant="contained" onClick={handleAddCarTypeModalOpen}>
+          Add Car Type
+        </Button>
+      </Container>
       <Grid container>
         {!isDesktop && (
-          <Button onClick={handleOpen} variant="contained" size="large" sx={styles.filterButton}>
+          <Button
+            onClick={handleFilterMenuOpen}
+            variant="contained"
+            size="large"
+            sx={styles.filterButton}
+          >
             <MenuIcon fontSize="large" sx={styles.filterButtonIcon} />
           </Button>
         )}
@@ -45,7 +87,7 @@ const CarTableContent = () => {
             </Grid>
           </Slide>
         ) : (
-          <Drawer anchor="left" open={isOpen} onClose={handleClose}>
+          <Drawer anchor="left" open={isFilterMenuOpen} onClose={handleFilterMenuClose}>
             <FilterCarTableComponent />
           </Drawer>
         )}
