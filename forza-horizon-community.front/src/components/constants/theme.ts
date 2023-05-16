@@ -15,10 +15,11 @@ export const baseTheme = createTheme({
   },
 
   typography: {
+    fontFamily: ["Anuphan", "sans-serif"].join(","),
+    fontSize: "1.5rem",
     imageHeader: {
       fontSize: "2rem",
       color: "#ed4384",
-      fontFamily: ["Anuphan", "sans-serif"].join(","),
       fontWeight: 700,
       "@media (min-width:900px)": {
         fontSize: "4rem",
@@ -27,7 +28,6 @@ export const baseTheme = createTheme({
     imageBody: {
       fontSize: "1.5rem",
       color: "#da206a",
-      fontFamily: ["Anuphan", "sans-serif"].join(","),
       fontWeight: 700,
       "@media (min-width:900px)": {
         fontSize: "2rem",
@@ -35,7 +35,6 @@ export const baseTheme = createTheme({
     },
     blockTitle: {
       fontSize: "2rem",
-      fontFamily: ["Anuphan", "sans-serif"].join(","),
       fontWeight: "700",
       "@media (min-width:900px)": {
         fontSize: "2.5rem",
