@@ -1,6 +1,6 @@
-import { defaultPageSize } from "@/components/constants/applicationConstants";
-import { ICar } from "@/data-transfer-objects/entities/Car";
-import sortEntities from "@/utilities/sort-table-by-header";
+import { defaultPageSize } from "@/components/constants";
+import { ICar } from "@/data-transfer-objects";
+import { sortEntities } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, ICarState, ISortingPayload } from "../types";
 import { getCars } from "./thunks";

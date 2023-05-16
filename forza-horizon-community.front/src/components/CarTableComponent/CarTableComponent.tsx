@@ -2,6 +2,7 @@ import { ICar } from "@/data-transfer-objects";
 import { imageUtil } from "@/utilities";
 import {
   CircularProgress,
+  Grow,
   Table,
   TableBody,
   TableCell,
@@ -37,14 +38,16 @@ const CarTableComponent = ({ ...props }) => {
   return (
     <TableContainer {...props} sx={styles.tableContainer}>
       <Table>
-        <SortingTableHead<ICar>
-          headerCells={headerCells}
-          order={order}
-          orderBy={orderBy}
-          setOrder={setOrder}
-          setOrderBy={setOrderBy}
-          sortEntities={handleSorting}
-        />
+        <Grow in={true}>
+          <SortingTableHead<ICar>
+            headerCells={headerCells}
+            order={order}
+            orderBy={orderBy}
+            setOrder={setOrder}
+            setOrderBy={setOrderBy}
+            sortEntities={handleSorting}
+          />
+        </Grow>
         <TableBody>
           {isLoadingCars ? (
             <TableRow>
@@ -59,40 +62,42 @@ const CarTableComponent = ({ ...props }) => {
             </TableRow>
           ) : (
             cars.map((car) => (
-              <TableRow key={car.id}>
-                <TableCell>
-                  <Image
-                    alt="car"
-                    src={imageUtil.addJpgHeader(car.image)}
-                    width={
-                      isTablet
-                        ? defaultCarThumbnailSize.width
-                        : defaultCarThumbnailSize.width * 0.75
-                    }
-                    height={
-                      isTablet
-                        ? defaultCarThumbnailSize.width
-                        : defaultCarThumbnailSize.height * 0.75
-                    }
-                    style={{ objectFit: "cover" }}
-                  />
-                </TableCell>
-                <TableCell align="center">
-                  <Typography variant="textBody">{car.manufacture}</Typography>
-                </TableCell>
-                <TableCell align="center">
-                  <Typography variant="textBody">{car.model}</Typography>
-                </TableCell>
-                <TableCell align="center">
-                  <Typography variant="textBody">{car.year}</Typography>
-                </TableCell>
-                <TableCell align="center">
-                  <Typography variant="textBody">{car.price}</Typography>
-                </TableCell>
-                <TableCell align="center">
-                  <Typography variant="textBody">{car.type}</Typography>
-                </TableCell>
-              </TableRow>
+              <Grow key={car.id} in={true} timeout={500}>
+                <TableRow>
+                  <TableCell>
+                    <Image
+                      alt="car"
+                      src={imageUtil.addJpgHeader(car.image)}
+                      width={
+                        isTablet
+                          ? defaultCarThumbnailSize.width
+                          : defaultCarThumbnailSize.width * 0.75
+                      }
+                      height={
+                        isTablet
+                          ? defaultCarThumbnailSize.width
+                          : defaultCarThumbnailSize.height * 0.75
+                      }
+                      style={{ objectFit: "cover" }}
+                    />
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.manufacture}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.model}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.year}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.price}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.type}</Typography>
+                  </TableCell>
+                </TableRow>
+              </Grow>
             ))
           )}
         </TableBody>
