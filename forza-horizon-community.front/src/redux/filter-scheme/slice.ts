@@ -50,11 +50,17 @@ const filterSchemeSlice = createSlice({
       state.totalManufactures = payload.data.total;
       state.isLoadingManufacture = false;
     });
+    builder.addCase(getManufactures.rejected, (state) => {
+      state.isLoadingManufacture = false;
+    });
     builder.addCase(getCarNames.pending, (state) => {
       state.isLoadingCarNames = true;
     });
     builder.addCase(getCarNames.fulfilled, (state, { payload }) => {
       state.carNames = payload.data.entities;
+    });
+    builder.addCase(getCarNames.rejected, (state) => {
+      state.isLoadingCarNames = true;
     });
     builder.addCase(getCarFilterScheme.pending, (state) => {
       state.isLoadingCarFilterScheme = true;
@@ -64,6 +70,9 @@ const filterSchemeSlice = createSlice({
       state.maxPrice = payload.data.maxPrice;
       state.minYear = payload.data.minYear;
       state.maxYear = payload.data.maxYear;
+      state.isLoadingCarFilterScheme = false;
+    });
+    builder.addCase(getCarFilterScheme.rejected, (state) => {
       state.isLoadingCarFilterScheme = false;
     });
     builder.addCase(postManufacture.fulfilled, (state, { payload }) => {

@@ -4,10 +4,11 @@ import {
   FilterCarTableComponent,
   ImageBackgroundComponent,
   NavBarComponent,
+  PageFooterComponent,
   ScrollUpFabComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
-import { Box, Button, Drawer, Grid, Typography } from "@mui/material";
+import { Box, Button, Drawer, Grid, Slide, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styles as pageStyles } from "../styles";
 import { styles } from "./styles";
@@ -38,20 +39,24 @@ const CarTableContent = () => {
           </Button>
         )}
         {isDesktop ? (
-          <Grid item lg={2}>
-            <FilterCarTableComponent />
-          </Grid>
+          <Slide in={true} direction={"right"} timeout={750}>
+            <Grid item lg={2}>
+              <FilterCarTableComponent />
+            </Grid>
+          </Slide>
         ) : (
           <Drawer anchor="left" open={isOpen} onClose={handleClose}>
             <FilterCarTableComponent />
           </Drawer>
         )}
-
-        <Grid item xs={12} lg={10}>
-          <CarTableComponent />
-        </Grid>
+        <Slide in={true} direction={"right"} timeout={750}>
+          <Grid item xs={12} lg={10}>
+            <CarTableComponent />
+          </Grid>
+        </Slide>
       </Grid>
       <ScrollUpFabComponent />
+      <PageFooterComponent />
     </Box>
   );
 };
