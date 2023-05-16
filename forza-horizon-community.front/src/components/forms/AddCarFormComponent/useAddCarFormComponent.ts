@@ -74,9 +74,15 @@ export const useAddCarFormComponent = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getManufactures({}));
+    if (carTypes.length) return;
     dispatch(getCarTypes({}));
-  }, [dispatch]);
+  }, [carTypes, dispatch]);
+
+  useEffect(() => {
+    if (manufactures.length) return;
+
+    dispatch(getManufactures({}));
+  }, [manufactures, dispatch]);
 
   return {
     formik,
