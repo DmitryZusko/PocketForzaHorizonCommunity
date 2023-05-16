@@ -7,4 +7,11 @@ export const styles = {
     justifyContent: "center",
     alignItems: "center",
   },
+
+  imageTextBlock: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 };
