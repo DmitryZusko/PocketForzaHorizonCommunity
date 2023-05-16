@@ -12,6 +12,7 @@ export const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    padding: baseTheme.spacing(10),
   },
 
   checkboxContainer: {
@@ -21,9 +22,8 @@ export const styles = {
     borderColor: baseTheme.palette.primary.dark,
     borderRadius: "24px",
     maxHeight: "45vh",
-    width: "12vw",
+    maxWidth: { xs: "80vw", lg: "12vw" },
     backgroundColor: baseTheme.palette.secondary.light,
     padding: baseTheme.spacing(5),
-    left: "10px",
   },
 };
