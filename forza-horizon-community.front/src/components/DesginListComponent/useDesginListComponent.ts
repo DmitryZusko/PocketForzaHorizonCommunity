@@ -11,7 +11,7 @@ import {
   useAppSelector,
 } from "@/redux";
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { defaultCardDescriptionLimit } from "../constants";
+import { defaultCardDescriptionLimit, defaultPageSize } from "../constants";
 
 export const useDesginListComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,7 +32,7 @@ export const useDesginListComponent = () => {
       return dispatch(
         getDesignsByCarId({
           page,
-          pageSize,
+          pageSize: defaultPageSize,
           searchQuery: searchQuery,
           descriptionLimit: defaultCardDescriptionLimit,
           carId: selectedCar,
@@ -42,12 +42,12 @@ export const useDesginListComponent = () => {
     return dispatch(
       getDesigns({
         page,
-        pageSize,
+        pageSize: defaultPageSize,
         searchQuery: searchQuery,
         descriptionLimit: defaultCardDescriptionLimit,
       }),
     );
-  }, [searchQuery, page, pageSize, selectedCar, dispatch]);
+  }, [searchQuery, page, selectedCar, dispatch]);
 
   const autocompleteOptions = useMemo(() => {
     return carNames.map((item) => ({
@@ -59,9 +59,9 @@ export const useDesginListComponent = () => {
   //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
-      setSearchQuery(newQuery);
       dispatch(cleanUpDesigns());
       dispatch(setDesignPage(0));
+      setSearchQuery(newQuery);
     },
     [setSearchQuery, dispatch],
   );
@@ -69,9 +69,9 @@ export const useDesginListComponent = () => {
   //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
-      setSelectedCar(newValue?.id);
       dispatch(cleanUpDesigns());
       dispatch(setDesignPage(0));
+      setSelectedCar(newValue?.id);
     },
     [setSelectedCar, dispatch],
   );

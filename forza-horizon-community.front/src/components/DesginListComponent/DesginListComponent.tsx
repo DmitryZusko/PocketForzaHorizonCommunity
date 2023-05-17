@@ -44,7 +44,7 @@ const DesginListComponent = () => {
         <InfiniteScroll
           dataLength={designs.length}
           next={loadNext}
-          hasMore={page * pageSize < totalEntities}
+          hasMore={page * pageSize + pageSize < totalEntities} // + pageSize in case a page = 0
           loader={<DefaultLoaderComponent />}
           endMessage={<InfiniteScrollEndComponent text={"You've discovered all designs!"} />}
           style={styles.infiniteScroll}

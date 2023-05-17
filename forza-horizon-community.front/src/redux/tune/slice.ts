@@ -55,7 +55,7 @@ const tuneSlice = createSlice({
       state.isLoadingTunes = true;
     });
     builder.addCase(getTunesByCarId.fulfilled, (state, { payload }) => {
-      state.tunes = payload.data.entities;
+      state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
     });

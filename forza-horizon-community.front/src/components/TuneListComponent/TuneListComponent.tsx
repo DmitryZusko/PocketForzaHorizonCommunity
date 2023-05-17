@@ -13,7 +13,6 @@ import { useTuneListComponent } from "./useTuneListComponent";
 const TuneListComponent = () => {
   const {
     tunes,
-    searchQuery,
     autocompleteOptions,
     page,
     pageSize,
@@ -21,7 +20,6 @@ const TuneListComponent = () => {
     loadNext,
     handleSearchQueryChange,
     handleAutocompleteChange,
-    makePageSizeBigger,
   } = useTuneListComponent();
   return (
     <Grid container sx={styles.outerContainer}>
@@ -44,7 +42,7 @@ const TuneListComponent = () => {
         <InfiniteScroll
           dataLength={tunes.length}
           next={loadNext}
-          hasMore={page * pageSize < totalEntities}
+          hasMore={page * pageSize + pageSize < totalEntities} // + pageSize in case a first page = 0
           loader={<DefaultLoaderComponent />}
           endMessage={<InfiniteScrollEndComponent text="You've discovered all tunes!" />}
           style={styles.infiniteScroll}

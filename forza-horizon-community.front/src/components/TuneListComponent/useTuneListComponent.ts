@@ -11,6 +11,7 @@ import {
   useAppSelector,
 } from "@/redux";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { defaultPageSize } from "../constants";
 
 export const useTuneListComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,7 +32,7 @@ export const useTuneListComponent = () => {
       return dispatch(
         getTunesByCarId({
           page,
-          pageSize,
+          pageSize: defaultPageSize,
           searchQuery: searchQuery,
           carId: selectedCar,
         }),
@@ -40,12 +41,12 @@ export const useTuneListComponent = () => {
 
     return dispatch(
       getTunes({
-        page: 0,
-        pageSize,
+        page,
+        pageSize: defaultPageSize,
         searchQuery: searchQuery,
       }),
     );
-  }, [selectedCar, searchQuery, page, pageSize, dispatch]);
+  }, [selectedCar, searchQuery, page, dispatch]);
 
   const autocompleteOptions = useMemo(() => {
     return carNames.map((item) => ({
@@ -57,9 +58,9 @@ export const useTuneListComponent = () => {
   //To clean up old results and start fetching for a new query paramsand, old tunes[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
-      setSearchQuery(newQuery);
       dispatch(cleanUpTunes());
       dispatch(setTunePage(0));
+      setSearchQuery(newQuery);
     },
     [dispatch],
   );
@@ -67,9 +68,9 @@ export const useTuneListComponent = () => {
   //To clean up old results and start fetching for a new query paramsand, old tunes[] should be cleaned up and page set to 0
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
-      setSelectedCar(newValue?.id);
       dispatch(cleanUpTunes());
       dispatch(setTunePage(0));
+      setSelectedCar(newValue?.id);
     },
     [dispatch],
   );
@@ -105,7 +106,6 @@ export const useTuneListComponent = () => {
 
   return {
     tunes,
-    searchQuery,
     autocompleteOptions,
     page,
     pageSize,
