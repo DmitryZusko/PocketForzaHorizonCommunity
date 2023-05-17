@@ -1,4 +1,5 @@
-import { Modal, Paper } from "@mui/material";
+import { globalStyles } from "@/styles";
+import { Box, Modal } from "@mui/material";
 import { PropsWithChildren } from "react";
 import { IFloatingModalProps } from "./types";
 
@@ -9,8 +10,13 @@ const FloatingModal = ({
   ...props
 }: PropsWithChildren<IFloatingModalProps>) => {
   return (
-    <Modal open={open} onClose={handleClose} {...props}>
-      <Paper>{children}</Paper>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      {...props}
+      sx={globalStyles.centeredColumnFlexContainer}
+    >
+      <Box>{children}</Box>
     </Modal>
   );
 };

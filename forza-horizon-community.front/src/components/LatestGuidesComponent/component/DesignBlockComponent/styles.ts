@@ -15,7 +15,7 @@ export const styles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    overflowX: { xs: "scroll", lg: "none" },
+    overflowX: "auto",
   },
 
   cardBlock: {

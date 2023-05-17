@@ -12,9 +12,7 @@ const DetailsTextBlockComponent = ({
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h4" fontSize={700}>
-          {title}
-        </Typography>
+        <Typography variant="h4">{title}</Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h6">Author:</Typography>

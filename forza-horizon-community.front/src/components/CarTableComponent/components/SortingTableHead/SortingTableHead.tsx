@@ -1,4 +1,6 @@
-import { TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
+import { defaultCarThumbnailSize } from "@/components/constants";
+import { Grow, TableCell, TableHead, TableRow, TableSortLabel, Typography } from "@mui/material";
+import { styles } from "./styles";
 import { ISortingTableHeaderProps } from "./types";
 import useSortingTableHead from "./useSortingTableHead";
 
@@ -20,19 +22,29 @@ const SortingTableHead = <TEntity,>({
   });
   return (
     <TableHead {...props}>
-      <TableRow>
-        {headerCells.map((cell) => (
-          <TableCell key={cell.lable} sortDirection={orderBy === cell.id ? order : false}>
-            <TableSortLabel
-              active={orderBy === cell.id}
-              direction={orderBy === cell.id ? order : "asc"}
-              onClick={cell.isSortable ? handleSortingClick(cell.id) : undefined}
+      <Grow in={true} timeout={500}>
+        <TableRow>
+          {headerCells.map((cell) => (
+            <TableCell
+              key={cell.lable}
+              sortDirection={orderBy === cell.id ? order : false}
+              align={cell.lable === "Image" ? "inherit" : "center"}
+              width={cell.lable === "Image" ? defaultCarThumbnailSize.width : "auto"}
             >
-              {cell.lable}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
+              <TableSortLabel
+                active={orderBy === cell.id}
+                direction={orderBy === cell.id ? order : "asc"}
+                onClick={cell.isSortable ? handleSortingClick(cell.id) : undefined}
+                sx={styles.sortLabel}
+              >
+                <Typography variant="textBody" align="center" sx={styles.sortLabelText}>
+                  {cell.lable}
+                </Typography>
+              </TableSortLabel>
+            </TableCell>
+          ))}
+        </TableRow>
+      </Grow>
     </TableHead>
   );
 };

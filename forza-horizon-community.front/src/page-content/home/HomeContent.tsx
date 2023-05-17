@@ -5,44 +5,43 @@ import {
   LatestGuidesComponent,
   NavBarComponent,
   NewsBlockComponent,
+  PageFooterComponent,
   ScrollUpFabComponent,
   StatisticsComponent,
 } from "@/components";
 import { Box, Container, Fade, Typography } from "@mui/material";
 import { styles } from "./styles";
+import { styles as pageStyles } from "../styles";
+
 import { useHomeContent } from "./useHomeContent";
+import { globalStyles } from "@/styles";
 
 const HomeContent = () => {
   const {
     newsAccordionInView,
     guidesAccordionInView,
     statisticsAccordionInView,
+    footerInView,
     newsAccordionRef,
     guidesAccordionRef,
     statisticsAccordionRef,
+    footerRef,
   } = useHomeContent();
   return (
-    <Box sx={styles.outerBlock}>
+    <Box sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Container sx={pageStyles.imageTextBlock}>
           <Typography variant="imageHeader" align="center" sx={styles.textBlock}>
             Welcome to the Horizon Community!
           </Typography>
           <Typography variant="imageBody" align="center" sx={styles.textBlock}>
             Here you can explore all available in-game{" "}
-            <Box component="span" color={baseTheme.palette.secondary.light}>
+            <Box component="span" color={baseTheme.palette.secondary.main}>
               cars and discover variouse
             </Box>{" "}
             tunes and designs created{" "}
-            <Box component="span" color={baseTheme.palette.secondary.light}>
+            <Box component="span" color={baseTheme.palette.secondary.main}>
               by our team
             </Box>
           </Typography>
@@ -90,6 +89,16 @@ const HomeContent = () => {
           >
             <StatisticsComponent />
           </CustomAccordionComponent>
+        </Fade>
+      </Box>
+      <Box ref={footerRef}>
+        <Fade
+          in={footerInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <PageFooterComponent />
         </Fade>
       </Box>
       <ScrollUpFabComponent />

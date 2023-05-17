@@ -6,8 +6,8 @@ export const useAddCarModalComponent = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleclose = useCallback(() => {
+  const handleClose = useCallback(() => {
     dispatch(setIsAddCarOpen(false));
   }, [dispatch]);
-  return { isAddCarOpen, handleclose };
+  return { isAddCarOpen, handleClose };
 };

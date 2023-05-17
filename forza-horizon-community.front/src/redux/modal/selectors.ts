@@ -18,3 +18,12 @@ export const addCarTypeModalSelector = createSelector(
 export const addCarModalSelector = createSelector(modalStateSelector, ({ isAddCarOpen }) => ({
   isAddCarOpen,
 }));
+
+export const addModalsSelector = createSelector(
+  modalStateSelector,
+  ({ isAddCarOpen, isAddManufactureOpen, isAddCarTypeOpen }) => ({
+    isAddCarOpen,
+    isAddManufactureOpen,
+    isAddCarTypeOpen,
+  }),
+);

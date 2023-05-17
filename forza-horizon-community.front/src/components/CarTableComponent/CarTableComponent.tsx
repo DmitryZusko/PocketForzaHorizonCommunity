@@ -1,6 +1,8 @@
 import { ICar } from "@/data-transfer-objects";
 import { imageUtil } from "@/utilities";
 import {
+  CircularProgress,
+  Grow,
   Table,
   TableBody,
   TableCell,
@@ -12,10 +14,13 @@ import {
 import Image from "next/image";
 import { defaultCarThumbnailSize, defaultRowsPerPageOptions } from "../constants";
 import { headerCells, SortingTableHead } from "./components";
+import { styles } from "./styles";
+
 import useCarTableComponent from "./useCarTableComponent";
 
 const CarTableComponent = ({ ...props }) => {
   const {
+    isTablet,
     currentPage,
     pageSize,
     isLoadingCars,
@@ -29,8 +34,9 @@ const CarTableComponent = ({ ...props }) => {
     setOrderBy,
     handleSorting,
   } = useCarTableComponent();
+
   return (
-    <TableContainer {...props}>
+    <TableContainer {...props} sx={styles.tableContainer}>
       <Table>
         <SortingTableHead<ICar>
           headerCells={headerCells}
@@ -41,33 +47,57 @@ const CarTableComponent = ({ ...props }) => {
           sortEntities={handleSorting}
         />
         <TableBody>
-          {cars.map((car) => (
-            <TableRow key={car.id}>
-              <TableCell>
-                <Image
-                  alt="car"
-                  src={imageUtil.addJpgHeader(car.image)}
-                  width={defaultCarThumbnailSize.width}
-                  height={defaultCarThumbnailSize.height}
-                />
+          {isLoadingCars ? (
+            <TableRow>
+              <TableCell align="center"></TableCell>
+              <TableCell align="center"></TableCell>
+              <TableCell align="center">
+                <CircularProgress />
               </TableCell>
-              <TableCell>
-                <Typography variant="body1">{car.manufacture}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="body1">{car.model}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="body1">{car.year}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="body1">{car.price}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="body1">{car.type}</Typography>
-              </TableCell>
+              <TableCell align="center"></TableCell>
+              <TableCell align="center"></TableCell>
+              <TableCell align="center"></TableCell>
             </TableRow>
-          ))}
+          ) : (
+            cars.map((car) => (
+              <Grow key={car.id} in={true} timeout={500}>
+                <TableRow>
+                  <TableCell>
+                    <Image
+                      alt="car"
+                      src={imageUtil.addJpgHeader(car.image)}
+                      width={
+                        isTablet
+                          ? defaultCarThumbnailSize.width
+                          : defaultCarThumbnailSize.width * 0.75
+                      }
+                      height={
+                        isTablet
+                          ? defaultCarThumbnailSize.width
+                          : defaultCarThumbnailSize.height * 0.75
+                      }
+                      style={{ objectFit: "cover" }}
+                    />
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.manufacture}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.model}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.year}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.price}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography variant="textBody">{car.type}</Typography>
+                  </TableCell>
+                </TableRow>
+              </Grow>
+            ))
+          )}
         </TableBody>
       </Table>
       <TablePagination
@@ -78,6 +108,8 @@ const CarTableComponent = ({ ...props }) => {
         rowsPerPage={pageSize}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handlePageSizeChange}
+        sx={styles.tablePagination}
+        nextIconButtonProps={{ size: "large", color: "primary" }}
       />
     </TableContainer>
   );

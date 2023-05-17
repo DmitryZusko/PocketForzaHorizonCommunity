@@ -9,7 +9,7 @@ const NavBarBodyComponent = () => {
     <>
       <CustomLinkComponent href="/" target="_self">
         <Button variant="contained" sx={buttonsStyle}>
-          News
+          Home
         </Button>
       </CustomLinkComponent>
       <CustomLinkComponent href="/cars" target="_self">

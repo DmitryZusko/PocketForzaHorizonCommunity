@@ -1,5 +1,6 @@
 import {
   carTypesSelector,
+  getCarTypes,
   postCarType,
   setIsAddCarTypeOpen,
   useAppDispatch,
@@ -7,7 +8,7 @@ import {
 } from "@/redux";
 import { useFormik } from "formik";
 import { validationScheme } from "./constants";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { showToast } from "@/utilities";
 
 export const useAddCarTypeFormComponent = () => {
@@ -39,5 +40,11 @@ export const useAddCarTypeFormComponent = () => {
     validationSchema: validationScheme,
     onSubmit: (values) => handleSubmit(values),
   });
+
+  useEffect(() => {
+    if (carTypes.length) return;
+    dispatch(getCarTypes({}));
+  }, [carTypes, dispatch]);
+
   return { formik, handleCancel };
 };

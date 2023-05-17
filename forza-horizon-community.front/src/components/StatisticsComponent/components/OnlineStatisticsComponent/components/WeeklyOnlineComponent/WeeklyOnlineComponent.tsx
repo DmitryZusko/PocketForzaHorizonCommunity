@@ -11,7 +11,7 @@ const WeeklyOnlineComponent = ({ totalPlayers, ...props }: IWeeklyOnlineComponen
 
   return (
     <Container sx={styles.outerContainer} {...props}>
-      <Typography variant="textTitle">Wheekly-Avarage Online</Typography>
+      <Typography variant="textTitle">Weekly-Avarage Online</Typography>
       <BarChart width={400} height={400} data={getFakeWeeklyOnline}>
         <Bar dataKey={"onlineCount"} fill={baseTheme.palette.primary.main} />
         <XAxis dataKey={"date"} fontFamily={"Urbanist"} interval={0} />
