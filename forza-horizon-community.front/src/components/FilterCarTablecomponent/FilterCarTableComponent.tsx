@@ -1,5 +1,6 @@
-import { CircularProgress, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { defaultPriceStep } from "../constants";
+import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { CustomCheckboxListComponent, CustomRangeSliderComponent } from "./components";
 import { styles } from "./styles";
 import { useFilterCarTableComponent } from "./useFilterCarTableComponent";
@@ -28,7 +29,7 @@ const FilterCarTableComponent = ({ ...props }) => {
   return (
     <Container sx={styles.outerContainer} {...props}>
       {isLoadingManufacture || isLoadingCarTypes || isLoadingCarFilterScheme ? (
-        <CircularProgress />
+        <DefaultLoaderComponent />
       ) : (
         <>
           <Typography variant="textBody" sx={styles.textTitle}>

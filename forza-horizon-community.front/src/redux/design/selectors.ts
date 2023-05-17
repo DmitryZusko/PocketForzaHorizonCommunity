@@ -13,9 +13,10 @@ export const latestDesignsSelector = createSelector(
 
 export const designsSelector = createSelector(
   designStateSelector,
-  ({ isLoadingDesigns, designs, pageSize, totalEntities }) => ({
+  ({ isLoadingDesigns, designs, page, pageSize, totalEntities }) => ({
     isLoadingDesigns,
     designs,
+    page,
     pageSize,
     totalEntities,
   }),

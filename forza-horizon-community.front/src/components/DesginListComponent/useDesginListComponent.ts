@@ -1,11 +1,12 @@
 import {
-  addToDesignPageSize,
   carNamesSelector,
+  cleanUpDesigns,
   designsSelector,
   getCarNames,
   getDesigns,
   getDesignsByCarId,
-  setDesignPageSize,
+  setDesignPage,
+  turnDesignPage,
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
@@ -18,7 +19,7 @@ export const useDesginListComponent = () => {
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { isLoadingDesigns, designs, pageSize, totalEntities } = useAppSelector(designsSelector);
+  const { designs, page, pageSize, totalEntities } = useAppSelector(designsSelector);
 
   const dispatch = useAppDispatch();
 
@@ -30,8 +31,8 @@ export const useDesginListComponent = () => {
     if (selectedCar) {
       return dispatch(
         getDesignsByCarId({
-          page: 0,
-          pageSize,
+          page,
+          pageSize: defaultPageSize,
           searchQuery: searchQuery,
           descriptionLimit: defaultCardDescriptionLimit,
           carId: selectedCar,
@@ -40,13 +41,13 @@ export const useDesginListComponent = () => {
     }
     return dispatch(
       getDesigns({
-        page: 0,
-        pageSize,
+        page,
+        pageSize: defaultPageSize,
         searchQuery: searchQuery,
         descriptionLimit: defaultCardDescriptionLimit,
       }),
     );
-  }, [searchQuery, pageSize, selectedCar, dispatch]);
+  }, [searchQuery, page, selectedCar, dispatch]);
 
   const autocompleteOptions = useMemo(() => {
     return carNames.map((item) => ({
@@ -55,24 +56,29 @@ export const useDesginListComponent = () => {
     }));
   }, [carNames]);
 
+  //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
+      dispatch(cleanUpDesigns());
+      dispatch(setDesignPage(0));
       setSearchQuery(newQuery);
-      dispatch(setDesignPageSize(defaultPageSize));
     },
     [setSearchQuery, dispatch],
   );
 
+  //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
+      dispatch(cleanUpDesigns());
+      dispatch(setDesignPage(0));
       setSelectedCar(newValue?.id);
-      dispatch(setDesignPageSize(defaultPageSize));
     },
     [setSelectedCar, dispatch],
   );
 
-  const makePageSizeBigger = useCallback(() => {
-    dispatch(addToDesignPageSize());
+  //to trigger further designs loading we simply change a page
+  const loadNext = useCallback(() => {
+    dispatch(turnDesignPage());
   }, [dispatch]);
 
   useEffect(() => {
@@ -90,14 +96,25 @@ export const useDesginListComponent = () => {
     };
   }, [loadDesigns]);
 
+  //If user leaves the page and that returns, designs[] will contain previouse results and a new session will load the same designs and push it to the old array.
+  //To prevent a such behavior, on a component unmounts designs[] should be cleaned up
+  useEffect(() => {
+    return () => {
+      dispatch(cleanUpDesigns());
+      dispatch(setDesignPage(0));
+    };
+  }, [dispatch]);
+
   return {
     searchQuery,
     autocompleteOptions,
     designs,
+    page,
     pageSize,
     totalEntities,
     handleSearchQueryChange,
     handleAutocompleteChange,
-    makePageSizeBigger,
+    loadNext,
+    loadDesigns,
   };
 };

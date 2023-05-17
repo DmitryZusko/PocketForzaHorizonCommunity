@@ -1,6 +1,6 @@
 import { IDefaultCarThumbnailsize } from "./types";
 
-export const defaultPageSize = 20;
+export const defaultPageSize = 15;
 
 export const defaultAchievementSize = 100;
 
@@ -10,7 +10,7 @@ export const defaultTuneImageHeight = 200;
 
 export const defaultCarThumbnailSize: IDefaultCarThumbnailsize = { width: 300, height: 300 };
 
-export const defaultRowsPerPageOptions = [1, 5, 10, 20, 50, 100];
+export const defaultRowsPerPageOptions = [5, 15, 30, 50, 100];
 
 export const defaultCardDescriptionLimit = 200;
 
