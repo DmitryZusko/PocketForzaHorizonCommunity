@@ -23,12 +23,12 @@ const NavBarBodyComponent = () => {
         </Button>
       </CustomLinkComponent>
       <ButtonWithMenuComponent mainButtonText="Guides" handleClick={handleGuidesButtonclick}>
-        <CustomLinkComponent href="/designs" target={"_self"}>
+        <CustomLinkComponent href="/guides/designs" target={"_self"}>
           <Button variant="contained" sx={styles.nestedButton}>
             Designs
           </Button>
         </CustomLinkComponent>
-        <CustomLinkComponent href="/tunes" target={"_self"}>
+        <CustomLinkComponent href="/guides/tunes" target={"_self"}>
           <Button variant="contained" sx={styles.nestedButton}>
             Tunes
           </Button>

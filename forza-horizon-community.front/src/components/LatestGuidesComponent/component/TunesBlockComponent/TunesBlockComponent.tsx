@@ -36,7 +36,7 @@ const TunesBlockComponent = ({ ...props }) => {
                       imageHeight={defaultTuneImageHeight}
                       target={"_self"}
                       cardTitle={tune.title}
-                      navigationLink={`tunes/${tune.id}`}
+                      navigationLink={`/guides/tunes/${tune.id}`}
                       body={
                         <TuneCardBodyComponent
                           engineType={tune.engineType}
