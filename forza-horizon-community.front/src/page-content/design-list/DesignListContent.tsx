@@ -20,7 +20,7 @@ const DesignListContent = () => {
           </Typography>
           <Typography variant="imageBody" align="center">
             All designs are created by{" "}
-            <Box component="span" color={baseTheme.palette.secondary.main}>
+            <Box component="span" color={baseTheme.palette.secondary.light}>
               our community
             </Box>
           </Typography>

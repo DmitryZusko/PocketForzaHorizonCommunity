@@ -46,7 +46,7 @@ const CarTableContent = () => {
           </Typography>
           <Typography variant="imageBody" align="center">
             All available cars are{" "}
-            <Box component="span" color={baseTheme.palette.secondary.main}>
+            <Box component="span" color={baseTheme.palette.secondary.light}>
               represented here
             </Box>
           </Typography>
