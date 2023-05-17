@@ -1,6 +1,6 @@
 import { IDefaultCarThumbnailsize } from "./types";
 
-export const defaultPageSize = 15;
+export const defaultPageSize = 1;
 
 export const defaultAchievementSize = 100;
 
