@@ -50,31 +50,28 @@ const DesginListComponent = () => {
           style={styles.infiniteScroll}
         >
           <Grid container>
-            {designs.map((design) => {
-              console.log("render");
-              return (
-                <Slide key={design.id} in={true} timeout={500} direction={"right"}>
-                  <Grid item xs={12} md={6} lg={4}>
-                    <NavigationCard
-                      navigationLink={`designs/${design.id}`}
-                      target={"_self"}
-                      cardTitle={design.title}
-                      body={<Typography variant="textBody">{design.description}</Typography>}
-                      thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
-                      footer={
-                        <GuideCardFooterComponent
-                          shareCode={design.forzaShareCode}
-                          rating={design.rating}
-                          author={design.authorUsername}
-                          creationDate={design.creationDate}
-                          carModel={design.carModel}
-                        />
-                      }
-                    />
-                  </Grid>
-                </Slide>
-              );
-            })}
+            {designs.map((design) => (
+              <Slide key={design.id} in={true} timeout={500} direction={"right"}>
+                <Grid item xs={12} md={6} lg={4}>
+                  <NavigationCard
+                    navigationLink={`designs/${design.id}`}
+                    target={"_self"}
+                    cardTitle={design.title}
+                    body={<Typography variant="textBody">{design.description}</Typography>}
+                    thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
+                    footer={
+                      <GuideCardFooterComponent
+                        shareCode={design.forzaShareCode}
+                        rating={design.rating}
+                        author={design.authorUsername}
+                        creationDate={design.creationDate}
+                        carModel={design.carModel}
+                      />
+                    }
+                  />
+                </Grid>
+              </Slide>
+            ))}
           </Grid>
         </InfiniteScroll>
       </Grid>
