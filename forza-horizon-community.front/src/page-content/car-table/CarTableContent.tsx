@@ -18,6 +18,7 @@ import {
   AddCarTypeModalComponent,
   AddManufactureModalComponent,
 } from "@/components/modals";
+import { TimeToLeave, Factory, Category } from "@mui/icons-material/";
 
 const CarTableContent = () => {
   const {
@@ -59,14 +60,14 @@ const CarTableContent = () => {
           marginTop: baseTheme.spacing(10),
         }}
       >
-        <Button variant="contained" onClick={handleAddCarModalOpen}>
-          Add Car
+        <Button startIcon={<TimeToLeave />} variant="contained" onClick={handleAddCarModalOpen}>
+          {isDesktop && "Add Car"}
         </Button>
-        <Button variant="contained" onClick={handleAddManufactureModalOpen}>
-          Add Manufacture
+        <Button startIcon={<Factory />} variant="contained" onClick={handleAddManufactureModalOpen}>
+          {isDesktop && "Add Manufacture"}
         </Button>
-        <Button variant="contained" onClick={handleAddCarTypeModalOpen}>
-          Add Car Type
+        <Button startIcon={<Category />} variant="contained" onClick={handleAddCarTypeModalOpen}>
+          {isDesktop && "Add Car Type"}
         </Button>
       </Container>
       <Grid container>
