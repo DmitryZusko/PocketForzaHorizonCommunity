@@ -7,14 +7,14 @@ import {
 } from "@/components";
 import { globalStyles } from "@/styles";
 import { Box, Container, Typography } from "@mui/material";
-import { styles } from "../styles";
+import { styles as pageStyles } from "../styles";
 
 const DesignListContent = () => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer}>
+    <Box minHeight={"100vh"} sx={[globalStyles.centeredColumnFlexContainer]}>
       <NavBarComponent />
       <ImageBackgroundComponent>
-        <Container sx={styles.imageTextBlock}>
+        <Container sx={pageStyles.imageTextBlock}>
           <Typography variant="imageHeader" align="center">
             Discover New Car Liveries
           </Typography>
@@ -27,7 +27,9 @@ const DesignListContent = () => {
         </Container>
       </ImageBackgroundComponent>
       <DesginListComponent />
-      <PageFooterComponent />
+      <Box sx={pageStyles.footer}>
+        <PageFooterComponent />
+      </Box>
     </Box>
   );
 };

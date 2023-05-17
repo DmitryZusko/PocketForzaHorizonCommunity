@@ -28,7 +28,7 @@ const HomeContent = () => {
     footerRef,
   } = useHomeContent();
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer}>
+    <Box minHeight={"100vh"} sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
         <Container sx={pageStyles.imageTextBlock}>
@@ -91,7 +91,8 @@ const HomeContent = () => {
           </CustomAccordionComponent>
         </Fade>
       </Box>
-      <Box ref={footerRef}>
+      <ScrollUpFabComponent />
+      <Box ref={footerRef} sx={pageStyles.footer}>
         <Fade
           in={footerInView}
           timeout={750}
@@ -101,7 +102,6 @@ const HomeContent = () => {
           <PageFooterComponent />
         </Fade>
       </Box>
-      <ScrollUpFabComponent />
     </Box>
   );
 };

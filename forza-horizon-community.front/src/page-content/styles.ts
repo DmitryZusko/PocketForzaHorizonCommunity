@@ -5,4 +5,6 @@ export const styles = {
     justifyContent: "center",
     alignItems: "center",
   },
+
+  footer: { marginTop: "auto" },
 };
