@@ -2,7 +2,6 @@ import { Autocomplete, Grid, Slide, TextField, Typography } from "@mui/material"
 import { defaultSearchTreshhold } from "../constants";
 import { SearchComponent } from "../SearchComponent";
 import { useDesginListComponent } from "./useDesginListComponent";
-import "react-virtualized/styles.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InfiniteScrollEndComponent } from "../InfiniteScrollEndComponent";
 import { NavigationCard } from "../NavigationCard";
@@ -54,7 +53,7 @@ const DesginListComponent = () => {
               <Slide key={design.id} in={true} timeout={500} direction={"right"}>
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
-                    navigationLink={`designs/${design.id}`}
+                    navigationLink={`/guides/designs/${design.id}`}
                     target={"_self"}
                     cardTitle={design.title}
                     body={<Typography variant="textBody">{design.description}</Typography>}

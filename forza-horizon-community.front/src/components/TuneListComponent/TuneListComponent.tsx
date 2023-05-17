@@ -52,9 +52,9 @@ const TuneListComponent = () => {
               <Slide key={tune.id} in={true} timeout={500} direction={"right"}>
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
-                    thumbnail="TuneThumbnail.png"
+                    thumbnail="/TuneThumbnail.png"
                     cardTitle={tune.title}
-                    navigationLink={`tunes/${tune.id}`}
+                    navigationLink={`/guides/tunes/${tune.id}`}
                     target={"_self"}
                     imageHeight={defaultTuneImageHeight}
                     body={

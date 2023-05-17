@@ -30,7 +30,7 @@ const DesignBlockComponent = ({ ...props }) => {
                     <NavigationCard
                       thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
                       cardTitle={design.title}
-                      navigationLink={`designs/${design.id}`}
+                      navigationLink={`/guides/designs/${design.id}`}
                       target={"_self"}
                       body={<Typography variant="textBody">{design.description}</Typography>}
                       footer={

@@ -21,7 +21,7 @@ const TuneListContent = () => {
           </Typography>
           <Typography variant="imageBody" align="center">
             All tunes are created by{" "}
-            <Box component="div" color={baseTheme.palette.secondary.main}>
+            <Box component="div" color={baseTheme.palette.secondary.light}>
               our community
             </Box>
           </Typography>

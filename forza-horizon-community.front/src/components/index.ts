@@ -30,3 +30,4 @@ export * from "./CustomAccordionComponent";
 export * from "./skeletons";
 export * from "./InfiniteScrollEndComponent";
 export * from "./DefaultLoaderComponent";
+export * from "./GuidesComponent";

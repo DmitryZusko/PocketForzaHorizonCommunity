@@ -1,6 +1,6 @@
 import {
   baseTheme,
-  DesginListComponent,
+  GuidesComponent,
   ImageBackgroundComponent,
   NavBarComponent,
   PageFooterComponent,
@@ -9,24 +9,28 @@ import { globalStyles } from "@/styles";
 import { Box, Container, Typography } from "@mui/material";
 import { styles as pageStyles } from "../styles";
 
-const DesignListContent = () => {
+const GuidesPageContent = () => {
   return (
     <Box minHeight={"100vh"} sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
         <Container sx={pageStyles.imageTextBlock}>
           <Typography variant="imageHeader" align="center">
-            Discover New Car Liveries
+            Explore Our Guides
           </Typography>
           <Typography variant="imageBody" align="center">
-            All designs are created by{" "}
-            <Box component="span" color={baseTheme.palette.secondary.light}>
-              our community
+            We spend hours making the{" "}
+            <Box component={"span"} color={baseTheme.palette.secondary.light}>
+              fastest tunes
+            </Box>{" "}
+            and painting the{" "}
+            <Box component={"span"} color={baseTheme.palette.secondary.light}>
+              most beautiful liveries
             </Box>
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <DesginListComponent />
+      <GuidesComponent />
       <Box sx={pageStyles.footer}>
         <PageFooterComponent />
       </Box>
@@ -34,4 +38,4 @@ const DesignListContent = () => {
   );
 };
 
-export default DesignListContent;
+export default GuidesPageContent;
