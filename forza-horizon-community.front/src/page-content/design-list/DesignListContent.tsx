@@ -11,7 +11,7 @@ import { styles as pageStyles } from "../styles";
 
 const DesignListContent = () => {
   return (
-    <Box minHeight={"100vh"} sx={[globalStyles.centeredColumnFlexContainer]}>
+    <Box minHeight={"100vh"} sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
         <Container sx={pageStyles.imageTextBlock}>

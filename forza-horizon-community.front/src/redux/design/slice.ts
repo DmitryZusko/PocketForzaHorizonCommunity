@@ -44,6 +44,8 @@ const designSlice = createSlice({
       state.isLoadingDesigns = true;
     });
     builder.addCase(getDesigns.fulfilled, (state, { payload }) => {
+      console.log(payload);
+
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;

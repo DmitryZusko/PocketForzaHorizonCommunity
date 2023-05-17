@@ -19,8 +19,7 @@ export const useDesginListComponent = () => {
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { isLoadingDesigns, designs, page, pageSize, totalEntities } =
-    useAppSelector(designsSelector);
+  const { designs, page, pageSize, totalEntities } = useAppSelector(designsSelector);
 
   const dispatch = useAppDispatch();
 
@@ -57,7 +56,7 @@ export const useDesginListComponent = () => {
     }));
   }, [carNames]);
 
-  //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set  to 0
+  //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
       setSearchQuery(newQuery);
@@ -67,7 +66,7 @@ export const useDesginListComponent = () => {
     [setSearchQuery, dispatch],
   );
 
-  //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set  to 0
+  //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
       setSelectedCar(newValue?.id);
@@ -97,7 +96,7 @@ export const useDesginListComponent = () => {
     };
   }, [loadDesigns]);
 
-  //If user leaves the page and that returns, designs[] will contain previouse results and a new session will load the same designs and push it and old array.
+  //If user leaves the page and that returns, designs[] will contain previouse results and a new session will load the same designs and push it to the old array.
   //To prevent a such behavior, on a component unmounts designs[] should be cleaned up
   useEffect(() => {
     return () => {
