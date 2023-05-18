@@ -10,6 +10,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { defaultPageSize } from "../constants";
 
@@ -21,6 +22,7 @@ export const useTuneListComponent = () => {
 
   const { tunes, page, pageSize, totalEntities } = useAppSelector(tunesSelector);
 
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
@@ -54,6 +56,10 @@ export const useTuneListComponent = () => {
       id: item.id,
     }));
   }, [carNames]);
+
+  const handleAddNewClick = () => {
+    router.push("/guides/tunes/add-new");
+  };
 
   //To clean up old results and start fetching for a new query paramsand, old tunes[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
@@ -110,6 +116,7 @@ export const useTuneListComponent = () => {
     page,
     pageSize,
     totalEntities,
+    handleAddNewClick,
     loadNext,
     handleSearchQueryChange,
     handleAutocompleteChange,

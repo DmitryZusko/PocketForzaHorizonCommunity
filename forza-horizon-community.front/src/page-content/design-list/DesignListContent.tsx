@@ -4,6 +4,7 @@ import {
   ImageBackgroundComponent,
   NavBarComponent,
   PageFooterComponent,
+  ScrollUpFabComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
 import { Box, Container, Typography } from "@mui/material";
@@ -27,6 +28,7 @@ const DesignListContent = () => {
         </Container>
       </ImageBackgroundComponent>
       <DesginListComponent />
+      <ScrollUpFabComponent />
       <Box sx={pageStyles.footer}>
         <PageFooterComponent />
       </Box>

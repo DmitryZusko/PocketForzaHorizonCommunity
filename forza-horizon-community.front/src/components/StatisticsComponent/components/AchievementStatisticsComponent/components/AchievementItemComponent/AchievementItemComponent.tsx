@@ -1,4 +1,4 @@
-import { defaultAchievementSize } from "@/components/constants";
+import { defaultIconSize } from "@/components/constants";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { styles } from "./styles";
@@ -7,12 +7,7 @@ import { IAchievementItemComponentProps } from "./types";
 const AchievementItemComponent = ({ achievement, ...props }: IAchievementItemComponentProps) => {
   return (
     <Box sx={styles.achievementContainer}>
-      <Image
-        alt="icon"
-        src={achievement.icon}
-        width={defaultAchievementSize}
-        height={defaultAchievementSize}
-      />
+      <Image alt="icon" src={achievement.icon} width={defaultIconSize} height={defaultIconSize} />
       <Typography variant="textTitle" align="center">
         {achievement.displayName}
       </Typography>
