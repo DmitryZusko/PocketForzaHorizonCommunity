@@ -3,11 +3,15 @@ import { Button, Grid } from "@mui/material";
 import { styles } from "./styles";
 import { IFormButtonGroupComponentProps } from "./types";
 
-const FormButtonGroupComponent = ({ handleCancel, ...props }: IFormButtonGroupComponentProps) => {
+const FormButtonGroupComponent = ({
+  handleCancel,
+  handleSubmit,
+  ...props
+}: IFormButtonGroupComponentProps) => {
   return (
     <Grid container spacing={2} {...props} sx={styles.outerContainer}>
       <Grid item xs={6} sx={globalStyles.centeredRowFlexContainer}>
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
       </Grid>
