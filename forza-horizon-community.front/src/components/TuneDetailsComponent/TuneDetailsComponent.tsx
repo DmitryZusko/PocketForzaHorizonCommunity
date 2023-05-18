@@ -1,5 +1,5 @@
 import { globalStyles } from "@/styles";
-import { Grid } from "@mui/material";
+import { Grid, Slide } from "@mui/material";
 import { baseTheme } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideDetailsHeader } from "../GuideDetailsHeader";
@@ -18,20 +18,24 @@ const TuneDetailsComponent = ({ id }: ITuneDetailsComponentProps) => {
         <DefaultLoaderComponent />
       ) : (
         <>
-          <Grid item xs={12}>
-            <GuideDetailsHeader
-              thumbnail="/TuneThumbnail.png"
-              isTune={true}
-              title={selectedTune?.title || ""}
-              authorName={selectedTune?.authorUsername || ""}
-              shareCode={selectedTune?.forzaShareCode || ""}
-              rating={selectedTune?.rating || 0}
-              creationDate={selectedTune?.creationDate || new Date()}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TuneDetailsBodyComponent selectedTune={selectedTune} />
-          </Grid>
+          <Slide in={true} direction={"right"} timeout={500}>
+            <Grid item xs={12}>
+              <GuideDetailsHeader
+                thumbnail="/TuneThumbnail.png"
+                isTune={true}
+                title={selectedTune?.title || ""}
+                authorName={selectedTune?.authorUsername || ""}
+                shareCode={selectedTune?.forzaShareCode || ""}
+                rating={selectedTune?.rating || 0}
+                creationDate={selectedTune?.creationDate || new Date()}
+              />
+            </Grid>
+          </Slide>
+          <Slide in={true} direction={"right"} timeout={1000}>
+            <Grid item xs={12}>
+              <TuneDetailsBodyComponent selectedTune={selectedTune} />
+            </Grid>
+          </Slide>
         </>
       )}
     </Grid>
