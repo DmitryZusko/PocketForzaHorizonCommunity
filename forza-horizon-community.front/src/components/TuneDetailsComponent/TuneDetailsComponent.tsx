@@ -22,7 +22,7 @@ const TuneDetailsComponent = ({ id }: ITuneDetailsComponentProps) => {
             <Grid item xs={12}>
               <GuideDetailsHeader
                 thumbnail="/TuneThumbnail.png"
-                isTune={true}
+                isDesign={false}
                 title={selectedTune?.title || ""}
                 authorName={selectedTune?.authorUsername || ""}
                 shareCode={selectedTune?.forzaShareCode || ""}

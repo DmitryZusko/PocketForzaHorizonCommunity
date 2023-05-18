@@ -6,10 +6,10 @@ import { NavBarBodyComponent } from "./components";
 import { styles } from "./styles";
 import { useNavBarComponent } from "./useNavBarComponent";
 
-const NavBarComponent = () => {
+const NavBarComponent = ({ ...props }) => {
   const { isTablet, navBarTheme } = useNavBarComponent();
   return (
-    <AppBar position="sticky" sx={navBarTheme}>
+    <AppBar position="sticky" sx={navBarTheme} {...props}>
       <Toolbar>
         <Box sx={styles.logo}>
           <CustomLinkComponent href="/" target="_self">

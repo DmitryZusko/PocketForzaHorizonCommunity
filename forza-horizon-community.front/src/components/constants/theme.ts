@@ -78,6 +78,12 @@ export const baseTheme = createTheme({
 
   spacing: 2,
 
+  zIndex: {
+    fab: 1020,
+    speedDial: 1020,
+    appBar: 1040,
+  },
+
   components: {
     MuiGrid: {
       defaultProps: {
