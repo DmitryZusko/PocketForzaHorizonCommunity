@@ -1,4 +1,4 @@
-import { Autocomplete, Grid, Slide, TextField } from "@mui/material";
+import { Autocomplete, Button, Grid, Slide, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
@@ -9,6 +9,7 @@ import { SearchComponent } from "../SearchComponent";
 import { TuneCardBodyComponent } from "../TuneCardBodyComponent";
 import { styles } from "./styles";
 import { useTuneListComponent } from "./useTuneListComponent";
+import { AddBox } from "@mui/icons-material";
 
 const TuneListComponent = () => {
   const {
@@ -37,6 +38,11 @@ const TuneListComponent = () => {
           fullWidth
           renderInput={(params) => <TextField {...params} label="Car" />}
         />
+      </Grid>
+      <Grid item xs={12} textAlign="center">
+        <Button startIcon={<AddBox />} variant="contained">
+          Add New
+        </Button>
       </Grid>
       <Grid item xs={12}>
         <InfiniteScroll

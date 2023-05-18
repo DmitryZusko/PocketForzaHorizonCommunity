@@ -2,6 +2,7 @@ import {
   ImageBackgroundComponent,
   NavBarComponent,
   PageFooterComponent,
+  ScrollUpFabComponent,
   TuneDetailsComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
@@ -21,6 +22,7 @@ const TuneDetailsContent = ({ id }: TuneDetailsContentProps) => {
         </Container>
       </ImageBackgroundComponent>
       <TuneDetailsComponent id={id} />
+      <ScrollUpFabComponent />
       <Box sx={pageStyles.footer}>
         <PageFooterComponent />
       </Box>
