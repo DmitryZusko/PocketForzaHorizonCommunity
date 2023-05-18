@@ -1,4 +1,4 @@
-import { Autocomplete, Grid, Slide, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, Grid, Slide, TextField, Typography } from "@mui/material";
 import { defaultSearchTreshhold } from "../constants";
 import { SearchComponent } from "../SearchComponent";
 import { useDesginListComponent } from "./useDesginListComponent";
@@ -9,6 +9,7 @@ import { imageUtil } from "@/utilities";
 import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { styles } from "./styles";
+import { AddBox } from "@mui/icons-material";
 
 const DesginListComponent = () => {
   const {
@@ -17,6 +18,7 @@ const DesginListComponent = () => {
     page,
     pageSize,
     totalEntities,
+    handleAddNewClick,
     handleSearchQueryChange,
     handleAutocompleteChange,
     loadNext,
@@ -38,6 +40,11 @@ const DesginListComponent = () => {
           fullWidth
           renderInput={(params) => <TextField {...params} label="Car" />}
         />
+      </Grid>
+      <Grid item xs={12} textAlign="center">
+        <Button startIcon={<AddBox />} variant="contained" onClick={handleAddNewClick}>
+          Add New
+        </Button>
       </Grid>
       <Grid item xs={12}>
         <InfiniteScroll
