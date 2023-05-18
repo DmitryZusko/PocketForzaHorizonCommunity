@@ -1,10 +1,11 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { CustomLinkComponent } from "../CustomLinkComponent";
+import { styles } from "./styles";
 
 const PageFooterComponent = forwardRef<HTMLDivElement>(function PageFooterComponent(_, ref) {
   return (
-    <Container ref={ref}>
+    <Box ref={ref} sx={styles.outerContainer}>
       <Typography align="center" variant="body1">
         All images was takes from Froza Horizon 5 game.
       </Typography>
@@ -22,7 +23,7 @@ const PageFooterComponent = forwardRef<HTMLDivElement>(function PageFooterCompon
           Git Hub
         </Typography>
       </CustomLinkComponent>
-    </Container>
+    </Box>
   );
 });
 

@@ -31,7 +31,9 @@ const GuidesPageContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <GuidesComponent />
+      <Box width={"100%"}>
+        <GuidesComponent />
+      </Box>
       <ScrollUpFabComponent />
       <Box sx={pageStyles.footer}>
         <PageFooterComponent />

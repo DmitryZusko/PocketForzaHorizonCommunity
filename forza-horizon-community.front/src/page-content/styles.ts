@@ -6,5 +6,5 @@ export const styles = {
     alignItems: "center",
   },
 
-  footer: { marginTop: "auto" },
+  footer: { marginTop: "auto", width: "100%" },
 };

@@ -99,7 +99,9 @@ const CarTableContent = () => {
         </Slide>
       </Grid>
       <ScrollUpFabComponent />
-      <PageFooterComponent />
+      <Box sx={pageStyles.footer}>
+        <PageFooterComponent />
+      </Box>
     </Box>
   );
 };
