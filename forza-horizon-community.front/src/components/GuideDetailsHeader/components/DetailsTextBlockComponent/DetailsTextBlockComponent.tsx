@@ -11,7 +11,7 @@ const DetailsTextBlockComponent = ({
   creationDate,
 }: IDetailsTextBlockComponentProps) => {
   return (
-    <Grid container>
+    <Grid container position={"sticky"} top={"10vh"} paddingLeft={"10px"}>
       <Grid item xs={12}>
         <Typography variant="textTitle">{title}</Typography>
       </Grid>
