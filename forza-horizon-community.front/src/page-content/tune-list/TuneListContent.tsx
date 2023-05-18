@@ -3,6 +3,7 @@ import {
   ImageBackgroundComponent,
   NavBarComponent,
   PageFooterComponent,
+  ScrollUpFabComponent,
   TuneListComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
@@ -28,6 +29,7 @@ const TuneListContent = () => {
         </Container>
       </ImageBackgroundComponent>
       <TuneListComponent />
+      <ScrollUpFabComponent />
       <Box sx={pageStyles.footer}>
         <PageFooterComponent />
       </Box>

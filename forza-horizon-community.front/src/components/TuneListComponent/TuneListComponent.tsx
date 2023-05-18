@@ -18,6 +18,7 @@ const TuneListComponent = () => {
     page,
     pageSize,
     totalEntities,
+    handleAddNewClick,
     loadNext,
     handleSearchQueryChange,
     handleAutocompleteChange,
@@ -40,7 +41,7 @@ const TuneListComponent = () => {
         />
       </Grid>
       <Grid item xs={12} textAlign="center">
-        <Button startIcon={<AddBox />} variant="contained">
+        <Button startIcon={<AddBox />} variant="contained" onClick={handleAddNewClick}>
           Add New
         </Button>
       </Grid>

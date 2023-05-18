@@ -1,7 +1,6 @@
 import { ImageUploaderComponent, maxImageSizeInMB } from "@/components";
 import { Autocomplete, Button, Grid, TextField } from "@mui/material";
 import { useAddNewsDesignFormComponent } from "./useAddNewsDesignFormComponent";
-import InputMask from "react-input-mask";
 
 const AddNewsDesignFormComponent = () => {
   const {
@@ -49,7 +48,7 @@ const AddNewsDesignFormComponent = () => {
           />
         </Grid>
         <Grid item xs={4}>
-          <InputMask
+          {/* <InputMask
             name="sharecode"
             mask="999 999 999"
             value={formik.values.forzaShareCode}
@@ -67,7 +66,7 @@ const AddNewsDesignFormComponent = () => {
                 helperText={formik.errors.forzaShareCode}
               />
             )}
-          </InputMask>
+          </InputMask> */}
         </Grid>
         <Grid item xs={12}>
           <TextField
