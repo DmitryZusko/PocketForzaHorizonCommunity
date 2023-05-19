@@ -1,15 +1,17 @@
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { NightsStay, WbSunny } from "@mui/icons-material";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import Image from "next/image";
 import { ButtonWithMenuComponent } from "../ButtonWithMenuComponent";
+import { baseTheme } from "../constants";
 import { CustomLinkComponent } from "../CustomLinkComponent";
 import { NavBarBodyComponent } from "./components";
 import { styles } from "./styles";
 import { useNavBarComponent } from "./useNavBarComponent";
 
-const NavBarComponent = () => {
-  const { isTablet, navBarTheme } = useNavBarComponent();
+const NavBarComponent = ({ ...props }) => {
+  const { isTablet, navBarTheme, themeMode, handleThemeModeChange } = useNavBarComponent();
   return (
-    <AppBar position="sticky" sx={navBarTheme}>
+    <AppBar position="sticky" sx={navBarTheme} {...props}>
       <Toolbar>
         <Box sx={styles.logo}>
           <CustomLinkComponent href="/" target="_self">
@@ -23,6 +25,11 @@ const NavBarComponent = () => {
             <NavBarBodyComponent />
           </ButtonWithMenuComponent>
         )}
+        <Box margin={baseTheme.spacing(7)}>
+          <IconButton onClick={handleThemeModeChange} color={"secondary"}>
+            {themeMode === "light" ? <WbSunny /> : <NightsStay />}
+          </IconButton>
+        </Box>
       </Toolbar>
     </AppBar>
   );

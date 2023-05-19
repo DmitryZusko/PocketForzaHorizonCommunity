@@ -42,7 +42,7 @@ export const useAddNewsDesignFormComponent = () => {
 
   const handleCancel = () => {
     cleanInput();
-    router.push("/designs");
+    router.push("/guides/designs");
   };
 
   const formik = useFormik({

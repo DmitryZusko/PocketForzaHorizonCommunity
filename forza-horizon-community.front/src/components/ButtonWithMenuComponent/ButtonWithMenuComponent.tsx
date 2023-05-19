@@ -2,8 +2,8 @@ import { Box, Button, Grow, Popper } from "@mui/material";
 import { PropsWithChildren } from "react";
 import { IButtonWithMenuComponentProps } from "./types";
 import { useButtonWithMenuComponent } from "./useButtonWithMenuComponent";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { styles } from "./styles";
+import { Dvr, ArrowRight } from "@mui/icons-material";
 
 const ButtonWithMenuComponent = ({
   mainButtonText,
@@ -14,7 +14,8 @@ const ButtonWithMenuComponent = ({
   return (
     <div onMouseLeave={handleClose}>
       <Button
-        endIcon={<ArrowRightIcon sx={arrowStyle} />}
+        startIcon={<Dvr />}
+        endIcon={<ArrowRight sx={arrowStyle} />}
         variant="contained"
         onClick={handleClick}
         onMouseEnter={handleHover}

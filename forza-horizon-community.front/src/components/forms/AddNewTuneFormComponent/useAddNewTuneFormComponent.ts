@@ -43,7 +43,7 @@ export const useAddNewTuneFormComponent = () => {
 
   const handleCancel = () => {
     cleanInput();
-    router.push("/tunes");
+    router.push("/guides/tunes");
   };
 
   const formik = useFormik({

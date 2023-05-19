@@ -1,14 +1,15 @@
 import { FormButtonGroupComponent } from "@/components/FormButtonGroupComponent";
-import { TextField } from "@mui/material";
-import { Container } from "@mui/system";
+import { globalStyles } from "@/styles";
+import { Paper, TextField } from "@mui/material";
+import { styles } from "../styles";
 import { useAddCarTypeFormComponent } from "./useAddCarTypeFormComponent";
 
 const AddCarTypeFormComponent = () => {
   const { formik, handleCancel } = useAddCarTypeFormComponent();
 
   return (
-    <Container>
-      <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
+      <Paper sx={[globalStyles.centeredColumnFlexContainer, styles.outerContainer]}>
         <TextField
           name="carTypeName"
           label="Car Type"
@@ -17,10 +18,11 @@ const AddCarTypeFormComponent = () => {
           onBlur={formik.handleBlur}
           error={formik.touched.carTypeName && Boolean(formik.errors.carTypeName)}
           helperText={formik.touched.carTypeName && formik.errors.carTypeName}
+          sx={styles.textField}
         />
         <FormButtonGroupComponent handleCancel={handleCancel} />
-      </form>
-    </Container>
+      </Paper>
+    </form>
   );
 };
 

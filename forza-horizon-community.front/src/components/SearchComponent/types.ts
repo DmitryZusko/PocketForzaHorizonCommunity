@@ -3,4 +3,6 @@ export interface ISearchComponentHook {
   handleQueryChange: (newQuery: string) => void;
 }
 
-export interface ISearchComponentProps extends ISearchComponentHook {}
+export interface ISearchComponentProps extends ISearchComponentHook {
+  label: string;
+}

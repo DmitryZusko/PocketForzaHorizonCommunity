@@ -5,34 +5,33 @@ import {
   LatestGuidesComponent,
   NavBarComponent,
   NewsBlockComponent,
+  PageFooterComponent,
   ScrollUpFabComponent,
   StatisticsComponent,
 } from "@/components";
 import { Box, Container, Fade, Typography } from "@mui/material";
 import { styles } from "./styles";
+import { styles as pageStyles } from "../styles";
+
 import { useHomeContent } from "./useHomeContent";
+import { globalStyles } from "@/styles";
 
 const HomeContent = () => {
   const {
     newsAccordionInView,
     guidesAccordionInView,
     statisticsAccordionInView,
+    footerInView,
     newsAccordionRef,
     guidesAccordionRef,
     statisticsAccordionRef,
+    footerRef,
   } = useHomeContent();
   return (
-    <Box sx={styles.outerBlock}>
+    <Box minHeight={"100vh"} sx={globalStyles.centeredColumnFlexContainer}>
       <NavBarComponent />
       <ImageBackgroundComponent>
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Container sx={pageStyles.imageTextBlock}>
           <Typography variant="imageHeader" align="center" sx={styles.textBlock}>
             Welcome to the Horizon Community!
           </Typography>
@@ -93,6 +92,16 @@ const HomeContent = () => {
         </Fade>
       </Box>
       <ScrollUpFabComponent />
+      <Box ref={footerRef} sx={pageStyles.footer}>
+        <Fade
+          in={footerInView}
+          timeout={750}
+          mountOnEnter
+          easing={baseTheme.transitions.easing.sharp}
+        >
+          <PageFooterComponent />
+        </Fade>
+      </Box>
     </Box>
   );
 };

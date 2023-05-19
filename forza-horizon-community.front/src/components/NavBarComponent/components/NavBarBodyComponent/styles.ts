@@ -8,5 +8,5 @@ export const styles = {
     maxWidth: "undefined",
   },
 
-  nestedButton: { m: baseTheme.spacing(2), border: "1px solid #eee", maxWidth: "100px" },
+  nestedButton: { m: baseTheme.spacing(2), border: "1px solid #eee", maxWidth: "120px" },
 };

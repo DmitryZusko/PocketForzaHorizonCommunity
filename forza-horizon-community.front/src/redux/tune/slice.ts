@@ -25,8 +25,11 @@ const tuneSlice = createSlice({
     setPageSize: (state, { payload }: ActionWithPayload<number>) => {
       state.pageSize = payload;
     },
-    addToPageSize: (state) => {
-      state.pageSize += defaultPageSize;
+    turnPage: (state) => {
+      state.page += 1;
+    },
+    cleanUpTunes: (state) => {
+      state.tunes = [];
     },
   },
   extraReducers: (builder) => {
@@ -41,9 +44,7 @@ const tuneSlice = createSlice({
       state.isLoadingTunes = true;
     });
     builder.addCase(getTunes.fulfilled, (state, { payload }) => {
-      state.tunes = payload.data.entities;
-      state.page = payload.data.page;
-      state.pageSize = payload.data.pageSize;
+      state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
     });
@@ -54,9 +55,7 @@ const tuneSlice = createSlice({
       state.isLoadingTunes = true;
     });
     builder.addCase(getTunesByCarId.fulfilled, (state, { payload }) => {
-      state.tunes = payload.data.entities;
-      state.page = payload.data.page;
-      state.pageSize = payload.data.pageSize;
+      state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
     });
@@ -73,6 +72,6 @@ const tuneSlice = createSlice({
   },
 });
 
-export const { setPage, setPageSize, addToPageSize } = tuneSlice.actions;
+export const { setPage, setPageSize, turnPage, cleanUpTunes } = tuneSlice.actions;
 
 export default tuneSlice.reducer;

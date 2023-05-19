@@ -1,0 +1,11 @@
+.imageListWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+}
+
+.image {
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}

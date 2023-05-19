@@ -1,5 +1,7 @@
 import { dateFormater } from "@/utilities";
 import { Grid, Rating, Typography } from "@mui/material";
+import { baseTheme } from "../constants";
+import { styles } from "./styles";
 import { IGuideCardFooterComponentProps } from "./types";
 
 const GuideCardFooterComponent = ({
@@ -8,39 +10,39 @@ const GuideCardFooterComponent = ({
   author,
   creationDate,
   carModel,
-}: IGuideCardFooterComponentProps) => {
-  return (
-    <Grid container spacing={1}>
-      <Grid item xs={6}>
-        <Typography variant="h6">Car Model:</Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="h6" fontWeight={700}>
-          {carModel}
-        </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="h6">Forza Share Code:</Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="h6" fontWeight={700}>
-          {shareCode}
-        </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="h6">Rating</Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Rating value={rating} readOnly />
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="body1">{author}</Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="body1">{dateFormater.dateToString(creationDate)}</Typography>
-      </Grid>
+}: IGuideCardFooterComponentProps) => (
+  <Grid container sx={styles.outerContainer}>
+    <Grid item xs={6}>
+      <Typography variant="textBody" color={baseTheme.palette.primary.main}>
+        Car Model:
+      </Typography>
     </Grid>
-  );
-};
+    <Grid item xs={6} textAlign="center">
+      <Typography variant="textBody">{carModel}</Typography>
+    </Grid>
+    <Grid item xs={6}>
+      <Typography variant="textBody" color={baseTheme.palette.primary.main}>
+        Forza Share Code:
+      </Typography>
+    </Grid>
+    <Grid item xs={6} textAlign="center" sx={styles.shareCodeBlock}>
+      <Typography variant="textBody">{shareCode}</Typography>
+    </Grid>
+    <Grid item xs={6}>
+      <Typography variant="textBody" color={baseTheme.palette.primary.main}>
+        Rating
+      </Typography>
+    </Grid>
+    <Grid item xs={6} textAlign="center">
+      <Rating value={rating} readOnly />
+    </Grid>
+    <Grid item xs={6} textAlign="start">
+      <Typography variant="smallText">{author}</Typography>
+    </Grid>
+    <Grid item xs={6} textAlign="end">
+      <Typography variant="smallText">{dateFormater.dateToString(creationDate)}</Typography>
+    </Grid>
+  </Grid>
+);
 
 export default GuideCardFooterComponent;

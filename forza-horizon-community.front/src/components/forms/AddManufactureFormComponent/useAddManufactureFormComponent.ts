@@ -43,7 +43,8 @@ export const useAddManufactureFormComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (manufactures.length) return;
     dispatch(getManufactures({}));
-  }, [dispatch]);
+  }, [manufactures, dispatch]);
   return { formik, handleCancel };
 };

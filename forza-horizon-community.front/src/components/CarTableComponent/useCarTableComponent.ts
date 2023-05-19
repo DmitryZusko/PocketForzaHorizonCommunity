@@ -9,6 +9,8 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/system";
 import { useCallback, useEffect, useState } from "react";
 import { OrderDirection } from "./components";
 
@@ -31,9 +33,16 @@ const useCarTableComponent = () => {
     selectedCountries,
   } = useAppSelector(selectedFilterParamsSelector);
 
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.up("md"));
+
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     return dispatch(
       getCars({
         page: currentPage,
@@ -86,6 +95,7 @@ const useCarTableComponent = () => {
   }, [loadCars]);
 
   return {
+    isTablet,
     currentPage,
     pageSize,
     isLoadingCars,

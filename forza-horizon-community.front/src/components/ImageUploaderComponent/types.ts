@@ -10,4 +10,10 @@ export interface IImageUploaderComponentHook {
 
 export interface IImageUploaderComponentProps extends IImageUploaderComponentHook {
   buttonText: string;
+  isFixedSize: boolean;
+  width?: number;
+  height?: number;
+  previewWidth?: number;
+  previewHeight?: number;
+  additionalInfo?: string;
 }

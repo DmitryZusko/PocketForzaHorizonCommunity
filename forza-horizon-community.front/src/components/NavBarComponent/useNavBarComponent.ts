@@ -1,3 +1,4 @@
+import { themeModeSelector, toogleThemeMode, useAppDispatch, useAppSelector } from "@/redux";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { styles } from "./styles";
@@ -6,6 +7,13 @@ export const useNavBarComponent = () => {
   const [navBarTheme, setNavBarTheme] = useState(styles.solidNavBar);
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up("md"));
+  const { themeMode } = useAppSelector(themeModeSelector);
+
+  const dispatch = useAppDispatch();
+
+  const handleThemeModeChange = () => {
+    dispatch(toogleThemeMode());
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -18,5 +26,5 @@ export const useNavBarComponent = () => {
     });
   });
 
-  return { isTablet, navBarTheme };
+  return { isTablet, navBarTheme, themeMode, handleThemeModeChange };
 };
