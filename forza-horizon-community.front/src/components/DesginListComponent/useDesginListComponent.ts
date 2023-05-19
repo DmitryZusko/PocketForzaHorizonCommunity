@@ -10,6 +10,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
+import { useRouter } from "next/router";
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { defaultCardDescriptionLimit, defaultPageSize } from "../constants";
 
@@ -21,6 +22,7 @@ export const useDesginListComponent = () => {
 
   const { designs, page, pageSize, totalEntities } = useAppSelector(designsSelector);
 
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
@@ -55,6 +57,10 @@ export const useDesginListComponent = () => {
       id: item.id,
     }));
   }, [carNames]);
+
+  const handleAddNewClick = () => {
+    router.push("/guides/designs/add-new");
+  };
 
   //To clean up old results and start fetching for a new query paramsand, old design[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
@@ -112,6 +118,7 @@ export const useDesginListComponent = () => {
     page,
     pageSize,
     totalEntities,
+    handleAddNewClick,
     handleSearchQueryChange,
     handleAutocompleteChange,
     loadNext,

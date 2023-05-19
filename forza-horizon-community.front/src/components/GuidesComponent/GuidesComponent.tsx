@@ -22,7 +22,7 @@ const GuidesComponent = () => {
     <Grid
       container
       sx={[globalStyles.centeredColumnFlexContainer, { overflow: "hidden" }]}
-      maxWidth={"100vw"}
+      maxWidth={"100%"}
     >
       <Slide
         in={isSlide}
