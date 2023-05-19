@@ -18,6 +18,7 @@ import { guideUploaderReducer } from "./guide-uploader";
 import { modalReducer } from "./modal";
 import { newsReducer } from "./news";
 import { selectedFilterParamsReducer } from "./selectedFilterParams";
+import { settingsReducer } from "./settings";
 import { tuneReducer } from "./tune";
 
 let store: EnhancedStore;
@@ -25,7 +26,7 @@ let store: EnhancedStore;
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["filterScheme"],
+  whitelist: ["filterScheme", "settings"],
 };
 
 const rootReducer = combineReducers({
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   selectedFilterParams: selectedFilterParamsReducer,
   guideUploader: guideUploaderReducer,
   modal: modalReducer,
+  settings: settingsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

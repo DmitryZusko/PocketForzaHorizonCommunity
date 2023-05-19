@@ -1,11 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { CustomLinkComponent } from "../CustomLinkComponent";
-import { styles } from "./styles";
+import { usePageFooterComponent } from "./usePageFooterComponent";
 
 const PageFooterComponent = forwardRef<HTMLDivElement>(function PageFooterComponent(_, ref) {
+  const { outerBoxStyles } = usePageFooterComponent();
   return (
-    <Box ref={ref} sx={styles.outerContainer}>
+    <Box ref={ref} sx={outerBoxStyles}>
       <Typography align="center" variant="body1">
         All images was takes from Froza Horizon 5 game.
       </Typography>

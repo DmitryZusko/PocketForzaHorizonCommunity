@@ -21,7 +21,7 @@ const TiresDetailsComponent = ({
 }: ITiresDetailsComponentProps) => {
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer}>
-      <Divider flexItem sx={styles.divider}>
+      <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Tires
         </Typography>

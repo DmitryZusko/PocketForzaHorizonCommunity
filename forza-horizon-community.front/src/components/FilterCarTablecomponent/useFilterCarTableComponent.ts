@@ -13,7 +13,9 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
-import { useCallback, useEffect } from "react";
+import { useTheme } from "@mui/material";
+import { useCallback, useEffect, useMemo } from "react";
+import { styles } from "./styles";
 
 export const useFilterCarTableComponent = () => {
   const {
@@ -30,6 +32,7 @@ export const useFilterCarTableComponent = () => {
 
   const { selectedPriceRange, selectedYearRange } = useAppSelector(selectedFilterRangesSelector);
 
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
   const loadParameters = useCallback(() => {
@@ -37,6 +40,12 @@ export const useFilterCarTableComponent = () => {
     dispatch(getCarTypes({}));
     dispatch(getCarFilterScheme());
   }, [dispatch]);
+
+  const checkboxContainerStyles = useMemo(() => {
+    const style = styles.checkboxContainer;
+    style.backgroundColor = theme.palette.specificBackground.main;
+    return style;
+  }, [theme]);
 
   const distinctSelector = (value: any, index: number, array: any[]) => {
     return array.indexOf(value) === index;
@@ -110,6 +119,7 @@ export const useFilterCarTableComponent = () => {
     maxYear,
     selectedPriceRange,
     selectedYearRange,
+    checkboxContainerStyles,
     countries,
     handlePriceRangeChange,
     handleYearRangeChange,

@@ -1,4 +1,4 @@
-import { OrderDirection } from "@/components";
+import { OrderDirection, ThemeMode } from "@/components";
 import {
   IAchivement,
   ICar,
@@ -100,4 +100,8 @@ export interface IModalState {
   isAddManufactureOpen: boolean;
   isAddCarTypeOpen: boolean;
   isAddCarOpen: boolean;
+}
+
+export interface ISettingsState {
+  themeMode: ThemeMode;
 }

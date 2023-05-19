@@ -75,7 +75,7 @@ const AddNewTuneFormComponent = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <Divider flexItem sx={styles.divider} variant="fullWidth">
+        <Divider flexItem variant="fullWidth">
           <Typography variant="blockTitle" sx={styles.textHeader}>
             Engine
           </Typography>
@@ -160,7 +160,7 @@ const AddNewTuneFormComponent = () => {
         </Box>
       </Grid>
       <Grid item xs={12}>
-        <Divider flexItem sx={styles.divider} variant="fullWidth">
+        <Divider flexItem variant="fullWidth">
           <Typography variant="blockTitle" sx={styles.textHeader}>
             Handling
           </Typography>
@@ -225,7 +225,7 @@ const AddNewTuneFormComponent = () => {
         </Box>
       </Grid>
       <Grid item xs={12}>
-        <Divider flexItem sx={styles.divider} variant="fullWidth">
+        <Divider flexItem variant="fullWidth">
           <Typography variant="blockTitle" sx={styles.textHeader}>
             Drivetrain
           </Typography>
@@ -282,7 +282,7 @@ const AddNewTuneFormComponent = () => {
         </Box>
       </Grid>
       <Grid item xs={12}>
-        <Divider flexItem sx={styles.divider} variant="fullWidth">
+        <Divider flexItem variant="fullWidth">
           <Typography variant="blockTitle" sx={styles.textHeader}>
             Tires
           </Typography>

@@ -6,10 +6,6 @@ export const styles = {
     flexFlow: "wrap",
     justifyContent: "space-evenly",
   },
-  divider: {
-    color: baseTheme.palette.primary.main,
-    "&.MuiDivider-root::before, &.MuiDivider-root::after": { borderTop: "2px solid" },
-  },
   textHeader: {
     textAlign: "left",
     width: "100%",

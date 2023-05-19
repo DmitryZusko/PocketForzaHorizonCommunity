@@ -19,7 +19,7 @@ const DrivetrainDetailsComponent = ({
 }: IDrivetrainDetailsComponentProps) => {
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer}>
-      <Divider flexItem sx={styles.divider}>
+      <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Drivetrain
         </Typography>

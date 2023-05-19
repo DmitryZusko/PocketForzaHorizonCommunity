@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-export const baseTheme = createTheme({
+export const baseThemeOptions = {
   palette: {
     primary: {
       light: "#ed4384",
@@ -11,6 +11,9 @@ export const baseTheme = createTheme({
       light: "#f7f7f7",
       main: "#ccc",
       dark: "#707070",
+    },
+    specificBackground: {
+      main: "#f7f7f7",
     },
   },
 
@@ -90,12 +93,29 @@ export const baseTheme = createTheme({
         spacing: 5,
       },
     },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          color: "#da206a",
+          "::before, ::after": {
+            borderTop: "2px solid",
+          },
+        },
+      },
+    },
   },
-});
+};
 
-export const lightTheme = createTheme(baseTheme, {});
+export const darkThemeOptions = {
+  palette: {
+    mode: "dark",
+    specificBackground: {
+      main: "#707070",
+    },
+  },
+};
 
-export const darkTheme = createTheme(baseTheme, {});
+export const baseTheme = createTheme(baseThemeOptions);
 
 declare module "@mui/material/styles" {
   interface TypographyVariants {
@@ -133,5 +153,15 @@ declare module "@mui/material/Typography" {
     tooltip: true;
     smallText: true;
     smallBoldText: true;
+  }
+}
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    specificBackground: Palette["primary"];
+  }
+
+  interface PaletteOptions {
+    specificBackground: PaletteOptions["primary"];
   }
 }

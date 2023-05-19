@@ -18,6 +18,7 @@ const FilterCarTableComponent = ({ ...props }) => {
     maxYear,
     selectedPriceRange,
     selectedYearRange,
+    checkboxContainerStyles,
     countries,
     handlePriceRangeChange,
     handleYearRangeChange,
@@ -35,7 +36,7 @@ const FilterCarTableComponent = ({ ...props }) => {
           <Typography variant="textBody" sx={styles.textTitle}>
             Select Country
           </Typography>
-          <Container sx={styles.checkboxContainer}>
+          <Container sx={checkboxContainerStyles}>
             <CustomCheckboxListComponent
               entities={countries()}
               applyChanges={handleSelectedCountry}
@@ -44,7 +45,7 @@ const FilterCarTableComponent = ({ ...props }) => {
           <Typography variant="textBody" sx={styles.textTitle}>
             Select Manufacture
           </Typography>
-          <Container sx={styles.checkboxContainer}>
+          <Container sx={checkboxContainerStyles}>
             <CustomCheckboxListComponent
               entities={manufactures.map((item) => item.name)}
               applyChanges={handleSelectedManufacture}
@@ -53,7 +54,7 @@ const FilterCarTableComponent = ({ ...props }) => {
           <Typography variant="textBody" sx={styles.textTitle}>
             Select Car Type
           </Typography>
-          <Container sx={styles.checkboxContainer}>
+          <Container sx={checkboxContainerStyles}>
             <CustomCheckboxListComponent
               entities={carTypes.map((item) => item.name)}
               applyChanges={handleSelectedCarType}
