@@ -32,9 +32,4 @@ export const styles = {
     padding: baseTheme.spacing(5),
     marginY: baseTheme.spacing(5),
   },
-
-  divider: {
-    color: baseTheme.palette.primary.main,
-    "&.MuiDivider-root::before, &.MuiDivider-root::after": { borderTop: "2px solid" },
-  },
 };

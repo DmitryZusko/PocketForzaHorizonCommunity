@@ -25,7 +25,7 @@ const EngineDetailsComponent = ({
 }: IEngineDetailsComponentProps) => {
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer}>
-      <Divider flexItem sx={styles.divider} variant="fullWidth">
+      <Divider flexItem variant="fullWidth">
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Engine
         </Typography>
