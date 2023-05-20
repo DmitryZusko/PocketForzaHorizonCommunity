@@ -1,4 +1,4 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Enums;
+﻿using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 

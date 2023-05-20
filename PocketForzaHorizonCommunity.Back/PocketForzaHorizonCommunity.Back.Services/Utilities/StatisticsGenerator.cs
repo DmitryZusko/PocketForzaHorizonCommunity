@@ -1,4 +1,5 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
@@ -13,29 +14,45 @@ namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 /// </summary>
 public class StatisticsGenerator : IStatisticsGenerator
 {
-    private ICarRepository _carRepo { get; set; }
+    private readonly ICarRepository _carRepo;
+    private readonly ICampaignStatisticsRepository _campaignStatsRepo;
+    private readonly IGeneralStatisticsRepository _generalStatsRepo;
+    private readonly IOnlineStatisticsRepository _onlineStatsRepo;
+    private readonly IRecordsStatisticsRepository _recordsStatsRepo;
     private ApplicationUser _user { get; set; } = null!;
 
     private IList<Car> _selectedCars = new List<Car>();
 
-    public StatisticsGenerator(ICarRepository carRepo) => _carRepo = carRepo;
 
-    public void GenerateStatistics(ApplicationUser user)
+    public StatisticsGenerator(ICarRepository carRepo, ICampaignStatisticsRepository campaignStatsRepo,
+        IGeneralStatisticsRepository generalstatsRepo, IOnlineStatisticsRepository onlinestatsRepo,
+        IRecordsStatisticsRepository recordsStatsRepo)
     {
-        _user = user;
-        _user.OwnedCarsByUsers = GenerateUserCars();
-        _user.GeneralStatistics = GenerateGeneralStatistics();
-        _user.CampaignStatistics = GenerateCampaignStatistics();
-        _user.OnlineStatistics = GenerateOnlineStatistics();
-        _user.RecordsStatistics = GenerateRecordsStatistics();
+        _carRepo = carRepo;
+        _campaignStatsRepo = campaignStatsRepo;
+        _generalStatsRepo = generalstatsRepo;
+        _onlineStatsRepo = onlinestatsRepo;
+        _recordsStatsRepo = recordsStatsRepo;
     }
 
-    private List<OwnedCarsByUsers> GenerateUserCars()
+    public async Task GenerateStatistics(ApplicationUser user)
+    {
+        _user = user;
+        _user.OwnedCarsByUsers = await GenerateUserCarsAsync();
+
+        user.GeneralStatistics = await GenerateGeneralStatistics();
+        user.CampaignStatistics = await GenerateCampaignStatistics();
+        user.OnlineStatistics = await GenerateOnlineStatistics();
+        user.RecordsStatistics = await GenerateRecordsStatistics();
+
+    }
+
+    private async Task<List<OwnedCarsByUsers>> GenerateUserCarsAsync()
     {
         var rnd = new Random();
-        var cars = _carRepo.GetAll().ToList();
+        var cars = await _carRepo.GetAll().ToListAsync();
 
-        var _selectedCars = cars.Skip(rnd.Next(0, cars.Count / 2)).Take(rnd.Next(1, cars.Count / 2)).ToList(); ;
+        _selectedCars = cars.Skip(rnd.Next(0, cars.Count / 2)).Take(rnd.Next(1, cars.Count / 2)).ToList();
 
         var result = new List<OwnedCarsByUsers>();
 
@@ -43,7 +60,7 @@ public class StatisticsGenerator : IStatisticsGenerator
         {
             result.Add(new OwnedCarsByUsers
             {
-                CarId = car.Id,
+                Car = car,
                 User = _user,
             });
         }
@@ -51,14 +68,13 @@ public class StatisticsGenerator : IStatisticsGenerator
         return result;
     }
 
-    private GeneralStatistics GenerateGeneralStatistics()
+    private async Task<GeneralStatistics> GenerateGeneralStatistics()
     {
         var rnd = new Random();
 
-        var cars = _carRepo.GetAll().ToList();
-
         var statistics = new GeneralStatistics
         {
+            UserId = _user.Id,
             User = _user,
             GarageValue = _selectedCars.Sum(c => c.Price),
             TimeDrivenInTicks = rnd.NextInt64(TimeSpan.TicksPerHour, 1000 * TimeSpan.TicksPerHour),
@@ -67,15 +83,19 @@ public class StatisticsGenerator : IStatisticsGenerator
             CollisionsPerRace = rnd.Next(1, 50),
             DailyChallengesCompleted = rnd.Next(1, 1000),
             WeeklyChallengesComplited = rnd.Next(1, 1000),
-            FavouriteCarId = _selectedCars[rnd.Next(0, _selectedCars.Count - 1)].Id,
+            Car = _selectedCars[rnd.Next(0, _selectedCars.Count)],
         };
 
         statistics.TotalPodiums = statistics.TotalVictories + rnd.Next(10, 1000);
+        statistics.FavouriteCarId = statistics.Car.Id;
+
+        await _generalStatsRepo.CreateAsync(statistics);
+        await _generalStatsRepo.SaveAsync();
 
         return statistics;
     }
 
-    private CampaignStatistics GenerateCampaignStatistics()
+    private async Task<CampaignStatistics> GenerateCampaignStatistics()
     {
 
         var rnd = new Random();
@@ -97,10 +117,13 @@ public class StatisticsGenerator : IStatisticsGenerator
 
         statistics.HeadToHeadWon = statistics.HeadToHeadEntered - rnd.Next(0, statistics.HeadToHeadEntered);
 
+        await _campaignStatsRepo.CreateAsync(statistics);
+        await _campaignStatsRepo.SaveAsync();
+
         return statistics;
     }
 
-    private OnlineStatistics GenerateOnlineStatistics()
+    private async Task<OnlineStatistics> GenerateOnlineStatistics()
     {
         var rnd = new Random();
 
@@ -126,10 +149,13 @@ public class StatisticsGenerator : IStatisticsGenerator
 
         statistics.ArcadeEventsEntered = statistics.ArcadeEventsCompleted + rnd.Next(10, 1000);
 
+        await _onlineStatsRepo.CreateAsync(statistics);
+        await _onlineStatsRepo.SaveAsync();
+
         return statistics;
     }
 
-    private RecordsStatistics GenerateRecordsStatistics()
+    private async Task<RecordsStatistics> GenerateRecordsStatistics()
     {
         var rnd = new Random();
 
@@ -148,6 +174,9 @@ public class StatisticsGenerator : IStatisticsGenerator
 
         statistics.AvarageSpeed = statistics.TopSpeed - rnd.Next(0, 100);
         statistics.LongestJump = statistics.HighestDangerSignScore;
+
+        await _recordsStatsRepo.CreateAsync(statistics);
+        await _recordsStatsRepo.SaveAsync();
 
         return statistics;
 

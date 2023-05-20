@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
@@ -9,6 +10,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.Controllers;
 
+[Authorize]
 public class TuneController : ApplicationControllerBase
 {
     private readonly ITuneService _service;
@@ -35,7 +37,7 @@ public class TuneController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<List<Guid>> GetallIds() => await _service.GetAllIds();
+    public async Task<List<Guid>> GetAllIds() => await _service.GetAllIds();
 
     [HttpGet("info")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -52,6 +54,7 @@ public class TuneController : ApplicationControllerBase
     }
 
     [HttpGet("GetLastTunes")]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -60,6 +63,7 @@ public class TuneController : ApplicationControllerBase
         _mapper.Map<List<TuneDto>>(await _service.GetLastTunes(request.TunesAmount));
 
     [HttpPost]
+    [Authorize(Roles = "Administrator, Content Creator")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -71,6 +75,7 @@ public class TuneController : ApplicationControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Administrator, Content Creator")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

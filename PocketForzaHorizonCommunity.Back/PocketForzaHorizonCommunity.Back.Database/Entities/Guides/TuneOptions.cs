@@ -1,4 +1,4 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Enums;
+﻿using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 using System.ComponentModel.DataAnnotations;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
