@@ -5,13 +5,13 @@ import { IAuthButtonsComponentProps } from "./types";
 import { useAuthButtonsComponent } from "./useAuthButtonsComponent";
 
 const AuthButtonsComponent = ({ isTablet }: IAuthButtonsComponentProps) => {
-  const { handlesignInClick, handleSignUpClick } = useAuthButtonsComponent();
+  const { themeMode, handleSignInClick, handleSignUpClick } = useAuthButtonsComponent();
   return (
     <>
       <Button
         startIcon={<Login />}
         variant="contained"
-        onClick={handlesignInClick}
+        onClick={handleSignInClick}
         sx={styles.button}
       >
         Sign In
@@ -19,6 +19,7 @@ const AuthButtonsComponent = ({ isTablet }: IAuthButtonsComponentProps) => {
       <Button
         startIcon={<Diversity1 />}
         variant={isTablet ? "outlined" : "contained"}
+        color={themeMode === "light" ? "secondary" : "primary"}
         onClick={handleSignUpClick}
         sx={styles.button}
       >

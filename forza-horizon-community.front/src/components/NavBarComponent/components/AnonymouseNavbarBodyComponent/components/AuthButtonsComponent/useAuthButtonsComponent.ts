@@ -1,5 +1,19 @@
+import {
+  setIsSignInOpen,
+  setIsSignUpOpen,
+  themeModeSelector,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
+
 export const useAuthButtonsComponent = () => {
-  const handlesignInClick = () => {};
-  const handleSignUpClick = () => {};
-  return { handlesignInClick, handleSignUpClick };
+  const { themeMode } = useAppSelector(themeModeSelector);
+  const dispatch = useAppDispatch();
+  const handleSignInClick = () => {
+    dispatch(setIsSignInOpen(true));
+  };
+  const handleSignUpClick = () => {
+    dispatch(setIsSignUpOpen(true));
+  };
+  return { themeMode, handleSignInClick, handleSignUpClick };
 };

@@ -1,11 +1,14 @@
 import {
+  logOut,
   logStateSelector,
+  signInSelector,
+  signUpSelector,
   themeModeSelector,
   toogleThemeMode,
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { styles } from "./styles";
 
 export const useNavBarComponent = () => {
@@ -13,12 +16,18 @@ export const useNavBarComponent = () => {
 
   const { themeMode } = useAppSelector(themeModeSelector);
   const { isLogged } = useAppSelector(logStateSelector);
+  const { isSignInOpen } = useAppSelector(signInSelector);
+  const { isSignUpOpen } = useAppSelector(signUpSelector);
 
   const dispatch = useAppDispatch();
 
   const handleThemeModeChange = () => {
     dispatch(toogleThemeMode());
   };
+
+  const handleLogOut = useCallback(() => {
+    dispatch(logOut());
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -31,5 +40,13 @@ export const useNavBarComponent = () => {
     });
   });
 
-  return { isLogged, navBarTheme, themeMode, handleThemeModeChange };
+  return {
+    isSignInOpen,
+    isSignUpOpen,
+    isLogged,
+    navBarTheme,
+    themeMode,
+    handleThemeModeChange,
+    handleLogOut,
+  };
 };
