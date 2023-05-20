@@ -2,6 +2,7 @@
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
+using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
@@ -172,27 +173,27 @@ internal static class Boilerplate
         {
             TuneId = tune.Id,
             EngineDescription = "Engine Description",
-            Engine = Database.Enums.EngineType.RacingI6T,
-            Aspiration = Database.Enums.AspirationType.TwinTurbo,
-            Intake = Database.Enums.IntakeType.RaceIntake,
-            Ignition = Database.Enums.IgnitionType.RaceIgnition,
-            Displacement = Database.Enums.DisplacementType.SportEngineBlock,
-            Exhaust = Database.Enums.ExhaustType.StreetExhaust,
+            Engine = EngineType.RacingI6T,
+            Aspiration = AspirationType.TwinTurbo,
+            Intake = IntakeType.RaceIntake,
+            Ignition = IgnitionType.RaceIgnition,
+            Displacement = DisplacementType.SportEngineBlock,
+            Exhaust = ExhaustType.StreetExhaust,
             HandlingDescription = "Handling Description",
-            Brakes = Database.Enums.BrakesType.StreetBrakes,
-            Suspension = Database.Enums.SuspensionType.DriftSuspension,
-            AntiRollBars = Database.Enums.AntiRollBarsType.RaceAntiRollBars,
-            RollCage = Database.Enums.RollCageType.RaceChassisReinforcement,
+            Brakes = BrakesType.StreetBrakes,
+            Suspension = SuspensionType.DriftSuspension,
+            AntiRollBars = AntiRollBarsType.RaceAntiRollBars,
+            RollCage = RollCageType.RaceChassisReinforcement,
             DrivetrainDescription = "Drivetrain Description",
-            Clutch = Database.Enums.ClutchType.RaceClutch,
-            Transmission = Database.Enums.TransmissionType.Race7Speed,
-            Differential = Database.Enums.DifferentialType.DriftDifferential,
+            Clutch = ClutchType.RaceClutch,
+            Transmission = TransmissionType.Race7Speed,
+            Differential = DifferentialType.DriftDifferential,
             TiresDescription = "Tiesr Description",
-            Compound = Database.Enums.TiresCompoundType.VintageCompound,
-            FrontTireWidth = Database.Enums.TiresWidthType.MM245,
-            RearTireWidth = Database.Enums.TiresWidthType.MM285,
-            FrontTrackWidth = Database.Enums.TrackWidthType.RaceTrackWidth,
-            RearTrackWidth = Database.Enums.TrackWidthType.RaceTrackWidth,
+            Compound = TiresCompoundType.VintageCompound,
+            FrontTireWidth = TiresWidthType.MM245,
+            RearTireWidth = TiresWidthType.MM285,
+            FrontTrackWidth = TrackWidthType.RaceTrackWidth,
+            RearTrackWidth = TrackWidthType.RaceTrackWidth,
         };
 
         return tune;

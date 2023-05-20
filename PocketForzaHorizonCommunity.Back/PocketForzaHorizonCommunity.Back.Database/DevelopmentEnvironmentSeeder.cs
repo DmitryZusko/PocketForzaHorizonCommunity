@@ -2,12 +2,16 @@
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
+using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using System.Security.Claims;
 
 namespace PocketForzaHorizonCommunity.Back.Database;
 
 public class DevelopmentEnvironmentSeeder
 {
+    private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ICarRepository _carRepo;
     private readonly IManufactureRepository _manufacturerRepo;
@@ -17,6 +21,7 @@ public class DevelopmentEnvironmentSeeder
     private readonly ITuneRepository _tuneRepo;
 
     public DevelopmentEnvironmentSeeder(
+        RoleManager<ApplicationRole> roleManager,
         UserManager<ApplicationUser> userManager,
         ICarRepository carRepo,
         IManufactureRepository manufacturerRepo,
@@ -25,6 +30,7 @@ public class DevelopmentEnvironmentSeeder
         IGalleryRepository galleryRepo,
         ITuneRepository tuneRepo)
     {
+        _roleManager = roleManager;
         _userManager = userManager;
         _carRepo = carRepo;
         _manufacturerRepo = manufacturerRepo;
@@ -36,12 +42,46 @@ public class DevelopmentEnvironmentSeeder
 
     public async Task Seed()
     {
-        await SeedUsers();
+        await SeedRoles();
+        //await SeedUsers();
         await SeedManufacture();
         await SeedCarTypes();
         await SeedCars();
         await SeedDesigns();
         await SeedTunes();
+    }
+
+    private async Task SeedRoles()
+    {
+        if (!await _roleManager.RoleExistsAsync(RoleType.ADMIN))
+        {
+            var adminRole = new ApplicationRole { Name = RoleType.ADMIN };
+            await _roleManager.CreateAsync(adminRole);
+
+            adminRole = await _roleManager.FindByNameAsync(RoleType.ADMIN);
+
+            await _roleManager.AddClaimAsync(adminRole, new Claim(ClaimType.FUNCTION, ClaimValue.ADMIN));
+        }
+
+        if (!await _roleManager.RoleExistsAsync(RoleType.CREATOR))
+        {
+            var creatorRole = new ApplicationRole { Name = RoleType.CREATOR };
+            await _roleManager.CreateAsync(creatorRole);
+
+            creatorRole = await _roleManager.FindByNameAsync(RoleType.CREATOR);
+
+            await _roleManager.AddClaimAsync(creatorRole, new Claim(ClaimType.FUNCTION, ClaimValue.CREATOR));
+        }
+
+        if (!await _roleManager.RoleExistsAsync(RoleType.USER))
+        {
+            var userRole = new ApplicationRole { Name = RoleType.USER };
+            await _roleManager.CreateAsync(userRole);
+
+            userRole = await _roleManager.FindByNameAsync(RoleType.USER);
+
+            await _roleManager.AddClaimAsync(userRole, new Claim(ClaimType.USER, ClaimValue.USER));
+        }
     }
 
     private async Task SeedUsers()
@@ -57,6 +97,11 @@ public class DevelopmentEnvironmentSeeder
 
         await _userManager.CreateAsync(user, "Qwerty123!");
 
+        if (!await _userManager.IsInRoleAsync(user, RoleType.ADMIN))
+        {
+            await _userManager.AddToRoleAsync(user, RoleType.ADMIN);
+        }
+
 
         user = await _userManager.FindByEmailAsync("elxf123@gmail.com");
 
@@ -69,6 +114,10 @@ public class DevelopmentEnvironmentSeeder
         };
 
         await _userManager.CreateAsync(user, "Qwerty123!");
+        if (!await _userManager.IsInRoleAsync(user, RoleType.USER))
+        {
+            await _userManager.AddToRoleAsync(user, RoleType.USER);
+        }
     }
 
     private async Task SeedManufacture()
@@ -265,27 +314,27 @@ public class DevelopmentEnvironmentSeeder
         {
             TuneId = tune.Id,
             EngineDescription = "Engine Description",
-            Engine = Enums.EngineType.RacingV8,
-            Aspiration = Enums.AspirationType.TwinTurbo,
-            Intake = Enums.IntakeType.RaceIntake,
-            Ignition = Enums.IgnitionType.RaceIgnition,
-            Displacement = Enums.DisplacementType.SportEngineBlock,
-            Exhaust = Enums.ExhaustType.StreetExhaust,
+            Engine = EngineType.RacingV8,
+            Aspiration = AspirationType.TwinTurbo,
+            Intake = IntakeType.RaceIntake,
+            Ignition = IgnitionType.RaceIgnition,
+            Displacement = DisplacementType.SportEngineBlock,
+            Exhaust = ExhaustType.StreetExhaust,
             HandlingDescription = "Handling Description",
-            Brakes = Enums.BrakesType.StreetBrakes,
-            Suspension = Enums.SuspensionType.DriftSuspension,
-            AntiRollBars = Enums.AntiRollBarsType.RaceAntiRollBars,
-            RollCage = Enums.RollCageType.RaceChassisReinforcement,
+            Brakes = BrakesType.StreetBrakes,
+            Suspension = SuspensionType.DriftSuspension,
+            AntiRollBars = AntiRollBarsType.RaceAntiRollBars,
+            RollCage = RollCageType.RaceChassisReinforcement,
             DrivetrainDescription = "Drivetrain Description",
-            Clutch = Enums.ClutchType.RaceClutch,
-            Transmission = Enums.TransmissionType.Race7Speed,
-            Differential = Enums.DifferentialType.DriftDifferential,
+            Clutch = ClutchType.RaceClutch,
+            Transmission = TransmissionType.Race7Speed,
+            Differential = DifferentialType.DriftDifferential,
             TiresDescription = "Tires Description",
-            Compound = Enums.TiresCompoundType.VintageCompound,
-            FrontTireWidth = Enums.TiresWidthType.MM245,
-            RearTireWidth = Enums.TiresWidthType.MM285,
-            FrontTrackWidth = Enums.TrackWidthType.RaceTrackWidth,
-            RearTrackWidth = Enums.TrackWidthType.RaceTrackWidth,
+            Compound = TiresCompoundType.VintageCompound,
+            FrontTireWidth = TiresWidthType.MM245,
+            RearTireWidth = TiresWidthType.MM285,
+            FrontTrackWidth = TrackWidthType.RaceTrackWidth,
+            RearTrackWidth = TrackWidthType.RaceTrackWidth,
         };
 
         await _tuneRepo.SaveAsync();
