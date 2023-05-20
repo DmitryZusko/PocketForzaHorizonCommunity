@@ -1,5 +1,9 @@
 import { IDefaultCarThumbnailsize } from "./types";
 
+export const AccessTokenKey = "@accessToken";
+
+export const RefreshTokenKey = "@refreshToken";
+
 export const defaultPageSize = 15;
 
 export const defaultIconSize = 100;

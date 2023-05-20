@@ -8,3 +8,4 @@ export * from "./SimplifiedCar";
 export * from "./Tune";
 export * from "./DesignFullInfo";
 export * from "./TuneFullInfo";
+export * from "./User";

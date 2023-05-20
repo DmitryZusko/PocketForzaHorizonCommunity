@@ -11,3 +11,4 @@ export * from "./tune";
 export * from "./guide-uploader";
 export * from "./modal";
 export * from "./settings";
+export * from "./auth";

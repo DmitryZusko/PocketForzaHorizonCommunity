@@ -10,6 +10,7 @@ import {
   ISimplifiedCar,
   ITune,
   ITuneFullInfo,
+  IUser,
 } from "@/data-transfer-objects";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
@@ -104,4 +105,9 @@ export interface IModalState {
 
 export interface ISettingsState {
   themeMode: ThemeMode;
+}
+
+export interface IAuthState {
+  isLogged: boolean;
+  user: IUser | undefined;
 }

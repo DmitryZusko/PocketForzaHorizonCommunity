@@ -6,3 +6,4 @@ export * from "./SteamRequests";
 export * from "./ManufactureRequests";
 export * from "./PaginatedRequest";
 export * from "./TuneRequests";
+export * from "./AuthRequests";
