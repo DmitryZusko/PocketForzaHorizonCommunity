@@ -101,6 +101,8 @@ export interface IModalState {
   isAddManufactureOpen: boolean;
   isAddCarTypeOpen: boolean;
   isAddCarOpen: boolean;
+  isSignInOpen: boolean;
+  isSignUpOpen: boolean;
 }
 
 export interface ISettingsState {
