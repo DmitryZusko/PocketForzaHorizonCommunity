@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
@@ -10,6 +11,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.Controllers;
 
+[Authorize]
 public class CarTypeController : ApplicationControllerBase
 {
     private readonly ICarTypeService _service;
@@ -22,10 +24,11 @@ public class CarTypeController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<PaginatedResponse<CarTypeDto>> Getall([FromQuery] PaginationGetRequestBase request)
+    public async Task<PaginatedResponse<CarTypeDto>> GetAll([FromQuery] PaginationGetRequestBase request)
         => _mapper.Map<PaginatedResponse<CarTypeDto>>(await _service.GetAllAsync(request));
 
     [HttpPost]
+    [Authorize(Roles = "Administrator")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -38,6 +41,7 @@ public class CarTypeController : ApplicationControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Administrator")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -49,6 +53,7 @@ public class CarTypeController : ApplicationControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Administrator")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

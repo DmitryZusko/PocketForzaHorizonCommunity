@@ -22,10 +22,12 @@ builder.Services.AddCors(opt =>
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddRouting(opt => opt.LowercaseUrls = true);
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.ConfigureAuthorization();
+builder.Services.ConfigureAuthentication(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -62,6 +64,8 @@ app.UseHttpsRedirection();
 app.UseCors();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
