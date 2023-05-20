@@ -4,11 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 
-public class GeneralStatistics
+public class GeneralStatistics : UserStatisticsBase
 {
-    [Key]
-    public Guid UserId { get; set; }
-    public ApplicationUser User { get; set; } = null!;
 
     [Required]
     public int GarageValue { get; set; }

@@ -2,11 +2,8 @@
 
 namespace PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
 
-public class CampaignStatistics
+public class CampaignStatistics : UserStatisticsBase
 {
-    [Key]
-    public Guid UserId { get; set; }
-    public ApplicationUser User { get; set; } = null!;
 
     [Required]
     public int TotalRaces { get; set; }
