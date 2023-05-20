@@ -5,7 +5,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 export const getStaticPaths: GetStaticPaths = async () => {
   let ids: string[] = [];
 
-  designService.getAllIds().then((result) => (ids = result.data));
+  designService.getAllIdsAsync().then((result) => (ids = result.data));
 
   const paths = ids.map((path) => {
     return {

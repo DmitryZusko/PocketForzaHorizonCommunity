@@ -1,8 +1,8 @@
 import {
   filterSchemeSelector,
-  getCarFilterScheme,
-  getCarTypes,
-  getManufactures,
+  getCarFilterSchemeAsync,
+  getCarTypesAsync,
+  getManufacturesAsync,
   selectedFilterRangesSelector,
   setCarPage,
   setSelectedCarTypes,
@@ -36,9 +36,9 @@ export const useFilterCarTableComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadParameters = useCallback(() => {
-    dispatch(getManufactures({}));
-    dispatch(getCarTypes({}));
-    dispatch(getCarFilterScheme());
+    dispatch(getManufacturesAsync({}));
+    dispatch(getCarTypesAsync({}));
+    dispatch(getCarFilterSchemeAsync());
   }, [dispatch]);
 
   const checkboxContainerStyles = useMemo(() => {

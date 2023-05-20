@@ -1,6 +1,6 @@
 import { ICar } from "@/data-transfer-objects";
 import {
-  getCars,
+  getCarsAsync,
   paginatedCarsSelector,
   selectedFilterParamsSelector,
   setCarPage,
@@ -44,7 +44,7 @@ const useCarTableComponent = () => {
       behavior: "smooth",
     });
     return dispatch(
-      getCars({
+      getCarsAsync({
         page: currentPage,
         pageSize,
         minPrice: selectedPriceRange[0],

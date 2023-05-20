@@ -2,8 +2,8 @@ import {
   carNamesSelector,
   cleanUpDesigns,
   designsSelector,
-  getCarNames,
-  getDesigns,
+  getCarNamesAsync,
+  getDesignsAsync,
   getDesignsByCarId,
   setDesignPage,
   turnDesignPage,
@@ -26,7 +26,7 @@ export const useDesginListComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
-    dispatch(getCarNames());
+    dispatch(getCarNamesAsync());
   }, [dispatch]);
 
   const loadDesigns = useCallback(() => {
@@ -42,7 +42,7 @@ export const useDesginListComponent = () => {
       );
     }
     return dispatch(
-      getDesigns({
+      getDesignsAsync({
         page,
         pageSize: defaultPageSize,
         searchQuery: searchQuery,

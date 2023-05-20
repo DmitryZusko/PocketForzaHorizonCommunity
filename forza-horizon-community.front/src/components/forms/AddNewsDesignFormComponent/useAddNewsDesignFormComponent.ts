@@ -1,7 +1,7 @@
 import {
   carNamesSelector,
   designUploaderSelector,
-  getCarNames,
+  getCarNamesAsync,
   setDesignGallery,
   setDesignThumbnail,
   setIsDesignGalleryError,
@@ -100,7 +100,7 @@ export const useAddNewsDesignFormComponent = () => {
   }, [formik, dispatch]);
 
   useEffect(() => {
-    dispatch(getCarNames());
+    dispatch(getCarNamesAsync());
   }, [dispatch]);
 
   return {

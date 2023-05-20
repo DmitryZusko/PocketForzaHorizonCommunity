@@ -45,7 +45,7 @@ const signUpAsync = async (request: ISignUpRequest) => {
   return result;
 };
 
-const refreshToken = async (request: IRefreshTokenRequest) => {
+const refreshTokenAsync = async (request: IRefreshTokenRequest) => {
   const axios = await customAxios.getAxiosInstance();
   return axios.post<ITokenResponse>("authentication/refresh", {
     accessToken: request.accessToken,
@@ -60,6 +60,6 @@ const getUserAsync = async (accessToken: string) => {
   return axios.get<IUser>("authentication/me");
 };
 
-const authService = { signInAsync, signUpAsync, refreshToken };
+const authService = { signInAsync, signUpAsync, refreshTokenAsync };
 
 export default authService;

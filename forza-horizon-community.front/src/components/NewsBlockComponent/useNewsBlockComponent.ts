@@ -1,4 +1,4 @@
-import { getNews, newsSelector, useAppDispatch, useAppSelector } from "@/redux";
+import { getNewsAsync, newsSelector, useAppDispatch, useAppSelector } from "@/redux";
 import { useCallback, useEffect } from "react";
 import { defaultNewsAmount, defaultNewsLength } from "../constants";
 
@@ -8,7 +8,7 @@ export const useNewsBlockComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadNews = useCallback(async () => {
-    await dispatch(getNews({ count: defaultNewsAmount, maxLength: defaultNewsLength }));
+    await dispatch(getNewsAsync({ count: defaultNewsAmount, maxLength: defaultNewsLength }));
   }, [dispatch]);
 
   useEffect(() => {

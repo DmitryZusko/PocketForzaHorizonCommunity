@@ -2,12 +2,11 @@ import { showToast } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { IFiltetSchemeState } from "../types";
 import {
-  getCarFilterScheme,
-  getCarNames,
-  getCarTypes,
-  getManufactures,
-  postCarType,
-  postManufacture,
+  getCarFilterSchemeAsync,
+  getCarNamesAsync,
+  getCarTypesAsync,
+  getManufacturesAsync,
+  postManufactureAsync,
 } from "./thunks";
 
 const initialState: IFiltetSchemeState = {
@@ -31,55 +30,55 @@ const filterSchemeSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCarTypes.pending, (state) => {
+    builder.addCase(getCarTypesAsync.pending, (state) => {
       state.isLoadingCarTypes = true;
     });
-    builder.addCase(getCarTypes.fulfilled, (state, { payload }) => {
+    builder.addCase(getCarTypesAsync.fulfilled, (state, { payload }) => {
       state.carTypes = payload.data.entities;
       state.totalCarTypes = payload.data.total;
       state.isLoadingCarTypes = false;
     });
-    builder.addCase(getCarTypes.rejected, (state) => {
+    builder.addCase(getCarTypesAsync.rejected, (state) => {
       state.isLoadingCarTypes = false;
     });
-    builder.addCase(getManufactures.pending, (state) => {
+    builder.addCase(getManufacturesAsync.pending, (state) => {
       state.isLoadingManufacture = true;
     });
-    builder.addCase(getManufactures.fulfilled, (state, { payload }) => {
+    builder.addCase(getManufacturesAsync.fulfilled, (state, { payload }) => {
       state.manufactures = payload.data.entities;
       state.totalManufactures = payload.data.total;
       state.isLoadingManufacture = false;
     });
-    builder.addCase(getManufactures.rejected, (state) => {
+    builder.addCase(getManufacturesAsync.rejected, (state) => {
       state.isLoadingManufacture = false;
     });
-    builder.addCase(getCarNames.pending, (state) => {
+    builder.addCase(getCarNamesAsync.pending, (state) => {
       state.isLoadingCarNames = true;
     });
-    builder.addCase(getCarNames.fulfilled, (state, { payload }) => {
+    builder.addCase(getCarNamesAsync.fulfilled, (state, { payload }) => {
       state.carNames = payload.data.entities;
     });
-    builder.addCase(getCarNames.rejected, (state) => {
+    builder.addCase(getCarNamesAsync.rejected, (state) => {
       state.isLoadingCarNames = true;
     });
-    builder.addCase(getCarFilterScheme.pending, (state) => {
+    builder.addCase(getCarFilterSchemeAsync.pending, (state) => {
       state.isLoadingCarFilterScheme = true;
     });
-    builder.addCase(getCarFilterScheme.fulfilled, (state, { payload }) => {
+    builder.addCase(getCarFilterSchemeAsync.fulfilled, (state, { payload }) => {
       state.minPrice = payload.data.minPrice;
       state.maxPrice = payload.data.maxPrice;
       state.minYear = payload.data.minYear;
       state.maxYear = payload.data.maxYear;
       state.isLoadingCarFilterScheme = false;
     });
-    builder.addCase(getCarFilterScheme.rejected, (state) => {
+    builder.addCase(getCarFilterSchemeAsync.rejected, (state) => {
       state.isLoadingCarFilterScheme = false;
     });
-    builder.addCase(postManufacture.fulfilled, (state, { payload }) => {
+    builder.addCase(postManufactureAsync.fulfilled, (state, { payload }) => {
       state.manufactures.push(payload.data);
       showToast.showSuccess("New Manufacture is added!");
     });
-    builder.addCase(postCarType.fulfilled, (state, { payload }) => {
+    builder.addCase(postCarAsyncType.fulfilled, (state, { payload }) => {
       state.carTypes.push(payload.data);
       showToast.showSuccess("New car type is added!");
     });
