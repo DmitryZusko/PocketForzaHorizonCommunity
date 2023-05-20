@@ -1,13 +1,18 @@
-import { themeModeSelector, toogleThemeMode, useAppDispatch, useAppSelector } from "@/redux";
-import { useMediaQuery, useTheme } from "@mui/material";
+import {
+  logStateSelector,
+  themeModeSelector,
+  toogleThemeMode,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
 import { useEffect, useState } from "react";
 import { styles } from "./styles";
 
 export const useNavBarComponent = () => {
   const [navBarTheme, setNavBarTheme] = useState(styles.solidNavBar);
-  const theme = useTheme();
-  const isTablet = useMediaQuery(theme.breakpoints.up("md"));
+
   const { themeMode } = useAppSelector(themeModeSelector);
+  const { isLogged } = useAppSelector(logStateSelector);
 
   const dispatch = useAppDispatch();
 
@@ -26,5 +31,5 @@ export const useNavBarComponent = () => {
     });
   });
 
-  return { isTablet, navBarTheme, themeMode, handleThemeModeChange };
+  return { isLogged, navBarTheme, themeMode, handleThemeModeChange };
 };

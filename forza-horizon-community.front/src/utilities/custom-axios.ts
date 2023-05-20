@@ -1,5 +1,5 @@
 import { AccessTokenKey } from "@/components";
-import AsyncStorage from "@react-native-async-storage/async-storage/lib/typescript/AsyncStorage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import envHandler from "./env-handler";
 
