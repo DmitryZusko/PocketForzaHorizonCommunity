@@ -44,8 +44,6 @@ const designSlice = createSlice({
       state.isLoadingDesigns = true;
     });
     builder.addCase(getDesigns.fulfilled, (state, { payload }) => {
-      console.log(payload);
-
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;
@@ -60,7 +58,6 @@ const designSlice = createSlice({
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;
-      console.log(state.totalEntities);
     });
     builder.addCase(getDesignsByCarId.rejected, (state) => {
       state.isLoadingDesigns = false;

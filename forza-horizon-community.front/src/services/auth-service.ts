@@ -30,7 +30,7 @@ const signUpAsync = async (request: ISignUpRequest) => {
   const axios = await customAxios.getAxiosInstance();
   const response = await axios.post<ITokenResponse>("authentication/sign-up", {
     email: request.email,
-    username: request.usernane,
+    username: request.username,
     password: request.password,
   });
 
