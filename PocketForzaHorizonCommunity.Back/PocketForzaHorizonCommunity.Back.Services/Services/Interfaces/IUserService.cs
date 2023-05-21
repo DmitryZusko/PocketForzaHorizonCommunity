@@ -1,4 +1,5 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
@@ -11,5 +12,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
         Task<ApplicationUser> VerifyGoogleSingInAsync(GoogleSignInRequest request);
         Task<ApplicationUser> GetCurrentUser(string userId);
         Task<List<string>> GetUserRoles(ApplicationUser user);
+        Task SendEmailConfirmationMessageAsync(EmailConfirmationMessageRequest request);
+        Task<IdentityResult> ConfirmEmailAsync(EmailConfirmationRequest request);
     }
 }

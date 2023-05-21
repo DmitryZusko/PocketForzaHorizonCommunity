@@ -35,7 +35,7 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
             services.AddTransient<ITokenService, TokenService>();
 
             services.AddTransient<IImageManager, ImageManager>();
-
+            services.AddTransient<IMailManager, MailManager>();
             services.AddTransient<IStatisticsGenerator, StatisticsGenerator>();
         }
     }

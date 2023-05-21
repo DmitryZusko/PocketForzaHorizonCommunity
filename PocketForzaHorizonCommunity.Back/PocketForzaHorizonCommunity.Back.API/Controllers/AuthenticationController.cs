@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.Auth;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
+using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using System.Security.Claims;
 
@@ -83,6 +84,35 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
             userDto.Roles = await _userService.GetUserRoles(user);
 
             return userDto;
+        }
+
+        [HttpPost("send-verification-message")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> SendVerificationMessage([FromBody] EmailConfirmationMessageRequest request)
+        {
+            await _userService.SendEmailConfirmationMessageAsync(request);
+            return Ok();
+        }
+
+        [HttpGet("verify-email")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> VerifyEmail([FromQuery] EmailConfirmationRequest request)
+        {
+            var result = await _userService.ConfirmEmailAsync(request);
+
+            if (!result.Succeeded)
+            {
+                throw new BadRequestException(Messages.INVALID_EMAIL_CONFIRMATION);
+            }
+
+            return Ok();
         }
     }
 }
