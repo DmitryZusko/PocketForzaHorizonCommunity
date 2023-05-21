@@ -6,6 +6,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import { initializePersistor, initializeStore } from "@/redux";
 import { AppThemeProvider, AuthGate, LeftBottomToastComponent } from "@/components";
 import { CssBaseline } from "@mui/material";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { envHandler } from "@/utilities";
 
 export default function App({ Component, pageProps }: AppProps) {
   const store = useMemo(() => {
@@ -16,13 +18,16 @@ export default function App({ Component, pageProps }: AppProps) {
     return initializePersistor(store);
   }, [store]);
 
+  const clientId = envHandler.getGoogleId();
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <AppThemeProvider>
           <CssBaseline />
           <AuthGate authSettings={pageProps.authSettings}>
-            <Component {...pageProps} />
+            <GoogleOAuthProvider clientId={clientId || ""}>
+              <Component {...pageProps} />
+            </GoogleOAuthProvider>
           </AuthGate>
           <LeftBottomToastComponent />
         </AppThemeProvider>

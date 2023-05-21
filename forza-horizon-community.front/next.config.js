@@ -9,6 +9,11 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    SERVER_API_URL: process.env.SERVER_API_URL,
+    STEAM_IMAGES_PATH: process.env.STEAM_IMAGES_PATH,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  },
 };
 
 module.exports = nextConfig;

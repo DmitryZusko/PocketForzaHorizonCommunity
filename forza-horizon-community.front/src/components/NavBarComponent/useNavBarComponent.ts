@@ -8,6 +8,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/redux";
+import { googleLogout } from "@react-oauth/google";
 import { useCallback, useEffect, useState } from "react";
 import { styles } from "./styles";
 
@@ -27,6 +28,7 @@ export const useNavBarComponent = () => {
 
   const handleLogOut = useCallback(() => {
     dispatch(logOut());
+    googleLogout();
   }, [dispatch]);
 
   useEffect(() => {

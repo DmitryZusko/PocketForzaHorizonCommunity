@@ -1,4 +1,4 @@
-import { ISignInRequest, ISignUpRequest } from "@/data-transfer-objects";
+import { IGoogleSingInRequest, ISignInRequest, ISignUpRequest } from "@/data-transfer-objects";
 import { authService } from "@/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -9,3 +9,10 @@ export const signInAsync = createAsyncThunk("auth/signIn", async (request: ISign
 export const signUpAsync = createAsyncThunk("auth/signUp", async (request: ISignUpRequest) => {
   return authService.signUpAsync(request);
 });
+
+export const googleSignInAsync = createAsyncThunk(
+  "auth/googleSignInAsync",
+  async (request: IGoogleSingInRequest) => {
+    return authService.googleSignInAsync(request);
+  },
+);

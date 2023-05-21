@@ -3,7 +3,7 @@ import { IUser } from "@/data-transfer-objects";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IAuthState } from "../types";
-import { signInAsync, signUpAsync } from "./thunks";
+import { googleSignInAsync, signInAsync, signUpAsync } from "./thunks";
 
 const initialState: IAuthState = {
   isLogged: false,
@@ -37,6 +37,14 @@ const authSlice = createSlice({
       state.isLogged = true;
     });
     builder.addCase(signUpAsync.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      AsyncStorage.multiSet([
+        [AccessTokenKey, payload.accessToken],
+        [RefreshTokenKey, payload.refreshToken],
+      ]);
+      state.isLogged = true;
+    });
+    builder.addCase(googleSignInAsync.fulfilled, (state, { payload }) => {
       state.user = payload.user;
       AsyncStorage.multiSet([
         [AccessTokenKey, payload.accessToken],
