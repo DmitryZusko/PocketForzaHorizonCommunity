@@ -4,9 +4,10 @@ import {
   IUser,
   ISignInRequest,
   IGoogleSingInRequest,
+  ISignUpResponse,
+  ITokenResponse,
+  ISignInResponse,
 } from "@/data-transfer-objects";
-import { ISignInResponse } from "@/data-transfer-objects/responses/AuthResponse/SignInResponse";
-import { ITokenResponse } from "@/data-transfer-objects/responses/AuthResponse/TokenResponse";
 import { customAxios } from "@/utilities";
 
 const signInAsync = async (request: ISignInRequest) => {
@@ -37,10 +38,16 @@ const signUpAsync = async (request: ISignUpRequest) => {
 
   const user = await getUserAsync(response.data.accessToken);
 
-  const result: ISignInResponse = {
+  const emailResult = await sendEmailConfirmationMessageAsync(
+    response.data.accessToken,
+    user.data.email,
+  );
+
+  const result: ISignUpResponse = {
     accessToken: response.data.accessToken,
     refreshToken: response.data.refreshToken,
     user: user.data,
+    isEmailSend: emailResult.status === 200 ? true : false,
   };
 
   return result;
@@ -76,6 +83,15 @@ const getUserAsync = async (accessToken: string) => {
   axios.defaults.headers["Authorization"] = `Bearer ${accessToken}`;
 
   return axios.get<IUser>("authentication/me");
+};
+
+const sendEmailConfirmationMessageAsync = async (accessToken: string, destinationEmail: string) => {
+  const axios = await customAxios.getAxiosInstance();
+  axios.defaults.headers["Authorization"] = `Bearer ${accessToken}`;
+
+  return axios.post("authentication/send-verification-message", {
+    DestinationEmail: destinationEmail,
+  });
 };
 
 const authService = { signInAsync, signUpAsync, googleSignInAsync, refreshTokenAsync };

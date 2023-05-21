@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 
-namespace PocketForzaHorizonCommunity.Back.Services.Services;
+namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 
 public class ApplicationUserManager<TUser> : UserManager<TUser> where TUser : class
 {
