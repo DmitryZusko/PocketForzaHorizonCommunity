@@ -12,9 +12,10 @@ const isRouteAvailable = (
   if (!isLogged && accessLevel === AuthAccessLevel.Unauthorized) return true;
 
   if (isLogged && accessLevel === AuthAccessLevel.Authorized) {
-    user?.roles.forEach((role) => {
-      if (accessRoles.includes(role)) return true;
-    });
+    const rolesCount = user?.roles.length || 0;
+    for (let i = 0; i < rolesCount; i++) {
+      if (accessRoles.includes(user?.roles[i] || "")) return true;
+    }
   }
 
   return false;
