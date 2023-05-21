@@ -1,5 +1,5 @@
 import { Autocomplete, Button, Grid, Slide, TextField, Typography } from "@mui/material";
-import { defaultSearchTreshhold } from "../constants";
+import { AccessRole, defaultSearchTreshhold } from "../constants";
 import { SearchComponent } from "../SearchComponent";
 import { useDesginListComponent } from "./useDesginListComponent";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -10,6 +10,7 @@ import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { styles } from "./styles";
 import { AddBox } from "@mui/icons-material";
+import { RoleGate } from "../gates";
 
 const DesginListComponent = () => {
   const {
@@ -41,11 +42,13 @@ const DesginListComponent = () => {
           renderInput={(params) => <TextField {...params} label="Car" />}
         />
       </Grid>
-      <Grid item xs={12} textAlign="center">
-        <Button startIcon={<AddBox />} variant="contained" onClick={handleAddNewClick}>
-          Add New
-        </Button>
-      </Grid>
+      <RoleGate accessRoles={[AccessRole.admin, AccessRole.creator]}>
+        <Grid item xs={12} textAlign="center">
+          <Button startIcon={<AddBox />} variant="contained" onClick={handleAddNewClick}>
+            Add New
+          </Button>
+        </Grid>
+      </RoleGate>
       <Grid item xs={12}>
         <InfiniteScroll
           dataLength={designs.length}

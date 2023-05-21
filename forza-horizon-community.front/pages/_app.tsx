@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { initializePersistor, initializeStore } from "@/redux";
-import { AppThemeProvider, LeftBottomToastComponent } from "@/components";
+import { AppThemeProvider, AuthGate, LeftBottomToastComponent } from "@/components";
 import { CssBaseline } from "@mui/material";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -21,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <PersistGate persistor={persistor}>
         <AppThemeProvider>
           <CssBaseline />
-          <Component {...pageProps} />
+          <AuthGate authSettings={pageProps.authSettings}>
+            <Component {...pageProps} />
+          </AuthGate>
           <LeftBottomToastComponent />
         </AppThemeProvider>
       </PersistGate>
