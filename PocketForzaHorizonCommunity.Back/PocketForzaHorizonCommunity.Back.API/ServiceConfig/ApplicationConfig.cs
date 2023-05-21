@@ -25,6 +25,7 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
             services.AddTransient<IRecordsStatisticsRepository, RecordsStatisticsRepository>();
 
             services.AddTransient<ApplicationUserManager<ApplicationUser>>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<ICarTypeService, CarTypeService>();
             services.AddTransient<IDesignService, DesignService>();
