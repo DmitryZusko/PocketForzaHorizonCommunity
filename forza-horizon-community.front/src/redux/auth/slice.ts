@@ -1,5 +1,6 @@
 import { AccessTokenKey, RefreshTokenKey } from "@/components";
 import { IUser } from "@/data-transfer-objects";
+import { showToast } from "@/utilities";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IAuthState } from "../types";
@@ -43,6 +44,8 @@ const authSlice = createSlice({
         [RefreshTokenKey, payload.refreshToken],
       ]);
       state.isLogged = true;
+      payload.isEmailSend &&
+        showToast.showInfo("We've send you an email confirmation link. \nPlease, check your email");
     });
     builder.addCase(googleSignInAsync.fulfilled, (state, { payload }) => {
       state.user = payload.user;
