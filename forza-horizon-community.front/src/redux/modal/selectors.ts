@@ -27,3 +27,7 @@ export const addModalsSelector = createSelector(
     isAddCarTypeOpen,
   }),
 );
+
+export const signInSelector = createSelector(modalStateSelector, (isSignInOpen) => isSignInOpen);
+
+export const signUpSelector = createSelector(modalStateSelector, (isSignUpOpen) => isSignUpOpen);

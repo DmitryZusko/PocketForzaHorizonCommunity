@@ -1,4 +1,5 @@
 import { combineReducers, configureStore, EnhancedStore } from "@reduxjs/toolkit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   persistStore,
   persistReducer,
@@ -9,7 +10,6 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import { carReducer } from "./car";
 import { designReducer } from "./design";
 import { filterSchemeReducer } from "./filter-scheme";
@@ -20,13 +20,14 @@ import { newsReducer } from "./news";
 import { selectedFilterParamsReducer } from "./selectedFilterParams";
 import { settingsReducer } from "./settings";
 import { tuneReducer } from "./tune";
+import { authReducer } from "./auth";
 
 let store: EnhancedStore;
 
 const persistConfig = {
   key: "root",
-  storage: storage,
-  whitelist: ["filterScheme", "settings"],
+  storage: AsyncStorage,
+  whitelist: ["auth", "filterScheme", "settings"],
 };
 
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   guideUploader: guideUploaderReducer,
   modal: modalReducer,
   settings: settingsReducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

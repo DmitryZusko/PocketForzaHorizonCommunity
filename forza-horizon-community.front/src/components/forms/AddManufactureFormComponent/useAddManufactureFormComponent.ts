@@ -1,7 +1,7 @@
 import {
-  getManufactures,
+  getManufacturesAsync,
   manufacturesSelector,
-  postManufacture,
+  postManufactureAsync,
   setIsAddManufactureOpen,
   useAppDispatch,
   useAppSelector,
@@ -23,7 +23,7 @@ export const useAddManufactureFormComponent = () => {
         return;
       }
 
-      dispatch(postManufacture({ name: values.manufactureName, country: values.country }));
+      dispatch(postManufactureAsync({ name: values.manufactureName, country: values.country }));
       dispatch(setIsAddManufactureOpen(false));
     },
     [manufactures, dispatch],
@@ -44,7 +44,7 @@ export const useAddManufactureFormComponent = () => {
 
   useEffect(() => {
     if (manufactures.length) return;
-    dispatch(getManufactures({}));
+    dispatch(getManufacturesAsync({}));
   }, [manufactures, dispatch]);
   return { formik, handleCancel };
 };

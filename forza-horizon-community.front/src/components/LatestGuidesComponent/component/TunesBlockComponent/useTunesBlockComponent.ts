@@ -1,5 +1,5 @@
 import { defaultLatestGuidesAmount } from "@/components/constants";
-import { getLatestTunes, tuneLastestSelector, useAppDispatch, useAppSelector } from "@/redux";
+import { getLatestTunesAsync, tuneLastestSelector, useAppDispatch, useAppSelector } from "@/redux";
 import { useCallback, useEffect } from "react";
 
 export const useTunesBlockComponent = () => {
@@ -8,7 +8,7 @@ export const useTunesBlockComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadLatestTunes = useCallback(() => {
-    dispatch(getLatestTunes(defaultLatestGuidesAmount));
+    dispatch(getLatestTunesAsync(defaultLatestGuidesAmount));
   }, [dispatch]);
 
   useEffect(() => {

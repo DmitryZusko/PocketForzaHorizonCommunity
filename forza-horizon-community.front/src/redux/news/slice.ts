@@ -1,7 +1,7 @@
 import { imageUtil } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { INewsState } from "../types";
-import { getNews } from "./thunks";
+import { getNewsAsync } from "./thunks";
 
 const initialState: INewsState = {
   isLoading: false,
@@ -14,10 +14,10 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getNews.pending, (state) => {
+    builder.addCase(getNewsAsync.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getNews.fulfilled, (state, { payload }) => {
+    builder.addCase(getNewsAsync.fulfilled, (state, { payload }) => {
       state.news = imageUtil.extractImagesFromContent(payload.data.newsItems);
       state.isLoading = false;
     });

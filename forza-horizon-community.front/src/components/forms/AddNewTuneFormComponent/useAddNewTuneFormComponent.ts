@@ -1,4 +1,4 @@
-import { carNamesSelector, getCarNames, useAppDispatch, useAppSelector } from "@/redux";
+import { carNamesSelector, getCarNamesAsync, useAppDispatch, useAppSelector } from "@/redux";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo } from "react";
@@ -65,7 +65,7 @@ export const useAddNewTuneFormComponent = () => {
   }, [formik]);
 
   useEffect(() => {
-    dispatch(getCarNames());
+    dispatch(getCarNamesAsync());
   }, [dispatch]);
 
   return { formik, autocompleteOptions, handleCancel };

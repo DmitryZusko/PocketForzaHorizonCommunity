@@ -114,6 +114,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
             }
 
             var userDto = _mapper.Map<UserDto>(user);
+            userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
 
             return userDto;
         }

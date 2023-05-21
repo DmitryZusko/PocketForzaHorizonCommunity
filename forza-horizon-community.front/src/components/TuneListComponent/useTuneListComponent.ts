@@ -1,9 +1,9 @@
 import {
   carNamesSelector,
   cleanUpTunes,
-  getCarNames,
-  getTunes,
-  getTunesByCarId,
+  getCarNamesAsync,
+  getTunesAsync,
+  getTunesByCarIdAsync,
   setTunePage,
   tunesSelector,
   turnTunePage,
@@ -26,13 +26,13 @@ export const useTuneListComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
-    dispatch(getCarNames());
+    dispatch(getCarNamesAsync());
   }, [dispatch]);
 
   const loadTunes = useCallback(() => {
     if (selectedCar) {
       return dispatch(
-        getTunesByCarId({
+        getTunesByCarIdAsync({
           page,
           pageSize: defaultPageSize,
           searchQuery: searchQuery,
@@ -42,7 +42,7 @@ export const useTuneListComponent = () => {
     }
 
     return dispatch(
-      getTunes({
+      getTunesAsync({
         page,
         pageSize: defaultPageSize,
         searchQuery: searchQuery,

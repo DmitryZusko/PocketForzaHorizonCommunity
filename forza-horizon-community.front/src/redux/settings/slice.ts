@@ -15,7 +15,6 @@ const settingsSlice = createSlice({
     },
     toogleThemeMode: (state) => {
       state.themeMode = state.themeMode === "light" ? "dark" : "light";
-      console.log(state.themeMode);
     },
   },
 });

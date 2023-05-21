@@ -1,6 +1,6 @@
 import { Autocomplete, Button, Grid, Slide, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
+import { AccessRole, defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { InfiniteScrollEndComponent } from "../InfiniteScrollEndComponent";
@@ -10,6 +10,7 @@ import { TuneCardBodyComponent } from "../TuneCardBodyComponent";
 import { styles } from "./styles";
 import { useTuneListComponent } from "./useTuneListComponent";
 import { AddBox } from "@mui/icons-material";
+import { RoleGate } from "../gates";
 
 const TuneListComponent = () => {
   const {
@@ -40,11 +41,13 @@ const TuneListComponent = () => {
           renderInput={(params) => <TextField {...params} label="Car" />}
         />
       </Grid>
-      <Grid item xs={12} textAlign="center">
-        <Button startIcon={<AddBox />} variant="contained" onClick={handleAddNewClick}>
-          Add New
-        </Button>
-      </Grid>
+      <RoleGate accessRoles={[AccessRole.admin, AccessRole.creator]}>
+        <Grid item xs={12} textAlign="center">
+          <Button startIcon={<AddBox />} variant="contained" onClick={handleAddNewClick}>
+            Add New
+          </Button>
+        </Grid>
+      </RoleGate>
       <Grid item xs={12}>
         <InfiniteScroll
           dataLength={tunes.length}

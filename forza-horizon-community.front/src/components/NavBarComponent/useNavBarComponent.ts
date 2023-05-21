@@ -1,19 +1,33 @@
-import { themeModeSelector, toogleThemeMode, useAppDispatch, useAppSelector } from "@/redux";
-import { useMediaQuery, useTheme } from "@mui/material";
-import { useEffect, useState } from "react";
+import {
+  logOut,
+  logStateSelector,
+  signInSelector,
+  signUpSelector,
+  themeModeSelector,
+  toogleThemeMode,
+  useAppDispatch,
+  useAppSelector,
+} from "@/redux";
+import { useCallback, useEffect, useState } from "react";
 import { styles } from "./styles";
 
 export const useNavBarComponent = () => {
   const [navBarTheme, setNavBarTheme] = useState(styles.solidNavBar);
-  const theme = useTheme();
-  const isTablet = useMediaQuery(theme.breakpoints.up("md"));
+
   const { themeMode } = useAppSelector(themeModeSelector);
+  const { isLogged } = useAppSelector(logStateSelector);
+  const { isSignInOpen } = useAppSelector(signInSelector);
+  const { isSignUpOpen } = useAppSelector(signUpSelector);
 
   const dispatch = useAppDispatch();
 
   const handleThemeModeChange = () => {
     dispatch(toogleThemeMode());
   };
+
+  const handleLogOut = useCallback(() => {
+    dispatch(logOut());
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -26,5 +40,13 @@ export const useNavBarComponent = () => {
     });
   });
 
-  return { isTablet, navBarTheme, themeMode, handleThemeModeChange };
+  return {
+    isSignInOpen,
+    isSignUpOpen,
+    isLogged,
+    navBarTheme,
+    themeMode,
+    handleThemeModeChange,
+    handleLogOut,
+  };
 };

@@ -1,7 +1,7 @@
 import { defaultPageSize } from "@/components";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, ITuneState } from "../types";
-import { getLatestTunes, getTuneById, getTunes, getTunesByCarId } from "./thunks";
+import { getLatestTunesAsync, getTuneById, getTunesAsync, getTunesByCarIdAsync } from "./thunks";
 
 const initialState: ITuneState = {
   isLoadingLatest: false,
@@ -33,33 +33,33 @@ const tuneSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getLatestTunes.pending, (state) => {
+    builder.addCase(getLatestTunesAsync.pending, (state) => {
       state.isLoadingLatest = true;
     });
-    builder.addCase(getLatestTunes.fulfilled, (state, { payload }) => {
+    builder.addCase(getLatestTunesAsync.fulfilled, (state, { payload }) => {
       state.latestTunes = payload.data;
       state.isLoadingLatest = false;
     });
-    builder.addCase(getTunes.pending, (state) => {
+    builder.addCase(getTunesAsync.pending, (state) => {
       state.isLoadingTunes = true;
     });
-    builder.addCase(getTunes.fulfilled, (state, { payload }) => {
+    builder.addCase(getTunesAsync.fulfilled, (state, { payload }) => {
       state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
     });
-    builder.addCase(getTunes.rejected, (state) => {
+    builder.addCase(getTunesAsync.rejected, (state) => {
       state.isLoadingTunes = false;
     });
-    builder.addCase(getTunesByCarId.pending, (state) => {
+    builder.addCase(getTunesByCarIdAsync.pending, (state) => {
       state.isLoadingTunes = true;
     });
-    builder.addCase(getTunesByCarId.fulfilled, (state, { payload }) => {
+    builder.addCase(getTunesByCarIdAsync.fulfilled, (state, { payload }) => {
       state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
     });
-    builder.addCase(getTunesByCarId.rejected, (state) => {
+    builder.addCase(getTunesByCarIdAsync.rejected, (state) => {
       state.isLoadingTunes = false;
     });
     builder.addCase(getTuneById.pending, (state) => {

@@ -1,21 +1,26 @@
-import { IManufacture, IPaginatedResponse, IPostManufactureRequest } from "@/data-transfer-objects";
+import {
+  IManufacture,
+  IPaginatedRequest,
+  IPaginatedResponse,
+  IPostManufactureRequest,
+} from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 
-const getManufactures = (page?: number, pageCount?: number) => {
-  const axios = customAxios.getAxiosInstance();
+const getManufacturesAsync = async (request: IPaginatedRequest) => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<IPaginatedResponse<IManufacture>>("manufacture", {
-    params: { page, pageCount },
+    params: { Page: request.page, PageSize: request.pageSize },
   });
 };
 
-const postManufacture = ({ name, country }: IPostManufactureRequest) => {
-  const axios = customAxios.getAxiosInstance();
-  return axios.post<IManufacture>("manufacture", { name, country });
+const postManufactureAsync = async (request: IPostManufactureRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post<IManufacture>("manufacture", { Name: request.name, Country: request.country });
 };
 
 const manufactureService = {
-  getManufactures,
-  postManufacture,
+  getManufacturesAsync,
+  postManufactureAsync,
 };
 
 export default manufactureService;

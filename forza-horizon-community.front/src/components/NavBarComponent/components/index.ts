@@ -1,1 +1,2 @@
-export * from "./NavBarBodyComponent";
+export * from "./AuthorizedNavbarBodyComponent";
+export * from "./AnonymouseNavbarBodyComponent";

@@ -14,37 +14,34 @@ import { AxiosResponse } from "axios";
 import { RootState } from "../store";
 import { stateAlreadyUploadedMessage } from "./constants";
 
-export const getManufactures = createAsyncThunk<
+export const getManufacturesAsync = createAsyncThunk<
   AxiosResponse<IPaginatedResponse<IManufacture>, any>,
   IPaginatedRequest,
   { state: RootState }
 >(
-  "manufacture/getManufactures",
-  async ({ page, pageSize }: IPaginatedRequest, { getState, rejectWithValue }) => {
+  "manufacture/getManufacturesAsync",
+  async (request: IPaginatedRequest, { getState, rejectWithValue }) => {
     const manufactures = getState().filterScheme.manufactures;
     if (manufactures.length > 0) return rejectWithValue(stateAlreadyUploadedMessage);
-    return manufactureService.getManufactures(page, pageSize);
+    return manufactureService.getManufacturesAsync(request);
   },
 );
 
-export const getCarTypes = createAsyncThunk<
+export const getCarTypesAsync = createAsyncThunk<
   AxiosResponse<IPaginatedResponse<ICarType>, any>,
   IPaginatedRequest,
   { state: RootState }
->(
-  "carType/getCarTypes",
-  async ({ page, pageSize }: IPaginatedRequest, { getState, rejectWithValue }) => {
-    const carTypes = getState().filterScheme.carTypes;
-    if (carTypes.length > 0) return rejectWithValue(stateAlreadyUploadedMessage);
-    return carTypeService.getCarTypes({ page, pageSize });
-  },
-);
+>("carType/getCarTypesAsync", async (request: IPaginatedRequest, { getState, rejectWithValue }) => {
+  const carTypes = getState().filterScheme.carTypes;
+  if (carTypes.length > 0) return rejectWithValue(stateAlreadyUploadedMessage);
+  return carTypeService.getCarTypesAsync(request);
+});
 
-export const getCarFilterScheme = createAsyncThunk<
+export const getCarFilterSchemeAsync = createAsyncThunk<
   AxiosResponse<ICarFilterSchemeResponse, any>,
   void,
   { state: RootState }
->("car/getCarFilterScheme", async (_, { getState, rejectWithValue }) => {
+>("car/getCarFilterSchemeAsync", async (_, { getState, rejectWithValue }) => {
   const filterScheme = getState().filterScheme;
   const minMaxValues = [
     filterScheme.minPrice,
@@ -54,29 +51,29 @@ export const getCarFilterScheme = createAsyncThunk<
   ];
   if (minMaxValues.every((value) => value !== 0))
     return rejectWithValue(stateAlreadyUploadedMessage);
-  return carService.getCarFilterScheme();
+  return carService.getCarFilterSchemeAsync();
 });
 
-export const getCarNames = createAsyncThunk<
+export const getCarNamesAsync = createAsyncThunk<
   AxiosResponse<IPaginatedResponse<ISimplifiedCar>, any>,
   void,
   { state: RootState }
 >("car/CarNames", async (_, { getState, rejectWithValue }) => {
   const carNames = getState().filterScheme.carNames;
   if (carNames.length > 0) return rejectWithValue(stateAlreadyUploadedMessage);
-  return carService.getCarNames();
+  return carService.getCarNamesAsync();
 });
 
-export const postManufacture = createAsyncThunk(
-  "filterScheme/postManufacture",
-  async ({ name, country }: IPostManufactureRequest) => {
-    return manufactureService.postManufacture({ name, country });
+export const postManufactureAsync = createAsyncThunk(
+  "filterScheme/postManufactureAsync",
+  async (request: IPostManufactureRequest) => {
+    return manufactureService.postManufactureAsync(request);
   },
 );
 
-export const postCarType = createAsyncThunk(
-  "filterScheme/postCarType",
-  async ({ carTypeName }: IPostCarTypeRequest) => {
-    return carTypeService.postCarType({ carTypeName });
+export const postCarTypeAsync = createAsyncThunk(
+  "filterScheme/postCarTypeAsync",
+  async (request: IPostCarTypeRequest) => {
+    return carTypeService.postCarTypeAsync(request);
   },
 );

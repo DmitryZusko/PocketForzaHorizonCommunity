@@ -1,11 +1,13 @@
+import { AuthAccessLevel } from "@/components";
 import { DesignDetailsContent } from "@/page-content";
 import { designService } from "@/services";
+import { gateHandler } from "@/utilities";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   let ids: string[] = [];
 
-  designService.getAllIds().then((result) => (ids = result.data));
+  designService.getAllIdsAsync().then((result) => (ids = result.data));
 
   const paths = ids.map((path) => {
     return {
@@ -23,7 +25,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
 
   return {
-    props: { id: id },
+    props: { id: id, authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized) },
   };
 };
 

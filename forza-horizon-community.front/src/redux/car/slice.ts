@@ -3,7 +3,7 @@ import { ICar } from "@/data-transfer-objects";
 import { sortEntities } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, ICarState, ISortingPayload } from "../types";
-import { getCars } from "./thunks";
+import { getCarsAsync } from "./thunks";
 
 const initialState: ICarState = {
   isLoadingCars: false,
@@ -28,17 +28,17 @@ const carSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCars.pending, (state) => {
+    builder.addCase(getCarsAsync.pending, (state) => {
       state.isLoadingCars = true;
     });
-    builder.addCase(getCars.fulfilled, (state, { payload }) => {
+    builder.addCase(getCarsAsync.fulfilled, (state, { payload }) => {
       state.cars = payload.data.entities;
       state.page = payload.data.page;
       state.pageSize = payload.data.pageSize;
       state.totalEntities = payload.data.total;
       state.isLoadingCars = false;
     });
-    builder.addCase(getCars.rejected, (state) => {
+    builder.addCase(getCarsAsync.rejected, (state) => {
       state.isLoadingCars = false;
     });
   },

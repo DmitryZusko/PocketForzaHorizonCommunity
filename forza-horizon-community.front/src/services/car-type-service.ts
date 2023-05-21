@@ -6,19 +6,21 @@ import {
 } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 
-const getCarTypes = ({ page, pageSize }: IPaginatedRequest) => {
-  const axios = customAxios.getAxiosInstance();
-  return axios.get<IPaginatedResponse<ICarType>>("cartype", { params: { page, pageSize } });
+const getCarTypesAsync = async (request: IPaginatedRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.get<IPaginatedResponse<ICarType>>("cartype", {
+    params: { Page: request.page, PageSize: request.pageSize },
+  });
 };
 
-const postCarType = ({ carTypeName }: IPostCarTypeRequest) => {
-  const axios = customAxios.getAxiosInstance();
-  return axios.post<ICarType>("cartype", { name: carTypeName });
+const postCarTypeAsync = async (request: IPostCarTypeRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post<ICarType>("cartype", { name: request.carTypeName });
 };
 
 const carTypeService = {
-  getCarTypes,
-  postCarType,
+  getCarTypesAsync,
+  postCarTypeAsync,
 };
 
 export default carTypeService;
