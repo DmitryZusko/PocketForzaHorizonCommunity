@@ -9,7 +9,7 @@ const TuneList = () => {
 export const getServerSideProps = () => {
   return {
     props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized, []),
+      authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized),
     },
   };
 };

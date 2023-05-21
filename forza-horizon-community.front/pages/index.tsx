@@ -16,7 +16,7 @@ const Home = () => {
 export const getServerSideProps = () => {
   return {
     props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse, []),
+      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse),
     },
   };
 };
