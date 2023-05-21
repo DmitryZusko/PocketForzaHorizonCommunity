@@ -1,5 +1,5 @@
 import { globalStyles } from "@/styles";
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Zoom } from "@mui/material";
 import { PropsWithChildren } from "react";
 import { IFloatingModalProps } from "./types";
 
@@ -16,7 +16,9 @@ const FloatingModal = ({
       {...props}
       sx={globalStyles.centeredColumnFlexContainer}
     >
-      <Box>{children}</Box>
+      <Zoom in={open} timeout={500}>
+        <Box>{children}</Box>
+      </Zoom>
     </Modal>
   );
 };
