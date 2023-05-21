@@ -27,15 +27,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
 
   return {
-    props: { id: id },
-  };
-};
-
-export const getServerSideProps = () => {
-  return {
-    props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized),
-    },
+    props: { id: id, authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized) },
   };
 };
 
