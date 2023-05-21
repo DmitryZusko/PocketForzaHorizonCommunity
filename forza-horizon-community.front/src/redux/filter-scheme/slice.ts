@@ -6,6 +6,7 @@ import {
   getCarNamesAsync,
   getCarTypesAsync,
   getManufacturesAsync,
+  postCarTypeAsync,
   postManufactureAsync,
 } from "./thunks";
 
@@ -78,7 +79,7 @@ const filterSchemeSlice = createSlice({
       state.manufactures.push(payload.data);
       showToast.showSuccess("New Manufacture is added!");
     });
-    builder.addCase(postCarAsyncType.fulfilled, (state, { payload }) => {
+    builder.addCase(postCarTypeAsync.fulfilled, (state, { payload }) => {
       state.carTypes.push(payload.data);
       showToast.showSuccess("New car type is added!");
     });
