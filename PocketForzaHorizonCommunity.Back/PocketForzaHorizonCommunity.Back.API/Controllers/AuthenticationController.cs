@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -55,6 +56,31 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
             return await _tokenService.GenerateAuthTokenAsync(user);
         }
 
+        [HttpPost("google-sign-in")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        public async Task<AuthTokenDto> GoogleSignIn([FromBody] GoogleSignInRequest request)
+        {
+            var payload = await GoogleJsonWebSignature.ValidateAsync(request.GoogleToken);
+
+            if (payload == null)
+            {
+                throw new BadRequestException(Messages.INVALID_SIGN_IN);
+            }
+
+            var user = await _userManager.FindByEmailAsync(payload.Email);
+
+            if (user == null)
+            {
+                user = await CreateUser(payload.Name, payload.Email, null);
+                await _userManager.AddToRoleAsync(user, RoleType.USER);
+            }
+
+            return await _tokenService.GenerateAuthTokenAsync(user);
+        }
+
         [HttpPost("sign-up")]
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -62,26 +88,9 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<AuthTokenDto> SignUp([FromBody] SignUpRequest request)
         {
-            var user = new ApplicationUser
-            {
-                UserName = request.Username,
-                Email = request.Email,
-            };
-
-
-            var result = await _userManager.CreateAsync(user, request.Password);
-
-            if (!result.Succeeded)
-            {
-                throw new BadRequestException(Messages.INVALID_SIGN_UP);
-            }
-
-            user = await _userManager.FindByEmailAsync(request.Email);
-
-            await _statisticsGenerator.GenerateStatistics(user);
+            var user = await CreateUser(request.Username, request.Email, request.Password);
 
             await _userManager.AddToRoleAsync(user, RoleType.USER);
-
 
             var token = await _tokenService.GenerateAuthTokenAsync(user);
 
@@ -117,6 +126,28 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
             userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
 
             return userDto;
+        }
+
+        private async Task<ApplicationUser> CreateUser(string username, string email, string? password)
+        {
+            var user = new ApplicationUser
+            {
+                UserName = username,
+                Email = password,
+            };
+
+            var result = password == null ? await _userManager.CreateAsync(user) : await _userManager.CreateAsync(user, password);
+
+            if (!result.Succeeded)
+            {
+                throw new BadRequestException(Messages.INVALID_SIGN_UP);
+            }
+
+            user = await _userManager.FindByEmailAsync(email);
+
+            await _statisticsGenerator.GenerateStatistics(user);
+
+            return user;
         }
     }
 }

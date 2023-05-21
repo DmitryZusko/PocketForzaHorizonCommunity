@@ -3,6 +3,7 @@ import {
   ISignUpRequest,
   IUser,
   ISignInRequest,
+  IGoogleSingInRequest,
 } from "@/data-transfer-objects";
 import { ISignInResponse } from "@/data-transfer-objects/responses/AuthResponse/SignInResponse";
 import { ITokenResponse } from "@/data-transfer-objects/responses/AuthResponse/TokenResponse";
@@ -45,6 +46,23 @@ const signUpAsync = async (request: ISignUpRequest) => {
   return result;
 };
 
+const googleSignInAsync = async (request: IGoogleSingInRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  const response = await axios.post<ITokenResponse>("authentication/google-sign-in", {
+    Googletoken: request.googleToken,
+  });
+
+  const user = await getUserAsync(response.data.accessToken);
+
+  const result: ISignInResponse = {
+    accessToken: response.data.accessToken,
+    refreshToken: response.data.refreshToken,
+    user: user.data,
+  };
+
+  return result;
+};
+
 const refreshTokenAsync = async (request: IRefreshTokenRequest) => {
   const axios = await customAxios.getAxiosInstance();
   return axios.post<ITokenResponse>("authentication/refresh", {
@@ -60,6 +78,6 @@ const getUserAsync = async (accessToken: string) => {
   return axios.get<IUser>("authentication/me");
 };
 
-const authService = { signInAsync, signUpAsync, refreshTokenAsync };
+const authService = { signInAsync, signUpAsync, googleSignInAsync, refreshTokenAsync };
 
 export default authService;
