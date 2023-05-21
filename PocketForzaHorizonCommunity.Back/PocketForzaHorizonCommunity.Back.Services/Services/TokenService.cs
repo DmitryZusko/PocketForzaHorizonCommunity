@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.Auth;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
-using PocketForzaHorizonCommunity.Back.Services.Exceptionsl;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

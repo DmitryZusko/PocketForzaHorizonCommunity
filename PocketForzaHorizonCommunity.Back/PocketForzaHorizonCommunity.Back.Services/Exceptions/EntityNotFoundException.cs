@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using PocketForzaHorizonCommunity.Back.Services.Exceptionsl;
+using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Exceptions;
 
