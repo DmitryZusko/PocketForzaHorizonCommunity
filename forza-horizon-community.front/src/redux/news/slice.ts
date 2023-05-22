@@ -18,6 +18,8 @@ export const newsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getNewsAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.news = imageUtil.extractImagesFromContent(payload.data.newsItems);
       state.isLoading = false;
     });

@@ -5,8 +5,9 @@ import { validationScheme } from "./constants";
 export const useEnterEmailFormComponent = () => {
   const dispatch = useAppDispatch();
   const handleSubmit = (values: { email: string }) => {
-    dispatch(sendResetPasswordMessageAsync({ email: values.email }));
-    dispatch(setIsForgotPasswordOpen(false));
+    dispatch(sendResetPasswordMessageAsync({ email: values.email })).then(
+      (result) => result.payload && dispatch(setIsForgotPasswordOpen(false)),
+    );
   };
 
   const handleCancel = () => {

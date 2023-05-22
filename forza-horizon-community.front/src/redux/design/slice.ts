@@ -37,6 +37,8 @@ const designSlice = createSlice({
       state.isLoadingLatest = true;
     });
     builder.addCase(getLatestDesignsAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.latestDesigns = payload.data.entities;
       state.isLoadingLatest = false;
     });
@@ -44,6 +46,8 @@ const designSlice = createSlice({
       state.isLoadingDesigns = true;
     });
     builder.addCase(getDesignsAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;
@@ -55,6 +59,8 @@ const designSlice = createSlice({
       state.isLoadingDesigns = true;
     });
     builder.addCase(getDesignsByCarId.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;
@@ -66,6 +72,8 @@ const designSlice = createSlice({
       state.isLoadingSelected = true;
     });
     builder.addCase(getDesignById.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.selectedDesign = payload.data;
       state.isLoadingSelected = false;
     });

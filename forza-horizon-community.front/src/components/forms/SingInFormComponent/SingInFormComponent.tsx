@@ -26,7 +26,6 @@ const SingInFormComponent = () => {
         <PasswordFieldComponent
           name="password"
           label="Password"
-          type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
