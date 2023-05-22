@@ -45,11 +45,13 @@ const NavBarComponent = ({ ...props }) => {
             {themeMode === "light" ? <WbSunny /> : <NightsStay />}
           </IconButton>
         </Box>
-        <Box marginX={baseTheme.spacing(5)}>
-          <IconButton onClick={handleLogOut} color={"secondary"}>
-            <Logout />
-          </IconButton>
-        </Box>
+        {isLogged && (
+          <Box marginX={baseTheme.spacing(5)}>
+            <IconButton onClick={handleLogOut} color={"secondary"}>
+              <Logout />
+            </IconButton>
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
   );
