@@ -32,3 +32,4 @@ export * from "./InfiniteScrollEndComponent";
 export * from "./DefaultLoaderComponent";
 export * from "./GuidesComponent";
 export * from "./gates";
+export * from "./ConfirmEmailComponent";

@@ -9,6 +9,7 @@ import {
   ISignInResponse,
   ISendResetPasswordMessageRequest,
   IResetPasswordRequest,
+  IConfirmEmailRequest,
 } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 
@@ -96,6 +97,13 @@ const sendEmailConfirmationMessageAsync = async (accessToken: string, destinatio
   });
 };
 
+const confirmEmailAsync = async (request: IConfirmEmailRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.get("authentication/verify-email", {
+    params: { UserId: request.userId, ConfirmationToken: request.confirmationToken },
+  });
+};
+
 const sendResetPasswordMessageAsync = async (request: ISendResetPasswordMessageRequest) => {
   const axios = await customAxios.getAxiosInstance();
   return axios.post("authentication/reset-password-message", { Email: request.email });
@@ -115,6 +123,7 @@ const authService = {
   signUpAsync,
   googleSignInAsync,
   refreshTokenAsync,
+  confirmEmailAsync,
   sendResetPasswordMessageAsync,
   resetPasswordAsync,
 };

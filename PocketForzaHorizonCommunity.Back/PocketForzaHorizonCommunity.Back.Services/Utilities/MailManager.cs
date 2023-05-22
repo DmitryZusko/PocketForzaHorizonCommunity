@@ -50,7 +50,7 @@ public class MailManager : IMailManager
         message.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $@"
                         <p>Hi, we're glad to see you with us! Please, follow the link below 
                         to confim the email.<br>
-                        {_config["Email:confiramtionEndpoint"]}/?userId={emailOptions.UserId}&confirmationToken={emailOptions.ConfirmationToken}" };
+                        {_config["Domain:BaseUrl"]}confirm-email/?u={emailOptions.UserId}&t={emailOptions.ConfirmationToken}" };
 
         return message;
     }
