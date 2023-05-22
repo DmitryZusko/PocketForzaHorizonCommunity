@@ -1,15 +1,16 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import { useResetPasswordFormComponent } from "./useResetPasswordFormComponent";
 import { styles } from "../styles";
 import { globalStyles } from "@/styles";
+import { PasswordFieldComponent } from "../components";
 
 const ResetPasswordFormComponent = () => {
   const { formik } = useResetPasswordFormComponent();
   return (
     <form onSubmit={formik.handleSubmit}>
       <Box sx={[globalStyles.centeredColumnFlexContainer, styles.outerContainer]}>
-        <TextField
+        <PasswordFieldComponent
           name="newPassword"
           label="New Password"
           type="password"
@@ -20,7 +21,7 @@ const ResetPasswordFormComponent = () => {
           helperText={formik.touched.newPassword && formik.errors.newPassword}
           sx={styles.textField}
         />
-        <TextField
+        <PasswordFieldComponent
           name="confirmPassword"
           label="Confirm Password"
           type="password"

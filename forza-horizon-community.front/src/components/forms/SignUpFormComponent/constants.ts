@@ -9,7 +9,7 @@ export const validationScheme = Yup.object({
     .min(3, "Username should be at least 3 characters long")
     .max(16, "Username length shouldn't exceed 64 characters")
     .matches(/\w/g, "Username should contain only letters and numbers")
-    .required("please, enter your username"),
+    .required("Please, enter your username"),
   password: Yup.string()
     .min(8, "Password should be at least 8 characters long")
     .max(64, "Password length shouldn't exceed 64 characters")

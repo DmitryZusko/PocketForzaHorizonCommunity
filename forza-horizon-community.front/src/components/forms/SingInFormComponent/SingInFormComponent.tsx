@@ -2,7 +2,7 @@ import { FormButtonGroupComponent } from "@/components";
 import { globalStyles } from "@/styles";
 import { Button, Paper, TextField } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
-import { FormHeaderComponent } from "../components";
+import { FormHeaderComponent, PasswordFieldComponent } from "../components";
 import { styles } from "../styles";
 import { useSingInFormComponent } from "./useSingInFormComponent";
 
@@ -23,7 +23,7 @@ const SingInFormComponent = () => {
           helperText={formik.touched.email && formik.errors.email}
           sx={styles.textField}
         />
-        <TextField
+        <PasswordFieldComponent
           name="password"
           label="Password"
           type="password"
