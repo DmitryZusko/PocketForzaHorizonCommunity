@@ -26,6 +26,8 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<AuthTokenDto> SignIn([FromBody] SignInRequest request)
         {
             var user = await _userService.SingInUserAsync(request);
@@ -38,6 +40,8 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<AuthTokenDto> GoogleSignIn([FromBody] GoogleSignInRequest request)
         {
             var user = await _userService.VerifyGoogleSingInAsync(request);
@@ -50,6 +54,8 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<AuthTokenDto> SignUp([FromBody] SignUpRequest request)
         {
             var user = await _userService.SignUpUserAsync(request);
@@ -62,9 +68,9 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
 
         [HttpPost("refresh")]
         [AllowAnonymous]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public AuthTokenDto RefreshToken([FromBody] RefreshTokensRequest request)
         {
             return _tokenService.RefreshToken(request.AccessToken, request.RefreshToken);
@@ -75,6 +81,8 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<UserDto> GetCurrentUser()
         {
             var user = await _userService.GetCurrentUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
