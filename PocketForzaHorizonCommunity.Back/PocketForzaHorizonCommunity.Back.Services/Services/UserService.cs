@@ -110,7 +110,10 @@ public class UserService : IUserService
 
         var result = await _userManager.ConfirmEmailAsync(user, normalizedtoken);
 
-        throw new BadRequestException(Messages.INVALID_EMAIL_CONFIRMATION);
+        if (!result.Succeeded)
+        {
+            throw new BadRequestException(Messages.INVALID_EMAIL_CONFIRMATION);
+        }
     }
 
     public async Task SendPasswordRestorationMessageAsync(PasswordRestorationMessageRequest request)
