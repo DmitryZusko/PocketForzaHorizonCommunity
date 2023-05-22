@@ -43,6 +43,17 @@ const SignUpFormComponent = () => {
           helperText={formik.touched.password && formik.errors.password}
           sx={styles.textField}
         />
+        <TextField
+          name="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+          sx={styles.textField}
+        />
         <FormButtonGroupComponent handleCancel={handleCancel} />
       </Paper>
     </form>

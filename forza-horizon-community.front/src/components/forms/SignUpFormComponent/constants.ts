@@ -18,4 +18,5 @@ export const validationScheme = Yup.object({
     .matches(/[A-Z]/g, "Password should contain an uppercase letter")
     .matches(/\W/g, "Password should contain a symbol")
     .required("Please, enter a password"),
+  confirmPassword: Yup.string().oneOf([Yup.ref("password")], "Passwords should match"),
 });
