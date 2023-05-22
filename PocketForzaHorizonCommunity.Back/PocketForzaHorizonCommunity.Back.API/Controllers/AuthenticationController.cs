@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.Auth;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
-using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using System.Security.Claims;
 
@@ -105,13 +104,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> VerifyEmail([FromQuery] EmailConfirmationRequest request)
         {
-            var result = await _userService.ConfirmEmailAsync(request);
-
-            if (!result.Succeeded)
-            {
-                throw new BadRequestException(Messages.INVALID_EMAIL_CONFIRMATION);
-            }
-
+            await _userService.ConfirmEmailAsync(request);
             return Ok();
         }
 
