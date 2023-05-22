@@ -31,3 +31,8 @@ export const addModalsSelector = createSelector(
 export const signInSelector = createSelector(modalStateSelector, (isSignInOpen) => isSignInOpen);
 
 export const signUpSelector = createSelector(modalStateSelector, (isSignUpOpen) => isSignUpOpen);
+
+export const forgotPasswordSelector = createSelector(
+  modalStateSelector,
+  (isForgotPasswordOpen) => isForgotPasswordOpen,
+);

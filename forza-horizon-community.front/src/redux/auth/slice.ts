@@ -4,7 +4,13 @@ import { showToast } from "@/utilities";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IAuthState } from "../types";
-import { googleSignInAsync, signInAsync, signUpAsync } from "./thunks";
+import {
+  googleSignInAsync,
+  resetPasswordAsync,
+  sendResetPasswordMessageAsync,
+  signInAsync,
+  signUpAsync,
+} from "./thunks";
 
 const initialState: IAuthState = {
   isLogged: false,
@@ -45,7 +51,7 @@ const authSlice = createSlice({
       ]);
       state.isLogged = true;
       payload.isEmailSend &&
-        showToast.showInfo("We've send you an email confirmation link. \nPlease, check your email");
+        showToast.showInfo("We've send you a confirmation link. \nPlease, check your email");
     });
     builder.addCase(googleSignInAsync.fulfilled, (state, { payload }) => {
       state.user = payload.user;
@@ -54,6 +60,12 @@ const authSlice = createSlice({
         [RefreshTokenKey, payload.refreshToken],
       ]);
       state.isLogged = true;
+    });
+    builder.addCase(sendResetPasswordMessageAsync.fulfilled, (state) => {
+      showToast.showSuccess("We've send you a reset password link. \nPlease, check your email");
+    });
+    builder.addCase(resetPasswordAsync.fulfilled, (state) => {
+      showToast.showSuccess("Password is successfully changed!");
     });
   },
 });

@@ -1,4 +1,10 @@
-import { googleSignInAsync, setIsSignInOpen, signInAsync, useAppDispatch } from "@/redux";
+import {
+  googleSignInAsync,
+  setIsForgotPasswordOpen,
+  setIsSignInOpen,
+  signInAsync,
+  useAppDispatch,
+} from "@/redux";
 import { CredentialResponse } from "@react-oauth/google";
 import { useFormik } from "formik";
 import { useCallback } from "react";
@@ -24,6 +30,11 @@ export const useSingInFormComponent = () => {
     dispatch(setIsSignInOpen(false));
   };
 
+  const handleForgotPasswordClick = () => {
+    dispatch(setIsSignInOpen(false));
+    dispatch(setIsForgotPasswordOpen(true));
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -32,5 +43,5 @@ export const useSingInFormComponent = () => {
     validationSchema: validationScheme,
     onSubmit: (values) => handleSubmit(values),
   });
-  return { formik, handleGoogleSignIn, handleCancel };
+  return { formik, handleGoogleSignIn, handleCancel, handleForgotPasswordClick };
 };

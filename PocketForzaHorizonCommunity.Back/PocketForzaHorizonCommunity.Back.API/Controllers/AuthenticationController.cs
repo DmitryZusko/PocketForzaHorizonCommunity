@@ -114,5 +114,29 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
 
             return Ok();
         }
+
+        [HttpPost("reset-password-message")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> SendPasswordRestorationMessage([FromBody] PasswordRestorationMessageRequest request)
+        {
+            await _userService.SendPasswordRestorationMessageAsync(request);
+            return Ok();
+        }
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            await _userService.ResetPasswordAsync(request);
+            return Ok();
+        }
+
     }
 }

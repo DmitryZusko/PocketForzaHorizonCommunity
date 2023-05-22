@@ -3,7 +3,11 @@ import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import Image from "next/image";
 import { baseTheme } from "../constants";
 import { CustomLinkComponent } from "../CustomLinkComponent";
-import { SignInModalComponent, SignUpModalComponent } from "../modals";
+import {
+  ForgotPasswordModalComponent,
+  SignInModalComponent,
+  SignUpModalComponent,
+} from "../modals";
 import { AnonymouseNavbarBodyComponent, AuthorizedNavbarBodyComponent } from "./components";
 import { useNavBarComponent } from "./useNavBarComponent";
 
@@ -11,6 +15,7 @@ const NavBarComponent = ({ ...props }) => {
   const {
     isSignInOpen,
     isSignUpOpen,
+    isForgotPasswordOpen,
     isLogged,
     navBarTheme,
     themeMode,
@@ -22,6 +27,8 @@ const NavBarComponent = ({ ...props }) => {
       <Toolbar>
         {isSignInOpen && <SignInModalComponent />}
         {isSignUpOpen && <SignUpModalComponent />}
+        {isForgotPasswordOpen && <ForgotPasswordModalComponent />}
+
         <CustomLinkComponent
           href="/"
           target="_self"

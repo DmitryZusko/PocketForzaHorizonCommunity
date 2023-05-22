@@ -1,13 +1,14 @@
 import { FormButtonGroupComponent } from "@/components";
 import { globalStyles } from "@/styles";
-import { Paper, TextField } from "@mui/material";
+import { Button, Paper, TextField } from "@mui/material";
 import { GoogleLogin } from "@react-oauth/google";
 import { FormHeaderComponent } from "../components";
 import { styles } from "../styles";
 import { useSingInFormComponent } from "./useSingInFormComponent";
 
 const SingInFormComponent = () => {
-  const { formik, handleGoogleSignIn, handleCancel } = useSingInFormComponent();
+  const { formik, handleGoogleSignIn, handleCancel, handleForgotPasswordClick } =
+    useSingInFormComponent();
   return (
     <form onSubmit={formik.handleSubmit}>
       <Paper sx={[globalStyles.centeredColumnFlexContainer, styles.outerContainer]}>
@@ -35,6 +36,9 @@ const SingInFormComponent = () => {
         />
         <FormButtonGroupComponent handleCancel={handleCancel} />
         <GoogleLogin onSuccess={handleGoogleSignIn} />
+        <Button variant="text" onClick={handleForgotPasswordClick} sx={styles.forgotButton}>
+          Forgot password?
+        </Button>
       </Paper>
     </form>
   );
