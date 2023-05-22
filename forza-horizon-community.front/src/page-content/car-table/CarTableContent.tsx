@@ -1,10 +1,12 @@
 import {
+  AccessRole,
   baseTheme,
   CarTableComponent,
   FilterCarTableComponent,
   ImageBackgroundComponent,
   NavBarComponent,
   PageFooterComponent,
+  RoleGate,
   ScrollUpFabComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
@@ -52,24 +54,30 @@ const CarTableContent = () => {
           </Typography>
         </Box>
       </ImageBackgroundComponent>
-      <Container
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          marginTop: baseTheme.spacing(10),
-        }}
-      >
-        <Button startIcon={<TimeToLeave />} variant="contained" onClick={handleAddCarModalOpen}>
-          {isDesktop && "Add Car"}
-        </Button>
-        <Button startIcon={<Factory />} variant="contained" onClick={handleAddManufactureModalOpen}>
-          {isDesktop && "Add Manufacture"}
-        </Button>
-        <Button startIcon={<Category />} variant="contained" onClick={handleAddCarTypeModalOpen}>
-          {isDesktop && "Add Car Type"}
-        </Button>
-      </Container>
+      <RoleGate accessRoles={[AccessRole.admin]}>
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            marginTop: baseTheme.spacing(10),
+          }}
+        >
+          <Button startIcon={<TimeToLeave />} variant="contained" onClick={handleAddCarModalOpen}>
+            {isDesktop && "Add Car"}
+          </Button>
+          <Button
+            startIcon={<Factory />}
+            variant="contained"
+            onClick={handleAddManufactureModalOpen}
+          >
+            {isDesktop && "Add Manufacture"}
+          </Button>
+          <Button startIcon={<Category />} variant="contained" onClick={handleAddCarTypeModalOpen}>
+            {isDesktop && "Add Car Type"}
+          </Button>
+        </Container>
+      </RoleGate>
       <Grid container>
         {!isDesktop && (
           <Button

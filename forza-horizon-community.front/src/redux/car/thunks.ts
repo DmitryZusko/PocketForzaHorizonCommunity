@@ -4,52 +4,39 @@ import { carService } from "@/services";
 import { customAxios, showToast } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getCars = createAsyncThunk(
-  "car/getCars",
-  async (
-    {
-      page,
-      pageSize,
-      minPrice,
-      maxPrice,
-      minYear,
-      maxYear,
-      selectedCountries: selectedCountries,
-      selectedCarTypes: selectedCarTypes,
-      selectedManufactures: selectedManufactures,
-    }: IFilteredCarsRequest,
-    { signal },
-  ) => {
+export const getCarsAsync = createAsyncThunk(
+  "car/getCarsAsync",
+  async (request: IFilteredCarsRequest, { signal }) => {
     const cancelationToken = customAxios.getCancelationToken();
 
     signal.addEventListener("abort", () => {
       cancelationToken.cancel();
     });
 
-    return carService.getCars({
-      page,
-      pageSize,
-      minPrice,
-      maxPrice,
-      minYear,
-      maxYear,
-      selectedCountries: selectedCountries,
-      selectedCarTypes: selectedCarTypes,
-      selectedManufactures: selectedManufactures,
+    return carService.getCarsAsync({
+      page: request.page,
+      pageSize: request.pageSize,
+      minPrice: request.minPrice,
+      maxPrice: request.maxPrice,
+      minYear: request.minYear,
+      maxYear: request.maxYear,
+      selectedCountries: request.selectedCountries,
+      selectedCarTypes: request.selectedCarTypes,
+      selectedManufactures: request.selectedManufactures,
       cancelToken: cancelationToken.token,
     });
   },
 );
 
-export const postCar = createAsyncThunk(
-  "car/postCar",
+export const postCarAsync = createAsyncThunk(
+  "car/postCarAsync",
   async (request: IPostCarRequest, { dispatch }) => {
-    const promise = carService.postCar(request);
+    const promise = carService.postCarAsync(request);
 
     promise.then((r) => {
       if (r.status === 201) {
         showToast.showSuccess("New car is added!");
-        dispatch(getCars({ page: 0, pageSize: defaultPageSize }));
+        dispatch(getCarsAsync({ page: 0, pageSize: defaultPageSize }));
       }
     });
   },

@@ -7,45 +7,51 @@ import { tuneService } from "@/services";
 import { customAxios } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getLatestTunes = createAsyncThunk("tune/getLatestTunes", async (amount: number) => {
-  return tuneService.getLatestTunes(amount);
-});
+export const getLatestTunesAsync = createAsyncThunk(
+  "tune/getLatestTunesAsync",
+  async (amount: number) => {
+    return tuneService.getLatestTunesAsync(amount);
+  },
+);
 
-export const getTunes = createAsyncThunk(
+export const getTunesAsync = createAsyncThunk(
   "tune/getAll",
-  async ({ page, pageSize, searchQuery }: IFilteredTuneRequest, { signal }) => {
+  async (request: IFilteredTuneRequest, { signal }) => {
     const cancelationToken = customAxios.getCancelationToken();
     signal.addEventListener("abort", () => {
       cancelationToken.cancel();
     });
 
-    return tuneService.getTunes({
-      page,
-      pageSize,
-      searchQuery,
+    return tuneService.getTunesAsync({
+      page: request.page,
+      pageSize: request.pageSize,
+      searchQuery: request.searchQuery,
       cancelToken: cancelationToken.token,
     });
   },
 );
 
-export const getTunesByCarId = createAsyncThunk(
+export const getTunesByCarIdAsync = createAsyncThunk(
   "tune/getAllByCarId",
-  async ({ page, pageSize, searchQuery, carId }: IFilteredCarTuneRequest, { signal }) => {
+  async (request: IFilteredCarTuneRequest, { signal }) => {
     const cancelationToken = customAxios.getCancelationToken();
     signal.addEventListener("abort", () => {
       cancelationToken.cancel();
     });
 
-    return tuneService.getTunesByCarId({
-      page,
-      pageSize,
-      searchQuery,
-      carId,
+    return tuneService.getTunesByCarIdAsync({
+      page: request.page,
+      pageSize: request.pageSize,
+      searchQuery: request.searchQuery,
+      carId: request.carId,
       cancelToken: cancelationToken.token,
     });
   },
 );
 
-export const getTuneById = createAsyncThunk("tune/getTuneById", async ({ id }: IGetByIdRequest) => {
-  return tuneService.getById({ id });
-});
+export const getTuneById = createAsyncThunk(
+  "tune/getTuneById",
+  async (request: IGetByIdRequest) => {
+    return tuneService.getByIdAsync(request);
+  },
+);

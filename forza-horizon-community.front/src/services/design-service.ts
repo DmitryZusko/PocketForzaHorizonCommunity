@@ -8,90 +8,87 @@ import {
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarDesignRequest, IAxiosFilteredDesignRequest } from "./types";
 
-const getLatestDesigns = async ({ page, pageSize, descriptionLimit }: IGetLatestDesignsRequest) => {
-  const axios = customAxios.getAxiosInstance();
+const getLatestDesignsAsync = async (request: IGetLatestDesignsRequest) => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<IPaginatedResponse<IDesign>>("design/GetLastDesigns", {
-    params: { page: page, pageSize: pageSize, DescriptionLimit: descriptionLimit },
+    params: {
+      page: request.page,
+      pageSize: request.pageSize,
+      DescriptionLimit: request.descriptionLimit,
+    },
   });
 };
 
-const getDesigns = async ({
-  page,
-  pageSize,
-  searchQuery,
-  descriptionLimit,
-  cancelToken,
-}: IAxiosFilteredDesignRequest) => {
-  const axios = customAxios.getAxiosInstance();
-  if (searchQuery.length > 0) {
+const getDesignsAsync = async (request: IAxiosFilteredDesignRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  if (request.searchQuery.length > 0) {
     return axios.get<IPaginatedResponse<IDesign>>("design", {
-      cancelToken: cancelToken,
+      cancelToken: request.cancelToken,
       params: {
-        DescriptionLimit: descriptionLimit,
-        Page: page,
-        PageSize: pageSize,
-        SearchQuery: searchQuery,
+        DescriptionLimit: request.descriptionLimit,
+        Page: request.page,
+        PageSize: request.pageSize,
+        SearchQuery: request.searchQuery,
       },
     });
   }
 
   return axios.get<IPaginatedResponse<IDesign>>("design", {
-    cancelToken: cancelToken,
+    cancelToken: request.cancelToken,
     params: {
-      DescriptionLimit: descriptionLimit,
-      Page: page,
-      PageSize: pageSize,
+      DescriptionLimit: request.descriptionLimit,
+      Page: request.page,
+      PageSize: request.pageSize,
     },
   });
 };
 
-const getDesignsByCarId = ({
-  page,
-  pageSize,
-  searchQuery,
-  descriptionLimit,
-  carId,
-  cancelToken,
-}: IAxiosFilteredCarDesignRequest) => {
-  const axios = customAxios.getAxiosInstance();
-  if (searchQuery.length > 0) {
+const getDesignsByCarId = async (request: IAxiosFilteredCarDesignRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  if (request.searchQuery.length > 0) {
     return axios.get<IPaginatedResponse<IDesign>>("design/ByCar", {
-      cancelToken: cancelToken,
+      cancelToken: request.cancelToken,
       params: {
-        DescriptionLimit: descriptionLimit,
-        Page: page,
-        PageSize: pageSize,
-        SearchQuery: searchQuery,
-        CarId: carId,
+        DescriptionLimit: request.descriptionLimit,
+        Page: request.page,
+        PageSize: request.pageSize,
+        SearchQuery: request.searchQuery,
+        CarId: request.carId,
       },
     });
   }
 
   return axios.get<IPaginatedResponse<IDesign>>("design/ByCar", {
-    cancelToken: cancelToken,
+    cancelToken: request.cancelToken,
     params: {
-      DescriptionLimit: descriptionLimit,
-      Page: page,
-      PageSize: pageSize,
-      CarId: carId,
+      DescriptionLimit: request.descriptionLimit,
+      Page: request.page,
+      PageSize: request.pageSize,
+      CarId: request.carId,
     },
   });
 };
 
-const getAllIds = async () => {
-  const axios = customAxios.getAxiosInstance();
+const getAllIdsAsync = async () => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<string[]>("design/Ids");
 };
 
-const getById = async ({ id }: IGetByIdRequest) => {
-  const axios = customAxios.getAxiosInstance();
+const getByIdAsync = async (request: IGetByIdRequest) => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<IDesignFullInfo>("design/info", {
     params: {
-      id: id,
+      id: request.id,
     },
   });
 };
 
-const designService = { getLatestDesigns, getDesigns, getDesignsByCarId, getAllIds, getById };
+const designService = {
+  getLatestDesignsAsync,
+  getDesignsAsync,
+  getDesignsByCarId,
+  getAllIdsAsync,
+  getByIdAsync,
+};
 
 export default designService;

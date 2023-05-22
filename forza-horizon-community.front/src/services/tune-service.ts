@@ -2,86 +2,75 @@ import { IGetByIdRequest, IPaginatedResponse, ITune, ITuneFullInfo } from "@/dat
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarTuneRequest, IAxiosFilteredTuneRequest } from "./types";
 
-const getTunes = async ({
-  page,
-  pageSize,
-  searchQuery,
-  cancelToken,
-}: IAxiosFilteredTuneRequest) => {
-  const axios = customAxios.getAxiosInstance();
+const getTunesAsync = async (request: IAxiosFilteredTuneRequest) => {
+  const axios = await customAxios.getAxiosInstance();
 
-  if (searchQuery.length > 0) {
+  if (request.searchQuery.length > 0) {
     return axios.get<IPaginatedResponse<ITune>>("tune", {
-      cancelToken: cancelToken,
+      cancelToken: request.cancelToken,
       params: {
-        Page: page,
-        PageSize: pageSize,
-        Searchquery: searchQuery,
+        Page: request.page,
+        PageSize: request.pageSize,
+        Searchquery: request.searchQuery,
       },
     });
   }
 
   return axios.get<IPaginatedResponse<ITune>>("tune", {
-    cancelToken: cancelToken,
+    cancelToken: request.cancelToken,
     params: {
-      Page: page,
-      PageSize: pageSize,
+      Page: request.page,
+      PageSize: request.pageSize,
     },
   });
 };
 
-const getAllIds = () => {
-  const axios = customAxios.getAxiosInstance();
+const getAllIdsAsync = async () => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<string[]>("tune/Ids");
 };
 
-const getTunesByCarId = async ({
-  page,
-  pageSize,
-  searchQuery,
-  carId,
-  cancelToken,
-}: IAxiosFilteredCarTuneRequest) => {
-  const axios = customAxios.getAxiosInstance();
+const getTunesByCarIdAsync = async (request: IAxiosFilteredCarTuneRequest) => {
+  const axios = await customAxios.getAxiosInstance();
 
-  if (searchQuery.length > 0) {
+  if (request.searchQuery.length > 0) {
     return axios.get<IPaginatedResponse<ITune>>("tune/ByCar", {
-      cancelToken: cancelToken,
+      cancelToken: request.cancelToken,
       params: {
-        Page: page,
-        PageSize: pageSize,
-        CarId: carId,
-        Searchquery: searchQuery,
+        Page: request.page,
+        PageSize: request.pageSize,
+        CarId: request.carId,
+        Searchquery: request.searchQuery,
       },
     });
   }
 
   return axios.get<IPaginatedResponse<ITune>>("tune/ByCar", {
-    cancelToken: cancelToken,
+    cancelToken: request.cancelToken,
     params: {
-      Page: page,
-      PageSize: pageSize,
-      CarId: carId,
+      Page: request.page,
+      PageSize: request.pageSize,
+      CarId: request.carId,
     },
   });
 };
 
-const getLatestTunes = (amount: number) => {
-  const axios = customAxios.getAxiosInstance();
+const getLatestTunesAsync = async (amount: number) => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<ITune[]>("tune/getlasttunes", { params: { TunesAmount: amount } });
 };
 
-const getById = ({ id }: IGetByIdRequest) => {
-  const axios = customAxios.getAxiosInstance();
-  return axios.get<ITuneFullInfo>("tune/info", { params: { id: id } });
+const getByIdAsync = async (request: IGetByIdRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.get<ITuneFullInfo>("tune/info", { params: { id: request.id } });
 };
 
 const tuneService = {
-  getTunes,
-  getAllIds,
-  getTunesByCarId,
-  getLatestTunes,
-  getById,
+  getTunesAsync,
+  getAllIdsAsync,
+  getTunesByCarIdAsync,
+  getLatestTunesAsync,
+  getByIdAsync,
 };
 
 export default tuneService;

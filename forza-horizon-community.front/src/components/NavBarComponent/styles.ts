@@ -5,10 +5,6 @@ export const styles = {
     alignItems: "center",
   },
 
-  logo: {
-    flexGrow: "1",
-  },
-
   solidNavBar: {
     opacity: "1",
   },

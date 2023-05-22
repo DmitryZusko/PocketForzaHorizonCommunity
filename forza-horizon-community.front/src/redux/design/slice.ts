@@ -1,7 +1,7 @@
 import { defaultPageSize } from "@/components/constants/applicationConstants";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IDesignState } from "../types";
-import { getDesignById, getDesigns, getDesignsByCarId, getLatestDesigns } from "./thunks";
+import { getDesignById, getDesignsAsync, getDesignsByCarId, getLatestDesignsAsync } from "./thunks";
 
 const initialState: IDesignState = {
   isLoadingLatest: false,
@@ -33,24 +33,22 @@ const designSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getLatestDesigns.pending, (state) => {
+    builder.addCase(getLatestDesignsAsync.pending, (state) => {
       state.isLoadingLatest = true;
     });
-    builder.addCase(getLatestDesigns.fulfilled, (state, { payload }) => {
+    builder.addCase(getLatestDesignsAsync.fulfilled, (state, { payload }) => {
       state.latestDesigns = payload.data.entities;
       state.isLoadingLatest = false;
     });
-    builder.addCase(getDesigns.pending, (state) => {
+    builder.addCase(getDesignsAsync.pending, (state) => {
       state.isLoadingDesigns = true;
     });
-    builder.addCase(getDesigns.fulfilled, (state, { payload }) => {
-      console.log(payload);
-
+    builder.addCase(getDesignsAsync.fulfilled, (state, { payload }) => {
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;
     });
-    builder.addCase(getDesigns.rejected, (state) => {
+    builder.addCase(getDesignsAsync.rejected, (state) => {
       state.isLoadingDesigns = false;
     });
     builder.addCase(getDesignsByCarId.pending, (state) => {
@@ -60,7 +58,6 @@ const designSlice = createSlice({
       state.designs = state.designs.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingDesigns = false;
-      console.log(state.totalEntities);
     });
     builder.addCase(getDesignsByCarId.rejected, (state) => {
       state.isLoadingDesigns = false;

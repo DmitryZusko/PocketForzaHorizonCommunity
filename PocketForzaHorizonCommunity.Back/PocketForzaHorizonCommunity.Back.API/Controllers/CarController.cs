@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
@@ -9,6 +10,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.Controllers;
 
+[Authorize]
 public class CarController : ApplicationControllerBase
 {
     private readonly ICarService _service;
@@ -40,6 +42,7 @@ public class CarController : ApplicationControllerBase
         _mapper.Map<PaginatedResponse<SimplifiedCarDto>>(await _service.GetAllAsync(new FilteredCarsGetRequest { PageSize = -1 }));
 
     [HttpPost]
+    [Authorize(Roles = "Administrator")]
     [Consumes("multipart/form-data")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -54,6 +57,7 @@ public class CarController : ApplicationControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Administrator")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -67,6 +71,7 @@ public class CarController : ApplicationControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Administrator")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

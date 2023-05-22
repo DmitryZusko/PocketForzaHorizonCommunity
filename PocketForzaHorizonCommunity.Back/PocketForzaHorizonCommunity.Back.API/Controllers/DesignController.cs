@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
@@ -9,6 +10,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.Controllers;
 
+[Authorize]
 public class DesignController : ApplicationControllerBase
 {
     private readonly IDesignService _service;
@@ -54,6 +56,7 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpGet("GetLastDesigns")]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -63,6 +66,7 @@ public class DesignController : ApplicationControllerBase
 
     [HttpPost]
     [Consumes("multipart/form-data")]
+    [Authorize(Roles = "Administrator, Content Creator")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -75,6 +79,7 @@ public class DesignController : ApplicationControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Administrator, Content Creator")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

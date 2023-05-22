@@ -1,6 +1,6 @@
 ﻿namespace PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using Microsoft.AspNetCore.Http;
-using PocketForzaHorizonCommunity.Back.Services.Exceptionsl;
+using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 
 public class ExceptionBase : Exception
 {

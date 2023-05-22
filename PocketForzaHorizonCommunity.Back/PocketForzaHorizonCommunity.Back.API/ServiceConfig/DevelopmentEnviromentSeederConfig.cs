@@ -16,6 +16,7 @@ public static class DevelopmentEnviromentSeederConfig
         {
             connection.Open();
             var seeder = new DevelopmentEnvironmentSeeder(
+                scope.ServiceProvider.GetService<RoleManager<ApplicationRole>>(),
                 scope.ServiceProvider.GetService<UserManager<ApplicationUser>>(),
                 scope.ServiceProvider.GetService<ICarRepository>(),
                 scope.ServiceProvider.GetService<IManufactureRepository>(),

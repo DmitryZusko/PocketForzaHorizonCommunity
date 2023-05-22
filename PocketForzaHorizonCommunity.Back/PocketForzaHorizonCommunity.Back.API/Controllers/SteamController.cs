@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.SteamDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Steam;
@@ -7,6 +8,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.Controllers
 {
+    [AllowAnonymous]
     public class SteamController : ApplicationControllerBase
     {
         private readonly ISteamService _service;

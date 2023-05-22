@@ -7,3 +7,5 @@ export * from "./tune-details";
 export * from "./add-new-design";
 export * from "./add-new-tune";
 export * from "./guides";
+export * from "./reset-password";
+export * from "./confirm-email";

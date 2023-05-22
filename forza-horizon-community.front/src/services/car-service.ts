@@ -8,48 +8,37 @@ import {
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarsRequest } from "./types";
 
-const getCars = ({
-  page,
-  pageSize,
-  minPrice,
-  maxPrice,
-  minYear,
-  maxYear,
-  selectedCountries,
-  selectedManufactures,
-  selectedCarTypes,
-  cancelToken,
-}: IAxiosFilteredCarsRequest) => {
-  const axios = customAxios.getAxiosInstance();
+const getCarsAsync = async (request: IAxiosFilteredCarsRequest) => {
+  const axios = await customAxios.getAxiosInstance();
 
   return axios.get<IPaginatedResponse<ICar>>("car", {
-    cancelToken: cancelToken,
+    cancelToken: request.cancelToken,
     params: {
-      Page: page,
-      PageSize: pageSize,
-      MinPrice: minPrice,
-      MaxPrice: maxPrice,
-      MinYear: minYear,
-      MaxYear: maxYear,
-      SelectedCountries: selectedCountries,
-      SelectedManufactures: selectedManufactures,
-      SelectedCarTypes: selectedCarTypes,
+      Page: request.page,
+      PageSize: request.pageSize,
+      MinPrice: request.minPrice,
+      MaxPrice: request.maxPrice,
+      MinYear: request.minYear,
+      MaxYear: request.maxYear,
+      SelectedCountries: request.selectedCountries,
+      SelectedManufactures: request.selectedManufactures,
+      SelectedCarTypes: request.selectedCarTypes,
     },
   });
 };
 
-const getCarFilterScheme = async () => {
-  const axios = customAxios.getAxiosInstance();
+const getCarFilterSchemeAsync = async () => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<ICarFilterSchemeResponse>("car/filterscheme");
 };
 
-const getCarNames = async () => {
-  const axios = customAxios.getAxiosInstance();
+const getCarNamesAsync = async () => {
+  const axios = await customAxios.getAxiosInstance();
   return axios.get<IPaginatedResponse<ISimplifiedCar>>("car/CarNames");
 };
 
-const postCar = async (request: IPostCarRequest) => {
-  const axios = customAxios.getAxiosInstance();
+const postCarAsync = async (request: IPostCarRequest) => {
+  const axios = await customAxios.getAxiosInstance();
   const data = new FormData();
   data.append("carTypeId", request.carTypeId);
   data.append("image", request.image);
@@ -60,6 +49,6 @@ const postCar = async (request: IPostCarRequest) => {
   return axios.post<ICar>("car", data);
 };
 
-const carService = { getCars, getCarFilterScheme, getCarNames, postCar };
+const carService = { getCarsAsync, getCarFilterSchemeAsync, getCarNamesAsync, postCarAsync };
 
 export default carService;

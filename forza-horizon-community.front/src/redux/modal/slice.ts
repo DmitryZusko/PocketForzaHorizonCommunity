@@ -5,6 +5,9 @@ const initialState: IModalState = {
   isAddManufactureOpen: false,
   isAddCarTypeOpen: false,
   isAddCarOpen: false,
+  isSignInOpen: false,
+  isSignUpOpen: false,
+  isForgotPasswordOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -20,9 +23,25 @@ const modalSlice = createSlice({
     setIsAddCarOpen: (state, { payload }: ActionWithPayload<boolean>) => {
       state.isAddCarOpen = payload;
     },
+    setIsSignInOpen: (state, { payload }: ActionWithPayload<boolean>) => {
+      state.isSignInOpen = payload;
+    },
+    setIsSignUpOpen: (state, { payload }: ActionWithPayload<boolean>) => {
+      state.isSignUpOpen = payload;
+    },
+    setIsForgotPasswordOpen: (state, { payload }: ActionWithPayload<boolean>) => {
+      state.isForgotPasswordOpen = payload;
+    },
   },
 });
 
-export const { setIsAddManufactureOpen, setIsAddCarTypeOpen, setIsAddCarOpen } = modalSlice.actions;
+export const {
+  setIsAddManufactureOpen,
+  setIsAddCarTypeOpen,
+  setIsAddCarOpen,
+  setIsSignInOpen,
+  setIsSignUpOpen,
+  setIsForgotPasswordOpen,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;

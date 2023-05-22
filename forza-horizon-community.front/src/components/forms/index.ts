@@ -3,3 +3,7 @@ export * from "./AddNewTuneFormComponent";
 export * from "./AddManufactureFormComponent";
 export * from "./AddCarTypeFormComponent";
 export * from "./AddCarFormComponent";
+export * from "./SingInFormComponent";
+export * from "./SignUpFormComponent";
+export * from "./EnterEmailFormComponent";
+export * from "./ResetPasswordFormComponent";

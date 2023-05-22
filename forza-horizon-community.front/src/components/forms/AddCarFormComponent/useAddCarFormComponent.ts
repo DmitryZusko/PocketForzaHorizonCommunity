@@ -1,9 +1,9 @@
 import {
   carTypesSelector,
-  getCarTypes,
-  getManufactures,
+  getCarTypesAsync,
+  getManufacturesAsync,
   manufacturesSelector,
-  postCar,
+  postCarAsync,
   setIsAddCarOpen,
   useAppDispatch,
   useAppSelector,
@@ -26,7 +26,7 @@ export const useAddCarFormComponent = () => {
     if (thumbnail.current === undefined) return;
 
     dispatch(
-      postCar({
+      postCarAsync({
         model: values.model,
         year: values.year,
         price: values.price,
@@ -75,13 +75,13 @@ export const useAddCarFormComponent = () => {
 
   useEffect(() => {
     if (carTypes.length) return;
-    dispatch(getCarTypes({}));
+    dispatch(getCarTypesAsync({}));
   }, [carTypes, dispatch]);
 
   useEffect(() => {
     if (manufactures.length) return;
 
-    dispatch(getManufactures({}));
+    dispatch(getManufacturesAsync({}));
   }, [manufactures, dispatch]);
 
   return {

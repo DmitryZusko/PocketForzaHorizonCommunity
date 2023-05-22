@@ -1,7 +1,7 @@
 import {
   carTypesSelector,
-  getCarTypes,
-  postCarType,
+  getCarTypesAsync,
+  postCarTypeAsync,
   setIsAddCarTypeOpen,
   useAppDispatch,
   useAppSelector,
@@ -23,7 +23,7 @@ export const useAddCarTypeFormComponent = () => {
         return;
       }
 
-      dispatch(postCarType({ carTypeName: values.carTypeName }));
+      dispatch(postCarTypeAsync({ carTypeName: values.carTypeName }));
       dispatch(setIsAddCarTypeOpen(false));
     },
     [carTypes, dispatch],
@@ -43,7 +43,7 @@ export const useAddCarTypeFormComponent = () => {
 
   useEffect(() => {
     if (carTypes.length) return;
-    dispatch(getCarTypes({}));
+    dispatch(getCarTypesAsync({}));
   }, [carTypes, dispatch]);
 
   return { formik, handleCancel };

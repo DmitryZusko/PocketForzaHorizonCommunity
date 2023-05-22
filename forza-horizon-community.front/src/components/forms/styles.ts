@@ -7,5 +7,9 @@ export const styles = {
     borderRadius: "20px",
   },
 
-  textField: { margin: baseTheme.spacing(5) },
+  textField: { margin: baseTheme.spacing(5), width: "100%" },
+
+  forgotButton: {
+    marginY: baseTheme.spacing(7),
+  },
 };
