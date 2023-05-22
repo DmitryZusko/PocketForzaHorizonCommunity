@@ -31,13 +31,13 @@ public class UserService : IUserService
 
     public async Task<ApplicationUser> SingInUserAsync(SignInRequest request)
     {
-        var user = await _userManager.FindByEmailAsync(request.Email) ?? throw new BadRequestException(Messages.INVALID_SIGN_IN);
+        var user = await _userManager.FindByEmailAsync(request.Email) ?? throw new BadRequestException(Messages.INVALID_CREDENTIALS);
 
         var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
 
         if (!result.Succeeded)
         {
-            throw new BadRequestException(Messages.INVALID_SIGN_IN);
+            throw new BadRequestException(Messages.INVALID_CREDENTIALS);
         }
 
         return user;
@@ -45,7 +45,7 @@ public class UserService : IUserService
 
     public async Task<ApplicationUser> VerifyGoogleSingInAsync(GoogleSignInRequest request)
     {
-        var payload = await GoogleJsonWebSignature.ValidateAsync(request.GoogleToken) ?? throw new BadRequestException(Messages.INVALID_SIGN_IN);
+        var payload = await GoogleJsonWebSignature.ValidateAsync(request.GoogleToken) ?? throw new BadRequestException(Messages.INVALID_CREDENTIALS);
 
         var user = await _userManager.FindByEmailAsync(payload.Email);
         if (user == null)
@@ -88,6 +88,9 @@ public class UserService : IUserService
     public async Task SendEmailConfirmationMessageAsync(EmailConfirmationMessageRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.DestinationEmail);
+
+        if (user == null) return;
+
         var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
         var messageOptions = new EmailConfirmationOptions
@@ -100,12 +103,17 @@ public class UserService : IUserService
         _mailManager.SendEmail(messageOptions);
     }
 
-    public async Task<IdentityResult> ConfirmEmailAsync(EmailConfirmationRequest request)
+    public async Task ConfirmEmailAsync(EmailConfirmationRequest request)
     {
         var normalizedtoken = request.ConfirmationToken.Replace(" ", "+");
         var user = await _userManager.FindByIdAsync(request.UserId) ?? throw new EntityNotFoundException();
 
-        return await _userManager.ConfirmEmailAsync(user, normalizedtoken);
+        var result = await _userManager.ConfirmEmailAsync(user, normalizedtoken);
+
+        if (!result.Succeeded)
+        {
+            throw new BadRequestException(Messages.INVALID_EMAIL_CONFIRMATION);
+        }
     }
 
     public async Task SendPasswordRestorationMessageAsync(PasswordRestorationMessageRequest request)
@@ -148,7 +156,7 @@ public class UserService : IUserService
 
         if (!result.Succeeded)
         {
-            throw new BadRequestException(Messages.INVALID_SIGN_UP);
+            throw new BadRequestException(Messages.INVALID_CREDENTIALS);
         }
 
         user = await _userManager.FindByEmailAsync(email);

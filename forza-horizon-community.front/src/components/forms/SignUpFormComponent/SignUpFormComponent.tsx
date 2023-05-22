@@ -1,7 +1,7 @@
 import { FormButtonGroupComponent } from "@/components";
 import { globalStyles } from "@/styles";
 import { Paper, TextField } from "@mui/material";
-import { FormHeaderComponent } from "../components";
+import { FormHeaderComponent, PasswordFieldComponent } from "../components";
 import { styles } from "../styles";
 import { useSignUpFormComponent } from "./useSignUpFormComponent";
 
@@ -32,15 +32,24 @@ const SignUpFormComponent = () => {
           helperText={formik.touched.username && formik.errors.username}
           sx={styles.textField}
         />
-        <TextField
+        <PasswordFieldComponent
           name="password"
           label="Password"
-          type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
+          sx={styles.textField}
+        />
+        <PasswordFieldComponent
+          name="confirmPassword"
+          label="Confirm Password"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
           sx={styles.textField}
         />
         <FormButtonGroupComponent handleCancel={handleCancel} />

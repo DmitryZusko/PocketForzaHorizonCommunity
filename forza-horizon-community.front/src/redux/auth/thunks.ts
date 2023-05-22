@@ -1,4 +1,5 @@
 import {
+  IConfirmEmailRequest,
   IGoogleSingInRequest,
   IResetPasswordRequest,
   ISendResetPasswordMessageRequest,
@@ -34,5 +35,12 @@ export const resetPasswordAsync = createAsyncThunk(
   "auth/resetPasswordAsync",
   async (request: IResetPasswordRequest) => {
     return authService.resetPasswordAsync(request);
+  },
+);
+
+export const confirmEmailAsync = createAsyncThunk(
+  "auth/confirmEmailAsync",
+  async (request: IConfirmEmailRequest) => {
+    return authService.confirmEmailAsync(request);
   },
 );

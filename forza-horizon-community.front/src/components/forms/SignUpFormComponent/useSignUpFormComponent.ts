@@ -24,6 +24,7 @@ export const useSignUpFormComponent = () => {
       email: "",
       username: "",
       password: "",
+      confirmPassword: "",
     },
     validationSchema: validationScheme,
     onSubmit: (values) => handleSubmit(values),
