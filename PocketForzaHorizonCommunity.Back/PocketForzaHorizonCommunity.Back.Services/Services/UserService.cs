@@ -8,6 +8,7 @@ using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.EmailModels;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.MessageOptions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
@@ -30,11 +31,7 @@ public class UserService : IUserService
 
     public async Task<ApplicationUser> SingInUserAsync(SignInRequest request)
     {
-        var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null)
-        {
-            throw new BadRequestException(Messages.INVALID_SIGN_IN);
-        }
+        var user = await _userManager.FindByEmailAsync(request.Email) ?? throw new BadRequestException(Messages.INVALID_SIGN_IN);
 
         var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
 
@@ -48,11 +45,7 @@ public class UserService : IUserService
 
     public async Task<ApplicationUser> VerifyGoogleSingInAsync(GoogleSignInRequest request)
     {
-        var payload = await GoogleJsonWebSignature.ValidateAsync(request.GoogleToken);
-        if (payload == null)
-        {
-            throw new BadRequestException(Messages.INVALID_SIGN_IN);
-        }
+        var payload = await GoogleJsonWebSignature.ValidateAsync(request.GoogleToken) ?? throw new BadRequestException(Messages.INVALID_SIGN_IN);
 
         var user = await _userManager.FindByEmailAsync(payload.Email);
         if (user == null)
@@ -82,11 +75,7 @@ public class UserService : IUserService
 
     public async Task<ApplicationUser> GetCurrentUser(string userId)
     {
-        var user = await _userManager.LoadUser(userId);
-        if (user is null)
-        {
-            throw new EntityNotFoundException();
-        }
+        var user = await _userManager.LoadUser(userId) ?? throw new EntityNotFoundException();
 
         return user;
     }
@@ -114,13 +103,37 @@ public class UserService : IUserService
     public async Task<IdentityResult> ConfirmEmailAsync(EmailConfirmationRequest request)
     {
         var normalizedtoken = request.ConfirmationToken.Replace(" ", "+");
-        var user = await _userManager.FindByIdAsync(request.UserId);
+        var user = await _userManager.FindByIdAsync(request.UserId) ?? throw new EntityNotFoundException();
 
-        if (user == null)
-        {
-            throw new EntityNotFoundException();
-        }
         return await _userManager.ConfirmEmailAsync(user, normalizedtoken);
+    }
+
+    public async Task SendPasswordRestorationMessageAsync(PasswordRestorationMessageRequest request)
+    {
+        var user = await _userManager.FindByEmailAsync(request.Email);
+
+        if (user == null) return;
+
+        var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        var messageOptions = new ResetPasswordOptions
+        {
+            DestinationEmail = user.Email,
+            UserId = user.Id,
+            ResetToken = resetToken,
+        };
+
+        _mailManager.SendEmail(messageOptions);
+    }
+
+    public async Task ResetPasswordAsync(ResetPasswordRequest request)
+    {
+        var user = await _userManager.FindByIdAsync(request.UserId) ?? throw new EntityNotFoundException();
+        var normalizedtoken = request.ResetToken.Replace(" ", "+");
+
+        var result = await _userManager.ResetPasswordAsync(user, normalizedtoken, request.Password);
+
+        if (!result.Succeeded) throw new BadRequestException(Messages.INVALID_CREDENTIALS);
     }
 
     private async Task<ApplicationUser> CreateUserAsync(string username, string email, string? password)

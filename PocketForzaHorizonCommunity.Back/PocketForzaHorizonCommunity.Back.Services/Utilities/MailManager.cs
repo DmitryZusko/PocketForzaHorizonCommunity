@@ -4,6 +4,7 @@ using MimeKit;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.EmailModels;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.MessageOptions;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Utilities;
 
@@ -32,6 +33,11 @@ public class MailManager : IMailManager
             return CreateEmailConfirmationMessage(messageOptions as EmailConfirmationOptions);
         }
 
+        if (messageOptions.GetType() == typeof(ResetPasswordOptions))
+        {
+            return CreateResetPasswordMessage(messageOptions as ResetPasswordOptions);
+        }
+
         throw new BadRequestException(Messages.INVALID_EMAIL_OPTIONS);
     }
 
@@ -45,6 +51,21 @@ public class MailManager : IMailManager
                         <p>Hi, we're glad to see you with us! Please, follow the link below 
                         to confim the email.<br>
                         {_config["Email:confiramtionEndpoint"]}/?userId={emailOptions.UserId}&confirmationToken={emailOptions.ConfirmationToken}" };
+
+        return message;
+    }
+    private MimeMessage CreateResetPasswordMessage(ResetPasswordOptions emailOptions)
+    {
+        var message = new MimeMessage();
+        message.From.Add(MailboxAddress.Parse(_config["Email:Address"]));
+        message.To.Add(MailboxAddress.Parse(emailOptions.DestinationEmail));
+        message.Subject = "Reset Password";
+        message.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $@"
+                                <p>Hi, we've recieved a reset password request. If you want to proceed, just folow the lonk below:</p><br/>
+                                    {_config["Domain:BaseUrl"]}reset-password/?u={emailOptions.UserId}&t={emailOptions.ResetToken}
+                                 <br/>
+                                 <br/>
+                                 If you don't want to change a password - just ignore this message." };
 
         return message;
     }

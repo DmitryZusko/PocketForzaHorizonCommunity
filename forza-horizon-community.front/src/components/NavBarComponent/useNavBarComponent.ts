@@ -1,4 +1,5 @@
 import {
+  forgotPasswordSelector,
   logOut,
   logStateSelector,
   signInSelector,
@@ -19,6 +20,7 @@ export const useNavBarComponent = () => {
   const { isLogged } = useAppSelector(logStateSelector);
   const { isSignInOpen } = useAppSelector(signInSelector);
   const { isSignUpOpen } = useAppSelector(signUpSelector);
+  const { isForgotPasswordOpen } = useAppSelector(forgotPasswordSelector);
 
   const dispatch = useAppDispatch();
 
@@ -45,6 +47,7 @@ export const useNavBarComponent = () => {
   return {
     isSignInOpen,
     isSignUpOpen,
+    isForgotPasswordOpen,
     isLogged,
     navBarTheme,
     themeMode,

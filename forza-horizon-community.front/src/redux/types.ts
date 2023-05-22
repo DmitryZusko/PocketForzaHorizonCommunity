@@ -103,6 +103,7 @@ export interface IModalState {
   isAddCarOpen: boolean;
   isSignInOpen: boolean;
   isSignUpOpen: boolean;
+  isForgotPasswordOpen: boolean;
 }
 
 export interface ISettingsState {

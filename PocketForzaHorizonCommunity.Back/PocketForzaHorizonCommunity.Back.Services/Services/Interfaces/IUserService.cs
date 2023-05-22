@@ -14,5 +14,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
         Task<List<string>> GetUserRoles(ApplicationUser user);
         Task SendEmailConfirmationMessageAsync(EmailConfirmationMessageRequest request);
         Task<IdentityResult> ConfirmEmailAsync(EmailConfirmationRequest request);
+        Task SendPasswordRestorationMessageAsync(PasswordRestorationMessageRequest request);
+        Task ResetPasswordAsync(ResetPasswordRequest request);
     }
 }

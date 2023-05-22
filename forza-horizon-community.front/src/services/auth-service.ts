@@ -7,6 +7,8 @@ import {
   ISignUpResponse,
   ITokenResponse,
   ISignInResponse,
+  ISendResetPasswordMessageRequest,
+  IResetPasswordRequest,
 } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 
@@ -94,6 +96,27 @@ const sendEmailConfirmationMessageAsync = async (accessToken: string, destinatio
   });
 };
 
-const authService = { signInAsync, signUpAsync, googleSignInAsync, refreshTokenAsync };
+const sendResetPasswordMessageAsync = async (request: ISendResetPasswordMessageRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post("authentication/reset-password-message", { Email: request.email });
+};
+
+const resetPasswordAsync = async (request: IResetPasswordRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post("authentication/reset-password", {
+    UserId: request.userId,
+    ResetToken: request.resetToken,
+    Password: request.password,
+  });
+};
+
+const authService = {
+  signInAsync,
+  signUpAsync,
+  googleSignInAsync,
+  refreshTokenAsync,
+  sendResetPasswordMessageAsync,
+  resetPasswordAsync,
+};
 
 export default authService;

@@ -8,4 +8,8 @@ export const styles = {
   },
 
   textField: { margin: baseTheme.spacing(5) },
+
+  forgotButton: {
+    marginY: baseTheme.spacing(7),
+  },
 };

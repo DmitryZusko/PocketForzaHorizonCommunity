@@ -1,4 +1,10 @@
-import { IGoogleSingInRequest, ISignInRequest, ISignUpRequest } from "@/data-transfer-objects";
+import {
+  IGoogleSingInRequest,
+  IResetPasswordRequest,
+  ISendResetPasswordMessageRequest,
+  ISignInRequest,
+  ISignUpRequest,
+} from "@/data-transfer-objects";
 import { authService } from "@/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -14,5 +20,19 @@ export const googleSignInAsync = createAsyncThunk(
   "auth/googleSignInAsync",
   async (request: IGoogleSingInRequest) => {
     return authService.googleSignInAsync(request);
+  },
+);
+
+export const sendResetPasswordMessageAsync = createAsyncThunk(
+  "auth/sendResetPasswordMessageAsync",
+  async (request: ISendResetPasswordMessageRequest) => {
+    return authService.sendResetPasswordMessageAsync(request);
+  },
+);
+
+export const resetPasswordAsync = createAsyncThunk(
+  "auth/resetPasswordAsync",
+  async (request: IResetPasswordRequest) => {
+    return authService.resetPasswordAsync(request);
   },
 );
