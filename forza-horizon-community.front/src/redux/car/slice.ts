@@ -32,6 +32,8 @@ const carSlice = createSlice({
       state.isLoadingCars = true;
     });
     builder.addCase(getCarsAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.cars = payload.data.entities;
       state.page = payload.data.page;
       state.pageSize = payload.data.pageSize;

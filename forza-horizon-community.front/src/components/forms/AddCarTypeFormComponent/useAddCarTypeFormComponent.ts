@@ -19,12 +19,13 @@ export const useAddCarTypeFormComponent = () => {
   const handleSubmit = useCallback(
     (values: { carTypeName: string }) => {
       if (carTypes.find((c) => c.name === values.carTypeName)) {
-        showToast.showError("Car Type with a sych name is already existing");
+        showToast.showError("Car Type with a such name is already existing");
         return;
       }
 
-      dispatch(postCarTypeAsync({ carTypeName: values.carTypeName }));
-      dispatch(setIsAddCarTypeOpen(false));
+      dispatch(postCarTypeAsync({ carTypeName: values.carTypeName })).then(
+        (result) => result.payload && dispatch(setIsAddCarTypeOpen(false)),
+      );
     },
     [carTypes, dispatch],
   );

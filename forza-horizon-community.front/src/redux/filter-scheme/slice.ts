@@ -1,4 +1,3 @@
-import { showToast } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { IFiltetSchemeState } from "../types";
 import {
@@ -35,6 +34,8 @@ const filterSchemeSlice = createSlice({
       state.isLoadingCarTypes = true;
     });
     builder.addCase(getCarTypesAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.carTypes = payload.data.entities;
       state.totalCarTypes = payload.data.total;
       state.isLoadingCarTypes = false;
@@ -46,6 +47,8 @@ const filterSchemeSlice = createSlice({
       state.isLoadingManufacture = true;
     });
     builder.addCase(getManufacturesAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.manufactures = payload.data.entities;
       state.totalManufactures = payload.data.total;
       state.isLoadingManufacture = false;
@@ -57,6 +60,8 @@ const filterSchemeSlice = createSlice({
       state.isLoadingCarNames = true;
     });
     builder.addCase(getCarNamesAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.carNames = payload.data.entities;
     });
     builder.addCase(getCarNamesAsync.rejected, (state) => {
@@ -66,6 +71,8 @@ const filterSchemeSlice = createSlice({
       state.isLoadingCarFilterScheme = true;
     });
     builder.addCase(getCarFilterSchemeAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.minPrice = payload.data.minPrice;
       state.maxPrice = payload.data.maxPrice;
       state.minYear = payload.data.minYear;
@@ -76,12 +83,14 @@ const filterSchemeSlice = createSlice({
       state.isLoadingCarFilterScheme = false;
     });
     builder.addCase(postManufactureAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.manufactures.push(payload.data);
-      showToast.showSuccess("New Manufacture is added!");
     });
     builder.addCase(postCarTypeAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.carTypes.push(payload.data);
-      showToast.showSuccess("New car type is added!");
     });
   },
 });

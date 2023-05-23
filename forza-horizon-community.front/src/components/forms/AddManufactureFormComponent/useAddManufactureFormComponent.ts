@@ -23,8 +23,9 @@ export const useAddManufactureFormComponent = () => {
         return;
       }
 
-      dispatch(postManufactureAsync({ name: values.manufactureName, country: values.country }));
-      dispatch(setIsAddManufactureOpen(false));
+      dispatch(
+        postManufactureAsync({ name: values.manufactureName, country: values.country }),
+      ).then((result) => result.payload && dispatch(setIsAddManufactureOpen(false)));
     },
     [manufactures, dispatch],
   );

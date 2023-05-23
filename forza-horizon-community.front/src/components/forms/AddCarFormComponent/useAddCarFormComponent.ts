@@ -34,8 +34,7 @@ export const useAddCarFormComponent = () => {
         manufactureId: values.manufactureId,
         carTypeId: values.carTypeId,
       }),
-    );
-    handleCancel();
+    ).then((result) => result.payload && dispatch(setIsAddCarOpen(false)));
   };
 
   const handleCancel = () => {

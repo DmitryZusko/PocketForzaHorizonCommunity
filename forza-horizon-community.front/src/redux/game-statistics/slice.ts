@@ -18,6 +18,8 @@ const gameStatisticsSlice = createSlice({
       state.isLoadingAchievements = true;
     });
     builder.addCase(getAchievementStats.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.achievements = payload.data;
       state.isLoadingAchievements = false;
     });
@@ -25,6 +27,8 @@ const gameStatisticsSlice = createSlice({
       state.isLoadingPlayersNumber = true;
     });
     builder.addCase(getCurrentOnline.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.totalPlayers = payload.data;
       state.isLoadingPlayersNumber = false;
     });

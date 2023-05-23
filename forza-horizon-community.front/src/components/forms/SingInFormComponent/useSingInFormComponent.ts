@@ -14,8 +14,9 @@ export const useSingInFormComponent = () => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: { email: string; password: string }) => {
-    dispatch(signInAsync({ email: values.email, password: values.password }));
-    dispatch(setIsSignInOpen(false));
+    dispatch(signInAsync({ email: values.email, password: values.password })).then(
+      (result) => result.payload && dispatch(setIsSignInOpen(false)),
+    );
   };
 
   const handleGoogleSignIn = useCallback(

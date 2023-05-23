@@ -12,12 +12,22 @@ const showInfo = (message: string) => {
   toast(message, { icon: "ℹ️" });
 };
 
-const showPromise = (promise: Promise<any>, message: string) => {
-  toast.promise(promise, {
-    loading: message,
-    success: "Success!",
-    error: "Opps, something goes wrong...",
-  });
+const showPromise = (
+  promise: Promise<any>,
+  loadingMessage?: string,
+  successMessage?: string,
+  errorMessage?: string,
+) => {
+  toast.promise(
+    promise.then((r) => {
+      if (!r) throw new Error();
+    }),
+    {
+      loading: loadingMessage || "Please, wait...",
+      success: successMessage || "Success!",
+      error: errorMessage || "Opps, something goes wrong...",
+    },
+  );
 };
 
 const showToast = { showError, showSuccess, showInfo, showPromise };

@@ -20,9 +20,7 @@ export const useResetPasswordFormComponent = () => {
         resetToken: queryParams.resetToken,
         password: values.newPassword,
       }),
-    );
-
-    router.push("/");
+    ).then((result) => result.payload && router.push("/"));
   };
 
   const formik = useFormik({

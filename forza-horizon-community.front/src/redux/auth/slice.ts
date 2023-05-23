@@ -36,6 +36,8 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(signInAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.user = payload.user;
       AsyncStorage.multiSet([
         [AccessTokenKey, payload.accessToken],
@@ -44,6 +46,8 @@ const authSlice = createSlice({
       state.isLogged = true;
     });
     builder.addCase(signUpAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.user = payload.user;
       AsyncStorage.multiSet([
         [AccessTokenKey, payload.accessToken],
@@ -54,6 +58,8 @@ const authSlice = createSlice({
         showToast.showInfo("We've send you a confirmation link. \nPlease, check your email");
     });
     builder.addCase(googleSignInAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.user = payload.user;
       AsyncStorage.multiSet([
         [AccessTokenKey, payload.accessToken],
@@ -62,7 +68,7 @@ const authSlice = createSlice({
       state.isLogged = true;
     });
     builder.addCase(sendResetPasswordMessageAsync.fulfilled, (state) => {
-      showToast.showSuccess("We've send you a reset password link. \nPlease, check your email");
+      showToast.showInfo("We've send you a reset password link. \nPlease, check your email");
     });
     builder.addCase(resetPasswordAsync.fulfilled, (state) => {
       showToast.showSuccess("Password is successfully changed!");

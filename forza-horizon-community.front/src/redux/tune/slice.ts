@@ -37,6 +37,8 @@ const tuneSlice = createSlice({
       state.isLoadingLatest = true;
     });
     builder.addCase(getLatestTunesAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.latestTunes = payload.data;
       state.isLoadingLatest = false;
     });
@@ -44,6 +46,8 @@ const tuneSlice = createSlice({
       state.isLoadingTunes = true;
     });
     builder.addCase(getTunesAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
@@ -55,6 +59,8 @@ const tuneSlice = createSlice({
       state.isLoadingTunes = true;
     });
     builder.addCase(getTunesByCarIdAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.tunes = state.tunes.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
       state.isLoadingTunes = false;
@@ -66,6 +72,8 @@ const tuneSlice = createSlice({
       state.isLoadingSelected = true;
     });
     builder.addCase(getTuneById.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
       state.selectedTune = payload.data;
       state.isLoadingSelected = false;
     });
