@@ -36,8 +36,6 @@ const CarTableComponent = ({ ...props }) => {
     handleSorting,
   } = useCarTableComponent();
 
-  console.log(maintainedCars);
-
   return (
     <TableContainer {...props} sx={styles.tableContainer}>
       <Table>

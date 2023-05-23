@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.Cars;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
@@ -10,5 +11,6 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
         Task<Car> CreateAsync(Car entity, IFormFile thumbnail);
         Task<Car> UpdateAsync(Car newEntity, IFormFile thumbnail);
         Task<CarFilterScheme> GetCarFilterMarginsAsync();
+        Task<PaginationModel<Car>> GetByIds(FilteredCarsGetByIdsRequest request);
     }
 }

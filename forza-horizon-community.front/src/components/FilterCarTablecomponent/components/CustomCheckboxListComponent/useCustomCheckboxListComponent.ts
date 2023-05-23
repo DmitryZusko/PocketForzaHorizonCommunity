@@ -5,6 +5,7 @@ export const useCustomCheckboxListComponent = ({
   applyChanges,
 }: ICustomCheckboxListComponentHook) => {
   const [selected, setSelected] = useState<string[]>([]);
+
   const handleChange = useCallback(
     (entity: string) => () => {
       if (!selected.includes(entity)) {
@@ -19,5 +20,6 @@ export const useCustomCheckboxListComponent = ({
   useEffect(() => {
     applyChanges(selected);
   }, [selected, applyChanges]);
+
   return { handleChange };
 };

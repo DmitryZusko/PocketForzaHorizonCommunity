@@ -1,6 +1,7 @@
 import { ICar } from "@/data-transfer-objects";
 import {
   getCarsAsync,
+  getOwnedCarsAsync,
   paginatedCarsSelector,
   selectedFilterParamsSelector,
   setCarPage,
@@ -32,6 +33,7 @@ const useCarTableComponent = () => {
     selectedManufactures,
     selectedCarTypes,
     selectedCountries,
+    isOnlyOwned,
   } = useAppSelector(selectedFilterParamsSelector);
   const { user } = useAppSelector(userSelector);
 
@@ -40,7 +42,34 @@ const useCarTableComponent = () => {
 
   const dispatch = useAppDispatch();
 
-  const loadCars = useCallback(() => {
+  const loadOwnedCars = useCallback(() => {
+    return dispatch(
+      getOwnedCarsAsync({
+        page: currentPage,
+        pageSize,
+        minPrice: selectedPriceRange[0],
+        maxPrice: selectedPriceRange[1],
+        minYear: selectedYearRange[0],
+        maxYear: selectedYearRange[1],
+        selectedCountries: selectedCountries.toLocaleString(),
+        selectedManufactures: selectedManufactures.toLocaleString(),
+        selectedCarTypes: selectedCarTypes.toLocaleString(),
+        ownedCars: user?.ownedCarsByUser.toLocaleString(),
+      }),
+    );
+  }, [
+    currentPage,
+    pageSize,
+    selectedPriceRange,
+    selectedYearRange,
+    selectedCountries,
+    selectedManufactures,
+    selectedCarTypes,
+    user,
+    dispatch,
+  ]);
+
+  const loadAllCard = useCallback(() => {
     return dispatch(
       getCarsAsync({
         page: currentPage,
@@ -64,6 +93,11 @@ const useCarTableComponent = () => {
     selectedCarTypes,
     dispatch,
   ]);
+
+  const loadCars = useCallback(() => {
+    if (isOnlyOwned) return loadOwnedCars();
+    return loadAllCard();
+  }, [isOnlyOwned, loadOwnedCars, loadAllCard]);
 
   const maintainedCars = useMemo(() => {
     return cars.map((car) => {

@@ -2,6 +2,7 @@ import { defaultPageSize } from "@/components";
 import {
   ICar,
   IFilteredCarsRequest,
+  IFilteredOwndCarsRequest,
   IPaginatedResponse,
   IPostCarRequest,
 } from "@/data-transfer-objects";
@@ -31,6 +32,35 @@ export const getCarsAsync = createAsyncThunk(
           selectedCountries: request.selectedCountries,
           selectedCarTypes: request.selectedCarTypes,
           selectedManufactures: request.selectedManufactures,
+          cancelToken: cancelationToken.token,
+        }),
+      dispatch,
+    ) as Promise<AxiosResponse<IPaginatedResponse<ICar>, any>>;
+  },
+);
+
+export const getOwnedCarsAsync = createAsyncThunk(
+  "car/getOwnedCarsAsync",
+  async (request: IFilteredOwndCarsRequest, { signal, dispatch }) => {
+    const cancelationToken = customAxios.getCancelationToken();
+
+    signal.addEventListener("abort", () => {
+      cancelationToken.cancel();
+    });
+
+    return errorHandler.handleError(
+      () =>
+        carService.getOwnedCarsAsync({
+          page: request.page,
+          pageSize: request.pageSize,
+          minPrice: request.minPrice,
+          maxPrice: request.maxPrice,
+          minYear: request.minYear,
+          maxYear: request.maxYear,
+          selectedCountries: request.selectedCountries,
+          selectedCarTypes: request.selectedCarTypes,
+          selectedManufactures: request.selectedManufactures,
+          ownedCars: request.ownedCars,
           cancelToken: cancelationToken.token,
         }),
       dispatch,

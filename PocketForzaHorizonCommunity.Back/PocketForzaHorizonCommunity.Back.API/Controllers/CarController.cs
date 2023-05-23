@@ -29,6 +29,17 @@ public class CarController : ApplicationControllerBase
         return _mapper.Map<PaginatedResponse<CarDto>>(cars);
     }
 
+    [HttpGet("ByIds")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<PaginatedResponse<CarDto>> GetByIds([FromQuery] FilteredCarsGetByIdsRequest request)
+    {
+        var cars = await _service.GetByIds(request);
+        return _mapper.Map<PaginatedResponse<CarDto>>(cars);
+    }
+
     [HttpGet("FilterScheme")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
