@@ -9,3 +9,5 @@ export * from "./add-new-tune";
 export * from "./guides";
 export * from "./reset-password";
 export * from "./confirm-email";
+export * from "./page-not-found";
+export * from "./internal-server-error";
