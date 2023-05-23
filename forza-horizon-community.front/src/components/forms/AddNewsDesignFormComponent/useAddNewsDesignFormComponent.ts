@@ -2,12 +2,14 @@ import {
   carNamesSelector,
   designUploaderSelector,
   getCarNamesAsync,
+  postDesignAsync,
   setDesignGallery,
   setDesignThumbnail,
   setIsDesignGalleryError,
   setIsDesignThumbnailError,
   useAppDispatch,
   useAppSelector,
+  userSelector,
 } from "@/redux";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
@@ -19,6 +21,7 @@ export const useAddNewsDesignFormComponent = () => {
     useAppSelector(designUploaderSelector);
 
   const { isLoadingCarNames, carNames } = useAppSelector(carNamesSelector);
+  const { user } = useAppSelector(userSelector);
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -30,14 +33,23 @@ export const useAddNewsDesignFormComponent = () => {
     selectedCarId: string;
   }) => {
     if (isDesignThumbnailError || isDesignGalleryError) return;
-    console.log(values.title);
-    console.log(values.forzaShareCode);
-    console.log(values.selectedCarId);
-    console.log(designThumbnail);
-    console.log(designGallery);
-    console.log(values.description);
+    if (!designThumbnail) return;
+    if (!user) return;
 
-    cleanInput();
+    dispatch(
+      postDesignAsync({
+        title: values.title,
+        forzaShareCode: values.forzaShareCode,
+        authorId: user.id,
+        carId: values.selectedCarId,
+        thumbnail: designThumbnail,
+        gallery: designGallery,
+        description: values.description,
+      }),
+    ).then((result) => {
+      result.payload && router.push("/guides/designs");
+      result.payload && cleanInput();
+    });
   };
 
   const handleCancel = () => {
