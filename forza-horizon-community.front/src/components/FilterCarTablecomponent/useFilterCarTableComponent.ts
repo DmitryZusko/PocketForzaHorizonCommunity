@@ -3,8 +3,11 @@ import {
   getCarFilterSchemeAsync,
   getCarTypesAsync,
   getManufacturesAsync,
+  isOnlyOwnedSelector,
   selectedFilterRangesSelector,
   setCarPage,
+  setDefaultParams,
+  setIsOnlyOwned,
   setSelectedCarTypes,
   setSelectedCountries,
   setSelectedManufactures,
@@ -31,6 +34,7 @@ export const useFilterCarTableComponent = () => {
   } = useAppSelector(filterSchemeSelector);
 
   const { selectedPriceRange, selectedYearRange } = useAppSelector(selectedFilterRangesSelector);
+  const { isOnlyOwned } = useAppSelector(isOnlyOwnedSelector);
 
   const theme = useTheme();
   const dispatch = useAppDispatch();
@@ -95,13 +99,22 @@ export const useFilterCarTableComponent = () => {
     [dispatch],
   );
 
-  useEffect(() => {
-    dispatch(setSelectedPriceRange([minPrice, maxPrice]));
-  }, [minPrice, maxPrice, dispatch]);
+  const toogleOnlyOwned = useCallback(() => {
+    dispatch(setIsOnlyOwned(!isOnlyOwned));
+  }, [isOnlyOwned, dispatch]);
 
   useEffect(() => {
-    dispatch(setSelectedYearRange([minYear, maxYear]));
-  }, [minYear, maxYear, dispatch]);
+    dispatch(
+      setDefaultParams({
+        selectedPriceRange: [minPrice, maxPrice],
+        selectedYearRange: [minYear, maxYear],
+        selectedManufactures: [],
+        selectedCarTypes: [],
+        selectedCountries: [],
+        isOnlyOwned: false,
+      }),
+    );
+  }, [minPrice, maxPrice, minYear, maxYear, dispatch]);
 
   useEffect(() => {
     loadParameters();
@@ -120,11 +133,13 @@ export const useFilterCarTableComponent = () => {
     selectedPriceRange,
     selectedYearRange,
     checkboxContainerStyles,
+    isOnlyOwned,
     countries,
     handlePriceRangeChange,
     handleYearRangeChange,
     handleSelectedManufacture,
     handleSelectedCarType,
     handleSelectedCountry,
+    toogleOnlyOwned,
   };
 };

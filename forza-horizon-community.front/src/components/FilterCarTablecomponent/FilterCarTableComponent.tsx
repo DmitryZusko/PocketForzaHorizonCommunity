@@ -1,4 +1,5 @@
-import { Container, Typography } from "@mui/material";
+import { DoneAll, ViewList } from "@mui/icons-material";
+import { Button, Container, Typography } from "@mui/material";
 import { defaultPriceStep } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { CustomCheckboxListComponent, CustomRangeSliderComponent } from "./components";
@@ -19,12 +20,14 @@ const FilterCarTableComponent = ({ ...props }) => {
     selectedPriceRange,
     selectedYearRange,
     checkboxContainerStyles,
+    isOnlyOwned,
     countries,
     handlePriceRangeChange,
     handleYearRangeChange,
     handleSelectedManufacture,
     handleSelectedCarType,
     handleSelectedCountry,
+    toogleOnlyOwned,
   } = useFilterCarTableComponent();
 
   return (
@@ -79,6 +82,13 @@ const FilterCarTableComponent = ({ ...props }) => {
             max={maxYear}
             handleRangeChange={handleYearRangeChange}
           />
+          <Button
+            startIcon={isOnlyOwned ? <DoneAll /> : <ViewList />}
+            onClick={toogleOnlyOwned}
+            variant="outlined"
+          >
+            {isOnlyOwned ? "Show All" : "Show Owned"}
+          </Button>
         </>
       )}
     </Container>

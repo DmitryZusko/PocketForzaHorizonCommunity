@@ -88,6 +88,7 @@ export interface ISelectedFilterParamsState {
   selectedManufactures: string[];
   selectedCarTypes: string[];
   selectedCountries: string[];
+  isOnlyOwned: boolean;
 }
 
 export interface IGuideUploaderState {

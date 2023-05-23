@@ -1,6 +1,7 @@
 import { ICar } from "@/data-transfer-objects";
 import { imageUtil } from "@/utilities";
 import {
+  Chip,
   CircularProgress,
   Grow,
   Table,
@@ -24,7 +25,7 @@ const CarTableComponent = ({ ...props }) => {
     currentPage,
     pageSize,
     isLoadingCars,
-    cars,
+    maintainedCars,
     totalEntities,
     order,
     orderBy,
@@ -59,7 +60,7 @@ const CarTableComponent = ({ ...props }) => {
               <TableCell align="center"></TableCell>
             </TableRow>
           ) : (
-            cars.map((car) => (
+            maintainedCars.map((car) => (
               <Grow key={car.id} in={true} timeout={500}>
                 <TableRow>
                   <TableCell>
@@ -93,6 +94,9 @@ const CarTableComponent = ({ ...props }) => {
                   </TableCell>
                   <TableCell align="center">
                     <Typography variant="textBody">{car.type}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    {car.isOwnByUser && <Chip label="OWNED" variant="outlined" color="primary" />}
                   </TableCell>
                 </TableRow>
               </Grow>

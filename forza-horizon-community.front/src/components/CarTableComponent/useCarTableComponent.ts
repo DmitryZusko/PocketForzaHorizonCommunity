@@ -1,6 +1,7 @@
 import { ICar } from "@/data-transfer-objects";
 import {
   getCarsAsync,
+  getOwnedCarsAsync,
   paginatedCarsSelector,
   selectedFilterParamsSelector,
   setCarPage,
@@ -8,10 +9,11 @@ import {
   setSortedCars,
   useAppDispatch,
   useAppSelector,
+  userSelector,
 } from "@/redux";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/system";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { OrderDirection } from "./components";
 
 const useCarTableComponent = () => {
@@ -31,14 +33,43 @@ const useCarTableComponent = () => {
     selectedManufactures,
     selectedCarTypes,
     selectedCountries,
+    isOnlyOwned,
   } = useAppSelector(selectedFilterParamsSelector);
+  const { user } = useAppSelector(userSelector);
 
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
   const dispatch = useAppDispatch();
 
-  const loadCars = useCallback(() => {
+  const loadOwnedCars = useCallback(() => {
+    return dispatch(
+      getOwnedCarsAsync({
+        page: currentPage,
+        pageSize,
+        minPrice: selectedPriceRange[0],
+        maxPrice: selectedPriceRange[1],
+        minYear: selectedYearRange[0],
+        maxYear: selectedYearRange[1],
+        selectedCountries: selectedCountries.toLocaleString(),
+        selectedManufactures: selectedManufactures.toLocaleString(),
+        selectedCarTypes: selectedCarTypes.toLocaleString(),
+        ownedCars: user?.ownedCarsByUser.toLocaleString(),
+      }),
+    );
+  }, [
+    currentPage,
+    pageSize,
+    selectedPriceRange,
+    selectedYearRange,
+    selectedCountries,
+    selectedManufactures,
+    selectedCarTypes,
+    user,
+    dispatch,
+  ]);
+
+  const loadAllCard = useCallback(() => {
     return dispatch(
       getCarsAsync({
         page: currentPage,
@@ -62,6 +93,22 @@ const useCarTableComponent = () => {
     selectedCarTypes,
     dispatch,
   ]);
+
+  const loadCars = useCallback(() => {
+    if (isOnlyOwned) return loadOwnedCars();
+    return loadAllCard();
+  }, [isOnlyOwned, loadOwnedCars, loadAllCard]);
+
+  const maintainedCars = useMemo(() => {
+    return cars.map((car) => {
+      if (user?.ownedCarsByUser?.includes(car.id)) {
+        const carCopy = { ...car };
+        carCopy.isOwnByUser = true;
+        return carCopy;
+      }
+      return car;
+    });
+  }, [cars, user]);
 
   const handleSorting = useCallback(
     (newOrder: OrderDirection, newProperty: keyof ICar) => {
@@ -102,7 +149,7 @@ const useCarTableComponent = () => {
     currentPage,
     pageSize,
     isLoadingCars,
-    cars,
+    maintainedCars,
     totalEntities,
     order,
     orderBy,

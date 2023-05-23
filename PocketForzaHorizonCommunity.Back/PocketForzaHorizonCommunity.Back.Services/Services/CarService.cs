@@ -33,6 +33,13 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
     public async override Task<PaginationModel<Car>> GetAllAsync(FilteredCarsGetRequest request) =>
         await AplyFiltersAsync(_repository.GetAll(), request);
 
+    public async Task<PaginationModel<Car>> GetByIds(FilteredCarsGetByIdsRequest request)
+    {
+        var cars = _repository.GetAll();
+        cars = cars.Where(c => request.Ids.Contains(c.Id));
+        return await AplyFiltersAsync(cars, request);
+    }
+
     public async Task<Car> UpdateAsync(Car newEntity, IFormFile thumbnail)
     {
         var oldEntity = await _repository.GetById(newEntity.Id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();

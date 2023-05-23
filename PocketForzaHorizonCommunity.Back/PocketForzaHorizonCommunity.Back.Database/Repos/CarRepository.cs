@@ -23,4 +23,5 @@ public class CarRepository : RepositoryBase<Car>, ICarRepository
     public Task<int> GetMinYearAsync() => Context.Set<Car>().MinAsync(c => c.Year);
 
     public Task<int> GetMaxYearAsync() => Context.Set<Car>().MaxAsync(c => c.Year);
+
 }

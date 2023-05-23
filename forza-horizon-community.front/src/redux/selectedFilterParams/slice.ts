@@ -7,6 +7,7 @@ const initialState: ISelectedFilterParamsState = {
   selectedManufactures: [],
   selectedCarTypes: [],
   selectedCountries: [],
+  isOnlyOwned: false,
 };
 
 const selectedFilterParamsSlice = createSlice({
@@ -28,6 +29,17 @@ const selectedFilterParamsSlice = createSlice({
     setSelectedCountries: (state, { payload }: ActionWithPayload<string[]>) => {
       state.selectedCountries = payload;
     },
+    setIsOnlyOwned: (state, { payload }: ActionWithPayload<boolean>) => {
+      state.isOnlyOwned = payload;
+    },
+    setDefaultParams: (state, { payload }: ActionWithPayload<ISelectedFilterParamsState>) => {
+      state.selectedPriceRange = payload.selectedPriceRange;
+      state.selectedYearRange = payload.selectedYearRange;
+      state.selectedManufactures = payload.selectedManufactures;
+      state.selectedCarTypes = payload.selectedCarTypes;
+      state.selectedCountries = payload.selectedCountries;
+      state.isOnlyOwned = payload.isOnlyOwned;
+    },
   },
 });
 
@@ -37,6 +49,8 @@ export const {
   setSelectedManufactures,
   setSelectedCarTypes,
   setSelectedCountries,
+  setIsOnlyOwned,
+  setDefaultParams,
 } = selectedFilterParamsSlice.actions;
 
 export default selectedFilterParamsSlice.reducer;

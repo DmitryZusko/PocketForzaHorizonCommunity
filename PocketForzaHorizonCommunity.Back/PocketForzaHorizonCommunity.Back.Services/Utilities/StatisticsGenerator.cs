@@ -38,7 +38,7 @@ public class StatisticsGenerator : IStatisticsGenerator
     public async Task GenerateStatistics(ApplicationUser user)
     {
         _user = user;
-        _user.OwnedCarsByUsers = await GenerateUserCarsAsync();
+        _user.OwnedCarsByUser = await GenerateUserCarsAsync();
 
         user.GeneralStatistics = await GenerateGeneralStatistics();
         user.CampaignStatistics = await GenerateCampaignStatistics();

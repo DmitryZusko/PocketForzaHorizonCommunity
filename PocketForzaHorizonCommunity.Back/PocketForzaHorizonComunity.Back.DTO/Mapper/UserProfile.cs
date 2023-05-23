@@ -9,6 +9,6 @@ public class UserProfile : Profile
     public UserProfile()
     {
         CreateMap<ApplicationUser, UserDto>()
-            .ForMember(dest => dest.OwnedCarsByUsers, opt => opt.MapFrom(src => src.OwnedCarsByUsers.Select(c => c.CarId)));
+            .ForMember(dest => dest.OwnedCarsByUser, opt => opt.MapFrom(src => src.OwnedCarsByUser.Select(c => c.CarId)));
     }
 }

@@ -16,7 +16,7 @@ public class ApplicationUserRepository : IApplicationUserRepository
         .Include(u => u.GeneralStatistics.Car.CarType)
         .Include(u => u.OnlineStatistics)
         .Include(u => u.RecordsStatistics)
-        .Include(u => u.OwnedCarsByUsers)
+        .Include(u => u.OwnedCarsByUser)
         .AsSplitQuery()
         .FirstOrDefaultAsync(u => u.Id == id);
 }
