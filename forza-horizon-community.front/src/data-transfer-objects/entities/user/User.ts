@@ -4,7 +4,7 @@ import { IOnlineStatistics } from "./OnlineStatistics";
 import { IRecordsStatistics } from "./RecordsStatistics";
 
 export interface IUser {
-  is: string;
+  id: string;
   email: string;
   username: string;
   roles: string[];
