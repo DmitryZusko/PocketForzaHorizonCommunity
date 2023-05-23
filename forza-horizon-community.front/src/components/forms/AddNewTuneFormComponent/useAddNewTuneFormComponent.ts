@@ -1,4 +1,11 @@
-import { carNamesSelector, getCarNamesAsync, useAppDispatch, useAppSelector } from "@/redux";
+import {
+  carNamesSelector,
+  getCarNamesAsync,
+  postTuneAsync,
+  useAppDispatch,
+  useAppSelector,
+  userSelector,
+} from "@/redux";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo } from "react";
@@ -7,38 +14,47 @@ import { IFormikNewTuneValues } from "./types";
 
 export const useAddNewTuneFormComponent = () => {
   const { isLoadingCarNames, carNames } = useAppSelector(carNamesSelector);
+  const { user } = useAppSelector(userSelector);
 
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   const handleSubmit = (values: IFormikNewTuneValues) => {
-    console.log(values.title);
-    console.log(values.forzaShareCode);
-    console.log(values.selectedCarId);
-    console.log(values.engineDescription);
-    console.log(values.engine);
-    console.log(values.aspiration);
-    console.log(values.intake);
-    console.log(values.ignition);
-    console.log(values.displacement);
-    console.log(values.exhaust);
-    console.log(values.handlingDescription);
-    console.log(values.brakes);
-    console.log(values.suspension);
-    console.log(values.antiRollBars);
-    console.log(values.rollCage);
-    console.log(values.drivetrainDescription);
-    console.log(values.clutch);
-    console.log(values.transmission);
-    console.log(values.differential);
-    console.log(values.tiresDescription);
-    console.log(values.compound);
-    console.log(values.frontTireWidth);
-    console.log(values.rearTireWidth);
-    console.log(values.frontTrackWidth);
-    console.log(values.rearTrackWidth);
+    if (!user) return;
 
-    cleanInput();
+    dispatch(
+      postTuneAsync({
+        title: values.title,
+        forzaShareCode: values.forzaShareCode,
+        authorId: user.id,
+        carId: values.selectedCarId,
+        engineDescription: values.engineDescription,
+        engine: values.engine,
+        aspiration: values.aspiration,
+        intake: values.intake,
+        ignition: values.ignition,
+        displacement: values.displacement,
+        exhaust: values.exhaust,
+        handlingDescription: values.handlingDescription,
+        brakes: values.brakes,
+        suspension: values.suspension,
+        antiRollBars: values.antiRollBars,
+        rollCage: values.rollCage,
+        drivetrainDescription: values.drivetrainDescription,
+        clutch: values.clutch,
+        transmission: values.transmission,
+        differential: values.differential,
+        tiresDescription: values.tiresDescription,
+        compound: values.compound,
+        frontTireWidth: values.frontTireWidth,
+        rearTireWidth: values.rearTireWidth,
+        frontTrackWidth: values.frontTrackWidth,
+        rearTrackWidth: values.rearTrackWidth,
+      }),
+    ).then((result) => {
+      result.payload && router.push("/guides/tunes");
+      result.payload && cleanInput();
+    });
   };
 
   const handleCancel = () => {
