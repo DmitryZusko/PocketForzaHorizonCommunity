@@ -12,6 +12,6 @@ public class UserDto
     public CampaignStatisticsDto CampaignStatistics { get; set; } = null!;
     public OnlineStatisticsDto OnlineStatistics { get; set; } = null!;
     public RecordsStatisticsDto RecordsStatistics { get; set; } = null!;
-    public ICollection<Guid> OwnedCarsByUsers { get; set; } = new List<Guid>();
+    public ICollection<Guid> OwnedCarsByUser { get; set; } = new List<Guid>();
 
 }

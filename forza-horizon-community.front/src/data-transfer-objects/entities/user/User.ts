@@ -8,7 +8,7 @@ export interface IUser {
   email: string;
   username: string;
   roles: string[];
-  ownedCars: string[];
+  ownedCarsByUser: string[];
   generalStatistics: IGeneralStatistics;
   campaignstatistics: ICampaignStatistics;
   onlineStatistics: IOnlineStatistics;

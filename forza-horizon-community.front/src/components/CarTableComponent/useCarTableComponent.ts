@@ -8,10 +8,11 @@ import {
   setSortedCars,
   useAppDispatch,
   useAppSelector,
+  userSelector,
 } from "@/redux";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/system";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { OrderDirection } from "./components";
 
 const useCarTableComponent = () => {
@@ -32,6 +33,7 @@ const useCarTableComponent = () => {
     selectedCarTypes,
     selectedCountries,
   } = useAppSelector(selectedFilterParamsSelector);
+  const { user } = useAppSelector(userSelector);
 
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up("md"));
@@ -62,6 +64,17 @@ const useCarTableComponent = () => {
     selectedCarTypes,
     dispatch,
   ]);
+
+  const maintainedCars = useMemo(() => {
+    return cars.map((car) => {
+      if (user?.ownedCarsByUser?.includes(car.id)) {
+        const carCopy = { ...car };
+        carCopy.isOwnByUser = true;
+        return carCopy;
+      }
+      return car;
+    });
+  }, [cars, user]);
 
   const handleSorting = useCallback(
     (newOrder: OrderDirection, newProperty: keyof ICar) => {
@@ -102,7 +115,7 @@ const useCarTableComponent = () => {
     currentPage,
     pageSize,
     isLoadingCars,
-    cars,
+    maintainedCars,
     totalEntities,
     order,
     orderBy,

@@ -17,5 +17,5 @@ public class ApplicationUser : IdentityUser<Guid>
     public RecordsStatistics RecordsStatistics { get; set; } = null!;
     public ICollection<Tune> Tunes { get; set; } = new List<Tune>();
     public ICollection<Design> Designs { get; set; } = new List<Design>();
-    public ICollection<OwnedCarsByUsers> OwnedCarsByUsers { get; set; } = new List<OwnedCarsByUsers>();
+    public ICollection<OwnedCarsByUsers> OwnedCarsByUser { get; set; } = new List<OwnedCarsByUsers>();
 }
