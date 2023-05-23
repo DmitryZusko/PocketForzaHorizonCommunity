@@ -1,6 +1,5 @@
 import { AccessTokenKey, RefreshTokenKey } from "@/components";
-import BadRequestError from "@/errors/BadRequestError";
-import UnauthorizedError from "@/errors/UnauthorizedError";
+import { BadRequestError, UnauthorizedError } from "@/errors";
 import { setIsLogged } from "@/redux";
 import { authService } from "@/services";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -70,11 +69,13 @@ const defaultErrorHandler = async (
   try {
     return await action();
   } catch (error) {
+    //if promise canceled in the thunk
+    if (error.message === "canceled") return;
+
     if (error instanceof UnauthorizedError) {
-      refreshTokenHandler(action, dispatch);
-    } else {
-      showToast.showError(DefaultErrorMessage);
+      return refreshTokenHandler(action, dispatch);
     }
+    showToast.showError(DefaultErrorMessage);
   }
 };
 
@@ -85,13 +86,17 @@ const inputFormErrorHandler = async (
   try {
     return await action();
   } catch (error) {
+    if (error.message === "canceled") return;
+
     if (error instanceof UnauthorizedError) {
-      refreshTokenHandler(action, dispatch);
-    } else if (error instanceof BadRequestError) {
-      showToast.showError(InvalidInput);
-    } else {
-      showToast.showError(DefaultErrorMessage);
+      return refreshTokenHandler(action, dispatch);
     }
+    if (error instanceof BadRequestError) {
+      showToast.showError(InvalidInput);
+      return;
+    }
+    showToast.showError(DefaultErrorMessage);
+    return;
   }
 };
 
@@ -105,7 +110,7 @@ const refreshTokenHandler = async (
       refreshToken: (await AsyncStorage.getItem(RefreshTokenKey)) || "",
     });
 
-    AsyncStorage.multiSet([
+    await AsyncStorage.multiSet([
       [AccessTokenKey, result.data.accessToken],
       [RefreshTokenKey, result.data.refreshToken],
     ]);

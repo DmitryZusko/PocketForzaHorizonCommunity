@@ -23,7 +23,9 @@ export const getManufacturesAsync = createAsyncThunk<
   "manufacture/getManufacturesAsync",
   async (request: IPaginatedRequest, { getState, rejectWithValue, dispatch }) => {
     const manufactures = getState().filterScheme.manufactures;
-    if (manufactures.length > 0) return rejectWithValue(stateAlreadyUploadedMessage);
+    if (manufactures.length > 0) {
+      return rejectWithValue(stateAlreadyUploadedMessage);
+    }
     return errorHandler.handleError(
       () => manufactureService.getManufacturesAsync(request),
       dispatch,
