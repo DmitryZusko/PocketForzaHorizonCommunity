@@ -21,10 +21,10 @@ const isRouteAvailable = (
   return false;
 };
 
-const isComponentAvailable = (userRoles: string[] | undefined, accessRoles: string[]) => {
-  userRoles?.forEach((role) => {
-    if (accessRoles.includes(role)) return true;
-  });
+const isComponentAvailable = (userRoles: string[], accessRoles: string[]) => {
+  for (let i = 0; i < userRoles.length; i++) {
+    if (accessRoles.includes(userRoles[i])) return true;
+  }
 
   return false;
 };
