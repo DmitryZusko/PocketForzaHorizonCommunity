@@ -4,6 +4,8 @@ import { IRoleGateHook } from "./types";
 
 export const useRoleGate = ({ accessRoles }: IRoleGateHook) => {
   const { user } = useAppSelector(userSelector);
-  const isAvailable = gateHandler.isComponentAvailable(user?.roles, accessRoles);
+
+  const isAvailable = gateHandler.isComponentAvailable(user?.roles || [], accessRoles);
+
   return { isAvailable };
 };

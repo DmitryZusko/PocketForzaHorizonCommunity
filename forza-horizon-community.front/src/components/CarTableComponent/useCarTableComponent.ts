@@ -39,10 +39,6 @@ const useCarTableComponent = () => {
   const dispatch = useAppDispatch();
 
   const loadCars = useCallback(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
     return dispatch(
       getCarsAsync({
         page: currentPage,
@@ -93,6 +89,13 @@ const useCarTableComponent = () => {
       if (!isDispatched) dispatchPromise.abort();
     };
   }, [loadCars]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentPage, pageSize]);
 
   return {
     isTablet,

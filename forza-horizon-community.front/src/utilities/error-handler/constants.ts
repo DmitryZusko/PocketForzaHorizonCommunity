@@ -1,6 +1,8 @@
 export const SignInMessage = "Signing in...";
 export const SignUpMessage = "Creating a new account...";
 export const AddCarMessage = "Adding a new car...";
+export const AddDesignMessage = "Adding a new design...";
+export const AddTuneMessage = "Adding a new tune...";
 export const AddManufactureMessage = "Adding a new manufacture...";
 export const AddCarType = "Adding a new car type...";
 export const EmailConfirmationMessage = "Confirming your email...";

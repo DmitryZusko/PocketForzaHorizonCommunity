@@ -1,4 +1,10 @@
-import { IGetByIdRequest, IPaginatedResponse, ITune, ITuneFullInfo } from "@/data-transfer-objects";
+import {
+  IGetByIdRequest,
+  IPaginatedResponse,
+  IPostTuneRequest,
+  ITune,
+  ITuneFullInfo,
+} from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarTuneRequest, IAxiosFilteredTuneRequest } from "./types";
 
@@ -65,12 +71,45 @@ const getByIdAsync = async (request: IGetByIdRequest) => {
   return axios.get<ITuneFullInfo>("tune/info", { params: { id: request.id } });
 };
 
+const postTuneAsync = async (request: IPostTuneRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post("tune", {
+    Title: request.title,
+    ForzaShareCode: request.forzaShareCode,
+    AuthorId: request.authorId,
+    CarId: request.carId,
+    EngineDescription: request.engineDescription,
+    Engine: request.engine,
+    Aspiration: request.aspiration,
+    Intake: request.intake,
+    Ignition: request.ignition,
+    Displacement: request.displacement,
+    Exhaust: request.exhaust,
+    HandlingDescription: request.handlingDescription,
+    Brakes: request.brakes,
+    Suspension: request.suspension,
+    AntiRollBars: request.antiRollBars,
+    RollCage: request.rollCage,
+    DrivetrainDescription: request.drivetrainDescription,
+    Clutch: request.clutch,
+    Transmission: request.transmission,
+    Differential: request.differential,
+    TiresDescription: request.tiresDescription,
+    Compound: request.compound,
+    FrontTireWidth: request.frontTireWidth,
+    RearTireWidth: request.rearTireWidth,
+    FrontTrackWidth: request.frontTrackWidth,
+    RearTrackWidth: request.rearTrackWidth,
+  });
+};
+
 const tuneService = {
   getTunesAsync,
   getAllIdsAsync,
   getTunesByCarIdAsync,
   getLatestTunesAsync,
   getByIdAsync,
+  postTuneAsync,
 };
 
 export default tuneService;

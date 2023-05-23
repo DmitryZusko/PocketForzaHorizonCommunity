@@ -3,11 +3,12 @@ import {
   IFilteredTuneRequest,
   IGetByIdRequest,
   IPaginatedResponse,
+  IPostTuneRequest,
   ITune,
   ITuneFullInfo,
 } from "@/data-transfer-objects";
 import { tuneService } from "@/services";
-import { customAxios, errorHandler } from "@/utilities";
+import { AddTuneMessage, customAxios, errorHandler } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 
@@ -68,5 +69,18 @@ export const getTuneById = createAsyncThunk(
     return errorHandler.handleError(() => tuneService.getByIdAsync(request), dispatch) as Promise<
       AxiosResponse<ITuneFullInfo, any>
     >;
+  },
+);
+
+export const postTuneAsync = createAsyncThunk(
+  "tune/postTuneAsync",
+  async (request: IPostTuneRequest, { dispatch }) => {
+    return errorHandler.handleError(
+      () => tuneService.postTuneAsync(request),
+      dispatch,
+      true,
+      true,
+      AddTuneMessage,
+    );
   },
 );

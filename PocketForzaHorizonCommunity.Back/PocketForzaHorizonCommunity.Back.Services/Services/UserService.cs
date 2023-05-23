@@ -17,15 +17,17 @@ public class UserService : IUserService
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly ApplicationUserManager<ApplicationUser> _userManager;
     private readonly IStatisticsGenerator _statisticsGenerator;
+    private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly IMailManager _mailManager;
 
     public UserService(SignInManager<ApplicationUser> signInManager,
             ApplicationUserManager<ApplicationUser> userManager, IStatisticsGenerator statisticsGenerator,
-            IMailManager mailManager)
+            RoleManager<ApplicationRole> roleManager, IMailManager mailManager)
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _statisticsGenerator = statisticsGenerator;
+        _roleManager = roleManager;
         _mailManager = mailManager;
     }
 
@@ -67,8 +69,9 @@ public class UserService : IUserService
 
     public async Task<ApplicationUser> SignUpWithSpecificRoleAsync(SignUpRequest request, string role)
     {
+        var userRole = await _roleManager.FindByNameAsync(role) ?? throw new BadRequestException(Messages.INVALID_CREDENTIALS);
         var user = await CreateUserAsync(request.Username, request.Email, request.Password);
-        await _userManager.AddToRoleAsync(user, role);
+        await _userManager.AddToRoleAsync(user, userRole.Name);
 
         return user;
     }

@@ -6,9 +6,10 @@ import {
   IGetByIdRequest,
   IGetLatestDesignsRequest,
   IPaginatedResponse,
+  IPostDesignRequest,
 } from "@/data-transfer-objects";
 import { designService } from "@/services";
-import { customAxios, errorHandler } from "@/utilities";
+import { AddDesignMessage, customAxios, errorHandler } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 
@@ -71,5 +72,18 @@ export const getDesignById = createAsyncThunk(
     return errorHandler.handleError(() => designService.getByIdAsync(request), dispatch) as Promise<
       AxiosResponse<IDesignFullInfo, any>
     >;
+  },
+);
+
+export const postDesignAsync = createAsyncThunk(
+  "design/getDesignById",
+  async (request: IPostDesignRequest, { dispatch }) => {
+    return errorHandler.handleError(
+      () => designService.postDesignAsync(request),
+      dispatch,
+      true,
+      true,
+      AddDesignMessage,
+    ) as Promise<AxiosResponse<any, any>>;
   },
 );

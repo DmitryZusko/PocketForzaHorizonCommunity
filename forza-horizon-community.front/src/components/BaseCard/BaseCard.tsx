@@ -19,6 +19,7 @@ const BaseCard = ({
         alt="thumbnail"
         width={imageWidth}
         height={imageHeight}
+        sx={styles.cardImage}
       />
       <CardContent>
         <Grid container>

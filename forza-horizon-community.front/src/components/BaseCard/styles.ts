@@ -9,4 +9,6 @@ export const styles = {
   baseCard: {
     m: baseTheme.spacing(5),
   },
+
+  cardImage: { maxHeight: "40vh" },
 };

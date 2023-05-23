@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.Auth;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Authentication;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
@@ -65,6 +66,36 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
             Response.StatusCode = StatusCodes.Status201Created;
             return token;
         }
+
+        [HttpPost("sign-up/admin")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
+        public async Task SignUpAdmin([FromBody] SignUpRequest request)
+        {
+            await _userService.SignUpWithSpecificRoleAsync(request, RoleType.ADMIN);
+
+
+            Response.StatusCode = StatusCodes.Status201Created;
+        }
+
+        [HttpPost("sign-up/creator")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
+        public async Task SignUpCreator([FromBody] SignUpRequest request)
+        {
+            await _userService.SignUpWithSpecificRoleAsync(request, RoleType.CREATOR);
+
+            Response.StatusCode = StatusCodes.Status201Created;
+        }
+
 
         [HttpPost("refresh")]
         [AllowAnonymous]

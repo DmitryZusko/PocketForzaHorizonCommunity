@@ -4,6 +4,7 @@ import {
   IGetByIdRequest,
   IGetLatestDesignsRequest,
   IPaginatedResponse,
+  IPostDesignRequest,
 } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarDesignRequest, IAxiosFilteredDesignRequest } from "./types";
@@ -83,12 +84,26 @@ const getByIdAsync = async (request: IGetByIdRequest) => {
   });
 };
 
+const postDesignAsync = async (request: IPostDesignRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  const data = new FormData();
+  data.append("title", request.title);
+  data.append("forzaShareCode", request.forzaShareCode);
+  data.append("authorId", request.authorId);
+  data.append("carId", request.carId);
+  data.append("thumbnail", request.thumbnail);
+  data.append("description", request.description);
+  request.gallery?.forEach((image) => data.append("gallery", image));
+  return axios.post("design", data);
+};
+
 const designService = {
   getLatestDesignsAsync,
   getDesignsAsync,
   getDesignsByCarId,
   getAllIdsAsync,
   getByIdAsync,
+  postDesignAsync,
 };
 
 export default designService;
