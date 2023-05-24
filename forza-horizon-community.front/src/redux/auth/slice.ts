@@ -1,6 +1,11 @@
 import { AccessTokenKey, RefreshTokenKey } from "@/components";
 import { IUser } from "@/data-transfer-objects";
-import { showToast } from "@/utilities";
+import {
+  EmailConfirmationSent,
+  PasswordChanged,
+  ResetPasswordSent,
+  toastHandler,
+} from "@/utilities";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IAuthState } from "../types";
@@ -54,8 +59,7 @@ const authSlice = createSlice({
         [RefreshTokenKey, payload.refreshToken],
       ]);
       state.isLogged = true;
-      payload.isEmailSend &&
-        showToast.showInfo("We've send you a confirmation link. \nPlease, check your email");
+      payload.isEmailSend && toastHandler.showInfo(EmailConfirmationSent);
     });
     builder.addCase(googleSignInAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
@@ -68,10 +72,10 @@ const authSlice = createSlice({
       state.isLogged = true;
     });
     builder.addCase(sendResetPasswordMessageAsync.fulfilled, (state) => {
-      showToast.showInfo("We've send you a reset password link. \nPlease, check your email");
+      toastHandler.showInfo(ResetPasswordSent);
     });
     builder.addCase(resetPasswordAsync.fulfilled, (state) => {
-      showToast.showSuccess("Password is successfully changed!");
+      toastHandler.showSuccess(PasswordChanged);
     });
   },
 });

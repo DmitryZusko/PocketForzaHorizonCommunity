@@ -30,6 +30,6 @@ const showPromise = (
   );
 };
 
-const showToast = { showError, showSuccess, showInfo, showPromise };
+const toastHandler = { showError, showSuccess, showInfo, showPromise };
 
-export default showToast;
+export default toastHandler;

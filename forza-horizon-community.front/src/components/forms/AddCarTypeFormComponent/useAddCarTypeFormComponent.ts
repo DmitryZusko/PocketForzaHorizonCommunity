@@ -9,7 +9,7 @@ import {
 import { useFormik } from "formik";
 import { validationScheme } from "./constants";
 import { useCallback, useEffect } from "react";
-import { showToast } from "@/utilities";
+import { CarTypeAlreadyExists, toastHandler } from "@/utilities";
 
 export const useAddCarTypeFormComponent = () => {
   const { carTypes } = useAppSelector(carTypesSelector);
@@ -19,7 +19,7 @@ export const useAddCarTypeFormComponent = () => {
   const handleSubmit = useCallback(
     (values: { carTypeName: string }) => {
       if (carTypes.find((c) => c.name === values.carTypeName)) {
-        showToast.showError("Car Type with a such name is already existing");
+        toastHandler.showError(CarTypeAlreadyExists);
         return;
       }
 
