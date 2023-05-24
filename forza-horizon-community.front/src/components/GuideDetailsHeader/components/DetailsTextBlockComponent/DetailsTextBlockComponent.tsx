@@ -3,6 +3,7 @@ import { RatingComponent } from "@/components/RatingComponent";
 import { dateFormater } from "@/utilities";
 import { Grid, Typography } from "@mui/material";
 import { IDetailsTextBlockComponentProps } from "./types";
+import { useDetailsTextBlockComponent } from "./useDetailsTextBlockComponent";
 
 const DetailsTextBlockComponent = ({
   title,
@@ -12,6 +13,8 @@ const DetailsTextBlockComponent = ({
   creationDate,
   isDesign,
 }: IDetailsTextBlockComponentProps) => {
+  const { ratingValue, handleRating } = useDetailsTextBlockComponent({ isDesign });
+
   return (
     <Grid container position={"sticky"} top={"10vh"} paddingLeft={"10px"}>
       <Grid item xs={12}>
@@ -40,7 +43,10 @@ const DetailsTextBlockComponent = ({
         </Typography>
       </Grid>
       <Grid item xs={6} textAlign="center">
-        <RatingComponent isDesign={isDesign} {...{ defaultValue: rating }} />
+        <RatingComponent
+          isDesign={isDesign}
+          {...{ value: ratingValue(), onChange: handleRating }}
+        />
       </Grid>
       <Grid item xs={6}>
         <Typography variant="textBody" color={baseTheme.palette.primary.main}>
