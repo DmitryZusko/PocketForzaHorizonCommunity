@@ -12,10 +12,6 @@ const DetailsTextBlockComponent = ({
   creationDate,
   isDesign,
 }: IDetailsTextBlockComponentProps) => {
-  const handleChange = (event: React.SyntheticEvent, value: number | null) => {
-    console.log(value);
-    console.log(rating);
-  };
   return (
     <Grid container position={"sticky"} top={"10vh"} paddingLeft={"10px"}>
       <Grid item xs={12}>
@@ -44,10 +40,7 @@ const DetailsTextBlockComponent = ({
         </Typography>
       </Grid>
       <Grid item xs={6} textAlign="center">
-        <RatingComponent
-          isDesign={isDesign}
-          {...{ defaultValue: rating, onChange: handleChange }}
-        />
+        <RatingComponent isDesign={isDesign} {...{ defaultValue: rating }} />
       </Grid>
       <Grid item xs={6}>
         <Typography variant="textBody" color={baseTheme.palette.primary.main}>
