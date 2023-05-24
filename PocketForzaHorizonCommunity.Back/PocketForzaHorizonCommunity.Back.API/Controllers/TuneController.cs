@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
@@ -72,6 +73,19 @@ public class TuneController : ApplicationControllerBase
         await _service.CreateAsync(_mapper.Map<Tune>(request));
 
         Response.StatusCode = StatusCodes.Status201Created;
+    }
+
+    [HttpPost("rating")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<TuneFullInfoDto> SetRating([FromBody] PostRatingRequest request)
+    {
+        var tune = _mapper.Map<TuneFullInfoDto>(await _service.SetRating(request));
+
+        Response.StatusCode = StatusCodes.Status201Created;
+
+        return tune;
     }
 
     [HttpDelete("{id}")]

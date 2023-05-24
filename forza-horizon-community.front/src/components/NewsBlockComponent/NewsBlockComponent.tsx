@@ -6,6 +6,8 @@ import { useNewsBlockComponent } from "./useNewsBlockComponent";
 
 const NewsBlockComponent = ({ ...props }) => {
   const { isLoading, news } = useNewsBlockComponent();
+  console.log(news);
+
   return (
     <>
       {isLoading ? (
@@ -30,7 +32,7 @@ const NewsBlockComponent = ({ ...props }) => {
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
                     navigationLink={item.url}
-                    thumbnail={item.thumbnail}
+                    thumbnail={item.thumbnail || "/News.png"}
                     cardTitle={item.title}
                     body={<Typography variant="textBody">{item.contents}</Typography>}
                     target={"_blank"}

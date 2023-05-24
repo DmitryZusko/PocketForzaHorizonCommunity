@@ -1,4 +1,4 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 

@@ -1,7 +1,14 @@
 import { defaultPageSize } from "@/components/constants/applicationConstants";
+import { RatingPosted, toastHandler } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, IDesignState } from "../types";
-import { getDesignById, getDesignsAsync, getDesignsByCarId, getLatestDesignsAsync } from "./thunks";
+import {
+  getDesignById,
+  getDesignsAsync,
+  getDesignsByCarId,
+  getLatestDesignsAsync,
+  setDesignRatingAsync,
+} from "./thunks";
 
 const initialState: IDesignState = {
   isLoadingLatest: false,
@@ -76,6 +83,12 @@ const designSlice = createSlice({
 
       state.selectedDesign = payload.data;
       state.isLoadingSelected = false;
+    });
+    builder.addCase(setDesignRatingAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
+      state.selectedDesign = payload.data;
+      toastHandler.showSuccess(RatingPosted);
     });
   },
 });

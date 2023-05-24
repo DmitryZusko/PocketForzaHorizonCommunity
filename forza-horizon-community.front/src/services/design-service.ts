@@ -5,6 +5,7 @@ import {
   IGetLatestDesignsRequest,
   IPaginatedResponse,
   IPostDesignRequest,
+  ISetGuideRatingRequest,
 } from "@/data-transfer-objects";
 import { customAxios } from "@/utilities";
 import { IAxiosFilteredCarDesignRequest, IAxiosFilteredDesignRequest } from "./types";
@@ -97,6 +98,15 @@ const postDesignAsync = async (request: IPostDesignRequest) => {
   return axios.post("design", data);
 };
 
+const setRating = async (request: ISetGuideRatingRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post<IDesignFullInfo>("design/rating", {
+    UserId: request.userId,
+    GuideId: request.guideId,
+    Rating: request.rating,
+  });
+};
+
 const designService = {
   getLatestDesignsAsync,
   getDesignsAsync,
@@ -104,6 +114,7 @@ const designService = {
   getAllIdsAsync,
   getByIdAsync,
   postDesignAsync,
+  setRating,
 };
 
 export default designService;

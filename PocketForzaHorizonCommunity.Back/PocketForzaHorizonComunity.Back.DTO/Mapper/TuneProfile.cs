@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
@@ -14,11 +14,13 @@ public class TuneProfile : Profile
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.EngineType, opt => opt.MapFrom(src => src.TuneOptions.Engine))
             .ForMember(dest => dest.AspirationType, opt => opt.MapFrom(src => src.TuneOptions.Aspiration))
-            .ForMember(dest => dest.TiresCompound, opt => opt.MapFrom(src => src.TuneOptions.Compound));
+            .ForMember(dest => dest.TiresCompound, opt => opt.MapFrom(src => src.TuneOptions.Compound))
+            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => CalculateAvarage(src.Ratings)));
 
         CreateMap<Tune, TuneFullInfoDto>()
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
+            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => CalculateAvarage(src.Ratings)))
             .ForMember(dest => dest.EngineDescription, opt => opt.MapFrom(src => src.TuneOptions.EngineDescription))
             .ForMember(dest => dest.EngineType, opt => opt.MapFrom(src => src.TuneOptions.Engine))
             .ForMember(dest => dest.AspirationType, opt => opt.MapFrom(src => src.TuneOptions.Aspiration))
@@ -41,7 +43,6 @@ public class TuneProfile : Profile
             .ForMember(dest => dest.RearTireWidth, opt => opt.MapFrom(src => src.TuneOptions.RearTireWidth))
             .ForMember(dest => dest.FrontTrackWidth, opt => opt.MapFrom(src => src.TuneOptions.FrontTrackWidth))
             .ForMember(dest => dest.RearTrackWidth, opt => opt.MapFrom(src => src.TuneOptions.RearTrackWidth));
-
 
         CreateMap<CreateTuneRequest, Tune>()
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => Guid.Parse(src.AuthorId)))
@@ -69,4 +70,12 @@ public class TuneProfile : Profile
             .ForPath(dest => dest.TuneOptions.FrontTrackWidth, opt => opt.MapFrom(src => src.FrontTrackWidth))
             .ForPath(dest => dest.TuneOptions.RearTrackWidth, opt => opt.MapFrom(src => src.RearTrackWidth));
     }
+
+    private double CalculateAvarage(List<TuneRating> ratings)
+    {
+        if (ratings.Count == 0) return 0;
+
+        return ratings.Sum(r => r.Rating) / ratings.Count;
+    }
+
 }

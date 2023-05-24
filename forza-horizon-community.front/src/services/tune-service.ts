@@ -2,6 +2,7 @@ import {
   IGetByIdRequest,
   IPaginatedResponse,
   IPostTuneRequest,
+  ISetGuideRatingRequest,
   ITune,
   ITuneFullInfo,
 } from "@/data-transfer-objects";
@@ -103,6 +104,15 @@ const postTuneAsync = async (request: IPostTuneRequest) => {
   });
 };
 
+const setRating = async (request: ISetGuideRatingRequest) => {
+  const axios = await customAxios.getAxiosInstance();
+  return axios.post<ITuneFullInfo>("tune/rating", {
+    UserId: request.userId,
+    GuideId: request.guideId,
+    Rating: request.rating,
+  });
+};
+
 const tuneService = {
   getTunesAsync,
   getAllIdsAsync,
@@ -110,6 +120,7 @@ const tuneService = {
   getLatestTunesAsync,
   getByIdAsync,
   postTuneAsync,
+  setRating,
 };
 
 export default tuneService;

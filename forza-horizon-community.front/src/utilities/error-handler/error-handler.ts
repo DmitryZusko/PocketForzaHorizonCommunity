@@ -4,8 +4,8 @@ import { setIsLogged } from "@/redux";
 import { authService } from "@/services";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import showToast from "../show-toast";
-import { DefaultErrorMessage, EnterCredentialsMessage, InvalidInput } from "./constants";
+import { DefaultErrorMessage, EnterCredentialsMessage, InvalidInput } from "../toast";
+import toastHandler from "../toast/toastHandler";
 import { ThunkActions } from "./types";
 
 const handleError = (
@@ -41,12 +41,12 @@ const handleWithPromiseToast = (
 ) => {
   if (inputFormHandler) {
     const promise = inputFormErrorHandler(action, dispatch);
-    showToast.showPromise(promise, loadingMessage, successMessage, errorMessage);
+    toastHandler.showPromise(promise, loadingMessage, successMessage, errorMessage);
     return promise;
   }
 
   const promise = defaultErrorHandler(action, dispatch);
-  showToast.showPromise(promise, loadingMessage, successMessage, errorMessage);
+  toastHandler.showPromise(promise, loadingMessage, successMessage, errorMessage);
   return promise;
 };
 
@@ -75,7 +75,7 @@ const defaultErrorHandler = async (
     if (error instanceof UnauthorizedError) {
       return refreshTokenHandler(action, dispatch);
     }
-    showToast.showError(DefaultErrorMessage);
+    toastHandler.showError(DefaultErrorMessage);
   }
 };
 
@@ -92,10 +92,10 @@ const inputFormErrorHandler = async (
       return refreshTokenHandler(action, dispatch);
     }
     if (error instanceof BadRequestError) {
-      showToast.showError(InvalidInput);
+      toastHandler.showError(InvalidInput);
       return;
     }
-    showToast.showError(DefaultErrorMessage);
+    toastHandler.showError(DefaultErrorMessage);
     return;
   }
 };
@@ -119,7 +119,7 @@ const refreshTokenHandler = async (
   } catch (error) {
     AsyncStorage.multiRemove([AccessTokenKey, RefreshTokenKey]);
     dispatch(setIsLogged(false));
-    showToast.showError(EnterCredentialsMessage);
+    toastHandler.showError(EnterCredentialsMessage);
   }
 };
 

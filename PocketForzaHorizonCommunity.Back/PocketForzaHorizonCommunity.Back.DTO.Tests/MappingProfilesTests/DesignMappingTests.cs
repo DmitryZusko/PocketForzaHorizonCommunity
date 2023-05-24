@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Mapper;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
@@ -40,9 +40,6 @@ public class DesignMappingTests
         var request = Boilerplate.GetCreateDesignRequestSample();
         var expected = Boilerplate.GetDesignSample();
 
-        // for just created designs rating should be 0
-        expected.Rating = 0;
-
         var mapper = new MapperConfiguration(cfg => cfg.AddProfile<DesignProfile>()).CreateMapper();
 
         var actual = mapper.Map<CreateDesignRequest, Design>(request);
@@ -64,7 +61,6 @@ public class DesignMappingTests
         designDto.Id = design.Id.ToString();
         designDto.Title = design.Title;
         designDto.ForzaShareCode = design.ForzaShareCode;
-        designDto.Rating = design.Rating;
         designDto.AuthorUsername = design.User.UserName;
         designDto.CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}";
 

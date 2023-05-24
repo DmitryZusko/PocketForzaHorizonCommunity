@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
-using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
+using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 

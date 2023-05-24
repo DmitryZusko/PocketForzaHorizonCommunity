@@ -1,7 +1,8 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
-using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
+using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites;
 using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
@@ -108,7 +109,6 @@ internal static class Boilerplate
             Id = new Guid(),
             Title = "Design",
             ForzaShareCode = "888 555 222",
-            Rating = 4.5,
             UserId = new Guid(),
             User = user,
             CarId = car.Id,
@@ -162,7 +162,6 @@ internal static class Boilerplate
         {
             Title = "Title",
             ForzaShareCode = "888 555 222",
-            Rating = 4.5,
             UserId = user.Id,
             User = user,
             CarId = car.Id,

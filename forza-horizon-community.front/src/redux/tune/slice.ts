@@ -1,7 +1,14 @@
 import { defaultPageSize } from "@/components";
+import { RatingPosted, toastHandler } from "@/utilities";
 import { createSlice } from "@reduxjs/toolkit";
 import { ActionWithPayload, ITuneState } from "../types";
-import { getLatestTunesAsync, getTuneById, getTunesAsync, getTunesByCarIdAsync } from "./thunks";
+import {
+  getLatestTunesAsync,
+  getTuneById,
+  getTunesAsync,
+  getTunesByCarIdAsync,
+  setTuneRatingAsync,
+} from "./thunks";
 
 const initialState: ITuneState = {
   isLoadingLatest: false,
@@ -38,7 +45,6 @@ const tuneSlice = createSlice({
     });
     builder.addCase(getLatestTunesAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
-
       state.latestTunes = payload.data;
       state.isLoadingLatest = false;
     });
@@ -76,6 +82,12 @@ const tuneSlice = createSlice({
 
       state.selectedTune = payload.data;
       state.isLoadingSelected = false;
+    });
+    builder.addCase(setTuneRatingAsync.fulfilled, (state, { payload }) => {
+      if (!payload) return;
+
+      state.selectedTune = payload.data;
+      toastHandler.showSuccess(RatingPosted);
     });
   },
 });

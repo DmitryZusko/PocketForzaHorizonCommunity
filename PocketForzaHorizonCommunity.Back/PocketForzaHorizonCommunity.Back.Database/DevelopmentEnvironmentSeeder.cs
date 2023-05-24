@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
 using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
@@ -221,7 +222,6 @@ public class DevelopmentEnvironmentSeeder
         {
             Title = "Rx-7 Design",
             ForzaShareCode = "888 555 222",
-            Rating = 5.0,
             UserId = (await _userManager.FindByEmailAsync("googlkek@gmail.com")).Id,
             CarId = _carRepo.GetAll().Where(c => c.Model == "Rx-7").FirstOrDefault().Id,
         };
@@ -257,7 +257,6 @@ public class DevelopmentEnvironmentSeeder
         {
             Title = "Skyline Design",
             ForzaShareCode = "888 555 222",
-            Rating = 5.0,
             UserId = (await _userManager.FindByEmailAsync("googlkek@gmail.com")).Id,
             CarId = _carRepo.GetAll().Where(c => c.Model == "Skyline R34").FirstOrDefault().Id,
         };
@@ -302,7 +301,6 @@ public class DevelopmentEnvironmentSeeder
         {
             Title = "Rx-7 tune",
             ForzaShareCode = "888 555 222",
-            Rating = 4.5,
             UserId = (await _userManager.FindByEmailAsync("googlkek@gmail.com")).Id,
             CarId = _carRepo.GetAll().Where(c => c.Model == "Rx-7").FirstOrDefault().Id,
         };

@@ -1,6 +1,10 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos;
+using PocketForzaHorizonCommunity.Back.Database.Repos.CarRepos;
+using PocketForzaHorizonCommunity.Back.Database.Repos.GuideRepos.DesignRepos;
+using PocketForzaHorizonCommunity.Back.Database.Repos.GuideRepos.TuneRepos;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.Database.Repos.StatisticsRepos;
 using PocketForzaHorizonCommunity.Back.Services.Services;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities;
@@ -15,10 +19,12 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
             services.AddTransient<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<IDesignRepository, DesignRepository>();
+            services.AddTransient<IDesignRatingRepository, DesignRatingRepository>();
             services.AddTransient<ICarTypeRepository, CarTypeRepository>();
             services.AddTransient<IGalleryRepository, GalleryRepository>();
             services.AddTransient<IManufactureRepository, ManufactureRepository>();
             services.AddTransient<ITuneRepository, TuneRepository>();
+            services.AddTransient<ITuneRatingRepository, TuneRatingRepository>();
             services.AddTransient<ICampaignStatisticsRepository, CampaignStatisticsRepository>();
             services.AddTransient<IGeneralStatisticsRepository, GeneralStatisticsRepository>();
             services.AddTransient<IOnlineStatisticsRepository, OnlineStatisticsRepository>();

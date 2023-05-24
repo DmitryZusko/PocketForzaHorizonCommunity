@@ -287,7 +287,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("Manufactures");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Design", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -302,9 +302,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<string>("ForzaShareCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -322,7 +319,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("Designs");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.DesignOptions", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignOptions", b =>
                 {
                     b.Property<Guid>("DesignId")
                         .HasColumnType("uniqueidentifier");
@@ -339,7 +336,25 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("DesignsOptions");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.GalleryImage", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignRating", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("UserId", "EntityId");
+
+                    b.HasIndex("EntityId");
+
+                    b.ToTable("DesignsRating");
+                });
+
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.GalleryImage", b =>
                 {
                     b.Property<Guid>("DesignOptionsId")
                         .HasColumnType("uniqueidentifier");
@@ -352,7 +367,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("GalleryImage");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Tune", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -367,9 +382,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<string>("ForzaShareCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -387,7 +399,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("Tunes");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.TuneOptions", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.TuneOptions", b =>
                 {
                     b.Property<Guid>("TuneId")
                         .HasColumnType("uniqueidentifier");
@@ -467,6 +479,24 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("TunesOptions");
                 });
 
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.TuneRating", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("UserId", "EntityId");
+
+                    b.HasIndex("EntityId");
+
+                    b.ToTable("TunesRating");
+                });
+
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.OwnedCarsByUsers", b =>
                 {
                     b.Property<int>("Id")
@@ -490,7 +520,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("OwnedCarsByUsers");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.CampaignStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.CampaignStatistics", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -533,7 +563,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("CampaignStatistics");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.GeneralStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.GeneralStatistics", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -575,7 +605,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("GeneralStatistics");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.OnlineStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.OnlineStatistics", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -627,7 +657,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.ToTable("OnlineStatistics");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.RecordsStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.RecordsStatistics", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -737,7 +767,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("Manufacture");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Design", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", b =>
                 {
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities.Car", "Car")
                         .WithMany("Designs")
@@ -756,20 +786,39 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.DesignOptions", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignOptions", b =>
                 {
-                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Design", "Design")
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", "Design")
                         .WithOne("DesignOptions")
-                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.DesignOptions", "DesignId")
+                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignOptions", "DesignId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Design");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.GalleryImage", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignRating", b =>
                 {
-                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.DesignOptions", "DesignOptions")
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", "Entity")
+                        .WithMany("Ratings")
+                        .HasForeignKey("EntityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
+                        .WithMany("DesignsRatings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Entity");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.GalleryImage", b =>
+                {
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignOptions", "DesignOptions")
                         .WithMany("Gallery")
                         .HasForeignKey("DesignOptionsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -778,7 +827,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("DesignOptions");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Tune", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", b =>
                 {
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities.Car", "Car")
                         .WithMany("Tunes")
@@ -797,15 +846,34 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.TuneOptions", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.TuneOptions", b =>
                 {
-                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Tune", "Tune")
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", "Tune")
                         .WithOne("TuneOptions")
-                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.TuneOptions", "TuneId")
+                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.TuneOptions", "TuneId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Tune");
+                });
+
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.TuneRating", b =>
+                {
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", "Entity")
+                        .WithMany("Ratings")
+                        .HasForeignKey("EntityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
+                        .WithMany("TunesRatings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Entity");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.OwnedCarsByUsers", b =>
@@ -817,7 +885,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .IsRequired();
 
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
-                        .WithMany("OwnedCarsByUsers")
+                        .WithMany("OwnedCarsByUser")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -827,18 +895,18 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.CampaignStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.CampaignStatistics", b =>
                 {
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithOne("CampaignStatistics")
-                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.CampaignStatistics", "UserId")
+                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.CampaignStatistics", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.GeneralStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.GeneralStatistics", b =>
                 {
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities.Car", "Car")
                         .WithMany()
@@ -848,7 +916,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithOne("GeneralStatistics")
-                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.GeneralStatistics", "UserId")
+                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.GeneralStatistics", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -857,22 +925,22 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.OnlineStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.OnlineStatistics", b =>
                 {
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithOne("OnlineStatistics")
-                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.OnlineStatistics", "UserId")
+                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.OnlineStatistics", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.RecordsStatistics", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.RecordsStatistics", b =>
                 {
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithOne("RecordsStatistics")
-                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics.RecordsStatistics", "UserId")
+                        .HasForeignKey("PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites.RecordsStatistics", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -886,18 +954,22 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 
                     b.Navigation("Designs");
 
+                    b.Navigation("DesignsRatings");
+
                     b.Navigation("GeneralStatistics")
                         .IsRequired();
 
                     b.Navigation("OnlineStatistics")
                         .IsRequired();
 
-                    b.Navigation("OwnedCarsByUsers");
+                    b.Navigation("OwnedCarsByUser");
 
                     b.Navigation("RecordsStatistics")
                         .IsRequired();
 
                     b.Navigation("Tunes");
+
+                    b.Navigation("TunesRatings");
                 });
 
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities.Car", b =>
@@ -919,19 +991,23 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Navigation("Cars");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Design", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", b =>
                 {
                     b.Navigation("DesignOptions")
                         .IsRequired();
+
+                    b.Navigation("Ratings");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.DesignOptions", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignOptions", b =>
                 {
                     b.Navigation("Gallery");
                 });
 
-            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.Guides.Tune", b =>
+            modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", b =>
                 {
+                    b.Navigation("Ratings");
+
                     b.Navigation("TuneOptions")
                         .IsRequired();
                 });

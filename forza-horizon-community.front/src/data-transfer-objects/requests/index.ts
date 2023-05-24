@@ -7,3 +7,4 @@ export * from "./ManufactureRequests";
 export * from "./PaginatedRequest";
 export * from "./TuneRequests";
 export * from "./AuthRequests";
+export * from "./SetGuideRatingRequest";

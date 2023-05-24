@@ -7,6 +7,7 @@ import {
   IGetLatestDesignsRequest,
   IPaginatedResponse,
   IPostDesignRequest,
+  ISetGuideRatingRequest,
 } from "@/data-transfer-objects";
 import { designService } from "@/services";
 import { AddDesignMessage, customAxios, errorHandler } from "@/utilities";
@@ -85,5 +86,12 @@ export const postDesignAsync = createAsyncThunk(
       true,
       AddDesignMessage,
     ) as Promise<AxiosResponse<any, any>>;
+  },
+);
+
+export const setDesignRatingAsync = createAsyncThunk(
+  "design/setDesignRatingAsync",
+  async (request: ISetGuideRatingRequest, { dispatch }) => {
+    return errorHandler.handleError(() => designService.setRating(request), dispatch);
   },
 );

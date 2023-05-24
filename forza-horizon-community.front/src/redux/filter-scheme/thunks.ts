@@ -9,7 +9,7 @@ import {
   ISimplifiedCar,
 } from "@/data-transfer-objects";
 import { carService, carTypeService, manufactureService } from "@/services";
-import { AddCarType, AddManufactureMessage, errorHandler } from "@/utilities";
+import { AddCarTypeMessage, AddManufactureMessage, errorHandler } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { RootState } from "../store";
@@ -102,7 +102,7 @@ export const postCarTypeAsync = createAsyncThunk(
       dispatch,
       true,
       true,
-      AddCarType,
+      AddCarTypeMessage,
     ) as Promise<AxiosResponse<ICarType, any>>;
   },
 );

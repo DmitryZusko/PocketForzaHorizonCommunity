@@ -4,6 +4,7 @@ import {
   IGetByIdRequest,
   IPaginatedResponse,
   IPostTuneRequest,
+  ISetGuideRatingRequest,
   ITune,
   ITuneFullInfo,
 } from "@/data-transfer-objects";
@@ -82,5 +83,12 @@ export const postTuneAsync = createAsyncThunk(
       true,
       AddTuneMessage,
     );
+  },
+);
+
+export const setTuneRatingAsync = createAsyncThunk(
+  "tune/setTuneRatingAsync",
+  async (request: ISetGuideRatingRequest, { dispatch }) => {
+    return errorHandler.handleError(() => tuneService.setRating(request), dispatch);
   },
 );

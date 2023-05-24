@@ -7,7 +7,7 @@ import {
   IPostCarRequest,
 } from "@/data-transfer-objects";
 import { carService } from "@/services";
-import { AddCarMessage, customAxios, errorHandler, showToast } from "@/utilities";
+import { AddCarMessage, customAxios, errorHandler, NewCarAdded, toastHandler } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 
@@ -81,7 +81,7 @@ export const postCarAsync = createAsyncThunk(
 
     promise.then((r) => {
       if (r.status === 201) {
-        showToast.showSuccess("New car is added!");
+        toastHandler.showSuccess(NewCarAdded);
         dispatch(getCarsAsync({ page: 0, pageSize: defaultPageSize }));
       }
     });

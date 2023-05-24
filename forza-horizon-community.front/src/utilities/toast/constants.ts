@@ -1,0 +1,19 @@
+export const RatingPosted = "Thank you for your opinion!";
+export const AddCarMessage = "Adding a new car...";
+export const NewCarAdded = "New car is added!";
+export const AddDesignMessage = "Adding a new design...";
+export const AddTuneMessage = "Adding a new tune...";
+export const CarTypeAlreadyExists = "Car Type with a such name is already existing";
+export const AddCarTypeMessage = "Adding a new car type...";
+export const ManufactureAlreadyExists = "Manufacture with a such name is already existing";
+export const AddManufactureMessage = "Adding a new manufacture...";
+export const SignInMessage = "Signing in...";
+export const SignUpMessage = "Creating a new account...";
+export const EmailConfirmationSent =
+  "We've send you a confirmation link. \nPlease, check your email";
+export const EmailConfirmationMessage = "Confirming your email...";
+export const ResetPasswordSent = "We've send you a reset password link. \nPlease, check your email";
+export const PasswordChanged = "Password is successfully changed!";
+export const EnterCredentialsMessage = "Please, re-enter your credentials";
+export const InvalidInput = "Please, check your input data and try again";
+export const DefaultErrorMessage = "Oops, something goes wrong.\nPlease, try again";
