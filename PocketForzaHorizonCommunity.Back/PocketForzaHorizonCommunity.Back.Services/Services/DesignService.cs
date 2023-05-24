@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
@@ -13,10 +14,12 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
 public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesignsGetRequest>, IDesignService
 {
-    private IGalleryRepository _galleryRepository;
-    private IImageManager _imageManager;
-    public DesignService(IDesignRepository repository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
+    private readonly IGalleryRepository _galleryRepository;
+    private readonly IDesignRatingRepository _ratingRepository;
+    private readonly IImageManager _imageManager;
+    public DesignService(IDesignRepository repository, IDesignRatingRepository ratingRepository, IImageManager imageManager, IGalleryRepository galleryRepository) : base(repository)
     {
+        _ratingRepository = ratingRepository;
         _galleryRepository = galleryRepository;
         _imageManager = imageManager;
     }
@@ -52,6 +55,32 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
 
     public async Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request) =>
         SetDescriptionLendth(await _repository.GetAll().OrderByDescending(d => d.CreationDate).PaginateAsync(request.Page, request.PageSize), request.DescriptionLimit);
+
+    public async Task<Design> SetRating(PostRatingRequest request)
+    {
+        var design = await _repository.GetById(request.GuideId).FirstOrDefaultAsync() ?? throw new BadRequestException(Messages.BAD_REQUEST);
+        var rating = await _ratingRepository.GetByKey(request.UserId, request.GuideId);
+
+        if (rating != null)
+        {
+            rating.Rating = request.Rating;
+            await _ratingRepository.SaveAsync();
+
+            return design;
+        }
+
+        rating = new DesignRating
+        {
+            UserId = request.UserId,
+            EntityId = request.GuideId,
+            Rating = request.Rating,
+        };
+
+        await _ratingRepository.CreateAsync(rating);
+        await _ratingRepository.SaveAsync();
+
+        return design;
+    }
 
     private async Task AddImagesToGallery(IList<IFormFile> gallery, Guid entityId)
     {

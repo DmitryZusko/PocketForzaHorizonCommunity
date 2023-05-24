@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
-using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
+using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.StatisticsDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Mapper;
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces
 {

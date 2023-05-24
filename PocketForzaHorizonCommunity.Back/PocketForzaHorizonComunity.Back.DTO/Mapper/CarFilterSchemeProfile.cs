@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Cars;
+using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.CarDtos;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Mapper;

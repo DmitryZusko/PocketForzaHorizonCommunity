@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
+using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 
@@ -10,8 +12,11 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
 public class TuneService : CrudServiceBase<ITuneRepository, Tune, FilteredTuneGetRequest>, ITuneService
 {
-    public TuneService(ITuneRepository repository) : base(repository)
+    private readonly ITuneRatingRepository _ratingRepository;
+
+    public TuneService(ITuneRepository repository, ITuneRatingRepository ratingRepository) : base(repository)
     {
+        _ratingRepository = ratingRepository;
     }
 
     public override async Task<PaginationModel<Tune>> GetAllAsync(FilteredTuneGetRequest request) =>
@@ -22,6 +27,32 @@ public class TuneService : CrudServiceBase<ITuneRepository, Tune, FilteredTuneGe
 
     public async Task<List<Tune>> GetLastTunes(int tunesAmount) =>
         await _repository.GetAll().OrderByDescending(t => t.CreationDate).Take(tunesAmount).ToListAsync();
+
+    public async Task<Tune> SetRating(PostRatingRequest request)
+    {
+        var tune = _repository.GetById(request.GuideId).FirstOrDefault() ?? throw new BadRequestException(Messages.BAD_REQUEST);
+        var rating = await _ratingRepository.GetByKey(request.UserId, request.GuideId);
+
+        if (rating != null)
+        {
+            rating.Rating = request.Rating;
+            await _ratingRepository.SaveAsync();
+
+            return tune;
+        }
+
+        rating = new TuneRating
+        {
+            UserId = request.UserId,
+            EntityId = request.GuideId,
+            Rating = request.Rating
+        };
+
+        await _ratingRepository.CreateAsync(rating);
+        await _ratingRepository.SaveAsync();
+
+        return tune;
+    }
 
     private async Task<PaginationModel<Tune>> ApplyFiltersAsync(IQueryable<Tune> query, FilteredTuneGetRequest request)
     {

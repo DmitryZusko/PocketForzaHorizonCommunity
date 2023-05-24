@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Cars;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;

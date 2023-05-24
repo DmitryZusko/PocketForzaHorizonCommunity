@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 
@@ -13,14 +13,16 @@ public class DesignProfile : Profile
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
-            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)));
+            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)))
+            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => CalculateAvarage(src.Ratings)));
 
         CreateMap<Design, DesignFullInfoDto>()
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
             .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)))
-            .ForMember(dest => dest.Gallery, opt => opt.MapFrom(src => LoadGallery(src.DesignOptions.Gallery)));
+            .ForMember(dest => dest.Gallery, opt => opt.MapFrom(src => LoadGallery(src.DesignOptions.Gallery)))
+            .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => CalculateAvarage(src.Ratings)));
 
         CreateMap<CreateDesignRequest, Design>()
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => Guid.Parse(src.AuthorId)))
@@ -56,4 +58,12 @@ public class DesignProfile : Profile
 
         return images;
     }
+
+    private double CalculateAvarage(List<DesignRating> ratings)
+    {
+        if (ratings.Count == 0) return 0;
+
+        return ratings.Sum(r => r.Rating) / ratings.Count;
+    }
+
 }

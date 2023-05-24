@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
@@ -76,6 +77,19 @@ public class DesignController : ApplicationControllerBase
         await _service.CreateAsync(entity, request.Thumbnail, request.Gallery);
 
         Response.StatusCode = StatusCodes.Status201Created;
+    }
+
+    [HttpPost("rating")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<DesignFullInfoDto> SetRating([FromBody] PostRatingRequest request)
+    {
+        var design = _mapper.Map<DesignFullInfoDto>(await _service.SetRating(request));
+
+        Response.StatusCode = StatusCodes.Status201Created;
+
+        return design;
     }
 
     [HttpDelete("{id}")]

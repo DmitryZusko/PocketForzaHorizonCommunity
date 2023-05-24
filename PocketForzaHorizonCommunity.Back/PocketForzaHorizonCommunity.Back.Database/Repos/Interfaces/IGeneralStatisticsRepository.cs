@@ -1,4 +1,4 @@
-﻿using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatistics;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites;
 
 namespace PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces
 {

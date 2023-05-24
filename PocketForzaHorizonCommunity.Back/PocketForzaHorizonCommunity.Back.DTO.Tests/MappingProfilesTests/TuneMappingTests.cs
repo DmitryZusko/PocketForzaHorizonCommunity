@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
-using PocketForzaHorizonCommunity.Back.Database.Entities.Guides;
+using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.DTO.DTOs.GuidesDtos;
 using PocketForzaHorizonCommunity.Back.DTO.Mapper;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
@@ -39,8 +39,6 @@ public class TuneMappingTests
     {
         var request = Boilerplate.GetCreateTuneRequestSample();
         var expected = Boilerplate.GetTuneSample();
-        // just created tune should has raiting = 0.0
-        expected.Rating = 0.0;
 
         var mapper = new MapperConfiguration(cfg => cfg.AddProfile<TuneProfile>()).CreateMapper();
 
@@ -56,7 +54,6 @@ public class TuneMappingTests
             Id = tune.Id.ToString(),
             Title = tune.Title,
             ForzaShareCode = tune.ForzaShareCode,
-            Rating = tune.Rating,
             AuthorUsername = tune.User.UserName,
             CarModel = $"{tune.Car.Manufacture.Name} {tune.Car.Model} {tune.Car.Year}",
         };
@@ -69,7 +66,6 @@ public class TuneMappingTests
             Id = tune.Id.ToString(),
             Title = tune.Title,
             ForzaShareCode = tune.ForzaShareCode,
-            Rating = tune.Rating,
             AuthorUsername = tune.User.UserName,
             CarModel = $"{tune.Car.Manufacture.Name} {tune.Car.Model} {tune.Car.Year}",
             EngineDescription = tune.TuneOptions.EngineDescription,
