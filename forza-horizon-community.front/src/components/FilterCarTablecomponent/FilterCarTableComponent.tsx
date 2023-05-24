@@ -83,7 +83,7 @@ const FilterCarTableComponent = ({ ...props }) => {
             handleRangeChange={handleYearRangeChange}
           />
           <Button
-            startIcon={isOnlyOwned ? <DoneAll /> : <ViewList />}
+            startIcon={isOnlyOwned ? <ViewList /> : <DoneAll />}
             onClick={toogleOnlyOwned}
             variant="outlined"
           >
