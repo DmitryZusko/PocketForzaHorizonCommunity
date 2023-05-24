@@ -46,6 +46,7 @@ const TunesBlockComponent = ({ ...props }) => {
                       }
                       footer={
                         <GuideCardFooterComponent
+                          isDesign={false}
                           shareCode={tune.forzaShareCode}
                           rating={tune.rating}
                           author={tune.authorUsername}

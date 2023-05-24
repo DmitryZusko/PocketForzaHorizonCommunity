@@ -1,4 +1,5 @@
 import { baseTheme } from "@/components/constants";
+import { RatingComponent } from "@/components/RatingComponent";
 import { dateFormater } from "@/utilities";
 import { Grid, Typography } from "@mui/material";
 import { IDetailsTextBlockComponentProps } from "./types";
@@ -9,7 +10,12 @@ const DetailsTextBlockComponent = ({
   shareCode,
   rating,
   creationDate,
+  isDesign,
 }: IDetailsTextBlockComponentProps) => {
+  const handleChange = (event: React.SyntheticEvent, value: number | null) => {
+    console.log(value);
+    console.log(rating);
+  };
   return (
     <Grid container position={"sticky"} top={"10vh"} paddingLeft={"10px"}>
       <Grid item xs={12}>
@@ -38,7 +44,10 @@ const DetailsTextBlockComponent = ({
         </Typography>
       </Grid>
       <Grid item xs={6} textAlign="center">
-        <Typography variant="textBody">{rating}</Typography>
+        <RatingComponent
+          isDesign={isDesign}
+          {...{ defaultValue: rating, onChange: handleChange }}
+        />
       </Grid>
       <Grid item xs={6}>
         <Typography variant="textBody" color={baseTheme.palette.primary.main}>

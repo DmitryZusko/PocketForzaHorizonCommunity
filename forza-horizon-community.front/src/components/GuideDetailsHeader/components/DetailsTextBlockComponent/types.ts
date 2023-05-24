@@ -4,4 +4,5 @@ export interface IDetailsTextBlockComponentProps {
   shareCode: string;
   rating: number;
   creationDate: Date;
+  isDesign?: boolean;
 }

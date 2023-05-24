@@ -38,8 +38,6 @@ const tuneSlice = createSlice({
     });
     builder.addCase(getLatestTunesAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
-      console.log(payload.data[0]);
-
       state.latestTunes = payload.data;
       state.isLoadingLatest = false;
     });

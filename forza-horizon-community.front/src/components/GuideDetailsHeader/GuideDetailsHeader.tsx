@@ -40,6 +40,7 @@ const GuideDetailsHeader = ({
           shareCode={shareCode}
           rating={rating}
           creationDate={creationDate}
+          isDesign={isDesign}
         />
       </Grid>
     </Grid>

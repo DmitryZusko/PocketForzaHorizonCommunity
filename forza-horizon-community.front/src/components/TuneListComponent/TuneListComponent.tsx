@@ -24,6 +24,7 @@ const TuneListComponent = () => {
     handleSearchQueryChange,
     handleAutocompleteChange,
   } = useTuneListComponent();
+
   return (
     <Grid container sx={styles.outerContainer}>
       <Grid item xs={12} md={5}>
@@ -76,6 +77,7 @@ const TuneListComponent = () => {
                     }
                     footer={
                       <GuideCardFooterComponent
+                        isDesign={false}
                         shareCode={tune.forzaShareCode}
                         rating={tune.rating}
                         author={tune.authorUsername}
