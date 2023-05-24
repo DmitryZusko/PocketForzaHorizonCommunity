@@ -6,8 +6,6 @@ import { useNewsBlockComponent } from "./useNewsBlockComponent";
 
 const NewsBlockComponent = ({ ...props }) => {
   const { isLoading, news } = useNewsBlockComponent();
-  console.log(news);
-
   return (
     <>
       {isLoading ? (
