@@ -82,7 +82,7 @@ public class StatisticsGenerator : IStatisticsGenerator
             TotalCleanLaps = rnd.Next(0, 10_000),
             CollisionsPerRace = rnd.Next(1, 50),
             DailyChallengesCompleted = rnd.Next(1, 1000),
-            WeeklyChallengesComplited = rnd.Next(1, 1000),
+            WeeklyChallengesCompleted = rnd.Next(1, 1000),
             Car = _selectedCars[rnd.Next(0, _selectedCars.Count)],
         };
 

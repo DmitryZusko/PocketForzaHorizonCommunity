@@ -62,7 +62,7 @@ public class StatisticsMappingTests
             TotalCleanLaps = statistics.TotalCleanLaps,
             CollisionsPerRace = statistics.CollisionsPerRace,
             DailyChallengesCompleted = statistics.DailyChallengesCompleted,
-            WeeklyChallengesComplited = statistics.WeeklyChallengesComplited,
+            WeeklyChallengesCompleted = statistics.WeeklyChallengesCompleted,
             FavouriteCarModel = $"{statistics.Car.Manufacture.Name} {statistics.Car.Model} {statistics.Car.Year}",
         };
     }

@@ -23,7 +23,7 @@ public class GeneralStatistics : UserStatisticsBase
     [Required]
     public int DailyChallengesCompleted { get; set; }
     [Required]
-    public int WeeklyChallengesComplited { get; set; }
+    public int WeeklyChallengesCompleted { get; set; }
     [Required]
     public Guid FavouriteCarId { get; set; }
     public Car Car { get; set; } = null!;

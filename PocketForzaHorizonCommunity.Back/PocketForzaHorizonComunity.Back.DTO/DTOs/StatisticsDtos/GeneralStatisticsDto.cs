@@ -9,6 +9,6 @@ public class GeneralStatisticsDto
     public int TotalCleanLaps { get; set; }
     public int CollisionsPerRace { get; set; }
     public int DailyChallengesCompleted { get; set; }
-    public int WeeklyChallengesComplited { get; set; }
+    public int WeeklyChallengesCompleted { get; set; }
     public string FavouriteCarModel { get; set; } = string.Empty;
 }
