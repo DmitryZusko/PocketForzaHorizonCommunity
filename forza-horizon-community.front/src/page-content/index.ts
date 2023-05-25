@@ -11,3 +11,4 @@ export * from "./reset-password";
 export * from "./confirm-email";
 export * from "./page-not-found";
 export * from "./internal-server-error";
+export * from "./personal-statistics";
