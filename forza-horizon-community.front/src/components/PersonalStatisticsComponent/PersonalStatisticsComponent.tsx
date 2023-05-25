@@ -2,7 +2,12 @@ import { Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { usePersonalStatisticsComponent } from "./usePersonalStatisticsComponent";
 import { AutoStories, EmojiEvents, Laptop, SportsEsports } from "@mui/icons-material";
-import { CampaignStatisticsComponent, GeneralStatisticsComponent } from "./components";
+import {
+  CampaignStatisticsComponent,
+  GeneralStatisticsComponent,
+  PersonalOnlineStatisticsComponent,
+  RecordsStatisticsComponent,
+} from "./components";
 
 const PersonalStatisticsComponent = () => {
   const { activeTab, handleTabChange } = usePersonalStatisticsComponent();
@@ -20,8 +25,12 @@ const PersonalStatisticsComponent = () => {
       <TabPanel value="1">
         <CampaignStatisticsComponent />
       </TabPanel>
-      <TabPanel value="2"></TabPanel>
-      <TabPanel value="3"></TabPanel>
+      <TabPanel value="2">
+        <PersonalOnlineStatisticsComponent />
+      </TabPanel>
+      <TabPanel value="3">
+        <RecordsStatisticsComponent />
+      </TabPanel>
     </TabContext>
   );
 };
