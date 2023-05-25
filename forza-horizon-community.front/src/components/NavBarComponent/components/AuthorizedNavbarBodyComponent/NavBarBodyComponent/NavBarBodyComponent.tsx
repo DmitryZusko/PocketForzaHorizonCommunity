@@ -18,7 +18,7 @@ const NavBarBodyComponent = () => {
           Cars
         </Button>
       </CustomLinkComponent>
-      <CustomLinkComponent href="" target="_self">
+      <CustomLinkComponent href="/personal-statistics" target="_self">
         <Button startIcon={<Leaderboard />} variant="contained" sx={buttonsStyle}>
           Personal Statistics
         </Button>

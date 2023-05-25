@@ -35,3 +35,4 @@ export * from "./gates";
 export * from "./ConfirmEmailComponent";
 export * from "./error-components";
 export * from "./RatingComponent";
+export * from "./PersonalStatisticsComponent";

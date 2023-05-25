@@ -10,7 +10,7 @@ export interface IUser {
   roles: string[];
   ownedCarsByUser: string[];
   generalStatistics: IGeneralStatistics;
-  campaignstatistics: ICampaignStatistics;
+  campaignStatistics: ICampaignStatistics;
   onlineStatistics: IOnlineStatistics;
   recordsStatistics: IRecordsStatistics;
 }

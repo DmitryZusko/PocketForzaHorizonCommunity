@@ -94,7 +94,7 @@ internal static class Boilerplate
             TotalCleanLaps = 10,
             CollisionsPerRace = 10,
             DailyChallengesCompleted = 10,
-            WeeklyChallengesComplited = 10,
+            WeeklyChallengesCompleted = 10,
             Car = GetCarSample(),
         };
     }

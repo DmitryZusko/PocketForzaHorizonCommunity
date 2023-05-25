@@ -3,6 +3,30 @@ const dateToString = (isoDate: Date) => {
   return date.toLocaleString("en-US");
 };
 
-const dateFormater = { dateToString };
+const timeSpanStringToComponents = (timeSpan: string) => {
+  const days = timeSpan
+    .match(/^\d*\./g)
+    ?.toString()
+    .replaceAll(/\W/g, "");
+
+  const hours = timeSpan
+    .match(/\.\d*\:|^\d*\:/g)
+    ?.toString()
+    .replaceAll(/\W/g, "");
+
+  const minutes = timeSpan
+    .match(/\:\d*\:/g)
+    ?.toString()
+    .replaceAll(/\W/g, "");
+
+  const seconds = timeSpan
+    .match(/\:\d*\./g)
+    ?.toString()
+    .replaceAll(/\W/g, "");
+
+  return { days, hours, minutes, seconds };
+};
+
+const dateFormater = { dateToString, timeSpanStringToComponents };
 
 export default dateFormater;

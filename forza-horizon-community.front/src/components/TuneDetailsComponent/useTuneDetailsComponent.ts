@@ -4,8 +4,6 @@ import { ITuneDetailsComponentHook } from "./types";
 
 export const useTuneDetailsComponent = ({ id }: ITuneDetailsComponentHook) => {
   const { isLoadingSelected: isLoading, selectedTune } = useAppSelector(selectedTuneSelector);
-  console.log(selectedTune?.rating);
-
   const dispatch = useAppDispatch();
 
   const loadTune = useCallback(() => {

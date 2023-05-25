@@ -10,7 +10,7 @@ export interface IOnlineStatistics {
   timesInfectedOthers: number;
   timesInfectedByOthers: number;
   teamKingGamesWon: number;
-  KingGamesWon: number;
+  kingGamesWon: number;
   rivalsBeaten: number;
   rivalsLapsCompleted: number;
 }
