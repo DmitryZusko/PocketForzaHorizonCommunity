@@ -6,8 +6,6 @@ import { IStatisticsData } from "../types";
 export const useRecordsStatisticsComponent = () => {
   const { user } = useAppSelector(userSelector);
 
-  console.log(user?.recordsStatistics);
-
   const data = useMemo(() => {
     let data: IStatisticsData[] = [];
 
@@ -34,8 +32,6 @@ export const useRecordsStatisticsComponent = () => {
     let time = dateFormater.timeSpanStringToComponents(
       user?.recordsStatistics.longestSkillChain || "",
     );
-    console.log(time);
-
     data.push({
       header: "LONGEST SKILL CHAIN",
       body: `${time.hours}:${time.minutes}:${time.seconds}`,
