@@ -2,12 +2,12 @@ export interface ICampaignStatistics {
   totalRaces: number;
   storiesCompleted: number;
   storyStarsEarned: number;
-  headtoHeadEntered: number;
+  headToHeadEntered: number;
   headToHeadWon: number;
   exhibitionsCompleted: number;
   speedTrapStars: number;
-  speedZoneStar: number;
-  dangedSignStars: number;
-  driftzoneStars: number;
+  speedZoneStars: number;
+  dangerSignStars: number;
+  driftZoneStars: number;
   trailblazerStars: number;
 }
