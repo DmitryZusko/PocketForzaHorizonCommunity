@@ -10,7 +10,7 @@ export const useRecordsStatisticsComponent = () => {
     let data: IStatisticsData[] = [];
 
     data.push({
-      header: "HIGHEST DRIFT SCORE",
+      header: "HIGHEST DRIFT ZONE SCORE",
       body: `${user?.recordsStatistics.highestDriftScore.toLocaleString()}`,
     });
 
