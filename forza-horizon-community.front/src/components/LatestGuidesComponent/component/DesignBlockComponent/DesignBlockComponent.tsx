@@ -1,19 +1,18 @@
 import { CardSkeletonComponent, GuideCardFooterComponent, NavigationCard } from "@/components";
 import { CustomTooltipComponent } from "@/components/CustomTooltipComponent";
 import { imageUtil } from "@/utilities";
-import { Box, Grow, Slide, Typography } from "@mui/material";
+import { Box, BoxProps, Grow, Slide, Typography } from "@mui/material";
 import { styles } from "./styles";
 import useDesignBlockComponent from "./useDesignBlockComponent";
 
-const DesignBlockComponent = ({ ...props }) => {
+const DesignBlockComponent = (props: BoxProps) => {
   const { isLoading, latestDesigns } = useDesignBlockComponent();
 
   return (
-    <Box sx={styles.outerBox}>
+    <Box sx={styles.outerBox} {...props}>
       <Typography variant="textTitle" align="center" color="primary" sx={styles.headerText}>
         Newest Designs
       </Typography>
-
       <Box sx={styles.cardBox}>
         {isLoading ? (
           <Grow in={isLoading} unmountOnExit>
@@ -25,7 +24,7 @@ const DesignBlockComponent = ({ ...props }) => {
           latestDesigns.map((design) => (
             <Slide key={design.id} direction="right" in={!isLoading} mountOnEnter timeout={500}>
               <Box>
-                <CustomTooltipComponent title="Go to Design" sx={styles.cardBlock}>
+                <CustomTooltipComponent title="Go to Design" {...{ sx: styles.cardBlock }}>
                   <Box>
                     <NavigationCard
                       thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
