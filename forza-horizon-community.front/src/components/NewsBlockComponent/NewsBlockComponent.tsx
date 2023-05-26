@@ -1,10 +1,10 @@
-import { Grid, Grow, Slide, Typography } from "@mui/material";
+import { Grid, GridProps, Grow, Slide, Typography } from "@mui/material";
 import { CustomTooltipComponent } from "../CustomTooltipComponent";
 import { NavigationCard } from "../NavigationCard";
 import { CardSkeletonComponent } from "../skeletons";
 import { useNewsBlockComponent } from "./useNewsBlockComponent";
 
-const NewsBlockComponent = ({ ...props }) => {
+const NewsBlockComponent = (props: GridProps) => {
   const { isLoading, news } = useNewsBlockComponent();
   return (
     <>

@@ -1,8 +1,8 @@
-import { Container, Skeleton, Typography } from "@mui/material";
+import { Container, ContainerProps, Skeleton, Typography } from "@mui/material";
 
-const OnlineStatisticsSkeletonComponent = () => {
+const OnlineStatisticsSkeletonComponent = (props?: ContainerProps) => {
   return (
-    <Container>
+    <Container {...props}>
       <Typography variant="textTitle">
         <Skeleton variant="text" />
       </Typography>

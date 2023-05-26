@@ -13,7 +13,7 @@ const HourOnlineComponent = ({ totalPlayers, ...props }: IHourOnlineComponentPro
   });
 
   return (
-    <Container sx={styles.outerContainer}>
+    <Container sx={styles.outerContainer} {...props}>
       <Typography variant="textTitle">24-Hour Statistics</Typography>
       <PieChart width={400} height={400}>
         <Pie

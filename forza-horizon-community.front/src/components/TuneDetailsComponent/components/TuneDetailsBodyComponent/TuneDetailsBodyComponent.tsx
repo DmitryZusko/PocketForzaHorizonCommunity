@@ -7,9 +7,9 @@ import {
 } from "./components";
 import { ITuneDetailsBodyComponentProps } from "./types";
 
-const TuneDetailsBodyComponent = ({ selectedTune }: ITuneDetailsBodyComponentProps) => {
+const TuneDetailsBodyComponent = ({ selectedTune, ...props }: ITuneDetailsBodyComponentProps) => {
   return (
-    <Grid container>
+    <Grid container {...props}>
       <Grid item xs={12}>
         <EngineDetailsComponent
           engineDescription={selectedTune?.engineDescription}

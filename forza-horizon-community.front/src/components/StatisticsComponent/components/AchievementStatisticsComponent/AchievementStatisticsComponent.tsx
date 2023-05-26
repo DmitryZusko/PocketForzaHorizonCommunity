@@ -1,10 +1,10 @@
 import { AchievementSkeletonComponent } from "@/components/skeletons";
-import { Box, Container, Grid, Grow, Slide, Typography } from "@mui/material";
+import { Box, Container, ContainerProps, Grid, Grow, Slide, Typography } from "@mui/material";
 import { AchievementItemComponent } from "./components";
 import { styles } from "./styles";
 import { useAchievementStatisticsComponent } from "./useAchievementStatisticsComponent";
 
-const AchievementStatisticsComponent = ({ ...props }) => {
+const AchievementStatisticsComponent = (props?: ContainerProps) => {
   const { isLoadingAchievements, achievements } = useAchievementStatisticsComponent();
 
   return (

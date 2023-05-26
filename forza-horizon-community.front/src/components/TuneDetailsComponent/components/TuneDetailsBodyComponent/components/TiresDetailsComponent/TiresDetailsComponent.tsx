@@ -18,9 +18,10 @@ const TiresDetailsComponent = ({
   rearTireWidth,
   frontTrackWidth,
   rearTrackWidth,
+  ...props
 }: ITiresDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer}>
+    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Tires

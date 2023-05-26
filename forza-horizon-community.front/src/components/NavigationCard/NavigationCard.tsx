@@ -15,7 +15,7 @@ const NavigationCard = ({
   ...props
 }: INavigationCardProps) => {
   return (
-    <CardActionArea {...props}>
+    <CardActionArea>
       <CustomLinkComponent href={navigationLink} target={target}>
         <BaseCard
           thumbnail={thumbnail}
@@ -24,6 +24,7 @@ const NavigationCard = ({
           footer={footer}
           imageWidth={imageWidth}
           imageHeight={imageHeight}
+          {...props}
         />
       </CustomLinkComponent>
     </CardActionArea>

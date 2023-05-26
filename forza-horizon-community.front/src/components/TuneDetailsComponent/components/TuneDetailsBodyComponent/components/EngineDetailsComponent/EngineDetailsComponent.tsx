@@ -22,9 +22,10 @@ const EngineDetailsComponent = ({
   ignition,
   displacement,
   exhaust,
+  ...props
 }: IEngineDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer}>
+    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <Divider flexItem variant="fullWidth">
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Engine

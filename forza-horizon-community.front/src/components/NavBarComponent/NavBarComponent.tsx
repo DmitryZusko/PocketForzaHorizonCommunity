@@ -32,11 +32,9 @@ const NavBarComponent = ({ ...props }) => {
         <CustomLinkComponent
           href="/"
           target="_self"
-          width={{ xs: 125, md: 150 }}
-          height={{ xs: 75, md: 100 }}
-          position="relative"
+          {...{ width: { xs: 125, md: 150 }, height: { xs: 75, md: 100 }, position: "relative" }}
         >
-          <Image alt="logo" src="/logo.png" fill style={{ objectFit: "cover" }} />
+          <Image alt="logo" src="/logo.png" fill loading="lazy" style={{ objectFit: "cover" }} />
         </CustomLinkComponent>
         <Box flexGrow={"1"} />
         {isLogged ? <AuthorizedNavbarBodyComponent /> : <AnonymouseNavbarBodyComponent />}

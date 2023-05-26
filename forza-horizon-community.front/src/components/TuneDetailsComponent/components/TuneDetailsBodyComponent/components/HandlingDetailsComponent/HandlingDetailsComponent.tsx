@@ -18,9 +18,10 @@ const HandlingDetailsComponent = ({
   suspension,
   antiRollBars,
   rollCage,
+  ...props
 }: IHandlingDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer}>
+    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Handling

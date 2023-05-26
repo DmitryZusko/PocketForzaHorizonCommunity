@@ -7,12 +7,13 @@ import { TuneDetailsBodyComponent } from "./components";
 import { ITuneDetailsComponentProps } from "./types";
 import { useTuneDetailsComponent } from "./useTuneDetailsComponent";
 
-const TuneDetailsComponent = ({ id }: ITuneDetailsComponentProps) => {
+const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
   const { isLoading, selectedTune } = useTuneDetailsComponent({ id });
   return (
     <Grid
       container
       sx={(globalStyles.centeredColumnFlexContainer, { padding: baseTheme.spacing(7) })}
+      {...props}
     >
       {isLoading ? (
         <DefaultLoaderComponent />

@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Grid, Slide, TextField } from "@mui/material";
+import { Autocomplete, Button, Grid, GridProps, Slide, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AccessRole, defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
@@ -12,7 +12,7 @@ import { useTuneListComponent } from "./useTuneListComponent";
 import { AddBox } from "@mui/icons-material";
 import { RoleGate } from "../gates";
 
-const TuneListComponent = () => {
+const TuneListComponent = (props?: GridProps) => {
   const {
     tunes,
     autocompleteOptions,
@@ -26,7 +26,7 @@ const TuneListComponent = () => {
   } = useTuneListComponent();
 
   return (
-    <Grid container sx={styles.outerContainer}>
+    <Grid container sx={styles.outerContainer} {...props}>
       <Grid item xs={12} md={5}>
         <SearchComponent
           label="Search"

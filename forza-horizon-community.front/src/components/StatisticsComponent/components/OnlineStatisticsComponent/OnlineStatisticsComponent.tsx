@@ -1,9 +1,9 @@
 import { OnlineStatisticsSkeletonComponent } from "@/components/skeletons";
-import { Box, Grid, Grow, Slide } from "@mui/material";
+import { Box, Grid, GridProps, Grow, Slide } from "@mui/material";
 import { CurrentOnlineComponent, HourOnlineComponent, WeeklyOnlineComponent } from "./components";
 import { useOnlineStatisticsComponent } from "./useOnlineStatisticsComponent";
 
-const OnlineStatisticsComponent = ({ ...props }) => {
+const OnlineStatisticsComponent = (props: GridProps) => {
   const { isLoading, totalPlayers } = useOnlineStatisticsComponent();
 
   return (

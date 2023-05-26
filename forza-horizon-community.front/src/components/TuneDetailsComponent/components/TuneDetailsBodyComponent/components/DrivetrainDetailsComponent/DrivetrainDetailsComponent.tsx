@@ -16,9 +16,10 @@ const DrivetrainDetailsComponent = ({
   clutch,
   transmission,
   differential,
+  ...props
 }: IDrivetrainDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer}>
+    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Drivetrain
