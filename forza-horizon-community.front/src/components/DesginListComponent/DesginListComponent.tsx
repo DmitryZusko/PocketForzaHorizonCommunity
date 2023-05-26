@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Grid, Slide, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, Grid, GridProps, Slide, TextField, Typography } from "@mui/material";
 import { AccessRole, defaultSearchTreshhold } from "../constants";
 import { SearchComponent } from "../SearchComponent";
 import { useDesginListComponent } from "./useDesginListComponent";
@@ -12,7 +12,7 @@ import { styles } from "./styles";
 import { AddBox } from "@mui/icons-material";
 import { RoleGate } from "../gates";
 
-const DesginListComponent = () => {
+const DesginListComponent = (props?: GridProps) => {
   const {
     autocompleteOptions,
     designs,
