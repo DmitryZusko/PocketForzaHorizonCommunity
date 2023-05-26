@@ -1,4 +1,4 @@
-import { defaultCarThumbnailSize } from "@/components/constants";
+import { defaultCarThumbnailSizeLarge } from "@/components/constants";
 import { Grow, TableCell, TableHead, TableRow, TableSortLabel, Typography } from "@mui/material";
 import { styles } from "./styles";
 import { ISortingTableHeaderProps } from "./types";
@@ -29,7 +29,7 @@ const SortingTableHead = <TEntity,>({
               key={cell.lable}
               sortDirection={orderBy === cell.id ? order : false}
               align={cell.lable === "Image" ? "inherit" : "center"}
-              width={cell.lable === "Image" ? defaultCarThumbnailSize.width : "auto"}
+              width={cell.lable === "Image" ? defaultCarThumbnailSizeLarge.width : "auto"}
             >
               <TableSortLabel
                 active={orderBy === cell.id}

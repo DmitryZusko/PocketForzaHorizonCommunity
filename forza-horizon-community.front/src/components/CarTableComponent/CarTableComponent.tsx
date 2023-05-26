@@ -8,18 +8,23 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TableContainerProps,
   TablePagination,
   TableRow,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { defaultCarThumbnailSize, defaultRowsPerPageOptions } from "../constants";
+import {
+  defaultCarThumbnailSizeLarge,
+  defaultCarThumbnailSizeSmall,
+  defaultRowsPerPageOptions,
+} from "../constants";
 import { headerCells, SortingTableHead } from "./components";
 import { styles } from "./styles";
 
 import useCarTableComponent from "./useCarTableComponent";
 
-const CarTableComponent = ({ ...props }) => {
+const CarTableComponent = (props?: TableContainerProps) => {
   const {
     isTablet,
     currentPage,
@@ -69,13 +74,13 @@ const CarTableComponent = ({ ...props }) => {
                       src={imageUtil.addJpgHeader(car.image)}
                       width={
                         isTablet
-                          ? defaultCarThumbnailSize.width
-                          : defaultCarThumbnailSize.width * 0.75
+                          ? defaultCarThumbnailSizeLarge.width
+                          : defaultCarThumbnailSizeSmall.width
                       }
                       height={
                         isTablet
-                          ? defaultCarThumbnailSize.width
-                          : defaultCarThumbnailSize.height * 0.75
+                          ? defaultCarThumbnailSizeLarge.height
+                          : defaultCarThumbnailSizeSmall.height
                       }
                       style={{ objectFit: "cover" }}
                     />

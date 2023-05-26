@@ -1,4 +1,4 @@
-import { IDefaultCarThumbnailsize } from "./types";
+import { IImageSize } from "./types";
 
 export const AccessTokenKey = "@accessToken";
 
@@ -12,7 +12,15 @@ export const defaultCardImageSize = 300;
 
 export const defaultTuneImageHeight = 200;
 
-export const defaultCarThumbnailSize: IDefaultCarThumbnailsize = { width: 300, height: 300 };
+export const defaultCarThumbnailSizeLarge: IImageSize = {
+  width: 300,
+  height: 300,
+};
+
+export const defaultCarThumbnailSizeSmall: IImageSize = {
+  width: 225,
+  height: 225,
+};
 
 export const defaultRowsPerPageOptions = [5, 15, 30, 50, 100];
 
