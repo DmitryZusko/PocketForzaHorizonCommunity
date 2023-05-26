@@ -1,12 +1,11 @@
 import { SignUpFormComponent } from "@/components/forms";
-import { ModalProps } from "@mui/material";
 import { FloatingModal } from "../FloatingModal";
 import { useSignUpModalComponent } from "./useSignUpModalComponent";
 
-const SignUpModalComponent = (props?: ModalProps) => {
+const SignUpModalComponent = () => {
   const { isSignUpOpen, handleClose } = useSignUpModalComponent();
   return (
-    <FloatingModal open={isSignUpOpen} handleClose={handleClose} {...props}>
+    <FloatingModal open={isSignUpOpen} handleClose={handleClose}>
       <SignUpFormComponent />
     </FloatingModal>
   );

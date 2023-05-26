@@ -1,12 +1,11 @@
 import { EnterEmailFormComponent } from "@/components/forms";
-import { ModalProps } from "@mui/base";
 import { FloatingModal } from "../FloatingModal";
 import { useForgotPasswordModalComponent } from "./useForgotPasswordModalComponent";
 
-const ForgotPasswordModalComponent = (props?: ModalProps) => {
+const ForgotPasswordModalComponent = () => {
   const { isForgotPasswordOpen, handleClose } = useForgotPasswordModalComponent();
   return (
-    <FloatingModal open={isForgotPasswordOpen} handleClose={handleClose} {...props}>
+    <FloatingModal open={isForgotPasswordOpen} handleClose={handleClose}>
       <EnterEmailFormComponent />
     </FloatingModal>
   );
