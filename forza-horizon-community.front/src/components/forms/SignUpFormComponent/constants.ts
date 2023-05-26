@@ -8,7 +8,7 @@ export const validationScheme = Yup.object({
   username: Yup.string()
     .min(3, "Username should be at least 3 characters long")
     .max(16, "Username length shouldn't exceed 64 characters")
-    .matches(/\w/g, "Username should contain only letters and numbers")
+    .matches(/^\w*$/g, "Username should contain only letters and numbers")
     .required("Please, enter your username"),
   password: Yup.string()
     .min(8, "Password should be at least 8 characters long")
@@ -17,6 +17,7 @@ export const validationScheme = Yup.object({
     .matches(/[a-z]/g, "Password should contain a lowercase letter")
     .matches(/[A-Z]/g, "Password should contain an uppercase letter")
     .matches(/\W/g, "Password should contain a symbol")
+    .matches(/^\S*$/g, "Password shouldn't contain whitespaces")
     .required("Please, enter a password"),
   confirmPassword: Yup.string().oneOf([Yup.ref("password")], "Passwords should match"),
 });

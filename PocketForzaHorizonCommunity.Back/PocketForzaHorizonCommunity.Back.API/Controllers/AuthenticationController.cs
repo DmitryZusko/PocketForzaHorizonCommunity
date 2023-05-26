@@ -68,32 +68,37 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("sign-up/admin")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task SignUpAdmin([FromBody] SignUpRequest request)
+        public async Task<AuthTokenDto> SignUpAdmin([FromBody] SignUpRequest request)
         {
-            await _userService.SignUpWithSpecificRoleAsync(request, RoleType.ADMIN);
+            var user = await _userService.SignUpWithSpecificRoleAsync(request, RoleType.ADMIN);
 
+            var token = await _tokenService.GenerateAuthTokenAsync(user);
 
             Response.StatusCode = StatusCodes.Status201Created;
+
+            return token;
         }
 
         [HttpPost("sign-up/creator")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task SignUpCreator([FromBody] SignUpRequest request)
+        public async Task<AuthTokenDto> SignUpCreator([FromBody] SignUpRequest request)
         {
-            await _userService.SignUpWithSpecificRoleAsync(request, RoleType.CREATOR);
+            var user = await _userService.SignUpWithSpecificRoleAsync(request, RoleType.CREATOR);
+
+            var token = await _tokenService.GenerateAuthTokenAsync(user);
 
             Response.StatusCode = StatusCodes.Status201Created;
+
+            return token;
         }
 
 
