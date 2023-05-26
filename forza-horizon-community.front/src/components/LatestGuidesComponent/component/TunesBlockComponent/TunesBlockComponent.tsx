@@ -36,7 +36,7 @@ const TunesBlockComponent = (props: BoxProps) => {
                 >
                   <Box>
                     <NavigationCard
-                      thumbnail="tuneThumbnail.pngumbnail.png"
+                      thumbnail="tuneThumbnail.png"
                       imageHeight={defaultTuneImageHeight}
                       target={"_self"}
                       cardTitle={tune.title}
