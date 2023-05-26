@@ -12,9 +12,10 @@ const GuideDetailsHeader = ({
   shareCode,
   rating,
   creationDate,
+  ...props
 }: IGuideDetailsHeaderProps) => {
   return (
-    <Grid container>
+    <Grid container {...props}>
       {isDesign && (
         <Grid item xs={12} md={6} lg={8} sx={styles.outerContainer}>
           <Box sx={styles.imageBox}>
@@ -22,6 +23,7 @@ const GuideDetailsHeader = ({
               alt="thumbnail"
               src={thumbnail || "/TuneThumbnail.png"}
               fill
+              loading="lazy"
               style={{ objectFit: "contain" }}
             />
           </Box>
