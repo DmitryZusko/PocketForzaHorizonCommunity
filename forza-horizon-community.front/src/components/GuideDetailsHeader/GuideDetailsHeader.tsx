@@ -21,7 +21,7 @@ const GuideDetailsHeader = ({
           <Box sx={styles.imageBox}>
             <Image
               alt="thumbnail"
-              src={thumbnail || "/tuneThumbnail.pngumbnail.png"}
+              src={thumbnail || "/tuneThumbnail.png"}
               fill
               loading="lazy"
               style={{ objectFit: "contain" }}
