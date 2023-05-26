@@ -71,7 +71,14 @@ const CarTableContent = () => {
             </Grid>
           </Slide>
         ) : (
-          <Drawer anchor="left" open={isFilterMenuOpen} onClose={handleFilterMenuClose}>
+          <Drawer
+            anchor="left"
+            open={isFilterMenuOpen}
+            onClose={handleFilterMenuClose}
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
             <FilterCarTableComponent />
           </Drawer>
         )}
