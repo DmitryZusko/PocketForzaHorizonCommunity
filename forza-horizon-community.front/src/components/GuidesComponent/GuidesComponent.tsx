@@ -1,11 +1,11 @@
 import { globalStyles } from "@/styles";
-import { Button, Grid, Slide } from "@mui/material";
+import { Button, Grid, GridProps, Slide } from "@mui/material";
 import { LatestGuidesComponent } from "../LatestGuidesComponent";
 import { SettingsSuggest, Palette, ArrowForwardIos, ArrowBackIos } from "@mui/icons-material";
 import { useGuidesComponent } from "./useGuidesComponent";
 import { buttonSlideAnimationDuration } from "./constants";
 
-const GuidesComponent = () => {
+const GuidesComponent = (props?: GridProps) => {
   const {
     isSlide,
     tuneButtonStyle,
@@ -23,6 +23,7 @@ const GuidesComponent = () => {
       container
       sx={[globalStyles.centeredColumnFlexContainer, { overflow: "hidden" }]}
       maxWidth={"100%"}
+      {...props}
     >
       <Slide
         in={isSlide}
