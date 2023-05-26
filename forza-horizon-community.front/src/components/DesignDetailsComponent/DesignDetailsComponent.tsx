@@ -6,7 +6,7 @@ import { DesignDetailsBodyComponent } from "./components";
 import { IDesignDetailsComponentProps } from "./types";
 import { useDesignDetailsComponent } from "./useDesignDetailsComponent";
 
-const DesignDetailsComponent = ({ id }: IDesignDetailsComponentProps) => {
+const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) => {
   const { isLoading, selectedDesign, galleryInView, galleryRef } = useDesignDetailsComponent({
     id,
   });
