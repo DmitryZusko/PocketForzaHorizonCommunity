@@ -36,7 +36,7 @@ const NavBarComponent = ({ ...props }) => {
           height={{ xs: 75, md: 100 }}
           position="relative"
         >
-          <Image alt="logo" src="/logo.png" fill style={{ objectFit: "cover" }} />
+          <Image alt="logo" src="/logo.png" loading="lazy" fill style={{ objectFit: "cover" }} />
         </CustomLinkComponent>
         <Box flexGrow={"1"} />
         {isLogged ? <AuthorizedNavbarBodyComponent /> : <AnonymouseNavbarBodyComponent />}

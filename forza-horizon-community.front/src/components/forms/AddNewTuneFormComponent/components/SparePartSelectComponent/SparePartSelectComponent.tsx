@@ -22,6 +22,7 @@ const SparePartSelectComponent = ({
       <Image
         alt={imageSrc}
         src={`/EnumIcons/${imageSrc}`}
+        loading="lazy"
         width={defaultIconSize}
         height={defaultIconSize}
         priority

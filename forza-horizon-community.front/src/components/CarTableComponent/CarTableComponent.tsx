@@ -67,6 +67,7 @@ const CarTableComponent = ({ ...props }) => {
                     <Image
                       alt="car"
                       src={imageUtil.addJpgHeader(car.image)}
+                      loading="lazy"
                       width={
                         isTablet
                           ? defaultCarThumbnailSize.width

@@ -34,6 +34,7 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TireWidthIcon"}
             src="/EnumIcons/TiresWidthIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -45,6 +46,7 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TireWidthIcon"}
             src="/EnumIcons/TiresWidthIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -56,6 +58,7 @@ const TiresDetailsComponent = ({
           <Image
             alt={"frontTrackWidthIcon"}
             src="/EnumIcons/FrontTrackWidthIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -67,6 +70,7 @@ const TiresDetailsComponent = ({
           <Image
             alt={"rearTrackWidthIcon"}
             src="/EnumIcons/RearTrackWidthIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -78,6 +82,7 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TiresCompoundIcon"}
             src="/EnumIcons/TiresCompoundIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />

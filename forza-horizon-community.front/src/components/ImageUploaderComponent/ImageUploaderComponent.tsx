@@ -65,10 +65,10 @@ const ImageUploaderComponent = ({
             {preview.map((image, index) => (
               <ImageListItem key={index}>
                 {isFixedSize ? (
-                  <Image alt="image" src={image} width={width} height={height} />
+                  <Image alt="image" src={image} loading="lazy" width={width} height={height} />
                 ) : (
                   <Box sx={styles.imageBox}>
-                    <Image alt="image" src={image} fill className={classes.image} />
+                    <Image alt="image" src={image} loading="lazy" fill className={classes.image} />
                   </Box>
                 )}
               </ImageListItem>
