@@ -1,12 +1,11 @@
 import { AddManufactureFormComponent } from "@/components";
-import { ModalProps } from "@mui/material";
 import { FloatingModal } from "../FloatingModal";
 import { useAddManufactureModalComponent } from "./useAddManufactureModalComponent";
 
-const AddManufactureModalComponent = (props?: ModalProps) => {
+const AddManufactureModalComponent = () => {
   const { isAddManufactureOpen, handleClose } = useAddManufactureModalComponent();
   return (
-    <FloatingModal open={isAddManufactureOpen} handleClose={handleClose} {...props}>
+    <FloatingModal open={isAddManufactureOpen} handleClose={handleClose}>
       <AddManufactureFormComponent />
     </FloatingModal>
   );
