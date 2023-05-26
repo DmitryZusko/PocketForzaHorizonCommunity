@@ -9,7 +9,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { baseTheme } from "../constants";
 import { globalStyles } from "@/styles";
 import { styles } from "./styles";
-import classes from "./styles.module.css";
 
 const ImageUploaderComponent = ({
   buttonText,
@@ -24,6 +23,7 @@ const ImageUploaderComponent = ({
   additionalInfo,
   handleErrorChange,
   handleImagesChange,
+  ...props
 }: IImageUploaderComponentProps) => {
   const { errorMessage, displayError, preview, handleImageUpload } = useImageUploaderComponent({
     isRequired,
@@ -33,7 +33,7 @@ const ImageUploaderComponent = ({
     handleImagesChange,
   });
   return (
-    <Grid container spacing={1} sx={globalStyles.centeredColumnFlexContainer}>
+    <Grid container spacing={1} sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <Grid item xs={12} textAlign="center">
         <Button component="label">
           <Grid container spacing={1}>
@@ -68,7 +68,7 @@ const ImageUploaderComponent = ({
                   <Image alt="image" src={image} width={width} height={height} />
                 ) : (
                   <Box sx={styles.imageBox}>
-                    <Image alt="image" src={image} fill className={classes.image} />
+                    <Image alt="image" src={image} fill style={{ objectFit: "contain" }} />
                   </Box>
                 )}
               </ImageListItem>
