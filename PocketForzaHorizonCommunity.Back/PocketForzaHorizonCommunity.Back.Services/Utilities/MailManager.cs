@@ -50,7 +50,7 @@ public class MailManager : IMailManager
         message.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $@"
                         <p>Hi, we're glad to see you with us! Please, follow the link below 
                         to confim the email.<br>
-                        {_config["Domain:BaseUrl"]}confirm-email/?u={emailOptions.UserId}&t={emailOptions.ConfirmationToken}" };
+                        {_config["Domain:BaseUrl"]}service/confirm-email/?u={emailOptions.UserId}&t={emailOptions.ConfirmationToken}" };
 
         return message;
     }
@@ -62,7 +62,7 @@ public class MailManager : IMailManager
         message.Subject = "Reset Password";
         message.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $@"
                                 <p>Hi, we've recieved a reset password request. If you want to proceed, just folow the lonk below:</p><br/>
-                                    {_config["Domain:BaseUrl"]}reset-password/?u={emailOptions.UserId}&t={emailOptions.ResetToken}
+                                    {_config["Domain:BaseUrl"]}service/reset-password/?u={emailOptions.UserId}&t={emailOptions.ResetToken}
                                  <br/>
                                  <br/>
                                  If you don't want to change a password - just ignore this message." };

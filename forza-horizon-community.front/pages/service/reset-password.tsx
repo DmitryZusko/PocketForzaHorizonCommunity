@@ -1,29 +1,29 @@
 import { AuthAccessLevel } from "@/components";
-import { PageNotFoundContent } from "@/page-content";
+import { ResetPasswordContent } from "@/page-content";
 import { gateHandler } from "@/utilities";
 import Head from "next/head";
 
-const PageNotFound = () => {
+const ResetPassword = () => {
   return (
     <>
       <Head>
-        <title>404 | Pocket Forza Horizon Community</title>
-        <meta name="description" content="404 Error" />
+        <title>Reset Password | Pocket Forza Horizon Community</title>
+        <meta name="description" content="Reset Password" />
         <meta name="author" content="Dmitry Zusko" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.png" />
       </Head>
-      <PageNotFoundContent />
+      <ResetPasswordContent />;
     </>
   );
 };
 
-export const getStaticProps = () => {
+export const getServerSideProps = () => {
   return {
     props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse),
+      authSettings: gateHandler.setPageProps(AuthAccessLevel.Unauthorized),
     },
   };
 };
 
-export default PageNotFound;
+export default ResetPassword;

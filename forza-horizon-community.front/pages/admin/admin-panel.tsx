@@ -1,19 +1,19 @@
 import { AccessRole, AuthAccessLevel } from "@/components";
-import { AddNewTuneContent } from "@/page-content";
+import { AdminPanelContent } from "@/page-content";
 import { gateHandler } from "@/utilities";
 import Head from "next/head";
 
-const AddNewPage = () => {
+const AdminPanel = () => {
   return (
     <>
       <Head>
-        <title>Add New Tune | Pocket Forza Horizon Community</title>
-        <meta name="description" content="Add new tune" />
+        <title>Admin Panel | Pocket Forza Horizon Community</title>
+        <meta name="description" content="Admin Panel" />
         <meta name="author" content="Dmitry Zusko" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.png" />
       </Head>
-      <AddNewTuneContent />;
+      <AdminPanelContent />;
     </>
   );
 };
@@ -21,12 +21,9 @@ const AddNewPage = () => {
 export const getServerSideProps = () => {
   return {
     props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized, [
-        AccessRole.admin,
-        AccessRole.creator,
-      ]),
+      authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized, [AccessRole.admin]),
     },
   };
 };
 
-export default AddNewPage;
+export default AdminPanel;

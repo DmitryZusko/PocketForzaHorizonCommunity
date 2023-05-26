@@ -36,7 +36,7 @@ const SingInFormComponent = () => {
         <FormButtonGroupComponent handleCancel={handleCancel} />
         <GoogleLogin onSuccess={handleGoogleSignIn} />
         <Button variant="text" onClick={handleForgotPasswordClick} sx={styles.forgotButton}>
-          Forgot password?
+          Forgot A Password?
         </Button>
       </Paper>
     </form>

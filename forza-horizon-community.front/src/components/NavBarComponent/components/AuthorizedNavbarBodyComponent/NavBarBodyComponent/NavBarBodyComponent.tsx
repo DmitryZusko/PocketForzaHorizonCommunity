@@ -21,7 +21,7 @@ const NavBarBodyComponent = () => {
         </Button>
       </CustomLinkComponent>
       <RoleGate accessRoles={[AccessRole.admin]}>
-        <CustomLinkComponent href="/admin-panel" target="_self">
+        <CustomLinkComponent href="/admin/admin-panel" target="_self">
           <Button startIcon={<AdminPanelSettings />} variant="contained" sx={buttonsStyle}>
             Admin Panel
           </Button>
@@ -32,7 +32,7 @@ const NavBarBodyComponent = () => {
           Cars
         </Button>
       </CustomLinkComponent>
-      <CustomLinkComponent href="/personal-statistics" target="_self">
+      <CustomLinkComponent href="/user/personal-statistics" target="_self">
         <Button startIcon={<Leaderboard />} variant="contained" sx={buttonsStyle}>
           Personal Statistics
         </Button>
