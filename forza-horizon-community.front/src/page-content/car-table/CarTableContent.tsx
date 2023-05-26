@@ -1,16 +1,15 @@
 import {
-  AccessRole,
+  AdminCarButtonsComponent,
   baseTheme,
   CarTableComponent,
   FilterCarTableComponent,
   ImageBackgroundComponent,
   NavBarComponent,
   PageFooterComponent,
-  RoleGate,
   ScrollUpFabComponent,
 } from "@/components";
 import { globalStyles } from "@/styles";
-import { Box, Button, Container, Drawer, Grid, Slide, Typography } from "@mui/material";
+import { Box, Button, Drawer, Grid, Slide, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styles as pageStyles } from "../styles";
 import { styles } from "./styles";
@@ -20,7 +19,6 @@ import {
   AddCarTypeModalComponent,
   AddManufactureModalComponent,
 } from "@/components/modals";
-import { TimeToLeave, Factory, Category } from "@mui/icons-material/";
 
 const CarTableContent = () => {
   const {
@@ -54,30 +52,7 @@ const CarTableContent = () => {
           </Typography>
         </Box>
       </ImageBackgroundComponent>
-      <RoleGate accessRoles={[AccessRole.admin]}>
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            marginTop: baseTheme.spacing(10),
-          }}
-        >
-          <Button startIcon={<TimeToLeave />} variant="contained" onClick={handleAddCarModalOpen}>
-            {isDesktop && "Add Car"}
-          </Button>
-          <Button
-            startIcon={<Factory />}
-            variant="contained"
-            onClick={handleAddManufactureModalOpen}
-          >
-            {isDesktop && "Add Manufacture"}
-          </Button>
-          <Button startIcon={<Category />} variant="contained" onClick={handleAddCarTypeModalOpen}>
-            {isDesktop && "Add Car Type"}
-          </Button>
-        </Container>
-      </RoleGate>
+      <AdminCarButtonsComponent />
       <Grid container>
         {!isDesktop && (
           <Button
