@@ -24,14 +24,16 @@ const SingInFormComponent = () => {
           sx={styles.textField}
         />
         <PasswordFieldComponent
-          name="password"
           label="Password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
-          sx={styles.textField}
+          {...{
+            name: "password",
+            type: "password",
+            value: formik.values.password,
+            onChange: formik.handleChange,
+            onBlur: formik.handleBlur,
+            error: formik.touched.password && Boolean(formik.errors.password),
+          }}
         />
         <FormButtonGroupComponent handleCancel={handleCancel} />
         <GoogleLogin onSuccess={handleGoogleSignIn} />

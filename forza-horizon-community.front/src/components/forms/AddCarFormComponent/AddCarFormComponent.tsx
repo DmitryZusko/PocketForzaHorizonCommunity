@@ -37,7 +37,7 @@ const AddCarFormComponent = () => {
               height={defaultCarThumbnailSizeLarge.height}
               previewWidth={defaultCarThumbnailSizeLarge.width}
               previewHeight={defaultCarThumbnailSizeLarge.height}
-              additionalInfo="Please, select 300x300 image"
+              additionalInfo="Please, select a 300x300 image"
             />
           </Grid>
           <Grid item xs={6}>
