@@ -30,7 +30,7 @@ const NewsBlockComponent = (props: GridProps) => {
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
                     navigationLink={item.url}
-                    thumbnail={item.thumbnail || "/News.png"}
+                    thumbnail={item.thumbnail || "/news.png"}
                     cardTitle={item.title}
                     body={<Typography variant="textBody">{item.contents}</Typography>}
                     target={"_blank"}

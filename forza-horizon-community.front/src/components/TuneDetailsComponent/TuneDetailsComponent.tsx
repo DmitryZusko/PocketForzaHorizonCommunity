@@ -22,7 +22,7 @@ const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
           <Slide in={true} direction={"right"} timeout={500}>
             <Grid item xs={12}>
               <GuideDetailsHeader
-                thumbnail="/TuneThumbnail.png"
+                thumbnail="/tuneThumbnail.pngumbnail.png"
                 isDesign={false}
                 title={selectedTune?.title || ""}
                 authorName={selectedTune?.authorUsername || ""}
