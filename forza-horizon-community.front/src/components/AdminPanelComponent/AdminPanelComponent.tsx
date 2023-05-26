@@ -1,15 +1,14 @@
 import { AddBox } from "@mui/icons-material";
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Button, Container, Grid, GridProps, Typography } from "@mui/material";
 import { AdminCarButtonsComponent } from "../AdminCarButtonsComponent";
 import { AccessRole } from "../constants";
 import { CustomLinkComponent } from "../CustomLinkComponent";
 import { SignUpFormComponent } from "../forms";
 import { styles } from "./styles";
 
-const AdminPanelComponent = () => {
-  const isDesktop = false;
+const AdminPanelComponent = (props?: GridProps) => {
   return (
-    <Grid container>
+    <Grid container {...props}>
       <Grid item xs={12} md={8} sx={styles.gridItem}>
         <Typography variant="textTitle">Cars</Typography>
         <AdminCarButtonsComponent />
