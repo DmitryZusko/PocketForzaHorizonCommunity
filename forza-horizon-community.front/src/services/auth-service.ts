@@ -1,3 +1,4 @@
+import { AccessRole } from "@/components";
 import {
   IRefreshTokenRequest,
   ISignUpRequest,
@@ -11,6 +12,7 @@ import {
   IResetPasswordRequest,
   IConfirmEmailRequest,
 } from "@/data-transfer-objects";
+import { IRegisterUserRequest } from "@/data-transfer-objects/requests/AuthRequests/RegisterUserRequest";
 import { customAxios } from "@/utilities";
 
 const signInAsync = async (request: ISignInRequest) => {
@@ -32,18 +34,11 @@ const signInAsync = async (request: ISignInRequest) => {
 };
 
 const signUpAsync = async (request: ISignUpRequest) => {
-  const axios = await customAxios.getAxiosInstance();
-  const response = await axios.post<ITokenResponse>("authentication/sign-up", {
-    email: request.email,
-    username: request.username,
-    password: request.password,
-  });
-
-  const user = await getUserAsync(response.data.accessToken);
-
-  const emailResult = await sendEmailConfirmationMessageAsync(
-    response.data.accessToken,
-    user.data.email,
+  const { response, user, emailResult } = await signUpHandler(
+    request.email,
+    request.username,
+    request.password,
+    "authentication/sign-up",
   );
 
   const result: ISignUpResponse = {
@@ -54,6 +49,17 @@ const signUpAsync = async (request: ISignUpRequest) => {
   };
 
   return result;
+};
+
+const registerFunctionUserAsync = async (request: IRegisterUserRequest) => {
+  return signUpHandler(
+    request.email,
+    request.username,
+    request.password,
+    request.role === AccessRole.admin
+      ? "authentication/sign-up/admin"
+      : "authentication/sign-up/creator",
+  );
 };
 
 const googleSignInAsync = async (request: IGoogleSingInRequest) => {
@@ -118,6 +124,28 @@ const resetPasswordAsync = async (request: IResetPasswordRequest) => {
   });
 };
 
+const signUpHandler = async (email: string, username: string, password: string, path: string) => {
+  const axios = await customAxios.getAxiosInstance();
+  const response = await axios.post<ITokenResponse>(path, {
+    email: email,
+    username: username,
+    password: password,
+  });
+
+  const user = await getUserAsync(response.data.accessToken);
+
+  const emailResult = await sendEmailConfirmationMessageAsync(
+    response.data.accessToken,
+    user.data.email,
+  );
+
+  return {
+    response,
+    user,
+    emailResult,
+  };
+};
+
 const authService = {
   signInAsync,
   signUpAsync,
@@ -126,6 +154,7 @@ const authService = {
   confirmEmailAsync,
   sendResetPasswordMessageAsync,
   resetPasswordAsync,
+  registerFunctionUserAsync,
 };
 
 export default authService;

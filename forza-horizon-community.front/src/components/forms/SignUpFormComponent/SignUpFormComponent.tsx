@@ -3,15 +3,16 @@ import { globalStyles } from "@/styles";
 import { Paper, TextField } from "@mui/material";
 import { FormHeaderComponent, PasswordFieldComponent } from "../components";
 import { styles } from "../styles";
+import { ISignUpFormComponentProps } from "./types";
 import { useSignUpFormComponent } from "./useSignUpFormComponent";
 
-const SignUpFormComponent = () => {
-  const { formik, handleSubmit, handleCancel } = useSignUpFormComponent();
+const SignUpFormComponent = ({ signUpRole, formHeader = "Sign Up" }: ISignUpFormComponentProps) => {
+  const { formik, handleCancel } = useSignUpFormComponent({ signUpRole });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <Paper sx={[globalStyles.centeredColumnFlexContainer, styles.outerContainer]}>
-        <FormHeaderComponent text="Sign Up" />
+        <FormHeaderComponent text={formHeader} />
         <TextField
           name="email"
           label="Email"

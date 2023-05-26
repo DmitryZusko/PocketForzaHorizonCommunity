@@ -1,8 +1,15 @@
-import { ButtonWithMenuComponent, CustomLinkComponent } from "@/components";
+import { AccessRole, ButtonWithMenuComponent, CustomLinkComponent, RoleGate } from "@/components";
 import { Button } from "@mui/material";
 import { styles } from "./styles";
 import { useNavBarBodyComponent } from "./useNavBarBodyComponent";
-import { Home, DirectionsCar, Leaderboard, SettingsSuggest, Palette } from "@mui/icons-material";
+import {
+  Home,
+  DirectionsCar,
+  Leaderboard,
+  SettingsSuggest,
+  Palette,
+  AdminPanelSettings,
+} from "@mui/icons-material";
 
 const NavBarBodyComponent = () => {
   const { buttonsStyle, handleGuidesButtonclick } = useNavBarBodyComponent();
@@ -13,6 +20,13 @@ const NavBarBodyComponent = () => {
           Home
         </Button>
       </CustomLinkComponent>
+      <RoleGate accessRoles={[AccessRole.admin]}>
+        <CustomLinkComponent href="/admin-panel" target="_self">
+          <Button startIcon={<AdminPanelSettings />} variant="contained" sx={buttonsStyle}>
+            Admin Panel
+          </Button>
+        </CustomLinkComponent>
+      </RoleGate>
       <CustomLinkComponent href="/cars" target="_self">
         <Button startIcon={<DirectionsCar />} variant="contained" sx={buttonsStyle}>
           Cars

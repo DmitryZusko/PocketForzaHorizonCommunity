@@ -36,3 +36,5 @@ export * from "./ConfirmEmailComponent";
 export * from "./error-components";
 export * from "./RatingComponent";
 export * from "./PersonalStatisticsComponent";
+export * from "./AdminPanelComponent";
+export * from "./AdminCarButtonsComponent";

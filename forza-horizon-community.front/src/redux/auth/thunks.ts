@@ -8,6 +8,7 @@ import {
   ISignUpRequest,
   ISignUpResponse,
 } from "@/data-transfer-objects";
+import { IRegisterUserRequest } from "@/data-transfer-objects/requests/AuthRequests/RegisterUserRequest";
 import { authService } from "@/services";
 import { EmailConfirmationMessage, errorHandler, SignInMessage, SignUpMessage } from "@/utilities";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -83,5 +84,18 @@ export const confirmEmailAsync = createAsyncThunk(
       true,
       EmailConfirmationMessage,
     ) as Promise<AxiosResponse<any, any>>;
+  },
+);
+
+export const registerFunctionUserAsync = createAsyncThunk(
+  "auth/registerFunctionUserAsync",
+  async (request: IRegisterUserRequest, { dispatch }) => {
+    return errorHandler.handleError(
+      () => authService.registerFunctionUserAsync(request),
+      dispatch,
+      true,
+      true,
+      SignUpMessage,
+    );
   },
 );

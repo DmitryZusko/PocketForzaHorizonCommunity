@@ -12,3 +12,4 @@ export * from "./confirm-email";
 export * from "./page-not-found";
 export * from "./internal-server-error";
 export * from "./personal-statistics";
+export * from "./admin-panel";
