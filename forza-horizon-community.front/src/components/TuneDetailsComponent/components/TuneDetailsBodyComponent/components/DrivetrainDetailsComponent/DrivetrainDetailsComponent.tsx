@@ -32,6 +32,7 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"ClutchIcon"}
             src="/EnumIcons/ClutchIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -43,6 +44,7 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"TransmissionIcon"}
             src="/EnumIcons/TransmissionIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -54,6 +56,7 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"DifferentialIcon"}
             src="/EnumIcons/DifferentialIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />

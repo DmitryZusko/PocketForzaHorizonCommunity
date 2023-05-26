@@ -34,6 +34,7 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"BrakesIcon"}
             src="/EnumIcons/BrakesIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -45,6 +46,7 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"SuspensionIcon"}
             src="/EnumIcons/SuspensionIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -56,6 +58,7 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"AntiRollBarsIcon"}
             src="/EnumIcons/AntiRollBarsIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -67,6 +70,7 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"RollCageIcon"}
             src="/EnumIcons/RollCageIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />

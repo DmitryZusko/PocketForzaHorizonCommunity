@@ -45,6 +45,7 @@ const DesignDetailsBodyComponent = ({ description, gallery }: IDesignDetailsBody
                 <Image
                   alt="image"
                   src={imageUtil.addJpgHeader(item)}
+                  loading="lazy"
                   fill
                   className={classes.image}
                 />

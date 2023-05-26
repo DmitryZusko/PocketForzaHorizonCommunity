@@ -38,6 +38,7 @@ const EngineDetailsComponent = ({
           <Image
             alt={"EngineIcon"}
             src="/EnumIcons/EngineIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -49,6 +50,7 @@ const EngineDetailsComponent = ({
           <Image
             alt={"AspirationIcon"}
             src="/EnumIcons/AspirationIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -60,6 +62,7 @@ const EngineDetailsComponent = ({
           <Image
             alt={"IntakeIcon"}
             src="/EnumIcons/IntakeIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -71,6 +74,7 @@ const EngineDetailsComponent = ({
           <Image
             alt={"IgnitionIcon"}
             src="/EnumIcons/IgnitionIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -82,6 +86,7 @@ const EngineDetailsComponent = ({
           <Image
             alt={"DisplacementIcon"}
             src="/EnumIcons/DisplacementIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />
@@ -93,6 +98,7 @@ const EngineDetailsComponent = ({
           <Image
             alt={"ExhaustIcon"}
             src="/EnumIcons/ExhaustIcon.png"
+            loading="lazy"
             width={defaultIconSize}
             height={defaultIconSize}
           />

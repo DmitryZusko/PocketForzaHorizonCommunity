@@ -21,6 +21,7 @@ const GuideDetailsHeader = ({
             <Image
               alt="thumbnail"
               src={thumbnail || "/TuneThumbnail.png"}
+              loading="lazy"
               fill
               style={{ objectFit: "contain" }}
             />

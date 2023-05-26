@@ -7,7 +7,13 @@ import { IAchievementItemComponentProps } from "./types";
 const AchievementItemComponent = ({ achievement, ...props }: IAchievementItemComponentProps) => {
   return (
     <Box sx={styles.achievementContainer}>
-      <Image alt="icon" src={achievement.icon} width={defaultIconSize} height={defaultIconSize} />
+      <Image
+        alt="icon"
+        src={achievement.icon}
+        loading="lazy"
+        width={defaultIconSize}
+        height={defaultIconSize}
+      />
       <Typography variant="textTitle" align="center">
         {achievement.displayName}
       </Typography>
