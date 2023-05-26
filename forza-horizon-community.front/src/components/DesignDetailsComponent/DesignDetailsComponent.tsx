@@ -15,7 +15,7 @@ const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) 
       {isLoading ? (
         <DefaultLoaderComponent />
       ) : (
-        <Grid container>
+        <Grid container {...props}>
           <Slide in={true} direction="right" timeout={500}>
             <Grid item xs={12}>
               <GuideDetailsHeader
