@@ -12,7 +12,7 @@ import {
 const PersonalStatisticsComponent = () => {
   const { activeTab, previousTab, handleTabChange } = usePersonalStatisticsComponent();
   return (
-    <TabContext value={activeTab.toString()} {...props}>
+    <TabContext value={activeTab.toString()}>
       <TabList onChange={handleTabChange} variant="scrollable" scrollButtons="auto">
         <Tab label="General Statistics" value="0" icon={<Laptop />} iconPosition="start" />
         <Tab label="Campaign Statistics" value="1" icon={<AutoStories />} iconPosition="start" />
