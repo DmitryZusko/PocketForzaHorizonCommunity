@@ -29,9 +29,6 @@ const CarTableContent = () => {
     isAddCarTypeOpen,
     handleFilterMenuOpen,
     handleFilterMenuClose,
-    handleAddCarModalOpen,
-    handleAddManufactureModalOpen,
-    handleAddCarTypeModalOpen,
   } = useCarTableContent();
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer}>
