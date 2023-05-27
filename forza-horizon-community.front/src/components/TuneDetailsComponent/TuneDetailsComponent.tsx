@@ -1,6 +1,6 @@
 import { globalStyles } from "@/styles";
 import { Grid, Slide } from "@mui/material";
-import { baseTheme } from "../constants";
+import { baseTheme, defaultAnimationDuration, extendedAnimationDuration } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideDetailsHeader } from "../GuideDetailsHeader";
 import { TuneDetailsBodyComponent } from "./components";
@@ -19,7 +19,7 @@ const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
         <DefaultLoaderComponent />
       ) : (
         <>
-          <Slide in={true} direction={"right"} timeout={500}>
+          <Slide in={true} direction={"right"} timeout={defaultAnimationDuration}>
             <Grid item xs={12}>
               <GuideDetailsHeader
                 thumbnail="/tuneThumbnail.png"
@@ -32,7 +32,7 @@ const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
               />
             </Grid>
           </Slide>
-          <Slide in={true} direction={"right"} timeout={1000}>
+          <Slide in={true} direction={"right"} timeout={extendedAnimationDuration}>
             <Grid item xs={12}>
               <TuneDetailsBodyComponent selectedTune={selectedTune} />
             </Grid>

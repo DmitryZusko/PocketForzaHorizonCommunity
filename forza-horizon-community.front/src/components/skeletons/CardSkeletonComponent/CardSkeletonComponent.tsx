@@ -1,3 +1,4 @@
+import { iconSizeLarge } from "@/components/constants";
 import {
   Card,
   CardContent,
@@ -13,7 +14,7 @@ const CardSkeletonComponent = (props?: ContainerProps) => {
   return (
     <Card sx={styles.skeleton} {...props}>
       <CardMedia>
-        <Skeleton variant="rectangular" width="100vw" height={150} />
+        <Skeleton variant="rectangular" width="100vw" height={iconSizeLarge.height} />
       </CardMedia>
       <CardContent>
         <Container>

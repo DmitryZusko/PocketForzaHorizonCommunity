@@ -35,8 +35,8 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"BrakesIcon"}
             src="/EnumIcons/BrakesIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(brakes || "", BrakesType)}
@@ -46,8 +46,8 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"SuspensionIcon"}
             src="/EnumIcons/SuspensionIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(suspension || "", SuspensionType)}
@@ -57,8 +57,8 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"AntiRollBarsIcon"}
             src="/EnumIcons/AntiRollBarsIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(antiRollBars || "", AntiRollBarsType)}
@@ -68,8 +68,8 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"RollCageIcon"}
             src="/EnumIcons/RollCageIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rollCage || "", RollCageType)}

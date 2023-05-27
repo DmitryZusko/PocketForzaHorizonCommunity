@@ -6,7 +6,7 @@ import "lightgallery/css/lightgallery.css";
 import Image from "next/image";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { baseTheme } from "../constants";
+import { baseTheme, defaultImageSize } from "../constants";
 import { globalStyles } from "@/styles";
 import { styles } from "./styles";
 
@@ -16,10 +16,10 @@ const ImageUploaderComponent = ({
   maxImageSizeInMB,
   isRequired,
   isFixedSize,
-  width = 300,
-  height = 300,
-  previewWidth = 300,
-  previewHeight = 300,
+  width = defaultImageSize.width,
+  height = defaultImageSize.height,
+  previewWidth = defaultImageSize.width,
+  previewHeight = defaultImageSize.height,
   additionalInfo,
   handleErrorChange,
   handleImagesChange,

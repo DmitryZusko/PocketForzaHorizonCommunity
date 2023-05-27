@@ -1,4 +1,9 @@
-import { CardSkeletonComponent, GuideCardFooterComponent, NavigationCard } from "@/components";
+import {
+  CardSkeletonComponent,
+  defaultAnimationDuration,
+  GuideCardFooterComponent,
+  NavigationCard,
+} from "@/components";
 import { CustomTooltipComponent } from "@/components/CustomTooltipComponent";
 import { imageUtil } from "@/utilities";
 import { Box, BoxProps, Grow, Slide, Typography } from "@mui/material";
@@ -22,7 +27,13 @@ const DesignBlockComponent = (props: BoxProps) => {
           </Grow>
         ) : (
           latestDesigns.map((design) => (
-            <Slide key={design.id} direction="right" in={!isLoading} mountOnEnter timeout={500}>
+            <Slide
+              key={design.id}
+              direction="right"
+              in={!isLoading}
+              mountOnEnter
+              timeout={defaultAnimationDuration}
+            >
               <Box>
                 <CustomTooltipComponent title="Go to Design" {...{ sx: styles.cardBlock }}>
                   <Box>

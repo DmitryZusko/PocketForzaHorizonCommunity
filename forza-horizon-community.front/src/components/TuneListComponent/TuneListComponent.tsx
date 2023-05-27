@@ -1,6 +1,11 @@
 import { Autocomplete, Button, Grid, GridProps, Slide, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { AccessRole, defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
+import {
+  AccessRole,
+  defaultSearchTreshhold,
+  defaultImageSize,
+  defaultAnimationDuration,
+} from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { InfiniteScrollEndComponent } from "../InfiniteScrollEndComponent";
@@ -60,14 +65,14 @@ const TuneListComponent = (props?: GridProps) => {
         >
           <Grid container>
             {tunes.map((tune) => (
-              <Slide key={tune.id} in={true} timeout={500} direction={"right"}>
+              <Slide key={tune.id} in={true} timeout={defaultAnimationDuration} direction={"right"}>
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
                     thumbnail="/tuneThumbnail.png"
                     cardTitle={tune.title}
                     navigationLink={`/guides/tunes/${tune.id}`}
                     target={"_self"}
-                    imageHeight={defaultTuneImageHeight}
+                    imageHeight={defaultImageSize.height}
                     body={
                       <TuneCardBodyComponent
                         engineType={tune.engineType}

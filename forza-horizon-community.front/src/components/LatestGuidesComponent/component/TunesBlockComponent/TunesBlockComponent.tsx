@@ -1,7 +1,8 @@
 import {
   CardSkeletonComponent,
   CustomTooltipComponent,
-  defaultTuneImageHeight,
+  defaultAnimationDuration,
+  defaultImageSize,
   GuideCardFooterComponent,
   NavigationCard,
   TuneCardBodyComponent,
@@ -27,7 +28,13 @@ const TunesBlockComponent = (props: BoxProps) => {
           </Grow>
         ) : (
           latestTunes.map((tune) => (
-            <Slide key={tune.id} in={!isLoading} direction="right" mountOnEnter timeout={500}>
+            <Slide
+              key={tune.id}
+              in={!isLoading}
+              direction="right"
+              mountOnEnter
+              timeout={defaultAnimationDuration}
+            >
               <Box>
                 <CustomTooltipComponent
                   key={tune.id}
@@ -37,7 +44,7 @@ const TunesBlockComponent = (props: BoxProps) => {
                   <Box>
                     <NavigationCard
                       thumbnail="tuneThumbnail.png"
-                      imageHeight={defaultTuneImageHeight}
+                      imageHeight={defaultImageSize.height}
                       target={"_self"}
                       cardTitle={tune.title}
                       navigationLink={`/guides/tunes/${tune.id}`}

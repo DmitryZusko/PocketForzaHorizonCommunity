@@ -1,3 +1,4 @@
+import { defaultAnimationDuration } from "@/components/constants";
 import { AchievementSkeletonComponent } from "@/components/skeletons";
 import { Box, Container, ContainerProps, Grid, Grow, Slide, Typography } from "@mui/material";
 import { AchievementItemComponent } from "./components";
@@ -37,6 +38,7 @@ const AchievementStatisticsComponent = (props?: ContainerProps) => {
               in={!isLoadingAchievements}
               direction="right"
               mountOnEnter
+              timeout={defaultAnimationDuration}
             >
               <Box sx={styles.achievementBox}>
                 <AchievementItemComponent achievement={achievement} />

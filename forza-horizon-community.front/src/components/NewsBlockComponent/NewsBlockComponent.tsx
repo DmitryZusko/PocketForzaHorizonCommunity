@@ -1,4 +1,5 @@
 import { Grid, GridProps, Grow, Slide, Typography } from "@mui/material";
+import { defaultAnimationDuration } from "../constants";
 import { CustomTooltipComponent } from "../CustomTooltipComponent";
 import { NavigationCard } from "../NavigationCard";
 import { CardSkeletonComponent } from "../skeletons";
@@ -23,7 +24,7 @@ const NewsBlockComponent = (props: GridProps) => {
           </Grid>
         </Grow>
       ) : (
-        <Slide direction="right" in={!isLoading} mountOnEnter timeout={500}>
+        <Slide direction="right" in={!isLoading} mountOnEnter timeout={defaultAnimationDuration}>
           <Grid container {...props}>
             {news.map((item) => (
               <CustomTooltipComponent key={item.gid} title={"Open in Steam"}>

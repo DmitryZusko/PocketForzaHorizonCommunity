@@ -39,8 +39,8 @@ const EngineDetailsComponent = ({
           <Image
             alt={"EngineIcon"}
             src="/EnumIcons/EngineIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(engineType || "", EngineType)}
@@ -50,8 +50,8 @@ const EngineDetailsComponent = ({
           <Image
             alt={"AspirationIcon"}
             src="/EnumIcons/AspirationIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(aspirationType || "", AspirationType)}
@@ -61,8 +61,8 @@ const EngineDetailsComponent = ({
           <Image
             alt={"IntakeIcon"}
             src="/EnumIcons/IntakeIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(intake || "", IntakeType)}
@@ -72,8 +72,8 @@ const EngineDetailsComponent = ({
           <Image
             alt={"IgnitionIcon"}
             src="/EnumIcons/IgnitionIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(ignition || "", IgnitionType)}
@@ -83,8 +83,8 @@ const EngineDetailsComponent = ({
           <Image
             alt={"DisplacementIcon"}
             src="/EnumIcons/DisplacementIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(displacement || "", DisplacementType)}
@@ -94,8 +94,8 @@ const EngineDetailsComponent = ({
           <Image
             alt={"ExhaustIcon"}
             src="/EnumIcons/ExhaustIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(exhaust || "", ExhaustType)}

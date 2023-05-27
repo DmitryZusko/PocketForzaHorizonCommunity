@@ -1,5 +1,5 @@
 import { Autocomplete, Button, Grid, GridProps, Slide, TextField, Typography } from "@mui/material";
-import { AccessRole, defaultSearchTreshhold } from "../constants";
+import { AccessRole, defaultAnimationDuration, defaultSearchTreshhold } from "../constants";
 import { SearchComponent } from "../SearchComponent";
 import { useDesginListComponent } from "./useDesginListComponent";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -26,7 +26,7 @@ const DesginListComponent = (props?: GridProps) => {
   } = useDesginListComponent();
 
   return (
-    <Grid container sx={styles.outerContainer}>
+    <Grid container sx={styles.outerContainer} {...props}>
       <Grid item xs={12} md={5}>
         <SearchComponent
           label="Search"
@@ -60,7 +60,12 @@ const DesginListComponent = (props?: GridProps) => {
         >
           <Grid container>
             {designs.map((design) => (
-              <Slide key={design.id} in={true} timeout={500} direction={"right"}>
+              <Slide
+                key={design.id}
+                in={true}
+                timeout={defaultAnimationDuration}
+                direction={"right"}
+              >
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
                     navigationLink={`/guides/designs/${design.id}`}

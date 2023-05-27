@@ -35,8 +35,8 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TireWidthIcon"}
             src="/EnumIcons/TiresWidthIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(frontTireWidth || "", TiresWidthType)}
@@ -46,8 +46,8 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TireWidthIcon"}
             src="/EnumIcons/TiresWidthIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rearTireWidth || "", TiresWidthType)}
@@ -57,8 +57,8 @@ const TiresDetailsComponent = ({
           <Image
             alt={"frontTrackWidthIcon"}
             src="/EnumIcons/FrontTrackWidthIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(frontTrackWidth || "", TrackWidthType)}
@@ -68,8 +68,8 @@ const TiresDetailsComponent = ({
           <Image
             alt={"rearTrackWidthIcon"}
             src="/EnumIcons/RearTrackWidthIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rearTrackWidth || "", TrackWidthType)}
@@ -79,8 +79,8 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TiresCompoundIcon"}
             src="/EnumIcons/TiresCompoundIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(tiresCompound || "", TiresCompoundType)}

@@ -4,6 +4,7 @@ import {
   CarTableComponent,
   FilterCarTableComponent,
   ImageBackgroundComponent,
+  longerAnimationDuration,
   NavBarComponent,
   PageFooterComponent,
   ScrollUpFabComponent,
@@ -62,7 +63,7 @@ const CarTableContent = () => {
           </Button>
         )}
         {isDesktop ? (
-          <Slide in={true} direction={"right"} timeout={750}>
+          <Slide in={true} direction={"right"} timeout={longerAnimationDuration}>
             <Grid item lg={2}>
               <FilterCarTableComponent />
             </Grid>
@@ -79,7 +80,7 @@ const CarTableContent = () => {
             <FilterCarTableComponent />
           </Drawer>
         )}
-        <Slide in={true} direction={"right"} timeout={750}>
+        <Slide in={true} direction={"right"} timeout={longerAnimationDuration}>
           <Grid item xs={12} lg={10}>
             <CarTableComponent />
           </Grid>

@@ -3,6 +3,7 @@ import {
   CustomAccordionComponent,
   ImageBackgroundComponent,
   LatestGuidesComponent,
+  longerAnimationDuration,
   NavBarComponent,
   NewsBlockComponent,
   PageFooterComponent,
@@ -54,7 +55,7 @@ const HomeContent = () => {
       <Box sx={styles.accordionBox} ref={newsAccordionRef}>
         <Fade
           in={newsAccordionInView}
-          timeout={750}
+          timeout={longerAnimationDuration}
           mountOnEnter
           easing={baseTheme.transitions.easing.sharp}
         >
@@ -66,7 +67,7 @@ const HomeContent = () => {
       <Box sx={styles.accordionBox} ref={guidesAccordionRef}>
         <Fade
           in={guidesAccordionInView}
-          timeout={750}
+          timeout={longerAnimationDuration}
           mountOnEnter
           easing={baseTheme.transitions.easing.sharp}
         >
@@ -78,7 +79,7 @@ const HomeContent = () => {
       <Box sx={styles.accordionBox} ref={statisticsAccordionRef}>
         <Fade
           in={statisticsAccordionInView}
-          timeout={750}
+          timeout={longerAnimationDuration}
           mountOnEnter
           easing={baseTheme.transitions.easing.sharp}
         >
@@ -95,7 +96,7 @@ const HomeContent = () => {
       <Box ref={footerRef} sx={pageStyles.footer}>
         <Fade
           in={footerInView}
-          timeout={750}
+          timeout={longerAnimationDuration}
           mountOnEnter
           easing={baseTheme.transitions.easing.sharp}
         >

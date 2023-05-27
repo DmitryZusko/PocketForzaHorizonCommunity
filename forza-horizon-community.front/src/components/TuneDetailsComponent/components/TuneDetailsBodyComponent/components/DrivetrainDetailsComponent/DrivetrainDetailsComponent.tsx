@@ -33,8 +33,8 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"ClutchIcon"}
             src="/EnumIcons/ClutchIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(clutch || "", ClutchType)}
@@ -44,8 +44,8 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"TransmissionIcon"}
             src="/EnumIcons/TransmissionIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(transmission || "", TransmissionType)}
@@ -55,8 +55,8 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"DifferentialIcon"}
             src="/EnumIcons/DifferentialIcon.png"
-            width={defaultIconSize}
-            height={defaultIconSize}
+            width={defaultIconSize.width}
+            height={defaultIconSize.width}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(differential || "", DifferentialType)}

@@ -1,7 +1,7 @@
 import { Logout, NightsStay, WbSunny } from "@mui/icons-material";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import Image from "next/image";
-import { baseTheme } from "../constants";
+import { baseTheme, defaultLogoSize, smallLogoSize } from "../constants";
 import { CustomLinkComponent } from "../CustomLinkComponent";
 import {
   ForgotPasswordModalComponent,
@@ -32,7 +32,11 @@ const NavBarComponent = ({ ...props }) => {
         <CustomLinkComponent
           href="/"
           target="_self"
-          {...{ width: { xs: 125, md: 150 }, height: { xs: 75, md: 100 }, position: "relative" }}
+          {...{
+            width: { xs: smallLogoSize.width, md: defaultLogoSize.width },
+            height: { xs: smallLogoSize.height, md: defaultLogoSize.height },
+            position: "relative",
+          }}
         >
           <Image alt="logo" src="/logo.png" fill loading="lazy" style={{ objectFit: "cover" }} />
         </CustomLinkComponent>

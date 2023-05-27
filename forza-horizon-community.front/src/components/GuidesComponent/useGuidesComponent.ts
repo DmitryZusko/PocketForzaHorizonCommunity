@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { buttonSlideAnimationDuration } from "./constants";
+import { defaultAnimationDuration } from "../constants";
 import { styles } from "./styles";
 
 export const useGuidesComponent = () => {
@@ -15,7 +15,7 @@ export const useGuidesComponent = () => {
     setIsSlide(false);
     setTimeout(() => {
       router.push("/guides/tunes");
-    }, buttonSlideAnimationDuration / 1.5);
+    }, defaultAnimationDuration / 1.5);
   };
 
   const handleTuneEnter = () => {
@@ -30,7 +30,7 @@ export const useGuidesComponent = () => {
     setIsSlide(false);
     setTimeout(() => {
       router.push("/guides/designs");
-    }, buttonSlideAnimationDuration / 1.5);
+    }, defaultAnimationDuration / 1.5);
   };
 
   const handleDesignEnter = () => {

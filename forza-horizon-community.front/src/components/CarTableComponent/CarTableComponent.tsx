@@ -15,9 +15,10 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import {
-  defaultCarThumbnailSizeLarge,
-  defaultCarThumbnailSizeSmall,
+  defaultImageSize,
+  imageSizeSmall,
   defaultRowsPerPageOptions,
+  defaultAnimationDuration,
 } from "../constants";
 import { headerCells, SortingTableHead } from "./components";
 import { styles } from "./styles";
@@ -66,22 +67,14 @@ const CarTableComponent = (props?: TableContainerProps) => {
             </TableRow>
           ) : (
             maintainedCars.map((car) => (
-              <Grow key={car.id} in={true} timeout={500}>
+              <Grow key={car.id} in={true} timeout={defaultAnimationDuration}>
                 <TableRow>
                   <TableCell>
                     <Image
                       alt="car"
                       src={imageUtil.addJpgHeader(car.image)}
-                      width={
-                        isTablet
-                          ? defaultCarThumbnailSizeLarge.width
-                          : defaultCarThumbnailSizeSmall.width
-                      }
-                      height={
-                        isTablet
-                          ? defaultCarThumbnailSizeLarge.height
-                          : defaultCarThumbnailSizeSmall.height
-                      }
+                      width={isTablet ? defaultImageSize.width : imageSizeSmall.width}
+                      height={isTablet ? defaultImageSize.height : imageSizeSmall.height}
                       style={{ objectFit: "cover" }}
                     />
                   </TableCell>

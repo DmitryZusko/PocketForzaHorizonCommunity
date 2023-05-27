@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { defaultScrollButtonTreshhold } from "../constants";
 
 export const useScrollUpFabComponent = () => {
   const [isvisible, setIsVisible] = useState(false);
@@ -12,7 +13,7 @@ export const useScrollUpFabComponent = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > defaultScrollButtonTreshhold) {
         setIsVisible(true);
         return;
       }

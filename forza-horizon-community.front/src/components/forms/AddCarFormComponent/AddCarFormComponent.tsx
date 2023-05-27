@@ -1,5 +1,5 @@
 import {
-  defaultCarThumbnailSizeLarge,
+  defaultImageSize,
   FormButtonGroupComponent,
   ImageUploaderComponent,
   maxImageSizeInMB,
@@ -33,10 +33,10 @@ const AddCarFormComponent = () => {
               handleErrorChange={handleThumbnailErrorChange}
               handleImagesChange={handleThumbnailChange}
               isFixedSize={true}
-              width={defaultCarThumbnailSizeLarge.width}
-              height={defaultCarThumbnailSizeLarge.height}
-              previewWidth={defaultCarThumbnailSizeLarge.width}
-              previewHeight={defaultCarThumbnailSizeLarge.height}
+              width={defaultImageSize.width}
+              height={defaultImageSize.height}
+              previewWidth={defaultImageSize.width}
+              previewHeight={defaultImageSize.height}
               additionalInfo="Please, select a 300x300 image"
             />
           </Grid>
