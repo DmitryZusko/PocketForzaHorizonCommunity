@@ -36,7 +36,9 @@ const designSlice = createSlice({
       state.page += 1;
     },
     cleanUpDesigns: (state) => {
+      state.isLoadingDesigns = false;
       state.designs = [];
+      state.page = 0;
     },
   },
   extraReducers: (builder) => {

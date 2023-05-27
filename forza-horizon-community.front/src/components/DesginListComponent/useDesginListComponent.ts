@@ -107,7 +107,6 @@ export const useDesginListComponent = () => {
   useEffect(() => {
     return () => {
       dispatch(cleanUpDesigns());
-      dispatch(setDesignPage(0));
     };
   }, [dispatch]);
 

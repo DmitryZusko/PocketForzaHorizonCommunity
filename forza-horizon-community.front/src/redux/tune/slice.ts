@@ -36,7 +36,9 @@ const tuneSlice = createSlice({
       state.page += 1;
     },
     cleanUpTunes: (state) => {
+      state.isLoadingTunes = false;
       state.tunes = [];
+      state.page = 0;
     },
   },
   extraReducers: (builder) => {

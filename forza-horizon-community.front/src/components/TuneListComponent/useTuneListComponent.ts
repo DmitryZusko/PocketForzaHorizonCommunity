@@ -106,7 +106,6 @@ export const useTuneListComponent = () => {
   useEffect(() => {
     return () => {
       dispatch(cleanUpTunes());
-      dispatch(setTunePage(0));
     };
   }, [dispatch]);
 

@@ -1,5 +1,6 @@
 import { ICar } from "@/data-transfer-objects";
 import {
+  cleanUpCarState,
   getCarsAsync,
   getOwnedCarsAsync,
   paginatedCarsSelector,
@@ -144,6 +145,11 @@ const useCarTableComponent = () => {
     });
   }, [currentPage, pageSize]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(cleanUpCarState());
+    };
+  }, [dispatch]);
   return {
     isTablet,
     currentPage,

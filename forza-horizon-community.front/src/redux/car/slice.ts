@@ -17,14 +17,19 @@ const carSlice = createSlice({
   name: "car",
   initialState,
   reducers: {
-    setPage: (state, { payload }: ActionWithPayload<number>) => {
+    setCarPage: (state, { payload }: ActionWithPayload<number>) => {
       state.page = payload;
     },
-    setPageSize: (state, { payload }: ActionWithPayload<number>) => {
+    setCarPageSize: (state, { payload }: ActionWithPayload<number>) => {
       state.pageSize = payload;
     },
     setSortedCars: (state, { payload }: ActionWithPayload<ISortingPayload<ICar>>) => {
       state.cars = sortEntities<ICar>(payload.order, payload.orderBy, state.cars);
+    },
+    cleanUpCarState: (state) => {
+      state.isLoadingCars = false;
+      state.cars = [];
+      state.page = 0;
     },
   },
   extraReducers: (builder) => {
@@ -61,6 +66,6 @@ const carSlice = createSlice({
   },
 });
 
-export const { setPage, setPageSize, setSortedCars } = carSlice.actions;
+export const { setCarPage, setCarPageSize, setSortedCars, cleanUpCarState } = carSlice.actions;
 
 export default carSlice.reducer;
