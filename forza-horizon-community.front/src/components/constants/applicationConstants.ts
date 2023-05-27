@@ -2,7 +2,7 @@ import { ImageSize } from "lightgallery/lg-utils";
 import { IImageSize } from "./types";
 
 //accessibility
-export const defaultPageSize = 3;
+export const defaultPageSize = 15;
 
 export const defaultRowsPerPageOptions = [5, 15, 30, 50, 100];
 
