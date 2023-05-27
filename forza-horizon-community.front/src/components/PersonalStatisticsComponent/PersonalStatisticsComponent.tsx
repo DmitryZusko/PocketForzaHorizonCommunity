@@ -1,5 +1,5 @@
 import { Box, Slide, Tab } from "@mui/material";
-import { TabContext, TabContextProps, TabList, TabPanel } from "@mui/lab";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { usePersonalStatisticsComponent } from "./usePersonalStatisticsComponent";
 import { AutoStories, EmojiEvents, Laptop, SportsEsports } from "@mui/icons-material";
 import {
@@ -9,7 +9,7 @@ import {
   RecordsStatisticsComponent,
 } from "./components";
 
-const PersonalStatisticsComponent = (props?: TabContextProps) => {
+const PersonalStatisticsComponent = () => {
   const { activeTab, previousTab, handleTabChange } = usePersonalStatisticsComponent();
   return (
     <TabContext value={activeTab.toString()} {...props}>
