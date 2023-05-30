@@ -54,8 +54,13 @@ public class TuneMappingTests
             Id = tune.Id.ToString(),
             Title = tune.Title,
             ForzaShareCode = tune.ForzaShareCode,
+            Rating = 0,
+            CreationDate = tune.CreationDate,
             AuthorUsername = tune.User.UserName,
             CarModel = $"{tune.Car.Manufacture.Name} {tune.Car.Model} {tune.Car.Year}",
+            EngineType = tune.TuneOptions.Engine,
+            AspirationType = tune.TuneOptions.Aspiration,
+            TiresCompound = tune.TuneOptions.Compound,
         };
     }
 
@@ -66,9 +71,13 @@ public class TuneMappingTests
             Id = tune.Id.ToString(),
             Title = tune.Title,
             ForzaShareCode = tune.ForzaShareCode,
+            Rating = 0,
+            CreationDate = tune.CreationDate,
             AuthorUsername = tune.User.UserName,
             CarModel = $"{tune.Car.Manufacture.Name} {tune.Car.Model} {tune.Car.Year}",
             EngineDescription = tune.TuneOptions.EngineDescription,
+            EngineType = tune.TuneOptions.Engine,
+            AspirationType = tune.TuneOptions.Aspiration,
             Intake = tune.TuneOptions.Intake,
             Ignition = tune.TuneOptions.Ignition,
             Displacement = tune.TuneOptions.Displacement,
@@ -83,6 +92,7 @@ public class TuneMappingTests
             Transmission = tune.TuneOptions.Transmission,
             Differential = tune.TuneOptions.Differential,
             TiresDescription = tune.TuneOptions.TiresDescription,
+            TiresCompound = tune.TuneOptions.Compound,
             FrontTireWidth = tune.TuneOptions.FrontTireWidth,
             RearTireWidth = tune.TuneOptions.RearTireWidth,
             FrontTrackWidth = tune.TuneOptions.FrontTrackWidth,
@@ -117,6 +127,8 @@ public class TuneMappingTests
             if (property.Name == nameof(actual.User)) continue;
             if (property.Name == nameof(actual.Car)) continue;
             if (property.Name == nameof(actual.TuneOptions)) continue;
+            if (property.Name == nameof(actual.CreationDate)) continue;
+            if (property.Name == nameof(actual.Ratings)) continue;
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
         }
 
