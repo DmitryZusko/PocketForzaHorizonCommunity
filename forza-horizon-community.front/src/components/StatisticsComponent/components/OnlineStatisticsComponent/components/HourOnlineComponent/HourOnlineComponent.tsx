@@ -1,4 +1,4 @@
-import { baseTheme } from "@/components/constants";
+import { baseTheme, defaultChartSize } from "@/components/constants";
 import { Container } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { PieChart, Pie, Tooltip } from "recharts";
@@ -13,9 +13,9 @@ const HourOnlineComponent = ({ totalPlayers, ...props }: IHourOnlineComponentPro
   });
 
   return (
-    <Container sx={styles.outerContainer}>
+    <Container sx={styles.outerContainer} {...props}>
       <Typography variant="textTitle">24-Hour Statistics</Typography>
-      <PieChart width={400} height={400}>
+      <PieChart width={defaultChartSize.width} height={defaultChartSize.height}>
         <Pie
           activeIndex={activeIndex}
           activeShape={<SelectedSectorComponent />}

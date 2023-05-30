@@ -7,6 +7,7 @@ export const styles = {
     justifyContent: "space-around",
     alignItems: "center",
     marginBottom: baseTheme.spacing(17),
+    position: "relative",
   },
 
   imageContainer: {

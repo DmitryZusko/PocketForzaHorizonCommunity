@@ -1,9 +1,10 @@
+import { defaultAnimationDuration } from "@/components/constants";
 import { OnlineStatisticsSkeletonComponent } from "@/components/skeletons";
-import { Box, Grid, Grow, Slide } from "@mui/material";
+import { Box, Grid, GridProps, Grow, Slide } from "@mui/material";
 import { CurrentOnlineComponent, HourOnlineComponent, WeeklyOnlineComponent } from "./components";
 import { useOnlineStatisticsComponent } from "./useOnlineStatisticsComponent";
 
-const OnlineStatisticsComponent = ({ ...props }) => {
+const OnlineStatisticsComponent = (props: GridProps) => {
   const { isLoading, totalPlayers } = useOnlineStatisticsComponent();
 
   return (
@@ -15,7 +16,7 @@ const OnlineStatisticsComponent = ({ ...props }) => {
           </Box>
         </Grow>
       ) : (
-        <Slide in={!isLoading} direction="right" timeout={350} mountOnEnter>
+        <Slide in={!isLoading} direction="right" timeout={defaultAnimationDuration} mountOnEnter>
           <Grid container {...props}>
             <Grid item xs={12}>
               <CurrentOnlineComponent totalPlayers={totalPlayers} />

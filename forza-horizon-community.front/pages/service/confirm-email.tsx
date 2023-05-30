@@ -3,14 +3,6 @@ import { ConfirmEmailContent } from "@/page-content";
 import { gateHandler } from "@/utilities";
 import Head from "next/head";
 
-export const getServerSideProps = () => {
-  return {
-    props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse),
-    },
-  };
-};
-
 const ConfirmEmail = () => {
   return (
     <>
@@ -21,9 +13,17 @@ const ConfirmEmail = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.png" />
       </Head>
-      <ConfirmEmailContent />;
+      <ConfirmEmailContent />
     </>
   );
+};
+
+export const getServerSideProps = () => {
+  return {
+    props: {
+      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse),
+    },
+  };
 };
 
 export default ConfirmEmail;

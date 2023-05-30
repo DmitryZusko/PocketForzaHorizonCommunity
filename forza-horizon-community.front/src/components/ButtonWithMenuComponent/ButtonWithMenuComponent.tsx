@@ -4,6 +4,7 @@ import { IButtonWithMenuComponentProps } from "./types";
 import { useButtonWithMenuComponent } from "./useButtonWithMenuComponent";
 import { styles } from "./styles";
 import { Dvr, ArrowRight } from "@mui/icons-material";
+import { defaultAnimationDuration } from "../constants";
 
 const ButtonWithMenuComponent = ({
   mainButtonText,
@@ -25,7 +26,7 @@ const ButtonWithMenuComponent = ({
       </Button>
       <Popper anchorEl={anchorEl.current} open={isOpen} placement="bottom" disablePortal transition>
         {({ TransitionProps }) => (
-          <Grow {...TransitionProps} timeout={400}>
+          <Grow {...TransitionProps} timeout={defaultAnimationDuration}>
             <Box sx={styles.nestedBlock}>{children}</Box>
           </Grow>
         )}

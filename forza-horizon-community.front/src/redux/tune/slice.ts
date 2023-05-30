@@ -12,14 +12,14 @@ import {
 
 const initialState: ITuneState = {
   isLoadingLatest: false,
-  latestTunes: [],
-  isLoadingTunes: false,
-  tunes: [],
+  latestEntities: [],
+  isLoadingEntities: false,
+  entities: [],
   page: 0,
   pageSize: defaultPageSize,
   totalEntities: 0,
   isLoadingSelected: false,
-  selectedTune: undefined,
+  selectedEntity: undefined,
 };
 
 const tuneSlice = createSlice({
@@ -36,7 +36,9 @@ const tuneSlice = createSlice({
       state.page += 1;
     },
     cleanUpTunes: (state) => {
-      state.tunes = [];
+      state.isLoadingEntities = false;
+      state.entities = [];
+      state.page = 0;
     },
   },
   extraReducers: (builder) => {
@@ -45,34 +47,34 @@ const tuneSlice = createSlice({
     });
     builder.addCase(getLatestTunesAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
-      state.latestTunes = payload.data;
+      state.latestEntities = payload.data;
       state.isLoadingLatest = false;
     });
     builder.addCase(getTunesAsync.pending, (state) => {
-      state.isLoadingTunes = true;
+      state.isLoadingEntities = true;
     });
     builder.addCase(getTunesAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.tunes = state.tunes.concat(payload.data.entities);
+      state.entities = state.entities.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
-      state.isLoadingTunes = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getTunesAsync.rejected, (state) => {
-      state.isLoadingTunes = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getTunesByCarIdAsync.pending, (state) => {
-      state.isLoadingTunes = true;
+      state.isLoadingEntities = true;
     });
     builder.addCase(getTunesByCarIdAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.tunes = state.tunes.concat(payload.data.entities);
+      state.entities = state.entities.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
-      state.isLoadingTunes = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getTunesByCarIdAsync.rejected, (state) => {
-      state.isLoadingTunes = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getTuneById.pending, (state) => {
       state.isLoadingSelected = true;
@@ -80,13 +82,13 @@ const tuneSlice = createSlice({
     builder.addCase(getTuneById.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.selectedTune = payload.data;
+      state.selectedEntity = payload.data;
       state.isLoadingSelected = false;
     });
     builder.addCase(setTuneRatingAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.selectedTune = payload.data;
+      state.selectedEntity = payload.data;
       toastHandler.showSuccess(RatingPosted);
     });
   },

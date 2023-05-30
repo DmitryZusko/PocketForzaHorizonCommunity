@@ -8,7 +8,7 @@ import {
 import { useCallback, useEffect } from "react";
 
 const useDesignBlockComponent = () => {
-  const { isLoadingLatest: isLoading, latestDesigns } = useAppSelector(latestDesignsSelector);
+  const { isLoadingLatest: isLoading, latestEntities } = useAppSelector(latestDesignsSelector);
 
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ const useDesignBlockComponent = () => {
     loadLatestDesigns(0, defaultLatestGuidesAmount, defaultCardDescriptionLimit);
   }, [loadLatestDesigns]);
 
-  return { isLoading, latestDesigns };
+  return { isLoading, latestEntities };
 };
 
 export default useDesignBlockComponent;

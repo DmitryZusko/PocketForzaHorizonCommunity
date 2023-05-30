@@ -12,14 +12,14 @@ import {
 
 const initialState: IDesignState = {
   isLoadingLatest: false,
-  latestDesigns: [],
-  isLoadingDesigns: false,
-  designs: [],
+  latestEntities: [],
+  isLoadingEntities: false,
+  entities: [],
   page: 0,
   pageSize: defaultPageSize,
   totalEntities: 0,
   isLoadingSelected: false,
-  selectedDesign: undefined,
+  selectedEntity: undefined,
 };
 
 const designSlice = createSlice({
@@ -36,7 +36,9 @@ const designSlice = createSlice({
       state.page += 1;
     },
     cleanUpDesigns: (state) => {
-      state.designs = [];
+      state.isLoadingEntities = false;
+      state.entities = [];
+      state.page = 0;
     },
   },
   extraReducers: (builder) => {
@@ -46,34 +48,34 @@ const designSlice = createSlice({
     builder.addCase(getLatestDesignsAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.latestDesigns = payload.data.entities;
+      state.latestEntities = payload.data.entities;
       state.isLoadingLatest = false;
     });
     builder.addCase(getDesignsAsync.pending, (state) => {
-      state.isLoadingDesigns = true;
+      state.isLoadingEntities = true;
     });
     builder.addCase(getDesignsAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.designs = state.designs.concat(payload.data.entities);
+      state.entities = state.entities.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
-      state.isLoadingDesigns = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getDesignsAsync.rejected, (state) => {
-      state.isLoadingDesigns = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getDesignsByCarId.pending, (state) => {
-      state.isLoadingDesigns = true;
+      state.isLoadingEntities = true;
     });
     builder.addCase(getDesignsByCarId.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.designs = state.designs.concat(payload.data.entities);
+      state.entities = state.entities.concat(payload.data.entities);
       state.totalEntities = payload.data.total;
-      state.isLoadingDesigns = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getDesignsByCarId.rejected, (state) => {
-      state.isLoadingDesigns = false;
+      state.isLoadingEntities = false;
     });
     builder.addCase(getDesignById.pending, (state) => {
       state.isLoadingSelected = true;
@@ -81,13 +83,13 @@ const designSlice = createSlice({
     builder.addCase(getDesignById.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.selectedDesign = payload.data;
+      state.selectedEntity = payload.data;
       state.isLoadingSelected = false;
     });
     builder.addCase(setDesignRatingAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.selectedDesign = payload.data;
+      state.selectedEntity = payload.data;
       toastHandler.showSuccess(RatingPosted);
     });
   },

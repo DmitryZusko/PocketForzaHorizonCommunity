@@ -1,6 +1,11 @@
-import { Autocomplete, Button, Grid, Slide, TextField } from "@mui/material";
+import { Autocomplete, Button, Grid, GridProps, Slide, TextField } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { AccessRole, defaultSearchTreshhold, defaultTuneImageHeight } from "../constants";
+import {
+  AccessRole,
+  defaultSearchTreshhold,
+  defaultImageSize,
+  defaultAnimationDuration,
+} from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { InfiniteScrollEndComponent } from "../InfiniteScrollEndComponent";
@@ -12,9 +17,9 @@ import { useTuneListComponent } from "./useTuneListComponent";
 import { AddBox } from "@mui/icons-material";
 import { RoleGate } from "../gates";
 
-const TuneListComponent = () => {
+const TuneListComponent = (props?: GridProps) => {
   const {
-    tunes,
+    entities,
     autocompleteOptions,
     page,
     pageSize,
@@ -26,7 +31,7 @@ const TuneListComponent = () => {
   } = useTuneListComponent();
 
   return (
-    <Grid container sx={styles.outerContainer}>
+    <Grid container sx={styles.outerContainer} {...props}>
       <Grid item xs={12} md={5}>
         <SearchComponent
           label="Search"
@@ -51,7 +56,7 @@ const TuneListComponent = () => {
       </RoleGate>
       <Grid item xs={12}>
         <InfiniteScroll
-          dataLength={tunes.length}
+          dataLength={entities.length}
           next={loadNext}
           hasMore={page * pageSize + pageSize < totalEntities} // + pageSize in case a first page = 0
           loader={<DefaultLoaderComponent />}
@@ -59,15 +64,15 @@ const TuneListComponent = () => {
           style={styles.infiniteScroll}
         >
           <Grid container>
-            {tunes.map((tune) => (
-              <Slide key={tune.id} in={true} timeout={500} direction={"right"}>
+            {entities.map((tune) => (
+              <Slide key={tune.id} in={true} timeout={defaultAnimationDuration} direction={"right"}>
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
-                    thumbnail="/TuneThumbnail.png"
+                    thumbnail="/tuneThumbnail.png"
                     cardTitle={tune.title}
                     navigationLink={`/guides/tunes/${tune.id}`}
                     target={"_self"}
-                    imageHeight={defaultTuneImageHeight}
+                    imageHeight={defaultImageSize.height}
                     body={
                       <TuneCardBodyComponent
                         engineType={tune.engineType}
