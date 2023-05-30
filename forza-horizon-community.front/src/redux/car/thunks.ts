@@ -80,14 +80,10 @@ export const postCarAsync = createAsyncThunk(
     );
 
     promise.then((r) => {
-      if (r?.status === 201) {
-        console.log(r);
-
+      if (r.status === 201) {
         toastHandler.showSuccess(NewCarAdded);
         dispatch(getCarsAsync({ page: 0, pageSize: defaultPageSize }));
       }
     });
-
-    return promise;
   },
 );

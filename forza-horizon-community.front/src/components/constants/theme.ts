@@ -1,4 +1,3 @@
-import { PaletteMode } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
 export const baseThemeOptions = {
@@ -109,7 +108,7 @@ export const baseThemeOptions = {
 
 export const darkThemeOptions = {
   palette: {
-    mode: "dark" as PaletteMode,
+    mode: "dark",
     specificBackground: {
       main: "#707070",
     },

@@ -3,7 +3,7 @@ import { useCallback, useEffect } from "react";
 import { ITuneDetailsComponentHook } from "./types";
 
 export const useTuneDetailsComponent = ({ id }: ITuneDetailsComponentHook) => {
-  const { isLoadingSelected: isLoading, selectedEntity } = useAppSelector(selectedTuneSelector);
+  const { isLoadingSelected: isLoading, selectedTune } = useAppSelector(selectedTuneSelector);
   const dispatch = useAppDispatch();
 
   const loadTune = useCallback(() => {
@@ -13,5 +13,5 @@ export const useTuneDetailsComponent = ({ id }: ITuneDetailsComponentHook) => {
   useEffect(() => {
     loadTune();
   }, [loadTune]);
-  return { isLoading, selectedEntity };
+  return { isLoading, selectedTune };
 };

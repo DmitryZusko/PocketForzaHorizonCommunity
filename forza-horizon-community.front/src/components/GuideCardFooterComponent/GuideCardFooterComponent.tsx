@@ -12,10 +12,9 @@ const GuideCardFooterComponent = ({
   author,
   creationDate,
   carModel,
-  ...props
 }: IGuideCardFooterComponentProps) => {
   return (
-    <Grid container sx={styles.outerContainer} {...props}>
+    <Grid container sx={styles.outerContainer}>
       <Grid item xs={6}>
         <Typography variant="textBody" color={baseTheme.palette.primary.main}>
           Car Model:

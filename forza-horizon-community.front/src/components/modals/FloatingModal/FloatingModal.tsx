@@ -1,4 +1,3 @@
-import { defaultAnimationDuration } from "@/components/constants";
 import { globalStyles } from "@/styles";
 import { Box, Modal, Zoom } from "@mui/material";
 import { PropsWithChildren } from "react";
@@ -17,7 +16,7 @@ const FloatingModal = ({
       {...props}
       sx={globalStyles.centeredColumnFlexContainer}
     >
-      <Zoom in={open} timeout={defaultAnimationDuration}>
+      <Zoom in={open} timeout={500}>
         <Box>{children}</Box>
       </Zoom>
     </Modal>

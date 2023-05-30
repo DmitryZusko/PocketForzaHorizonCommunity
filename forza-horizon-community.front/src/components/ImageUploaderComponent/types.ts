@@ -1,5 +1,3 @@
-import { GridProps } from "@mui/material";
-
 export type ErrorColor = "error" | "info";
 
 export interface IImageUploaderComponentHook {
@@ -18,5 +16,4 @@ export interface IImageUploaderComponentProps extends IImageUploaderComponentHoo
   previewWidth?: number;
   previewHeight?: number;
   additionalInfo?: string;
-  props?: GridProps;
 }

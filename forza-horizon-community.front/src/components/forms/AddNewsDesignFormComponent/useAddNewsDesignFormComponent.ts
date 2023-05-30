@@ -20,7 +20,7 @@ export const useAddNewsDesignFormComponent = () => {
   const { isDesignThumbnailError, designThumbnail, isDesignGalleryError, designGallery } =
     useAppSelector(designUploaderSelector);
 
-  const { carNames } = useAppSelector(carNamesSelector);
+  const { isLoadingCarNames, carNames } = useAppSelector(carNamesSelector);
   const { user } = useAppSelector(userSelector);
 
   const dispatch = useAppDispatch();

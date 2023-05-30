@@ -16,10 +16,9 @@ const DrivetrainDetailsComponent = ({
   clutch,
   transmission,
   differential,
-  ...props
 }: IDrivetrainDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
+    <Box sx={globalStyles.centeredColumnFlexContainer}>
       <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Drivetrain
@@ -33,9 +32,9 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"ClutchIcon"}
             src="/EnumIcons/ClutchIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(clutch || "", ClutchType)}
@@ -45,9 +44,9 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"TransmissionIcon"}
             src="/EnumIcons/TransmissionIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(transmission || "", TransmissionType)}
@@ -57,9 +56,9 @@ const DrivetrainDetailsComponent = ({
           <Image
             alt={"DifferentialIcon"}
             src="/EnumIcons/DifferentialIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(differential || "", DifferentialType)}

@@ -1,4 +1,4 @@
-import { OrderDirection } from "@/components";
+import { OrderDirection } from "@/components/CarTableComponent/components/SortingTableHead/SortingTableHead";
 
 function comparator<TEntity>(a: TEntity, b: TEntity, orderBy: keyof TEntity) {
   if (typeof a[orderBy] === "string") return stringComparator<TEntity>(a, b, orderBy);

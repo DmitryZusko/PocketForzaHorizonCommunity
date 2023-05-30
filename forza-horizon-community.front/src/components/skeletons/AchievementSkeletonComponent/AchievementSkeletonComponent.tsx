@@ -1,10 +1,9 @@
-import { iconSizeLarge } from "@/components/constants";
-import { Container, ContainerProps, Skeleton, Typography } from "@mui/material";
+import { Container, Skeleton, Typography } from "@mui/material";
 
-const AchievementSkeletonComponent = (props?: ContainerProps) => {
+const AchievementSkeletonComponent = () => {
   return (
-    <Container {...props}>
-      <Skeleton variant="rectangular" width="100%" height={iconSizeLarge.height} />
+    <Container>
+      <Skeleton variant="rectangular" width="100%" height={150} />
       <Typography variant="textTitle">
         <Skeleton variant="text" />
       </Typography>

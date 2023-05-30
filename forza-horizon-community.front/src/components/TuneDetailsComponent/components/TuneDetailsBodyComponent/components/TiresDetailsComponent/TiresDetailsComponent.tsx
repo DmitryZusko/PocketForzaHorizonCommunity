@@ -18,10 +18,9 @@ const TiresDetailsComponent = ({
   rearTireWidth,
   frontTrackWidth,
   rearTrackWidth,
-  ...props
 }: ITiresDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
+    <Box sx={globalStyles.centeredColumnFlexContainer}>
       <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Tires
@@ -35,9 +34,9 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TireWidthIcon"}
             src="/EnumIcons/TiresWidthIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(frontTireWidth || "", TiresWidthType)}
@@ -47,9 +46,9 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TireWidthIcon"}
             src="/EnumIcons/TiresWidthIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rearTireWidth || "", TiresWidthType)}
@@ -59,9 +58,9 @@ const TiresDetailsComponent = ({
           <Image
             alt={"frontTrackWidthIcon"}
             src="/EnumIcons/FrontTrackWidthIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(frontTrackWidth || "", TrackWidthType)}
@@ -71,9 +70,9 @@ const TiresDetailsComponent = ({
           <Image
             alt={"rearTrackWidthIcon"}
             src="/EnumIcons/RearTrackWidthIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
-            loading="lazy"        
+            loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rearTrackWidth || "", TrackWidthType)}
@@ -83,9 +82,9 @@ const TiresDetailsComponent = ({
           <Image
             alt={"TiresCompoundIcon"}
             src="/EnumIcons/TiresCompoundIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(tiresCompound || "", TiresCompoundType)}
