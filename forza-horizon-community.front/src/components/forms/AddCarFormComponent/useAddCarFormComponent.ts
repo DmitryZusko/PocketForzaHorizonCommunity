@@ -35,8 +35,6 @@ export const useAddCarFormComponent = () => {
         carTypeId: values.carTypeId,
       }),
     ).then((result) => {
-      console.log(result);
-
       result.payload && dispatch(setIsAddCarOpen(false));
     });
   };
