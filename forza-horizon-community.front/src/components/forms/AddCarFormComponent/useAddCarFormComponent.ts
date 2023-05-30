@@ -17,8 +17,8 @@ export const useAddCarFormComponent = () => {
   const thumbnail = useRef<File | undefined>(undefined);
   const thumbnailError = useRef<boolean>(false);
 
-  const { isLoadingManufacture, manufactures } = useAppSelector(manufacturesSelector);
-  const { isLoadingCarTypes, carTypes, totalCarTypes } = useAppSelector(carTypesSelector);
+  const { manufactures } = useAppSelector(manufacturesSelector);
+  const { carTypes } = useAppSelector(carTypesSelector);
 
   const dispatch = useAppDispatch();
 
@@ -34,7 +34,11 @@ export const useAddCarFormComponent = () => {
         manufactureId: values.manufactureId,
         carTypeId: values.carTypeId,
       }),
-    ).then((result) => result.payload && dispatch(setIsAddCarOpen(false)));
+    ).then((result) => {
+      console.log(result);
+
+      result.payload && dispatch(setIsAddCarOpen(false));
+    });
   };
 
   const handleCancel = () => {
@@ -68,9 +72,9 @@ export const useAddCarFormComponent = () => {
     [thumbnail],
   );
 
-  const handleThumbnailErrorChange = useCallback((value: boolean) => {
+  const handleThumbnailErrorChange = (value: boolean) => {
     thumbnailError.current = value;
-  }, []);
+  };
 
   useEffect(() => {
     if (carTypes.length) return;

@@ -42,7 +42,7 @@ const DesignDetails = (props: { id: string }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.png" />
       </Head>
-      <DesignDetailsContent id={props.id} />;
+      <DesignDetailsContent id={props.id} />
     </>
   );
 };

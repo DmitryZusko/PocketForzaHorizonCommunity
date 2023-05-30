@@ -1,39 +1,40 @@
 import { globalStyles } from "@/styles";
 import { Grid, Slide } from "@mui/material";
-import { baseTheme } from "../constants";
+import { baseTheme, defaultAnimationDuration, extendedAnimationDuration } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideDetailsHeader } from "../GuideDetailsHeader";
 import { TuneDetailsBodyComponent } from "./components";
 import { ITuneDetailsComponentProps } from "./types";
 import { useTuneDetailsComponent } from "./useTuneDetailsComponent";
 
-const TuneDetailsComponent = ({ id }: ITuneDetailsComponentProps) => {
-  const { isLoading, selectedTune } = useTuneDetailsComponent({ id });
+const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
+  const { isLoading, selectedEntity } = useTuneDetailsComponent({ id });
   return (
     <Grid
       container
       sx={(globalStyles.centeredColumnFlexContainer, { padding: baseTheme.spacing(7) })}
+      {...props}
     >
       {isLoading ? (
         <DefaultLoaderComponent />
       ) : (
         <>
-          <Slide in={true} direction={"right"} timeout={500}>
+          <Slide in={true} direction={"right"} timeout={defaultAnimationDuration}>
             <Grid item xs={12}>
               <GuideDetailsHeader
-                thumbnail="/TuneThumbnail.png"
+                thumbnail="/tuneThumbnail.png"
                 isDesign={false}
-                title={selectedTune?.title || ""}
-                authorName={selectedTune?.authorUsername || ""}
-                shareCode={selectedTune?.forzaShareCode || ""}
-                rating={selectedTune?.rating || 0}
-                creationDate={selectedTune?.creationDate || new Date()}
+                title={selectedEntity?.title || ""}
+                authorName={selectedEntity?.authorUsername || ""}
+                shareCode={selectedEntity?.forzaShareCode || ""}
+                rating={selectedEntity?.rating || 0}
+                creationDate={selectedEntity?.creationDate || new Date()}
               />
             </Grid>
           </Slide>
-          <Slide in={true} direction={"right"} timeout={1000}>
+          <Slide in={true} direction={"right"} timeout={extendedAnimationDuration}>
             <Grid item xs={12}>
-              <TuneDetailsBodyComponent selectedTune={selectedTune} />
+              <TuneDetailsBodyComponent selectedEntity={selectedEntity} />
             </Grid>
           </Slide>
         </>

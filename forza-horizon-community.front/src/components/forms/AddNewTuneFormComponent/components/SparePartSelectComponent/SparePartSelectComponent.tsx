@@ -15,16 +15,17 @@ const SparePartSelectComponent = ({
   error,
   handleValueChange,
   handleBlur,
+  ...props
 }: ISparePartSelectComponentProps) => {
   const { items } = useSparePartSelectComponent({ enumerator });
   return (
-    <Box sx={styles.outerBox} width={{ xs: "40vw", md: "30vw", lg: "20vw" }}>
+    <Box sx={styles.outerBox} width={{ xs: "40vw", md: "30vw", lg: "20vw" }} {...props}>
       <Image
         alt={imageSrc}
         src={`/EnumIcons/${imageSrc}`}
+        width={defaultIconSize.width}
+        height={defaultIconSize.width}
         loading="lazy"
-        width={defaultIconSize}
-        height={defaultIconSize}
         priority
       />
       <FormControl size="small" fullWidth sx={styles.selector}>

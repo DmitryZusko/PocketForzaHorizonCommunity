@@ -8,9 +8,10 @@ const TuneCardBodyComponent = ({
   engineType,
   aspirationType,
   tiresCompound,
+  ...props
 }: ITuneCardBodyComponentProps) => {
   return (
-    <Container sx={globalStyles.centeredRowFlexContainer}>
+    <Container sx={globalStyles.centeredRowFlexContainer} {...props}>
       <Grid container spacing={1}>
         <Grid item xs={6}>
           <Typography variant="textBody" color={baseTheme.palette.primary.main}>

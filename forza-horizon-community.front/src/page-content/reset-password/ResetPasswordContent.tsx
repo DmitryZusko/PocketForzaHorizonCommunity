@@ -1,5 +1,6 @@
 import {
   baseTheme,
+  defaultAnimationDuration,
   ImageBackgroundComponent,
   PageFooterComponent,
   ResetPasswordFormComponent,
@@ -24,7 +25,7 @@ const ResetPasswordContent = () => {
           </Typography>
         </Container>
       </ImageBackgroundComponent>
-      <Slide in={true} direction="right" timeout={500}>
+      <Slide in={true} direction="right" timeout={defaultAnimationDuration}>
         <Box>
           <ResetPasswordFormComponent />
         </Box>

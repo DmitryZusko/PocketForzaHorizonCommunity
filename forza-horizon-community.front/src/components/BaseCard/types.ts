@@ -1,3 +1,5 @@
+import { CardProps } from "@mui/material";
+
 export interface IBaseCardProps {
   thumbnail?: string;
   cardTitle: string;
@@ -5,4 +7,5 @@ export interface IBaseCardProps {
   footer?: JSX.Element;
   imageWidth?: number;
   imageHeight?: number;
+  props?: CardProps;
 }

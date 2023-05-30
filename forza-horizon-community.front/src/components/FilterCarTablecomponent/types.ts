@@ -1,3 +1,5 @@
+import { ContainerProps } from "@mui/material";
+
 export interface ICustomRangeSliderComponentHook {
   validRange: number[];
   min: number;
@@ -10,6 +12,7 @@ export interface ICustomRangeSliderComponentProps extends ICustomRangeSliderComp
   min: number;
   max: number;
   step?: number;
+  props?: ContainerProps;
 }
 
 export interface ICustomCheckboxListComponentHook {
@@ -18,4 +21,5 @@ export interface ICustomCheckboxListComponentHook {
 
 export interface ICustomCheckboxListComponentProprs extends ICustomCheckboxListComponentHook {
   entities: string[];
+  props?: ContainerProps;
 }

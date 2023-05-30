@@ -1,3 +1,5 @@
+import { GridProps } from "@mui/material";
+
 export interface IGuideCardFooterComponentProps {
   isDesign?: boolean;
   shareCode: string;
@@ -5,4 +7,5 @@ export interface IGuideCardFooterComponentProps {
   author: string;
   creationDate: Date;
   carModel: string;
+  props?: GridProps;
 }

@@ -1,3 +1,5 @@
+import { BoxProps } from "@mui/material";
+
 export interface IEngineDetailsComponentProps {
   engineDescription: string | undefined;
   engineType: string | undefined;
@@ -6,4 +8,5 @@ export interface IEngineDetailsComponentProps {
   ignition: string | undefined;
   displacement: string | undefined;
   exhaust: string | undefined;
+  props?: BoxProps;
 }

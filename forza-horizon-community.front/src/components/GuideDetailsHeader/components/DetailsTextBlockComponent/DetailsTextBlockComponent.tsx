@@ -25,7 +25,6 @@ const DetailsTextBlockComponent = ({
           Author:
         </Typography>
       </Grid>
-
       <Grid item xs={6} textAlign="center">
         <Typography variant="textBody">{authorName}</Typography>
       </Grid>

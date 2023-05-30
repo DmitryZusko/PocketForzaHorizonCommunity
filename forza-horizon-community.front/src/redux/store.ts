@@ -1,5 +1,9 @@
-import { combineReducers, configureStore, EnhancedStore } from "@reduxjs/toolkit";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  combineReducers,
+  configureStore,
+  EnhancedStore,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -21,12 +25,14 @@ import { selectedFilterParamsReducer } from "./selectedFilterParams";
 import { settingsReducer } from "./settings";
 import { tuneReducer } from "./tune";
 import { authReducer } from "./auth";
+import localforage from "localforage";
+import { IState } from "./types";
 
 let store: EnhancedStore;
 
 const persistConfig = {
   key: "root",
-  storage: AsyncStorage,
+  storage: localforage,
   whitelist: ["auth", "filterScheme", "settings"],
 };
 
@@ -46,16 +52,15 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const createStore = <T>(preloadedState?: T) =>
+const createStore = (preloadedState?: IState) =>
   configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-          ignoredActionPaths: ["payload.headers", "payload.config", "payload.request"],
-        },
-      }),
+    middleware: getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActionPaths: ["payload.headers", "payload.config", "payload.request"],
+      },
+    }),
     preloadedState,
   });
 

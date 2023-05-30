@@ -6,10 +6,9 @@ import "lightgallery/css/lightgallery.css";
 import Image from "next/image";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { baseTheme } from "../constants";
+import { baseTheme, defaultImageSize } from "../constants";
 import { globalStyles } from "@/styles";
 import { styles } from "./styles";
-import classes from "./styles.module.css";
 
 const ImageUploaderComponent = ({
   buttonText,
@@ -17,13 +16,14 @@ const ImageUploaderComponent = ({
   maxImageSizeInMB,
   isRequired,
   isFixedSize,
-  width = 300,
-  height = 300,
-  previewWidth = 300,
-  previewHeight = 300,
+  width = defaultImageSize.width,
+  height = defaultImageSize.height,
+  previewWidth = defaultImageSize.width,
+  previewHeight = defaultImageSize.height,
   additionalInfo,
   handleErrorChange,
   handleImagesChange,
+  ...props
 }: IImageUploaderComponentProps) => {
   const { errorMessage, displayError, preview, handleImageUpload } = useImageUploaderComponent({
     isRequired,
@@ -33,7 +33,7 @@ const ImageUploaderComponent = ({
     handleImagesChange,
   });
   return (
-    <Grid container spacing={1} sx={globalStyles.centeredColumnFlexContainer}>
+    <Grid container spacing={1} sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <Grid item xs={12} textAlign="center">
         <Button component="label">
           <Grid container spacing={1}>
@@ -68,7 +68,7 @@ const ImageUploaderComponent = ({
                   <Image alt="image" src={image} loading="lazy" width={width} height={height} />
                 ) : (
                   <Box sx={styles.imageBox}>
-                    <Image alt="image" src={image} loading="lazy" fill className={classes.image} />
+                    <Image alt="image" src={image} fill loading="lazy" style={{ objectFit: "contain" }} />
                   </Box>
                 )}
               </ImageListItem>

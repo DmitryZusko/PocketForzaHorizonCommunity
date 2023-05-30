@@ -4,7 +4,6 @@ import {
   getCarNamesAsync,
   getTunesAsync,
   getTunesByCarIdAsync,
-  setTunePage,
   tunesSelector,
   turnTunePage,
   useAppDispatch,
@@ -20,7 +19,7 @@ export const useTuneListComponent = () => {
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { tunes, page, pageSize, totalEntities } = useAppSelector(tunesSelector);
+  const { entities, page, pageSize, totalEntities } = useAppSelector(tunesSelector);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -65,7 +64,6 @@ export const useTuneListComponent = () => {
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
       dispatch(cleanUpTunes());
-      dispatch(setTunePage(0));
       setSearchQuery(newQuery);
     },
     [dispatch],
@@ -75,7 +73,6 @@ export const useTuneListComponent = () => {
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
       dispatch(cleanUpTunes());
-      dispatch(setTunePage(0));
       setSelectedCar(newValue?.id);
     },
     [dispatch],
@@ -97,21 +94,21 @@ export const useTuneListComponent = () => {
     return () => {
       if (!isDispatched) {
         dispatchPromise.abort();
+        dispatch(cleanUpTunes());
       }
     };
-  }, [loadTunes]);
+  }, [loadTunes, dispatch]);
 
   //If user leaves the page and that returns, tunes[] will contain previouse results and a new session will load the same tunes and push it to the old array.
   //To prevent a such behavior, on a component unmounts tunes[] should be cleaned up
   useEffect(() => {
     return () => {
       dispatch(cleanUpTunes());
-      dispatch(setTunePage(0));
     };
   }, [dispatch]);
 
   return {
-    tunes,
+    entities,
     autocompleteOptions,
     page,
     pageSize,

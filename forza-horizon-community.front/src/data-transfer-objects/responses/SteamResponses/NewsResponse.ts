@@ -1,4 +1,4 @@
-import { INewsItem } from "../entities";
+import { INewsItem } from "../../entities";
 
 export interface INewsResponse {
   appId: number;

@@ -1,12 +1,12 @@
 import { DoneAll, ViewList } from "@mui/icons-material";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Container, ContainerProps, Typography } from "@mui/material";
 import { defaultPriceStep } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { CustomCheckboxListComponent, CustomRangeSliderComponent } from "./components";
 import { styles } from "./styles";
 import { useFilterCarTableComponent } from "./useFilterCarTableComponent";
 
-const FilterCarTableComponent = ({ ...props }) => {
+const FilterCarTableComponent = (props?: ContainerProps) => {
   const {
     isLoadingManufacture,
     manufactures,
