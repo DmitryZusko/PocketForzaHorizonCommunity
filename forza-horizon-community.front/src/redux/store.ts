@@ -1,5 +1,4 @@
 import { combineReducers, configureStore, EnhancedStore } from "@reduxjs/toolkit";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   persistStore,
   persistReducer,
@@ -21,12 +20,13 @@ import { selectedFilterParamsReducer } from "./selectedFilterParams";
 import { settingsReducer } from "./settings";
 import { tuneReducer } from "./tune";
 import { authReducer } from "./auth";
+import localforage from "localforage";
 
 let store: EnhancedStore;
 
 const persistConfig = {
   key: "root",
-  storage: AsyncStorage,
+  storage: localforage,
   whitelist: ["auth", "filterScheme", "settings"],
 };
 

@@ -139,7 +139,7 @@ const useCarTableComponent = () => {
   }, [loadCars]);
 
   useEffect(() => {
-    window.scrollTo({
+    window?.scrollTo({
       top: 0,
       behavior: "smooth",
     });
