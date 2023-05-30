@@ -1,7 +1,7 @@
 import { globalStyles } from "@/styles";
-import { Box, BoxProps, CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
-const DefaultLoaderComponent = (props?: BoxProps) => {
+const DefaultLoaderComponent = ({ ...props }) => {
   return (
     <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
       <CircularProgress />

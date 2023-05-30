@@ -1,21 +1,20 @@
 import {
   CardSkeletonComponent,
   CustomTooltipComponent,
-  defaultAnimationDuration,
-  defaultImageSize,
+  defaultTuneImageHeight,
   GuideCardFooterComponent,
   NavigationCard,
   TuneCardBodyComponent,
 } from "@/components";
-import { Box, BoxProps, Grow, Slide, Typography } from "@mui/material";
+import { Box, Grow, Slide, Typography } from "@mui/material";
 import { styles } from "./styles";
 import { useTunesBlockComponent } from "./useTunesBlockComponent";
 
-const TunesBlockComponent = (props: BoxProps) => {
-  const { isLoading, latestEntities } = useTunesBlockComponent();
+const TunesBlockComponent = ({ ...props }) => {
+  const { isLoading, latestTunes } = useTunesBlockComponent();
 
   return (
-    <Box sx={styles.outerBox} {...props}>
+    <Box sx={styles.outerBox}>
       <Typography variant="textTitle" align="center" color="primary" sx={styles.headerText}>
         Newest Tunes
       </Typography>
@@ -27,24 +26,14 @@ const TunesBlockComponent = (props: BoxProps) => {
             </Box>
           </Grow>
         ) : (
-          latestEntities.map((tune) => (
-            <Slide
-              key={tune.id}
-              in={!isLoading}
-              direction="right"
-              mountOnEnter
-              timeout={defaultAnimationDuration}
-            >
+          latestTunes.map((tune) => (
+            <Slide key={tune.id} in={!isLoading} direction="right" mountOnEnter timeout={500}>
               <Box>
-                <CustomTooltipComponent
-                  key={tune.id}
-                  title={"Go to Tune"}
-                  {...{ sx: styles.tooltip }}
-                >
+                <CustomTooltipComponent key={tune.id} title={"Go to Tune"} sx={styles.tooltip}>
                   <Box>
                     <NavigationCard
-                      thumbnail="tuneThumbnail.png"
-                      imageHeight={defaultImageSize.height}
+                      thumbnail="TuneThumbnail.png"
+                      imageHeight={defaultTuneImageHeight}
                       target={"_self"}
                       cardTitle={tune.title}
                       navigationLink={`/guides/tunes/${tune.id}`}

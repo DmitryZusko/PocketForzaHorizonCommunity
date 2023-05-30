@@ -1,11 +1,11 @@
 import { globalStyles } from "@/styles";
-import { Button, Grid, GridProps, Slide } from "@mui/material";
+import { Button, Grid, Slide } from "@mui/material";
 import { LatestGuidesComponent } from "../LatestGuidesComponent";
 import { SettingsSuggest, Palette, ArrowForwardIos, ArrowBackIos } from "@mui/icons-material";
 import { useGuidesComponent } from "./useGuidesComponent";
-import { longerAnimationDuration } from "../constants";
+import { buttonSlideAnimationDuration } from "./constants";
 
-const GuidesComponent = (props?: GridProps) => {
+const GuidesComponent = () => {
   const {
     isSlide,
     tuneButtonStyle,
@@ -23,9 +23,12 @@ const GuidesComponent = (props?: GridProps) => {
       container
       sx={[globalStyles.centeredColumnFlexContainer, { overflow: "hidden" }]}
       maxWidth={"100%"}
-      {...props}
     >
-      <Slide in={isSlide} timeout={longerAnimationDuration} direction={isSlide ? "right" : "left"}>
+      <Slide
+        in={isSlide}
+        timeout={buttonSlideAnimationDuration}
+        direction={isSlide ? "right" : "left"}
+      >
         <Grid item xs={12} md={6} textAlign={{ xs: "center", md: "right" }}>
           <Button
             variant="contained"
@@ -40,7 +43,11 @@ const GuidesComponent = (props?: GridProps) => {
           </Button>
         </Grid>
       </Slide>
-      <Slide in={isSlide} timeout={longerAnimationDuration} direction={isSlide ? "left" : "right"}>
+      <Slide
+        in={isSlide}
+        timeout={buttonSlideAnimationDuration}
+        direction={isSlide ? "left" : "right"}
+      >
         <Grid item xs={12} md={6} textAlign={{ xs: "center", md: "left" }}>
           <Button
             variant="contained"

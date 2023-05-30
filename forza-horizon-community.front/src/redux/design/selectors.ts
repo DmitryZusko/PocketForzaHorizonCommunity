@@ -5,17 +5,17 @@ export const designStateSelector = ({ design }: RootState) => design;
 
 export const latestDesignsSelector = createSelector(
   designStateSelector,
-  ({ isLoadingLatest, latestEntities }) => ({
+  ({ isLoadingLatest, latestDesigns }) => ({
     isLoadingLatest,
-    latestEntities,
+    latestDesigns,
   }),
 );
 
 export const designsSelector = createSelector(
   designStateSelector,
-  ({ isLoadingEntities, entities, page, pageSize, totalEntities }) => ({
-    isLoadingEntities,
-    entities,
+  ({ isLoadingDesigns, designs, page, pageSize, totalEntities }) => ({
+    isLoadingDesigns,
+    designs,
     page,
     pageSize,
     totalEntities,
@@ -24,5 +24,5 @@ export const designsSelector = createSelector(
 
 export const selectedDesignSelector = createSelector(
   designStateSelector,
-  ({ isLoadingSelected, selectedEntity }) => ({ isLoadingSelected, selectedEntity }),
+  ({ isLoadingSelected, selectedDesign }) => ({ isLoadingSelected, selectedDesign }),
 );

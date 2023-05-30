@@ -1,14 +1,13 @@
 import { imageUtil } from "@/utilities";
 import { Grid, Slide } from "@mui/material";
-import { defaultAnimationDuration, extendedAnimationDuration } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { GuideDetailsHeader } from "../GuideDetailsHeader";
 import { DesignDetailsBodyComponent } from "./components";
 import { IDesignDetailsComponentProps } from "./types";
 import { useDesignDetailsComponent } from "./useDesignDetailsComponent";
 
-const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) => {
-  const { isLoading, selectedEntity, galleryInView, galleryRef } = useDesignDetailsComponent({
+const DesignDetailsComponent = ({ id }: IDesignDetailsComponentProps) => {
+  const { isLoading, selectedDesign, galleryInView, galleryRef } = useDesignDetailsComponent({
     id,
   });
   return (
@@ -16,24 +15,24 @@ const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) 
       {isLoading ? (
         <DefaultLoaderComponent />
       ) : (
-        <Grid container {...props}>
-          <Slide in={true} direction="right" timeout={defaultAnimationDuration}>
+        <Grid container>
+          <Slide in={true} direction="right" timeout={500}>
             <Grid item xs={12}>
               <GuideDetailsHeader
-                thumbnail={imageUtil.addJpgHeader(selectedEntity?.thumbnail || "")}
-                title={selectedEntity?.title || ""}
-                authorName={selectedEntity?.authorUsername || ""}
-                shareCode={selectedEntity?.forzaShareCode || ""}
-                rating={selectedEntity?.rating || 0}
-                creationDate={selectedEntity?.creationDate || new Date()}
+                thumbnail={imageUtil.addJpgHeader(selectedDesign?.thumbnail || "")}
+                title={selectedDesign?.title || ""}
+                authorName={selectedDesign?.authorUsername || ""}
+                shareCode={selectedDesign?.forzaShareCode || ""}
+                rating={selectedDesign?.rating || 0}
+                creationDate={selectedDesign?.creationDate || new Date()}
               />
             </Grid>
           </Slide>
-          <Slide in={galleryInView} direction="right" timeout={extendedAnimationDuration}>
+          <Slide in={galleryInView} direction="right" timeout={1000}>
             <Grid item xs={12} ref={galleryRef}>
               <DesignDetailsBodyComponent
-                description={selectedEntity?.description || ""}
-                gallery={[selectedEntity?.thumbnail ?? "", ...(selectedEntity?.gallery ?? [])]}
+                description={selectedDesign?.description || ""}
+                gallery={[selectedDesign?.thumbnail ?? "", ...(selectedDesign?.gallery ?? [])]}
               />
             </Grid>
           </Slide>

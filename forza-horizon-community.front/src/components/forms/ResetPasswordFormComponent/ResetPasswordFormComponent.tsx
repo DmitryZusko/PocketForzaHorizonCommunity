@@ -11,28 +11,26 @@ const ResetPasswordFormComponent = () => {
     <form onSubmit={formik.handleSubmit}>
       <Box sx={[globalStyles.centeredColumnFlexContainer, styles.outerContainer]}>
         <PasswordFieldComponent
+          name="newPassword"
           label="New Password"
+          type="password"
+          value={formik.values.newPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.newPassword && Boolean(formik.errors.newPassword)}
           helperText={formik.touched.newPassword && formik.errors.newPassword}
-          {...{
-            name: "confirmPassword",
-            type: "password",
-            value: formik.values.confirmPassword,
-            onChange: formik.handleChange,
-            onBlur: formik.handleBlur,
-            error: formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword),
-          }}
+          sx={styles.textField}
         />
         <PasswordFieldComponent
+          name="confirmPassword"
           label="Confirm Password"
+          type="password"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
-          {...{
-            name: "confirmPassword",
-            type: "password",
-            value: formik.values.confirmPassword,
-            onChange: formik.handleChange,
-            onBlur: formik.handleBlur,
-            error: formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword),
-          }}
+          sx={styles.textField}
         />
         <Button variant="contained" type="submit">
           Reset

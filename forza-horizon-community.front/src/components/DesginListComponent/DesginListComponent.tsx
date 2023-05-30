@@ -1,5 +1,5 @@
-import { Autocomplete, Button, Grid, GridProps, Slide, TextField, Typography } from "@mui/material";
-import { AccessRole, defaultAnimationDuration, defaultSearchTreshhold } from "../constants";
+import { Autocomplete, Button, Grid, Slide, TextField, Typography } from "@mui/material";
+import { AccessRole, defaultSearchTreshhold } from "../constants";
 import { SearchComponent } from "../SearchComponent";
 import { useDesginListComponent } from "./useDesginListComponent";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -12,10 +12,10 @@ import { styles } from "./styles";
 import { AddBox } from "@mui/icons-material";
 import { RoleGate } from "../gates";
 
-const DesginListComponent = (props?: GridProps) => {
+const DesginListComponent = () => {
   const {
     autocompleteOptions,
-    entities,
+    designs,
     page,
     pageSize,
     totalEntities,
@@ -26,7 +26,7 @@ const DesginListComponent = (props?: GridProps) => {
   } = useDesginListComponent();
 
   return (
-    <Grid container sx={styles.outerContainer} {...props}>
+    <Grid container sx={styles.outerContainer}>
       <Grid item xs={12} md={5}>
         <SearchComponent
           label="Search"
@@ -51,7 +51,7 @@ const DesginListComponent = (props?: GridProps) => {
       </RoleGate>
       <Grid item xs={12}>
         <InfiniteScroll
-          dataLength={entities.length}
+          dataLength={designs.length}
           next={loadNext}
           hasMore={page * pageSize + pageSize < totalEntities} // + pageSize in case a page = 0
           loader={<DefaultLoaderComponent />}
@@ -59,13 +59,8 @@ const DesginListComponent = (props?: GridProps) => {
           style={styles.infiniteScroll}
         >
           <Grid container>
-            {entities.map((design) => (
-              <Slide
-                key={design.id}
-                in={true}
-                timeout={defaultAnimationDuration}
-                direction={"right"}
-              >
+            {designs.map((design) => (
+              <Slide key={design.id} in={true} timeout={500} direction={"right"}>
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard
                     navigationLink={`/guides/designs/${design.id}`}

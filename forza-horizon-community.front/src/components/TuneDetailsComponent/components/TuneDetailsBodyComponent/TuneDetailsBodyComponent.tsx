@@ -7,48 +7,48 @@ import {
 } from "./components";
 import { ITuneDetailsBodyComponentProps } from "./types";
 
-const TuneDetailsBodyComponent = ({ selectedEntity, ...props }: ITuneDetailsBodyComponentProps) => {
+const TuneDetailsBodyComponent = ({ selectedTune }: ITuneDetailsBodyComponentProps) => {
   return (
-    <Grid container {...props}>
+    <Grid container>
       <Grid item xs={12}>
         <EngineDetailsComponent
-          engineDescription={selectedEntity?.engineDescription}
-          engineType={selectedEntity?.engineType}
-          aspirationType={selectedEntity?.aspirationType}
-          intake={selectedEntity?.intake}
-          ignition={selectedEntity?.ignition}
-          displacement={selectedEntity?.displacement}
-          exhaust={selectedEntity?.exhaust}
+          engineDescription={selectedTune?.engineDescription}
+          engineType={selectedTune?.engineType}
+          aspirationType={selectedTune?.aspirationType}
+          intake={selectedTune?.intake}
+          ignition={selectedTune?.ignition}
+          displacement={selectedTune?.displacement}
+          exhaust={selectedTune?.exhaust}
         />
       </Grid>
 
       <Grid item xs={12}>
         <HandlingDetailsComponent
-          handlingDescription={selectedEntity?.handlingDescription}
-          brakes={selectedEntity?.brakes}
-          suspension={selectedEntity?.suspension}
-          antiRollBars={selectedEntity?.antiRollBars}
-          rollCage={selectedEntity?.rollCage}
+          handlingDescription={selectedTune?.handlingDescription}
+          brakes={selectedTune?.brakes}
+          suspension={selectedTune?.suspension}
+          antiRollBars={selectedTune?.antiRollBars}
+          rollCage={selectedTune?.rollCage}
         />
       </Grid>
 
       <Grid item xs={12}>
         <DrivetrainDetailsComponent
-          drivetrainDescription={selectedEntity?.drivetrainDescription}
-          clutch={selectedEntity?.clutch}
-          transmission={selectedEntity?.transmission}
-          differential={selectedEntity?.differential}
+          drivetrainDescription={selectedTune?.drivetrainDescription}
+          clutch={selectedTune?.clutch}
+          transmission={selectedTune?.transmission}
+          differential={selectedTune?.differential}
         />
       </Grid>
 
       <Grid item xs={12}>
         <TiresDetailsComponent
-          tiresDescription={selectedEntity?.tiresDescription}
-          tiresCompound={selectedEntity?.tiresCompound}
-          frontTireWidth={selectedEntity?.frontTireWidth}
-          rearTireWidth={selectedEntity?.rearTireWidth}
-          frontTrackWidth={selectedEntity?.frontTireWidth}
-          rearTrackWidth={selectedEntity?.rearTrackWidth}
+          tiresDescription={selectedTune?.tiresDescription}
+          tiresCompound={selectedTune?.tiresCompound}
+          frontTireWidth={selectedTune?.frontTireWidth}
+          rearTireWidth={selectedTune?.rearTireWidth}
+          frontTrackWidth={selectedTune?.frontTireWidth}
+          rearTrackWidth={selectedTune?.rearTrackWidth}
         />
       </Grid>
     </Grid>

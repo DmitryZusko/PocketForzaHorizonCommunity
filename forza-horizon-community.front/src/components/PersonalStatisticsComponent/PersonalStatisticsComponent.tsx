@@ -8,7 +8,6 @@ import {
   PersonalOnlineStatisticsComponent,
   RecordsStatisticsComponent,
 } from "./components";
-import { defaultAnimationDuration } from "../constants";
 
 const PersonalStatisticsComponent = () => {
   const { activeTab, previousTab, handleTabChange } = usePersonalStatisticsComponent();
@@ -24,7 +23,7 @@ const PersonalStatisticsComponent = () => {
         <Slide
           in={activeTab === 0}
           direction={previousTab.current <= activeTab ? "right" : "left"}
-          timeout={defaultAnimationDuration}
+          timeout={500}
         >
           <TabPanel value="0">
             <GeneralStatisticsComponent />
@@ -33,7 +32,7 @@ const PersonalStatisticsComponent = () => {
         <Slide
           in={activeTab === 1}
           direction={previousTab.current <= activeTab ? "right" : "left"}
-          timeout={defaultAnimationDuration}
+          timeout={500}
         >
           <TabPanel value="1">
             <CampaignStatisticsComponent />
@@ -42,7 +41,7 @@ const PersonalStatisticsComponent = () => {
         <Slide
           in={activeTab === 2}
           direction={previousTab.current <= activeTab ? "right" : "left"}
-          timeout={defaultAnimationDuration}
+          timeout={500}
         >
           <TabPanel value="2">
             <PersonalOnlineStatisticsComponent />
@@ -51,7 +50,7 @@ const PersonalStatisticsComponent = () => {
         <Slide
           in={activeTab === 3}
           direction={previousTab.current <= activeTab ? "right" : "left"}
-          timeout={defaultAnimationDuration}
+          timeout={500}
         >
           <TabPanel value="3">
             <RecordsStatisticsComponent />

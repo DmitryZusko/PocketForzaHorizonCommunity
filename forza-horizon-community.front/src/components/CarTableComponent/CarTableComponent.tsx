@@ -8,29 +8,23 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableContainerProps,
   TablePagination,
   TableRow,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import {
-  defaultImageSize,
-  imageSizeSmall,
-  defaultRowsPerPageOptions,
-  defaultAnimationDuration,
-} from "../constants";
+import { defaultCarThumbnailSize, defaultRowsPerPageOptions } from "../constants";
 import { headerCells, SortingTableHead } from "./components";
 import { styles } from "./styles";
 
 import useCarTableComponent from "./useCarTableComponent";
 
-const CarTableComponent = (props?: TableContainerProps) => {
+const CarTableComponent = ({ ...props }) => {
   const {
     isTablet,
     currentPage,
     pageSize,
-    isLoadingEntities,
+    isLoadingCars,
     maintainedCars,
     totalEntities,
     order,
@@ -54,7 +48,7 @@ const CarTableComponent = (props?: TableContainerProps) => {
           sortEntities={handleSorting}
         />
         <TableBody>
-          {isLoadingEntities ? (
+          {isLoadingCars ? (
             <TableRow>
               <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>
@@ -67,15 +61,23 @@ const CarTableComponent = (props?: TableContainerProps) => {
             </TableRow>
           ) : (
             maintainedCars.map((car) => (
-              <Grow key={car.id} in={true} timeout={defaultAnimationDuration}>
+              <Grow key={car.id} in={true} timeout={500}>
                 <TableRow>
                   <TableCell>
                     <Image
                       alt="car"
                       src={imageUtil.addJpgHeader(car.image)}
-                      width={isTablet ? defaultImageSize.width : imageSizeSmall.width}
-                      height={isTablet ? defaultImageSize.height : imageSizeSmall.height}
                       loading="lazy"
+                      width={
+                        isTablet
+                          ? defaultCarThumbnailSize.width
+                          : defaultCarThumbnailSize.width * 0.75
+                      }
+                      height={
+                        isTablet
+                          ? defaultCarThumbnailSize.width
+                          : defaultCarThumbnailSize.height * 0.75
+                      }
                       style={{ objectFit: "cover" }}
                     />
                   </TableCell>

@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { IDesignDetailsComponentHook } from "./types";
 
 export const useDesignDetailsComponent = ({ id }: IDesignDetailsComponentHook) => {
-  const { isLoadingSelected: isLoading, selectedEntity } = useAppSelector(selectedDesignSelector);
+  const { isLoadingSelected: isLoading, selectedDesign } = useAppSelector(selectedDesignSelector);
   const dispatch = useAppDispatch();
 
   const { ref: galleryRef, inView: galleryInView } = useInView({ triggerOnce: true });
@@ -16,5 +16,5 @@ export const useDesignDetailsComponent = ({ id }: IDesignDetailsComponentHook) =
   useEffect(() => {
     loadDesign();
   }, [loadDesign]);
-  return { isLoading, selectedEntity, galleryInView, galleryRef };
+  return { isLoading, selectedDesign, galleryInView, galleryRef };
 };

@@ -15,7 +15,7 @@ import lgFullscreen from "lightgallery/plugins/fullscreen";
 import lgRotate from "lightgallery/plugins/rotate";
 import lgShare from "lightgallery/plugins/share";
 import classes from "./styles.module.css";
-import { baseTheme, defaultAnimationDuration } from "@/components/constants";
+import { baseTheme } from "@/components/constants";
 import { styles } from "./styles";
 
 const DesignDetailsBodyComponent = ({ description, gallery }: IDesignDetailsBodyComponentProps) => {
@@ -26,7 +26,7 @@ const DesignDetailsBodyComponent = ({ description, gallery }: IDesignDetailsBody
       </Grid>
       <Grid item xs={12}>
         <LightGallery
-          speed={defaultAnimationDuration}
+          speed={500}
           mousewheel
           getCaptionFromTitleOrAlt={false}
           hideScrollbar

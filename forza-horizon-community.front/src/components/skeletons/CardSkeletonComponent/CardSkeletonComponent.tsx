@@ -1,20 +1,11 @@
-import { iconSizeLarge } from "@/components/constants";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  ContainerProps,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Container, Skeleton, Typography } from "@mui/material";
 import { styles } from "./styles";
 
-const CardSkeletonComponent = (props?: ContainerProps) => {
+const CardSkeletonComponent = () => {
   return (
-    <Card sx={styles.skeleton} {...props}>
+    <Card sx={styles.skeleton}>
       <CardMedia>
-        <Skeleton variant="rectangular" width="100vw" height={iconSizeLarge.height} />
+        <Skeleton variant="rectangular" width="100vw" height={150} />
       </CardMedia>
       <CardContent>
         <Container>

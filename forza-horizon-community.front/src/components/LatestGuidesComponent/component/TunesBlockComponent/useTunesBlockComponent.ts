@@ -3,7 +3,7 @@ import { getLatestTunesAsync, tuneLastestSelector, useAppDispatch, useAppSelecto
 import { useCallback, useEffect } from "react";
 
 export const useTunesBlockComponent = () => {
-  const { isLoadingLatest: isLoading, latestEntities } = useAppSelector(tuneLastestSelector);
+  const { isLoadingLatest: isLoading, latestTunes } = useAppSelector(tuneLastestSelector);
 
   const dispatch = useAppDispatch();
 
@@ -14,5 +14,5 @@ export const useTunesBlockComponent = () => {
   useEffect(() => {
     loadLatestTunes();
   }, [loadLatestTunes]);
-  return { isLoading, latestEntities };
+  return { isLoading, latestTunes };
 };

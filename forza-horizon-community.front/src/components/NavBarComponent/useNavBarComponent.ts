@@ -34,11 +34,11 @@ export const useNavBarComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    window?.addEventListener("scroll", () => {
-      if (window?.scrollY > 100) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
         setNavBarTheme(styles.transparentNavBar);
       }
-      if (window?.scrollY < 100) {
+      if (window.scrollY < 100) {
         setNavBarTheme(styles.solidNavBar);
       }
     });
