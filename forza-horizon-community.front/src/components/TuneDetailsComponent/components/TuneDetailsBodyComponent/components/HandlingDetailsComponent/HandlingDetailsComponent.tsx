@@ -37,6 +37,7 @@ const HandlingDetailsComponent = ({
             src="/EnumIcons/BrakesIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(brakes || "", BrakesType)}
@@ -48,6 +49,7 @@ const HandlingDetailsComponent = ({
             src="/EnumIcons/SuspensionIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(suspension || "", SuspensionType)}
@@ -59,6 +61,7 @@ const HandlingDetailsComponent = ({
             src="/EnumIcons/AntiRollBarsIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(antiRollBars || "", AntiRollBarsType)}
@@ -70,6 +73,7 @@ const HandlingDetailsComponent = ({
             src="/EnumIcons/RollCageIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rollCage || "", RollCageType)}

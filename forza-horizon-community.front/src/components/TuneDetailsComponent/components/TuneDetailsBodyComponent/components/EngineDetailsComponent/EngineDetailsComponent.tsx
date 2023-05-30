@@ -41,6 +41,7 @@ const EngineDetailsComponent = ({
             src="/EnumIcons/EngineIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(engineType || "", EngineType)}
@@ -52,6 +53,7 @@ const EngineDetailsComponent = ({
             src="/EnumIcons/AspirationIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(aspirationType || "", AspirationType)}
@@ -63,6 +65,7 @@ const EngineDetailsComponent = ({
             src="/EnumIcons/IntakeIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(intake || "", IntakeType)}
@@ -74,6 +77,7 @@ const EngineDetailsComponent = ({
             src="/EnumIcons/IgnitionIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(ignition || "", IgnitionType)}
@@ -85,6 +89,7 @@ const EngineDetailsComponent = ({
             src="/EnumIcons/DisplacementIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(displacement || "", DisplacementType)}
@@ -96,6 +101,7 @@ const EngineDetailsComponent = ({
             src="/EnumIcons/ExhaustIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(exhaust || "", ExhaustType)}

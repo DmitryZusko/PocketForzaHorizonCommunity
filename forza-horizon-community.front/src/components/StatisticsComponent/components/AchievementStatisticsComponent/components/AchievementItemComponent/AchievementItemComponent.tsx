@@ -9,6 +9,7 @@ const AchievementItemComponent = ({ achievement, ...props }: IAchievementItemCom
     <Box sx={styles.achievementContainer} {...props}>
       <Image
         alt="icon"
+        loading="lazy"
         src={achievement.icon}
         width={defaultIconSize.width}
         height={defaultIconSize.width}

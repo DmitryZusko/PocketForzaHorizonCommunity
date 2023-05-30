@@ -25,6 +25,7 @@ const SparePartSelectComponent = ({
         src={`/EnumIcons/${imageSrc}`}
         width={defaultIconSize.width}
         height={defaultIconSize.width}
+        loading="lazy"
         priority
       />
       <FormControl size="small" fullWidth sx={styles.selector}>

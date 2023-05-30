@@ -10,6 +10,7 @@ const FormHeaderComponent = ({ text, ...props }: IFormHeaderComponentProps) => {
       <Image
         alt="logo"
         src="/logo.png"
+        loading="lazy"
         width={defaultLogoSize.width}
         height={defaultLogoSize.height}
       />

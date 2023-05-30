@@ -75,6 +75,7 @@ const CarTableComponent = (props?: TableContainerProps) => {
                       src={imageUtil.addJpgHeader(car.image)}
                       width={isTablet ? defaultImageSize.width : imageSizeSmall.width}
                       height={isTablet ? defaultImageSize.height : imageSizeSmall.height}
+                      loading="lazy"
                       style={{ objectFit: "cover" }}
                     />
                   </TableCell>

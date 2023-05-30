@@ -37,6 +37,7 @@ const TiresDetailsComponent = ({
             src="/EnumIcons/TiresWidthIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(frontTireWidth || "", TiresWidthType)}
@@ -48,6 +49,7 @@ const TiresDetailsComponent = ({
             src="/EnumIcons/TiresWidthIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rearTireWidth || "", TiresWidthType)}
@@ -59,6 +61,7 @@ const TiresDetailsComponent = ({
             src="/EnumIcons/FrontTrackWidthIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(frontTrackWidth || "", TrackWidthType)}
@@ -70,6 +73,7 @@ const TiresDetailsComponent = ({
             src="/EnumIcons/RearTrackWidthIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"        
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rearTrackWidth || "", TrackWidthType)}
@@ -81,6 +85,7 @@ const TiresDetailsComponent = ({
             src="/EnumIcons/TiresCompoundIcon.png"
             width={defaultIconSize.width}
             height={defaultIconSize.width}
+            loading="lazy"
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(tiresCompound || "", TiresCompoundType)}
