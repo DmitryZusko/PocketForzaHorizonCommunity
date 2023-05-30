@@ -11,7 +11,7 @@ import { styles } from "./styles";
 import useDesignBlockComponent from "./useDesignBlockComponent";
 
 const DesignBlockComponent = (props: BoxProps) => {
-  const { isLoading, latestDesigns } = useDesignBlockComponent();
+  const { isLoading, latestEntities } = useDesignBlockComponent();
 
   return (
     <Box sx={styles.outerBox} {...props}>
@@ -26,7 +26,7 @@ const DesignBlockComponent = (props: BoxProps) => {
             </Box>
           </Grow>
         ) : (
-          latestDesigns.map((design) => (
+          latestEntities.map((design) => (
             <Slide
               key={design.id}
               direction="right"

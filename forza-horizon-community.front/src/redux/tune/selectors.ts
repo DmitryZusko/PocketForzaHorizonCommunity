@@ -5,8 +5,8 @@ export const tuneStateSelector = ({ tune }: RootState) => tune;
 
 export const tunesSelector = createSelector(
   tuneStateSelector,
-  ({ tunes, page, pageSize, totalEntities }) => ({
-    tunes,
+  ({ entities, page, pageSize, totalEntities }) => ({
+    entities,
     page,
     pageSize,
     totalEntities,
@@ -15,13 +15,13 @@ export const tunesSelector = createSelector(
 
 export const tuneLastestSelector = createSelector(
   tuneStateSelector,
-  ({ isLoadingLatest, latestTunes }) => ({
+  ({ isLoadingLatest, latestEntities }) => ({
     isLoadingLatest,
-    latestTunes,
+    latestEntities,
   }),
 );
 
 export const selectedTuneSelector = createSelector(
   tuneStateSelector,
-  ({ isLoadingSelected, selectedTune }) => ({ isLoadingSelected, selectedTune }),
+  ({ isLoadingSelected, selectedEntity }) => ({ isLoadingSelected, selectedEntity }),
 );

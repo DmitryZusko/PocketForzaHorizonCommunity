@@ -19,7 +19,7 @@ import { RoleGate } from "../gates";
 
 const TuneListComponent = (props?: GridProps) => {
   const {
-    tunes,
+    entities,
     autocompleteOptions,
     page,
     pageSize,
@@ -56,7 +56,7 @@ const TuneListComponent = (props?: GridProps) => {
       </RoleGate>
       <Grid item xs={12}>
         <InfiniteScroll
-          dataLength={tunes.length}
+          dataLength={entities.length}
           next={loadNext}
           hasMore={page * pageSize + pageSize < totalEntities} // + pageSize in case a first page = 0
           loader={<DefaultLoaderComponent />}
@@ -64,7 +64,7 @@ const TuneListComponent = (props?: GridProps) => {
           style={styles.infiniteScroll}
         >
           <Grid container>
-            {tunes.map((tune) => (
+            {entities.map((tune) => (
               <Slide key={tune.id} in={true} timeout={defaultAnimationDuration} direction={"right"}>
                 <Grid item xs={12} md={6} lg={4}>
                   <NavigationCard

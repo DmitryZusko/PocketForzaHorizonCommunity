@@ -19,7 +19,7 @@ export const useTuneListComponent = () => {
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { tunes, page, pageSize, totalEntities } = useAppSelector(tunesSelector);
+  const { entities, page, pageSize, totalEntities } = useAppSelector(tunesSelector);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -108,7 +108,7 @@ export const useTuneListComponent = () => {
   }, [dispatch]);
 
   return {
-    tunes,
+    entities,
     autocompleteOptions,
     page,
     pageSize,

@@ -8,7 +8,7 @@ import { IDesignDetailsComponentProps } from "./types";
 import { useDesignDetailsComponent } from "./useDesignDetailsComponent";
 
 const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) => {
-  const { isLoading, selectedDesign, galleryInView, galleryRef } = useDesignDetailsComponent({
+  const { isLoading, selectedEntity, galleryInView, galleryRef } = useDesignDetailsComponent({
     id,
   });
   return (
@@ -20,20 +20,20 @@ const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) 
           <Slide in={true} direction="right" timeout={defaultAnimationDuration}>
             <Grid item xs={12}>
               <GuideDetailsHeader
-                thumbnail={imageUtil.addJpgHeader(selectedDesign?.thumbnail || "")}
-                title={selectedDesign?.title || ""}
-                authorName={selectedDesign?.authorUsername || ""}
-                shareCode={selectedDesign?.forzaShareCode || ""}
-                rating={selectedDesign?.rating || 0}
-                creationDate={selectedDesign?.creationDate || new Date()}
+                thumbnail={imageUtil.addJpgHeader(selectedEntity?.thumbnail || "")}
+                title={selectedEntity?.title || ""}
+                authorName={selectedEntity?.authorUsername || ""}
+                shareCode={selectedEntity?.forzaShareCode || ""}
+                rating={selectedEntity?.rating || 0}
+                creationDate={selectedEntity?.creationDate || new Date()}
               />
             </Grid>
           </Slide>
           <Slide in={galleryInView} direction="right" timeout={extendedAnimationDuration}>
             <Grid item xs={12} ref={galleryRef}>
               <DesignDetailsBodyComponent
-                description={selectedDesign?.description || ""}
-                gallery={[selectedDesign?.thumbnail ?? "", ...(selectedDesign?.gallery ?? [])]}
+                description={selectedEntity?.description || ""}
+                gallery={[selectedEntity?.thumbnail ?? "", ...(selectedEntity?.gallery ?? [])]}
               />
             </Grid>
           </Slide>

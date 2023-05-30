@@ -30,7 +30,7 @@ const CarTableComponent = (props?: TableContainerProps) => {
     isTablet,
     currentPage,
     pageSize,
-    isLoadingCars,
+    isLoadingEntities,
     maintainedCars,
     totalEntities,
     order,
@@ -54,7 +54,7 @@ const CarTableComponent = (props?: TableContainerProps) => {
           sortEntities={handleSorting}
         />
         <TableBody>
-          {isLoadingCars ? (
+          {isLoadingEntities ? (
             <TableRow>
               <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>

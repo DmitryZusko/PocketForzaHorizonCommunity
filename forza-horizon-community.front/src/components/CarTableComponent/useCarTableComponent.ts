@@ -21,8 +21,8 @@ const useCarTableComponent = () => {
   const [orderBy, setOrderBy] = useState<keyof ICar>("manufacture");
   const [order, setOrder] = useState<OrderDirection>("asc");
   const {
-    isLoadingCars,
-    cars,
+    isLoadingEntities,
+    entities,
     totalEntities,
     page: currentPage,
     pageSize,
@@ -101,7 +101,7 @@ const useCarTableComponent = () => {
   }, [isOnlyOwned, loadOwnedCars, loadAllCard]);
 
   const maintainedCars = useMemo(() => {
-    return cars.map((car) => {
+    return entities.map((car) => {
       if (user?.ownedCarsByUser?.includes(car.id)) {
         const carCopy = { ...car };
         carCopy.isOwnByUser = true;
@@ -109,7 +109,7 @@ const useCarTableComponent = () => {
       }
       return car;
     });
-  }, [cars, user]);
+  }, [entities, user]);
 
   const handleSorting = useCallback(
     (newOrder: OrderDirection, newProperty: keyof ICar) => {
@@ -154,7 +154,7 @@ const useCarTableComponent = () => {
     isTablet,
     currentPage,
     pageSize,
-    isLoadingCars,
+    isLoadingEntities,
     maintainedCars,
     totalEntities,
     order,

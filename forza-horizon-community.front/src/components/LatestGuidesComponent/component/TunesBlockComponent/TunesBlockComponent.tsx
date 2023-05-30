@@ -12,7 +12,7 @@ import { styles } from "./styles";
 import { useTunesBlockComponent } from "./useTunesBlockComponent";
 
 const TunesBlockComponent = (props: BoxProps) => {
-  const { isLoading, latestTunes } = useTunesBlockComponent();
+  const { isLoading, latestEntities } = useTunesBlockComponent();
 
   return (
     <Box sx={styles.outerBox} {...props}>
@@ -27,7 +27,7 @@ const TunesBlockComponent = (props: BoxProps) => {
             </Box>
           </Grow>
         ) : (
-          latestTunes.map((tune) => (
+          latestEntities.map((tune) => (
             <Slide
               key={tune.id}
               in={!isLoading}

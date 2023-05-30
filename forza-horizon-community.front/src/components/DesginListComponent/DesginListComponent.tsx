@@ -15,7 +15,7 @@ import { RoleGate } from "../gates";
 const DesginListComponent = (props?: GridProps) => {
   const {
     autocompleteOptions,
-    designs,
+    entities,
     page,
     pageSize,
     totalEntities,
@@ -51,7 +51,7 @@ const DesginListComponent = (props?: GridProps) => {
       </RoleGate>
       <Grid item xs={12}>
         <InfiniteScroll
-          dataLength={designs.length}
+          dataLength={entities.length}
           next={loadNext}
           hasMore={page * pageSize + pageSize < totalEntities} // + pageSize in case a page = 0
           loader={<DefaultLoaderComponent />}
@@ -59,7 +59,7 @@ const DesginListComponent = (props?: GridProps) => {
           style={styles.infiniteScroll}
         >
           <Grid container>
-            {designs.map((design) => (
+            {entities.map((design) => (
               <Slide
                 key={design.id}
                 in={true}

@@ -11,13 +11,13 @@ import { useCallback } from "react";
 import { IDetailsTextBlockComponentHook } from "./types";
 
 export const useDetailsTextBlockComponent = ({ isDesign }: IDetailsTextBlockComponentHook) => {
-  const { selectedDesign } = useAppSelector(selectedDesignSelector);
-  const { selectedTune } = useAppSelector(selectedTuneSelector);
+  const { selectedEntity: selectedDesign } = useAppSelector(selectedDesignSelector);
+  const { selectedEntity: selectedTune } = useAppSelector(selectedTuneSelector);
   const { user } = useAppSelector(userSelector);
 
   const ratingValue = useCallback(() => {
     return isDesign ? selectedDesign?.rating : selectedTune?.rating;
-  }, [isDesign, selectedDesign, selectedTune]);
+  }, [isDesign, selectedTune, selectedDesign]);
 
   const dispatch = useAppDispatch();
 

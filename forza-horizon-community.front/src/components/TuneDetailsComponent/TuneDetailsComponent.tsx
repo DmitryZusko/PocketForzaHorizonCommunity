@@ -8,7 +8,7 @@ import { ITuneDetailsComponentProps } from "./types";
 import { useTuneDetailsComponent } from "./useTuneDetailsComponent";
 
 const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
-  const { isLoading, selectedTune } = useTuneDetailsComponent({ id });
+  const { isLoading, selectedEntity } = useTuneDetailsComponent({ id });
   return (
     <Grid
       container
@@ -24,17 +24,17 @@ const TuneDetailsComponent = ({ id, ...props }: ITuneDetailsComponentProps) => {
               <GuideDetailsHeader
                 thumbnail="/tuneThumbnail.png"
                 isDesign={false}
-                title={selectedTune?.title || ""}
-                authorName={selectedTune?.authorUsername || ""}
-                shareCode={selectedTune?.forzaShareCode || ""}
-                rating={selectedTune?.rating || 0}
-                creationDate={selectedTune?.creationDate || new Date()}
+                title={selectedEntity?.title || ""}
+                authorName={selectedEntity?.authorUsername || ""}
+                shareCode={selectedEntity?.forzaShareCode || ""}
+                rating={selectedEntity?.rating || 0}
+                creationDate={selectedEntity?.creationDate || new Date()}
               />
             </Grid>
           </Slide>
           <Slide in={true} direction={"right"} timeout={extendedAnimationDuration}>
             <Grid item xs={12}>
-              <TuneDetailsBodyComponent selectedTune={selectedTune} />
+              <TuneDetailsBodyComponent selectedEntity={selectedEntity} />
             </Grid>
           </Slide>
         </>

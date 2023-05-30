@@ -19,7 +19,7 @@ export const useDesginListComponent = () => {
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { designs, page, pageSize, totalEntities } = useAppSelector(designsSelector);
+  const { entities, page, pageSize, totalEntities } = useAppSelector(designsSelector);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -111,7 +111,7 @@ export const useDesginListComponent = () => {
   return {
     searchQuery,
     autocompleteOptions,
-    designs,
+    entities,
     page,
     pageSize,
     totalEntities,
