@@ -60,7 +60,7 @@ export const useTuneListComponent = () => {
     router.push("/guides/tunes/add-new");
   };
 
-  //To clean up old results and start fetching for a new query paramsand, old tunes[] should be cleaned up and page set to 0
+  //To clean up old results and start fetching for a new query params, old tunes[] should be cleaned up and page set to 0
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
       dispatch(cleanUpTunes());
@@ -69,7 +69,7 @@ export const useTuneListComponent = () => {
     [dispatch],
   );
 
-  //To clean up old results and start fetching for a new query paramsand, old tunes[] should be cleaned up and page set to 0
+  //To clean up old results and start fetching for a new query params, old tunes[] should be cleaned up and page set to 0
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
       dispatch(cleanUpTunes());
