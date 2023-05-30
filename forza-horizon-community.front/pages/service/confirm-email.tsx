@@ -3,14 +3,6 @@ import { ConfirmEmailContent } from "@/page-content";
 import { gateHandler } from "@/utilities";
 import Head from "next/head";
 
-export const getServerSideProps = () => {
-  return {
-    props: {
-      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse),
-    },
-  };
-};
-
 const ConfirmEmail = () => {
   return (
     <>
@@ -24,6 +16,14 @@ const ConfirmEmail = () => {
       <ConfirmEmailContent />
     </>
   );
+};
+
+export const getServerSideProps = () => {
+  return {
+    props: {
+      authSettings: gateHandler.setPageProps(AuthAccessLevel.Anonymouse),
+    },
+  };
 };
 
 export default ConfirmEmail;

@@ -5,6 +5,21 @@ import { gateHandler } from "@/utilities";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
+const DesignDetails = (props: { id: string }) => {
+  return (
+    <>
+      <Head>
+        <title>Design | Pocket Forza Horizon Community</title>
+        <meta name="description" content="Add new design" />
+        <meta name="author" content="Dmitry Zusko" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/icon.png" />
+      </Head>
+      <DesignDetailsContent id={props.id} />
+    </>
+  );
+};
+
 export const getStaticPaths: GetStaticPaths = async () => {
   let ids: string[] = [];
 
@@ -30,21 +45,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: { id: id, authSettings: gateHandler.setPageProps(AuthAccessLevel.Authorized) },
   };
-};
-
-const DesignDetails = (props: { id: string }) => {
-  return (
-    <>
-      <Head>
-        <title>Design | Pocket Forza Horizon Community</title>
-        <meta name="description" content="Add new design" />
-        <meta name="author" content="Dmitry Zusko" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/icon.png" />
-      </Head>
-      <DesignDetailsContent id={props.id} />
-    </>
-  );
 };
 
 export default DesignDetails;
