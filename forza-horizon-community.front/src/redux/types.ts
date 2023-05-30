@@ -16,29 +16,15 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 export type ActionWithPayload<Payload> = ReturnType<ActionCreatorWithPayload<Payload>>;
 
-export interface ISortingPayload<TEntity> {
-  order: OrderDirection;
-  orderBy: keyof TEntity;
-}
-
-export interface IState {
-  news: INewsState;
-  gameStatistics: IGameStatisticsState;
-  design: IDesignState;
-  tune: ITuneState;
-  car: ICarState;
-  filterScheme: IFiltetSchemeState;
-  selectedFilterParams: ISelectedFilterParamsState;
-  guideUploader: IGuideUploaderState;
-  modal: IModalState;
-  settings: ISettingsState;
-  auth: IAuthState;
-}
-
 export interface INewsState {
   isLoading: boolean;
   news: INewsItem[];
   count: number;
+}
+
+export interface ISortingPayload<TEntity> {
+  order: OrderDirection;
+  orderBy: keyof TEntity;
 }
 
 export interface IGameStatisticsState {
@@ -48,26 +34,37 @@ export interface IGameStatisticsState {
   achievements: IAchivement[];
 }
 
-export interface IEntityStateBase<TEntity> {
-  isLoadingEntities: boolean;
-  entities: TEntity[];
+export interface IDesignState {
+  isLoadingLatest: boolean;
+  latestDesigns: IDesign[];
+  isLoadingDesigns: boolean;
+  designs: IDesign[];
+  page: number;
+  pageSize: number;
+  totalEntities: number;
+  isLoadingSelected: boolean;
+  selectedDesign: IDesignFullInfo | undefined;
+}
+
+export interface ITuneState {
+  isLoadingLatest: boolean;
+  latestTunes: ITune[];
+  isLoadingTunes: boolean;
+  tunes: ITune[];
+  page: number;
+  pageSize: number;
+  totalEntities: number;
+  isLoadingSelected: boolean;
+  selectedTune: ITuneFullInfo | undefined;
+}
+
+export interface ICarState {
+  isLoadingCars: boolean;
+  cars: ICar[];
   page: number;
   pageSize: number;
   totalEntities: number;
 }
-
-export interface ICarState extends IEntityStateBase<ICar> {}
-
-interface IGuideStateBase<TEntity, TFullEntity> extends IEntityStateBase<TEntity> {
-  isLoadingLatest: boolean;
-  latestEntities: TEntity[];
-  isLoadingSelected: boolean;
-  selectedEntity: TFullEntity | undefined;
-}
-
-export interface IDesignState extends IGuideStateBase<IDesign, IDesignFullInfo> {}
-
-export interface ITuneState extends IGuideStateBase<ITune, ITuneFullInfo> {}
 
 export interface IFiltetSchemeState {
   isLoadingCarTypes: boolean;

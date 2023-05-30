@@ -85,7 +85,5 @@ export const postCarAsync = createAsyncThunk(
         dispatch(getCarsAsync({ page: 0, pageSize: defaultPageSize }));
       }
     });
-
-    return promise;
   },
 );

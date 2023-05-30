@@ -13,7 +13,7 @@ import { initialValues, validationScheme } from "./constants";
 import { IFormikNewTuneValues } from "./types";
 
 export const useAddNewTuneFormComponent = () => {
-  const { carNames } = useAppSelector(carNamesSelector);
+  const { isLoadingCarNames, carNames } = useAppSelector(carNamesSelector);
   const { user } = useAppSelector(userSelector);
 
   const dispatch = useAppDispatch();

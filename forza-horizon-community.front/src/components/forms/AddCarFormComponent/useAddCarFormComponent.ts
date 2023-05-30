@@ -17,8 +17,8 @@ export const useAddCarFormComponent = () => {
   const thumbnail = useRef<File | undefined>(undefined);
   const thumbnailError = useRef<boolean>(false);
 
-  const { manufactures } = useAppSelector(manufacturesSelector);
-  const { carTypes } = useAppSelector(carTypesSelector);
+  const { isLoadingManufacture, manufactures } = useAppSelector(manufacturesSelector);
+  const { isLoadingCarTypes, carTypes, totalCarTypes } = useAppSelector(carTypesSelector);
 
   const dispatch = useAppDispatch();
 
@@ -70,9 +70,9 @@ export const useAddCarFormComponent = () => {
     [thumbnail],
   );
 
-  const handleThumbnailErrorChange = (value: boolean) => {
+  const handleThumbnailErrorChange = useCallback((value: boolean) => {
     thumbnailError.current = value;
-  };
+  }, []);
 
   useEffect(() => {
     if (carTypes.length) return;

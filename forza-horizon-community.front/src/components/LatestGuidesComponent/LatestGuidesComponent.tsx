@@ -1,8 +1,8 @@
-import { Grid, GridProps } from "@mui/material";
+import { Grid } from "@mui/material";
 import { DesignBlockComponent, TunesBlockComponent } from "./component";
 import { styles } from "./styles";
 
-const LatestGuidesComponent = (props?: GridProps) => {
+const LatestGuidesComponent = ({ ...props }) => {
   return (
     <Grid container spacing={2} {...props}>
       <Grid item xs={12}>

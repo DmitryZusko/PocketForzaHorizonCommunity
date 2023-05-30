@@ -1,4 +1,4 @@
-export interface IImageSize {
+export interface IDefaultCarThumbnailsize {
   width: number;
   height: number;
 }

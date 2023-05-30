@@ -20,14 +20,13 @@ const PasswordFieldComponent = ({
 }: PropsWithChildren<IPasswordFieldComponentProps>) => {
   const { isShowPassword, toogleShowPassword } = usePasswordFieldComponent();
   return (
-    <FormControl sx={styles.outerContainer} fullWidth>
+    <FormControl sx={styles.outerContainer}>
       <Box sx={styles.inputContainer}>
         <InputLabel htmlFor={label}>{label}</InputLabel>
         <OutlinedInput
           id={label}
           type={isShowPassword ? "text" : "password"}
           label={label}
-          fullWidth
           endAdornment={
             <InputAdornment position="end">
               <IconButton onClick={toogleShowPassword} edge="end">
@@ -35,8 +34,8 @@ const PasswordFieldComponent = ({
               </IconButton>
             </InputAdornment>
           }
-          sx={styles.input}
           {...props}
+          sx={styles.input}
         />
       </Box>
       <FormHelperText sx={styles.helperTextForm}>{helperText}</FormHelperText>

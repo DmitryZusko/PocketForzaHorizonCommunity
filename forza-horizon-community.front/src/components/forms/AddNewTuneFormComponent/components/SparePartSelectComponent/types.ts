@@ -1,4 +1,4 @@
-import { BoxProps, SelectChangeEvent } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import { ReactNode } from "react";
 
 export interface ISparePartSelectComponentHook {
@@ -16,5 +16,4 @@ export interface ISparePartSelectComponentProps extends ISparePartSelectComponen
     (e: React.FocusEvent<any, Element>): void;
     <T = any>(fieldOrEvent: T): T extends string ? (e: any) => void : void;
   };
-  props?: BoxProps;
 }

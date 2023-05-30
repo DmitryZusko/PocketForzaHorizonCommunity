@@ -1,23 +1,19 @@
-import {
-  CardSkeletonComponent,
-  defaultAnimationDuration,
-  GuideCardFooterComponent,
-  NavigationCard,
-} from "@/components";
+import { CardSkeletonComponent, GuideCardFooterComponent, NavigationCard } from "@/components";
 import { CustomTooltipComponent } from "@/components/CustomTooltipComponent";
 import { imageUtil } from "@/utilities";
-import { Box, BoxProps, Grow, Slide, Typography } from "@mui/material";
+import { Box, Grow, Slide, Typography } from "@mui/material";
 import { styles } from "./styles";
 import useDesignBlockComponent from "./useDesignBlockComponent";
 
-const DesignBlockComponent = (props: BoxProps) => {
-  const { isLoading, latestEntities } = useDesignBlockComponent();
+const DesignBlockComponent = ({ ...props }) => {
+  const { isLoading, latestDesigns } = useDesignBlockComponent();
 
   return (
-    <Box sx={styles.outerBox} {...props}>
+    <Box sx={styles.outerBox}>
       <Typography variant="textTitle" align="center" color="primary" sx={styles.headerText}>
         Newest Designs
       </Typography>
+
       <Box sx={styles.cardBox}>
         {isLoading ? (
           <Grow in={isLoading} unmountOnExit>
@@ -26,16 +22,10 @@ const DesignBlockComponent = (props: BoxProps) => {
             </Box>
           </Grow>
         ) : (
-          latestEntities.map((design) => (
-            <Slide
-              key={design.id}
-              direction="right"
-              in={!isLoading}
-              mountOnEnter
-              timeout={defaultAnimationDuration}
-            >
+          latestDesigns.map((design) => (
+            <Slide key={design.id} direction="right" in={!isLoading} mountOnEnter timeout={500}>
               <Box>
-                <CustomTooltipComponent title="Go to Design" {...{ sx: styles.cardBlock }}>
+                <CustomTooltipComponent title="Go to Design" sx={styles.cardBlock}>
                   <Box>
                     <NavigationCard
                       thumbnail={imageUtil.addJpgHeader(design.thumbnail)}

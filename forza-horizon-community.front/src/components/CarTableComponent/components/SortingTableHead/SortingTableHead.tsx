@@ -1,4 +1,4 @@
-import { defaultAnimationDuration, defaultImageSize } from "@/components/constants";
+import { defaultCarThumbnailSize } from "@/components/constants";
 import { Grow, TableCell, TableHead, TableRow, TableSortLabel, Typography } from "@mui/material";
 import { styles } from "./styles";
 import { ISortingTableHeaderProps } from "./types";
@@ -22,14 +22,14 @@ const SortingTableHead = <TEntity,>({
   });
   return (
     <TableHead {...props}>
-      <Grow in={true} timeout={defaultAnimationDuration}>
+      <Grow in={true} timeout={500}>
         <TableRow>
           {headerCells.map((cell) => (
             <TableCell
               key={cell.lable}
               sortDirection={orderBy === cell.id ? order : false}
               align={cell.lable === "Image" ? "inherit" : "center"}
-              width={cell.lable === "Image" ? defaultImageSize.width : "auto"}
+              width={cell.lable === "Image" ? defaultCarThumbnailSize.width : "auto"}
             >
               <TableSortLabel
                 active={orderBy === cell.id}

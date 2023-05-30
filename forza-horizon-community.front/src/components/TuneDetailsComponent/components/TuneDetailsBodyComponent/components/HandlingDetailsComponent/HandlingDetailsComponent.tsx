@@ -18,10 +18,9 @@ const HandlingDetailsComponent = ({
   suspension,
   antiRollBars,
   rollCage,
-  ...props
 }: IHandlingDetailsComponentProps) => {
   return (
-    <Box sx={globalStyles.centeredColumnFlexContainer} {...props}>
+    <Box sx={globalStyles.centeredColumnFlexContainer}>
       <Divider flexItem>
         <Typography variant="blockTitle" sx={styles.textHeader}>
           Handling
@@ -35,9 +34,9 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"BrakesIcon"}
             src="/EnumIcons/BrakesIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(brakes || "", BrakesType)}
@@ -47,9 +46,9 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"SuspensionIcon"}
             src="/EnumIcons/SuspensionIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(suspension || "", SuspensionType)}
@@ -59,9 +58,9 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"AntiRollBarsIcon"}
             src="/EnumIcons/AntiRollBarsIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(antiRollBars || "", AntiRollBarsType)}
@@ -71,9 +70,9 @@ const HandlingDetailsComponent = ({
           <Image
             alt={"RollCageIcon"}
             src="/EnumIcons/RollCageIcon.png"
-            width={defaultIconSize.width}
-            height={defaultIconSize.width}
             loading="lazy"
+            width={defaultIconSize}
+            height={defaultIconSize}
           />
           <Typography variant="textBody">
             {enumFormater.getValueByStringKey(rollCage || "", RollCageType)}

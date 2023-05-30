@@ -1,24 +1,15 @@
 import { AddBox } from "@mui/icons-material";
-import { Button, Container, Grid, GridProps, Typography } from "@mui/material";
+import { Button, Container, Grid, Typography } from "@mui/material";
 import { AdminCarButtonsComponent } from "../AdminCarButtonsComponent";
 import { AccessRole } from "../constants";
 import { CustomLinkComponent } from "../CustomLinkComponent";
 import { SignUpFormComponent } from "../forms";
-import {
-  AddCarModalComponent,
-  AddCarTypeModalComponent,
-  AddManufactureModalComponent,
-} from "../modals";
 import { styles } from "./styles";
-import { useAdminPanelComponent } from "./useAdminPanelComponent";
 
-const AdminPanelComponent = (props?: GridProps) => {
-  const { isAddCarOpen, isAddManufactureOpen, isAddCarTypeOpen } = useAdminPanelComponent();
+const AdminPanelComponent = () => {
+  const isDesktop = false;
   return (
-    <Grid container {...props}>
-      {isAddCarOpen && <AddCarModalComponent />}
-      {isAddCarTypeOpen && <AddCarTypeModalComponent />}
-      {isAddManufactureOpen && <AddManufactureModalComponent />}
+    <Grid container>
       <Grid item xs={12} md={8} sx={styles.gridItem}>
         <Typography variant="textTitle">Cars</Typography>
         <AdminCarButtonsComponent />
