@@ -1,0 +1,46 @@
+{
+  "name": "forza-horizon-community.front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.131",
+    "@mui/material": "^5.12.2",
+    "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-oauth/google": "^0.11.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
+    "deepmerge": "^4.3.1",
+    "formik": "^2.2.9",
+    "lightgallery": "^2.7.1",
+    "localforage": "^1.10.0",
+    "next": "13.3.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-intersection-observer": "^9.4.3",
+    "react-number-format": "^5.2.1",
+    "react-redux": "^8.0.5",
+    "recharts": "^2.6.2",
+    "redux-persist": "^6.0.0",
+    "sharp": "^0.32.1",
+    "yup": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
+    "eslint": "^8.39.0",
+    "eslint-config-next": "^13.3.4",
+    "typescript": "^5.0.4"
+  }
+}

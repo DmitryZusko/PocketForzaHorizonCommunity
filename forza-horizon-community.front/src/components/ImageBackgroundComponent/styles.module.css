@@ -1,0 +1,16 @@
+.image {
+  object-fit: cover;
+  width: 100vw;
+  filter: brightness(80%);
+}
+
+.text {
+  position: relative;
+  min-height: 25vh;
+  max-width: 95vw;
+}
+
+.outerBlock {
+  position: relative;
+  width: 100%;
+}
