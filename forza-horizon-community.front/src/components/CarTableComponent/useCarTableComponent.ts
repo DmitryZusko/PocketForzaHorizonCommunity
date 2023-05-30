@@ -1,6 +1,5 @@
 import { ICar } from "@/data-transfer-objects";
 import {
-  cleanUpCarState,
   getCarsAsync,
   getOwnedCarsAsync,
   paginatedCarsSelector,
@@ -21,8 +20,8 @@ const useCarTableComponent = () => {
   const [orderBy, setOrderBy] = useState<keyof ICar>("manufacture");
   const [order, setOrder] = useState<OrderDirection>("asc");
   const {
-    isLoadingEntities,
-    entities,
+    isLoadingCars,
+    cars,
     totalEntities,
     page: currentPage,
     pageSize,
@@ -101,7 +100,7 @@ const useCarTableComponent = () => {
   }, [isOnlyOwned, loadOwnedCars, loadAllCard]);
 
   const maintainedCars = useMemo(() => {
-    return entities.map((car) => {
+    return cars.map((car) => {
       if (user?.ownedCarsByUser?.includes(car.id)) {
         const carCopy = { ...car };
         carCopy.isOwnByUser = true;
@@ -109,7 +108,7 @@ const useCarTableComponent = () => {
       }
       return car;
     });
-  }, [entities, user]);
+  }, [cars, user]);
 
   const handleSorting = useCallback(
     (newOrder: OrderDirection, newProperty: keyof ICar) => {
@@ -139,22 +138,17 @@ const useCarTableComponent = () => {
   }, [loadCars]);
 
   useEffect(() => {
-    window?.scrollTo({
+    window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, [currentPage, pageSize]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(cleanUpCarState());
-    };
-  }, [dispatch]);
   return {
     isTablet,
     currentPage,
     pageSize,
-    isLoadingEntities,
+    isLoadingCars,
     maintainedCars,
     totalEntities,
     order,

@@ -68,7 +68,7 @@ const defaultErrorHandler = async (
 ) => {
   try {
     return await action();
-  } catch (error: any) {
+  } catch (error) {
     //if promise canceled in the thunk
     if (error.message === "canceled") return;
 
@@ -85,7 +85,7 @@ const inputFormErrorHandler = async (
 ) => {
   try {
     return await action();
-  } catch (error: any) {
+  } catch (error) {
     if (error.message === "canceled") return;
 
     if (error instanceof UnauthorizedError) {

@@ -1,5 +1,3 @@
-import { BoxProps } from "@mui/material";
-
 export interface ITiresDetailsComponentProps {
   tiresDescription: string | undefined;
   tiresCompound: string | undefined;
@@ -7,5 +5,4 @@ export interface ITiresDetailsComponentProps {
   rearTireWidth: string | undefined;
   frontTrackWidth: string | undefined;
   rearTrackWidth: string | undefined;
-  props?: BoxProps;
 }

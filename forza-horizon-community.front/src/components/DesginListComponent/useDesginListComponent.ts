@@ -5,6 +5,7 @@ import {
   getCarNamesAsync,
   getDesignsAsync,
   getDesignsByCarId,
+  setDesignPage,
   turnDesignPage,
   useAppDispatch,
   useAppSelector,
@@ -19,7 +20,7 @@ export const useDesginListComponent = () => {
 
   const { carNames } = useAppSelector(carNamesSelector);
 
-  const { entities, page, pageSize, totalEntities } = useAppSelector(designsSelector);
+  const { designs, page, pageSize, totalEntities } = useAppSelector(designsSelector);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -65,6 +66,7 @@ export const useDesginListComponent = () => {
   const handleSearchQueryChange = useCallback(
     (newQuery: string) => {
       dispatch(cleanUpDesigns());
+      dispatch(setDesignPage(0));
       setSearchQuery(newQuery);
     },
     [setSearchQuery, dispatch],
@@ -74,6 +76,7 @@ export const useDesginListComponent = () => {
   const handleAutocompleteChange = useCallback(
     (event: any, newValue: { label: string; id: string } | null) => {
       dispatch(cleanUpDesigns());
+      dispatch(setDesignPage(0));
       setSelectedCar(newValue?.id);
     },
     [setSelectedCar, dispatch],
@@ -95,23 +98,23 @@ export const useDesginListComponent = () => {
     return () => {
       if (!isDispatched) {
         dispatchPromise.abort();
-        dispatch(cleanUpDesigns());
       }
     };
-  }, [loadDesigns, dispatch]);
+  }, [loadDesigns]);
 
   //If user leaves the page and that returns, designs[] will contain previouse results and a new session will load the same designs and push it to the old array.
   //To prevent a such behavior, on a component unmounts designs[] should be cleaned up
   useEffect(() => {
     return () => {
       dispatch(cleanUpDesigns());
+      dispatch(setDesignPage(0));
     };
   }, [dispatch]);
 
   return {
     searchQuery,
     autocompleteOptions,
-    entities,
+    designs,
     page,
     pageSize,
     totalEntities,

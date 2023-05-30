@@ -5,9 +5,9 @@ export const carStateSelector = ({ car }: RootState) => car;
 
 export const paginatedCarsSelector = createSelector(
   carStateSelector,
-  ({ isLoadingEntities, entities, page, pageSize, totalEntities }) => ({
-    isLoadingEntities,
-    entities,
+  ({ isLoadingCars, cars, page, pageSize, totalEntities }) => ({
+    isLoadingCars,
+    cars,
     page,
     pageSize,
     totalEntities,

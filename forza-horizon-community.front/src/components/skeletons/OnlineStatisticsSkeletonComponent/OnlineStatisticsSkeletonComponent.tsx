@@ -1,13 +1,12 @@
-import { iconSizeLarge } from "@/components/constants";
-import { Container, ContainerProps, Skeleton, Typography } from "@mui/material";
+import { Container, Skeleton, Typography } from "@mui/material";
 
-const OnlineStatisticsSkeletonComponent = (props?: ContainerProps) => {
+const OnlineStatisticsSkeletonComponent = () => {
   return (
-    <Container {...props}>
+    <Container>
       <Typography variant="textTitle">
         <Skeleton variant="text" />
       </Typography>
-      <Skeleton variant="rounded" width={"100%"} height={iconSizeLarge.height} />
+      <Skeleton variant="rounded" height={150} width={"100%"} />
       <Typography variant="textBody">
         <Skeleton variant="text" />
       </Typography>

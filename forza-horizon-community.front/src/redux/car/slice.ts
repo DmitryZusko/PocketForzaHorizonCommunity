@@ -6,8 +6,8 @@ import { ActionWithPayload, ICarState, ISortingPayload } from "../types";
 import { getCarsAsync, getOwnedCarsAsync } from "./thunks";
 
 const initialState: ICarState = {
-  isLoadingEntities: false,
-  entities: [],
+  isLoadingCars: false,
+  cars: [],
   page: 0,
   pageSize: defaultPageSize,
   totalEntities: 0,
@@ -17,55 +17,50 @@ const carSlice = createSlice({
   name: "car",
   initialState,
   reducers: {
-    setCarPage: (state, { payload }: ActionWithPayload<number>) => {
+    setPage: (state, { payload }: ActionWithPayload<number>) => {
       state.page = payload;
     },
-    setCarPageSize: (state, { payload }: ActionWithPayload<number>) => {
+    setPageSize: (state, { payload }: ActionWithPayload<number>) => {
       state.pageSize = payload;
     },
     setSortedCars: (state, { payload }: ActionWithPayload<ISortingPayload<ICar>>) => {
-      state.entities = sortEntities<ICar>(payload.order, payload.orderBy, state.entities);
-    },
-    cleanUpCarState: (state) => {
-      state.isLoadingEntities = false;
-      state.entities = [];
-      state.page = 0;
+      state.cars = sortEntities<ICar>(payload.order, payload.orderBy, state.cars);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getCarsAsync.pending, (state) => {
-      state.isLoadingEntities = true;
+      state.isLoadingCars = true;
     });
     builder.addCase(getCarsAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.entities = payload.data.entities;
+      state.cars = payload.data.entities;
       state.page = payload.data.page;
       state.pageSize = payload.data.pageSize;
       state.totalEntities = payload.data.total;
-      state.isLoadingEntities = false;
+      state.isLoadingCars = false;
     });
     builder.addCase(getCarsAsync.rejected, (state) => {
-      state.isLoadingEntities = false;
+      state.isLoadingCars = false;
     });
     builder.addCase(getOwnedCarsAsync.pending, (state) => {
-      state.isLoadingEntities = true;
+      state.isLoadingCars = true;
     });
     builder.addCase(getOwnedCarsAsync.fulfilled, (state, { payload }) => {
       if (!payload) return;
 
-      state.entities = payload.data.entities;
+      state.cars = payload.data.entities;
       state.page = payload.data.page;
       state.pageSize = payload.data.pageSize;
       state.totalEntities = payload.data.total;
-      state.isLoadingEntities = false;
+      state.isLoadingCars = false;
     });
     builder.addCase(getOwnedCarsAsync.rejected, (state) => {
-      state.isLoadingEntities = false;
+      state.isLoadingCars = false;
     });
   },
 });
 
-export const { setCarPage, setCarPageSize, setSortedCars, cleanUpCarState } = carSlice.actions;
+export const { setPage, setPageSize, setSortedCars } = carSlice.actions;
 
 export default carSlice.reducer;
