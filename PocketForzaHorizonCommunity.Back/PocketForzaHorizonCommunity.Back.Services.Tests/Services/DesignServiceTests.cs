@@ -4,6 +4,7 @@ using Moq;
 using NUnit.Framework;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Services;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
@@ -135,21 +136,7 @@ public class DesignServiceTests
     [TestCase("car", ExpectedResult = 0)]
     public async Task<int> GetAllAsync_Should_Apply_Title_Search(string searchQuery)
     {
-        var designs = new List<Design>
-        {
-            new Design
-            {
-                Title = "Title",
-                User = new Database.Entities.ApplicationUser{ UserName = "Username" },
-                DesignOptions = new DesignOptions{Description = "Description"},
-            },
-                        new Design
-            {
-                Title = "Title",
-                User = new Database.Entities.ApplicationUser{ UserName = "Username" },
-                DesignOptions = new DesignOptions{Description = "Description"},
-            },
-        };
+        var designs = GetDesigns();
         var query = new FilteredDesignsGetRequest { SearchQuery = searchQuery };
 
         using var mock = AutoMock.GetLoose();
@@ -168,23 +155,9 @@ public class DesignServiceTests
     [TestCase("", ExpectedResult = 2)]
     [TestCase("cript", ExpectedResult = 2)]
     [TestCase("car", ExpectedResult = 0)]
-    public async Task<int> GetallAsync_Should_Apply_Description_Search(string searchQuery)
+    public async Task<int> GetAllAsync_Should_Apply_Description_Search(string searchQuery)
     {
-        var designs = new List<Design>
-        {
-            new Design
-            {
-                Title = "Title",
-                User = new Database.Entities.ApplicationUser{ UserName = "Username" },
-                DesignOptions = new DesignOptions{Description = "Description"},
-            },
-                        new Design
-            {
-                Title = "Title",
-                User = new Database.Entities.ApplicationUser{ UserName = "Username" },
-                DesignOptions = new DesignOptions{Description = "Description"},
-            },
-        };
+        var designs = GetDesigns();
         var query = new FilteredDesignsGetRequest { SearchQuery = searchQuery };
 
         using var mock = AutoMock.GetLoose();
@@ -203,9 +176,71 @@ public class DesignServiceTests
     [TestCase("", ExpectedResult = 2)]
     [TestCase("erna", ExpectedResult = 2)]
     [TestCase("car", ExpectedResult = 0)]
-    public async Task<int> GetallAsync_Should_Apply_Username_Search(string searchQuery)
+    public async Task<int> GetAllAsync_Should_Apply_Username_Search(string searchQuery)
     {
-        var designs = new List<Design>
+        var designs = GetDesigns();
+        var query = new FilteredDesignsGetRequest { SearchQuery = searchQuery };
+
+        using var mock = AutoMock.GetLoose();
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.GetAll())
+            .Returns(designs.BuildMock());
+
+        var designService = mock.Create<DesignService>();
+
+        var actual = await designService.GetAllAsync(query);
+
+        return actual.Total;
+    }
+
+    [Test]
+    public async Task SetRating_Should_Create_Rating_If_Not_Exists()
+    {
+        var mock = AutoMock.GetLoose();
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.GetById(new Guid()))
+            .Returns(GetDesigns().BuildMock());
+        mock.Mock<IDesignRatingRepository>()
+            .Setup(x => x.GetByKey(new Guid(), new Guid()));
+        mock.Mock<IDesignRatingRepository>()
+            .Setup(x => x.CreateAsync(null));
+        mock.Mock<IDesignRatingRepository>()
+            .Setup(x => x.SaveAsync());
+
+        var desginService = mock.Create<DesignService>();
+
+        await desginService.SetRating(new PostRatingRequest());
+
+        mock.Mock<IDesignRatingRepository>()
+            .Verify(x => x.CreateAsync(It.IsAny<DesignRating>()), Times.Once);
+    }
+
+    [Test]
+    public async Task SetRating_Should_Update_Rating_If_Exists()
+    {
+        var mock = AutoMock.GetLoose();
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.GetById(new Guid()))
+            .Returns(GetDesigns().BuildMock());
+        mock.Mock<IDesignRatingRepository>()
+            .Setup(x => x.GetByKey(new Guid(), new Guid()))
+            .Returns(Task.Run(() => new DesignRating()));
+        mock.Mock<IDesignRatingRepository>()
+            .Setup(x => x.CreateAsync(null));
+        mock.Mock<IDesignRatingRepository>()
+            .Setup(x => x.SaveAsync());
+
+        var desginService = mock.Create<DesignService>();
+
+        await desginService.SetRating(new PostRatingRequest());
+
+        mock.Mock<IDesignRatingRepository>()
+            .Verify(x => x.CreateAsync(It.IsAny<DesignRating>()), Times.Never);
+    }
+
+    private List<Design> GetDesigns()
+    {
+        return new List<Design>
         {
             new Design
             {
@@ -220,17 +255,5 @@ public class DesignServiceTests
                 DesignOptions = new DesignOptions{Description = "Description"},
             },
         };
-        var query = new FilteredDesignsGetRequest { SearchQuery = searchQuery };
-
-        using var mock = AutoMock.GetLoose();
-        mock.Mock<IDesignRepository>()
-            .Setup(x => x.GetAll())
-            .Returns(designs.BuildMock());
-
-        var designService = mock.Create<DesignService>();
-
-        var actual = await designService.GetAllAsync(query);
-
-        return actual.Total;
     }
 }

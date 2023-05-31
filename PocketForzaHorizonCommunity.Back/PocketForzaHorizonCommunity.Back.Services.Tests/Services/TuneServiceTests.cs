@@ -138,14 +138,13 @@ public class TuneServiceTests
     [Test]
     public async Task SetRating_Should_Update_Rating_If_Exists()
     {
-        var rating = new TuneRating();
         using var mock = AutoMock.GetLoose();
         mock.Mock<ITuneRepository>()
             .Setup(x => x.GetById(new Guid()))
             .Returns(GetTunes().BuildMock());
         mock.Mock<ITuneRatingRepository>()
             .Setup(x => x.GetByKey(new Guid(), new Guid()))
-            .Returns(Task.Run(() => rating));
+            .Returns(Task.Run(() => new TuneRating()));
         mock.Mock<ITuneRatingRepository>()
             .Setup(x => x.CreateAsync(null));
         mock.Mock<ITuneRatingRepository>()
