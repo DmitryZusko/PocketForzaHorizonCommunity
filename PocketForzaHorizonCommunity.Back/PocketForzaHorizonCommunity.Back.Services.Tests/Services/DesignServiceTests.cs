@@ -161,7 +161,7 @@ public class DesignServiceTests
 
         var actual = await designService.GetAllAsync(query);
 
-        return actual.Entities.Count();
+        return actual.Total;
     }
 
     [Test]
@@ -196,7 +196,7 @@ public class DesignServiceTests
 
         var actual = await designService.GetAllAsync(query);
 
-        return actual.Entities.Count();
+        return actual.Total;
     }
 
     [Test]
@@ -231,6 +231,6 @@ public class DesignServiceTests
 
         var actual = await designService.GetAllAsync(query);
 
-        return actual.Entities.Count();
+        return actual.Total;
     }
 }
