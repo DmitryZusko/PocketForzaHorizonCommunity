@@ -85,7 +85,8 @@ public class DesignController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<DesignFullInfoDto> SetRating([FromBody] PostRatingRequest request)
     {
-        var design = _mapper.Map<DesignFullInfoDto>(await _service.SetRating(request));
+        var rating = _mapper.Map<DesignRating>(request);
+        var design = _mapper.Map<DesignFullInfoDto>(await _service.SetRating(rating));
 
         Response.StatusCode = StatusCodes.Status201Created;
 

@@ -2,7 +2,7 @@
 
 public class PostRatingRequest
 {
-    public Guid UserId { get; set; }
-    public Guid GuideId { get; set; }
+    public string UserId { get; set; } = null!;
+    public string GuideId { get; set; } = null!;
     public double Rating { get; set; }
 }

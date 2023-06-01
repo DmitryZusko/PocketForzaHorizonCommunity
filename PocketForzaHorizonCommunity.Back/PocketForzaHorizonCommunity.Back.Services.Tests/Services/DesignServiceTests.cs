@@ -4,7 +4,6 @@ using Moq;
 using NUnit.Framework;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Services;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
@@ -209,7 +208,7 @@ public class DesignServiceTests
 
         var desginService = mock.Create<DesignService>();
 
-        await desginService.SetRating(new PostRatingRequest());
+        await desginService.SetRating(new DesignRating());
 
         mock.Mock<IDesignRatingRepository>()
             .Verify(x => x.CreateAsync(It.IsAny<DesignRating>()), Times.Once);
@@ -232,7 +231,7 @@ public class DesignServiceTests
 
         var desginService = mock.Create<DesignService>();
 
-        await desginService.SetRating(new PostRatingRequest());
+        await desginService.SetRating(new DesignRating());
 
         mock.Mock<IDesignRatingRepository>()
             .Verify(x => x.CreateAsync(It.IsAny<DesignRating>()), Times.Never);

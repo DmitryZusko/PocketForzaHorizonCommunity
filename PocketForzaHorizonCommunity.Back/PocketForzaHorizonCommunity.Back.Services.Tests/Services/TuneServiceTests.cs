@@ -4,7 +4,6 @@ using Moq;
 using NUnit.Framework;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 using PocketForzaHorizonCommunity.Back.Services.Services;
 
@@ -129,7 +128,7 @@ public class TuneServiceTests
 
         var tuneService = mock.Create<TuneService>();
 
-        await tuneService.SetRating(new PostRatingRequest());
+        await tuneService.SetRating(new TuneRating());
 
         mock.Mock<ITuneRatingRepository>()
             .Verify(x => x.CreateAsync(It.IsAny<TuneRating>()), Times.Once);
@@ -152,7 +151,7 @@ public class TuneServiceTests
 
         var tuneService = mock.Create<TuneService>();
 
-        await tuneService.SetRating(new PostRatingRequest());
+        await tuneService.SetRating(new TuneRating());
 
         mock.Mock<ITuneRatingRepository>()
             .Verify(x => x.CreateAsync(It.IsAny<TuneRating>()), Times.Never);

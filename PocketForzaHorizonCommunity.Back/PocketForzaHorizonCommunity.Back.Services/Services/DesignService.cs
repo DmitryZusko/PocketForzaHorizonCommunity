@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
@@ -27,8 +26,11 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     public override async Task<PaginationModel<Design>> GetAllAsync(FilteredDesignsGetRequest request)
         => await ApplyFiltersAsync(_repository.GetAll(), request);
 
-    public async Task<PaginationModel<Design>> GetAllByCarIdAsync(FilteredCarDesignsGetRequest request) =>
-        await ApplyFiltersAsync(_repository.GetAllByCarId(request.CarId), request);
+    public async Task<PaginationModel<Design>> GetAllByCarIdAsync(FilteredCarDesignsGetRequest request)
+    {
+        Guid.TryParse(request.CarId, out var carId);
+        return await ApplyFiltersAsync(_repository.GetAllByCarId(carId), request);
+    }
 
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
     {
@@ -56,10 +58,10 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     public async Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request) =>
         SetDescriptionLendth(await _repository.GetAll().OrderByDescending(d => d.CreationDate).PaginateAsync(request.Page, request.PageSize), request.DescriptionLimit);
 
-    public async Task<Design> SetRating(PostRatingRequest request)
+    public async Task<Design> SetRating(DesignRating request)
     {
-        var design = await _repository.GetById(request.GuideId).FirstOrDefaultAsync() ?? throw new BadRequestException(Messages.BAD_REQUEST);
-        var rating = await _ratingRepository.GetByKey(request.UserId, request.GuideId);
+        var design = await _repository.GetById(request.EntityId).FirstOrDefaultAsync() ?? throw new BadRequestException(Messages.BAD_REQUEST);
+        var rating = await _ratingRepository.GetByKey(request.UserId, request.EntityId);
 
         if (rating != null)
         {
@@ -69,12 +71,7 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
             return design;
         }
 
-        rating = new DesignRating
-        {
-            UserId = request.UserId,
-            EntityId = request.GuideId,
-            Rating = request.Rating,
-        };
+        rating = request;
 
         await _ratingRepository.CreateAsync(rating);
         await _ratingRepository.SaveAsync();

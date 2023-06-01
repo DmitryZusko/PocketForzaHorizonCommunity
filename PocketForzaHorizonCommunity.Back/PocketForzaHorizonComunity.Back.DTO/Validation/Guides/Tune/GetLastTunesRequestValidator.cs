@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
-namespace PocketForzaHorizonCommunity.Back.DTO.Validation.Guides;
+namespace PocketForzaHorizonCommunity.Back.DTO.Validation.Guides.Tune;
 
 public class GetLastTunesRequestValidator : AbstractValidator<GetLastTunesRequest>
 {
@@ -10,6 +10,7 @@ public class GetLastTunesRequestValidator : AbstractValidator<GetLastTunesReques
         RuleFor(x => x.TunesAmount)
             .NotEmpty()
             .GreaterThan(0)
-            .LessThan(100);
+            .LessThan(100)
+            .WithMessage("The limit should be between 0 and 100");
     }
 }

@@ -9,6 +9,7 @@ public class CreateCarTypeRequestValidation : AbstractValidator<CreateCarTypeReq
     {
         RuleFor(x => x.Name)
             .NotEmpty()
-            .MaximumLength(64);
+            .MaximumLength(64)
+            .WithMessage("The car type name should be up to 64 characters long");
     }
 }
