@@ -5,7 +5,5 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.StatisticsRepos;
 
 public class OnlineStatisticsRepository : StatisticsRepositoryBase<OnlineStatistics>, IOnlineStatisticsRepository
 {
-    public OnlineStatisticsRepository(ApplicationDbContext context) : base(context)
-    {
-    }
+    public OnlineStatisticsRepository(ApplicationDbContext context) : base(context) { }
 }

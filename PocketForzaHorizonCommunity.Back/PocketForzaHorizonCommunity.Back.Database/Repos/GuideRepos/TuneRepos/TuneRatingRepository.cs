@@ -5,7 +5,5 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.GuideRepos.TuneRepos;
 
 public class TuneRatingRepository : RatingRepositoryBase<TuneRating, Tune>, ITuneRatingRepository
 {
-    public TuneRatingRepository(ApplicationDbContext context) : base(context)
-    {
-    }
+    public TuneRatingRepository(ApplicationDbContext context) : base(context) { }
 }

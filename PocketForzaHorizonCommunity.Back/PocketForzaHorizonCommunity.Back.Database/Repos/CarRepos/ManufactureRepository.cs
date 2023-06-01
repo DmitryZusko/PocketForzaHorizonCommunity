@@ -5,7 +5,5 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.CarRepos;
 
 public class ManufactureRepository : RepositoryBase<Manufacture>, IManufactureRepository
 {
-    public ManufactureRepository(ApplicationDbContext context) : base(context)
-    {
-    }
+    public ManufactureRepository(ApplicationDbContext context) : base(context) { }
 }

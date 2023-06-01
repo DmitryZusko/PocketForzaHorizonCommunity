@@ -1,5 +1,5 @@
-﻿using PocketForzaHorizonCommunity.Back.Database;
-using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;

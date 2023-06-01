@@ -6,13 +6,12 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.GuideRepos.TuneRepos;
 public class GalleryRepository : IGalleryRepository
 {
     private ApplicationDbContext _context;
-    public GalleryRepository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    public GalleryRepository(ApplicationDbContext context) => _context = context;
 
     public IQueryable<GalleryImage> GetByDesignId(Guid id) =>
-        _context.Set<GalleryImage>().Where(g => g.DesignOptionsId == id).AsQueryable();
+        _context.Set<GalleryImage>()
+            .Where(g => g.DesignOptionsId == id)
+            .AsQueryable();
 
     public async Task CreateAsync(GalleryImage entity) => await _context.Set<GalleryImage>().AddAsync(entity);
 

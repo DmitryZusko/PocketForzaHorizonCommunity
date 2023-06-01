@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Extensions;
 

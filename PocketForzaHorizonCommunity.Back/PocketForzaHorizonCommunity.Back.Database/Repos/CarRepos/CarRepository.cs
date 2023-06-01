@@ -10,17 +10,17 @@ public class CarRepository : RepositoryBase<Car>, ICarRepository
     }
 
     public override IQueryable<Car> GetAll() =>
-        Context.Set<Car>()
-        .Include(c => c.Manufacture)
-        .Include(c => c.CarType)
-        .AsQueryable();
+        _context.Set<Car>()
+            .Include(c => c.Manufacture)
+            .Include(c => c.CarType)
+            .AsQueryable();
 
-    public Task<int> GetMinPriceAsync() => Context.Set<Car>().MinAsync(c => c.Price);
+    public Task<int> GetMinPriceAsync() => _context.Set<Car>().MinAsync(c => c.Price);
 
-    public Task<int> GetMaxPriceAsync() => Context.Set<Car>().MaxAsync(c => c.Price);
+    public Task<int> GetMaxPriceAsync() => _context.Set<Car>().MaxAsync(c => c.Price);
 
-    public Task<int> GetMinYearAsync() => Context.Set<Car>().MinAsync(c => c.Year);
+    public Task<int> GetMinYearAsync() => _context.Set<Car>().MinAsync(c => c.Year);
 
-    public Task<int> GetMaxYearAsync() => Context.Set<Car>().MaxAsync(c => c.Year);
+    public Task<int> GetMaxYearAsync() => _context.Set<Car>().MaxAsync(c => c.Year);
 
 }

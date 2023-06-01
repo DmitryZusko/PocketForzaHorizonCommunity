@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;

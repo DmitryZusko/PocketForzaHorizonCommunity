@@ -5,7 +5,5 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.CarRepos;
 
 public class CarTypeRepository : RepositoryBase<CarType>, ICarTypeRepository
 {
-    public CarTypeRepository(ApplicationDbContext context) : base(context)
-    {
-    }
+    public CarTypeRepository(ApplicationDbContext context) : base(context) { }
 }

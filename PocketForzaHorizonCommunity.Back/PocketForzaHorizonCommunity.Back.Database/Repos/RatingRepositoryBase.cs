@@ -8,16 +8,14 @@ public class RatingRepositoryBase<TEntity, TGuide> : IRatingRepositoryBase<TEnti
 {
     protected readonly ApplicationDbContext _context;
 
-    public RatingRepositoryBase(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    public RatingRepositoryBase(ApplicationDbContext context) => _context = context;
 
     public async virtual Task CreateAsync(TEntity newEntity) => await _context.Set<TEntity>().AddAsync(newEntity);
 
     public async Task<int> SaveAsync() => await _context.SaveChangesAsync();
 
     public async Task<TEntity> GetByKey(Guid userId, Guid entityId)
-        => await _context.Set<TEntity>().FirstOrDefaultAsync(r => r.UserId == userId && r.EntityId == entityId);
+        => await _context.Set<TEntity>()
+                    .FirstOrDefaultAsync(r => r.UserId == userId && r.EntityId == entityId);
 
 }

@@ -1,6 +1,6 @@
 ﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
 
-namespace PocketForzaHorizonCommunity.Back.Database;
+namespace PocketForzaHorizonCommunity.Back.Database.Models;
 
 public class PaginationModel<TEntity> where TEntity : EntityBase
 {

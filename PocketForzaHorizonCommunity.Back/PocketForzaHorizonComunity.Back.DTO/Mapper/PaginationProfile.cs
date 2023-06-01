@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PocketForzaHorizonCommunity.Back.Database;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 using PocketForzaHorizonCommunity.Back.DTO.Responses;
 
 namespace PocketForzaHorizonCommunity.Back.DTO.Mapper;

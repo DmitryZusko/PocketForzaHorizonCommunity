@@ -11,12 +11,12 @@ public class ApplicationUserRepository : IApplicationUserRepository
 
     public async Task<ApplicationUser> GetUserByIdAsync(Guid id)
         => await _context.Set<ApplicationUser>()
-        .Include(u => u.CampaignStatistics)
-        .Include(u => u.GeneralStatistics.Car.Manufacture)
-        .Include(u => u.GeneralStatistics.Car.CarType)
-        .Include(u => u.OnlineStatistics)
-        .Include(u => u.RecordsStatistics)
-        .Include(u => u.OwnedCarsByUser)
-        .AsSplitQuery()
-        .FirstOrDefaultAsync(u => u.Id == id);
+                    .Include(u => u.CampaignStatistics)
+                    .Include(u => u.GeneralStatistics.Car.Manufacture)
+                    .Include(u => u.GeneralStatistics.Car.CarType)
+                    .Include(u => u.OnlineStatistics)
+                    .Include(u => u.RecordsStatistics)
+                    .Include(u => u.OwnedCarsByUser)
+                    .AsSplitQuery()
+                    .FirstOrDefaultAsync(u => u.Id == id);
 }

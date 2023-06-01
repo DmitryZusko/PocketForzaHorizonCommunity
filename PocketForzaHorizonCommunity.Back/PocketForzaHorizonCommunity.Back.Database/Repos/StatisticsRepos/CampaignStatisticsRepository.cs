@@ -5,7 +5,5 @@ namespace PocketForzaHorizonCommunity.Back.Database.Repos.StatisticsRepos;
 
 public class CampaignStatisticsRepository : StatisticsRepositoryBase<CampaignStatistics>, ICampaignStatisticsRepository
 {
-    public CampaignStatisticsRepository(ApplicationDbContext context) : base(context)
-    {
-    }
+    public CampaignStatisticsRepository(ApplicationDbContext context) : base(context) { }
 }
