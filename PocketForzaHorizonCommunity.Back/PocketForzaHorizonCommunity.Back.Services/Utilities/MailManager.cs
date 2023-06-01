@@ -21,7 +21,7 @@ public class MailManager : IMailManager
         var message = GetMessage(messageOptions);
         using var smtp = new SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate(_config["Email:Address"], _config["Email:Password"]);
+        smtp.Authenticate(_config.GetValue<string>("Email:Address"), _config.GetValue<string>("Email:Password"));
         smtp.Send(message);
         smtp.Disconnect(true);
     }

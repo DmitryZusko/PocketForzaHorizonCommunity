@@ -36,7 +36,9 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
     {
         var carIds = request.Ids.Split(',').ToList();
         var cars = _repository.GetAll();
+
         cars = cars.Where(c => carIds.Contains(c.Id.ToString()));
+
         return await AplyFiltersAsync(cars, request);
     }
 

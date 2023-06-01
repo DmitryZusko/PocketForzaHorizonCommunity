@@ -9,9 +9,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
 public class ManufactureService : CrudServiceBase<IManufactureRepository, Manufacture, PaginationGetRequestBase>, IManufactureService
 {
-    public ManufactureService(IManufactureRepository repository) : base(repository)
-    {
-    }
+    public ManufactureService(IManufactureRepository repository) : base(repository) { }
 
     public async Task<Manufacture> UpdateAsync(Manufacture newManufacture)
     {

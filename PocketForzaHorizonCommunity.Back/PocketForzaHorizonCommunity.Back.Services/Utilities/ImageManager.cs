@@ -12,7 +12,7 @@ public class ImageManager : IImageManager
 
     public async Task<string> SaveCarThumbnail(IFormFile image, Guid carId)
     {
-        var path = Path.Combine(_config["Images:Cars"], carId.ToString());
+        var path = Path.Combine(_config.GetValue<string>("Images:Cars"), carId.ToString());
         using (var stream = new FileStream(path, FileMode.Create))
         {
             await image.CopyToAsync(stream);
@@ -23,7 +23,7 @@ public class ImageManager : IImageManager
 
     public async Task<string> SaveDesignThumbnail(IFormFile image, Guid designId)
     {
-        var path = Path.Combine(_config["Images:Designs"], $"{designId}_thumbnail");
+        var path = Path.Combine(_config.GetValue<string>("Images:Designs"), $"{designId}_thumbnail");
         using (var stream = new FileStream(path, FileMode.Create))
         {
             await image.CopyToAsync(stream);
@@ -38,7 +38,7 @@ public class ImageManager : IImageManager
 
         for (var i = 0; i < images.Count; i++)
         {
-            var path = Path.Combine(_config["Images:Designs"], $"{designId}_{i}");
+            var path = Path.Combine(_config.GetValue<string>("Images:Designs"), $"{designId}_{i}");
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await images[i].CopyToAsync(stream);

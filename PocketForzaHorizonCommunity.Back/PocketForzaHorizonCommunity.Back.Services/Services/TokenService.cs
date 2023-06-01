@@ -20,7 +20,7 @@ public class TokenService : ITokenService
 
     public TokenService(IConfiguration config, SignInManager<ApplicationUser> manager)
     {
-        _secret = config["Security:Secret"];
+        _secret = config.GetValue<string>("Security:Secret");
         _tokenLifetimeSeconds = config.GetValue<int>("Security:TokenLifetimeSeconds");
         _signInManager = manager;
     }

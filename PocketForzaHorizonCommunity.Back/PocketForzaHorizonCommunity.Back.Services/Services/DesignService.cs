@@ -28,7 +28,8 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
 
     public async Task<PaginationModel<Design>> GetAllByCarIdAsync(FilteredCarDesignsGetRequest request)
     {
-        Guid.TryParse(request.CarId, out var carId);
+        if (!Guid.TryParse(request.CarId, out var carId)) throw new EntityNotFoundException();
+
         return await ApplyFiltersAsync(_repository.GetAllByCarId(carId), request);
     }
 
@@ -55,8 +56,12 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
         await _repository.SaveAsync();
     }
 
-    public async Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request) =>
-        SetDescriptionLendth(await _repository.GetAll().OrderByDescending(d => d.CreationDate).PaginateAsync(request.Page, request.PageSize), request.DescriptionLimit);
+    public async Task<PaginationModel<Design>> GetLastDesigns(GetLastDesignsRequest request)
+        => SetDescriptionLendth(
+            await _repository.GetAll()
+                .OrderByDescending(d => d.CreationDate)
+                .PaginateAsync(request.Page, request.PageSize),
+            request.DescriptionLimit);
 
     public async Task<Design> SetRating(DesignRating request)
     {

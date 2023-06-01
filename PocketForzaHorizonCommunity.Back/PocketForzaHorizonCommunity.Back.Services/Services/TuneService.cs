@@ -23,7 +23,8 @@ public class TuneService : CrudServiceBase<ITuneRepository, Tune, FilteredTuneGe
 
     public async Task<PaginationModel<Tune>> GetAllByCarIdAsync(FilteredCarTuneGetRequest request)
     {
-        Guid.TryParse(request.CarId, out var carId);
+        if (!Guid.TryParse(request.CarId, out var carId)) throw new EntityNotFoundException();
+
         return await ApplyFiltersAsync(_repository.GetAllByCarId(carId), request);
     }
 

@@ -56,7 +56,7 @@ public class SteamService : ISteamService
     {
         var achivementSchemes = await GetAchivementScheme();
 
-        if (amount < 0) amount = achivementSchemes.Count;
+        if (amount < 1) amount = achivementSchemes.Count;
 
         var globalAchivementStats = new List<GlobalAchivement>();
 
