@@ -47,8 +47,9 @@ public class FilteredCarsGetByIdsRequestValidator : AbstractValidator<FilteredCa
             .GreaterThanOrEqualTo(0)
             .WithMessage("0 - is the minimal page size");
 
+        //Id's length is 36 characters, so I belive a lmit in 50,000 characters (it is ~ 1400 cars) will more than enough both to protect app and give good user experience
         RuleFor(x => x.Ids)
-            .Must(x => x.Count() < 1000)
-            .WithMessage("Please, select no more than a 1,000 cars");
+        .MaximumLength(50_000)
+            .WithMessage("Car ids shouldn't exceed the length of 50,000");
     }
 }
