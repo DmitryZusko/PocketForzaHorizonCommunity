@@ -20,7 +20,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<AppNewsDto> GetNews([FromQuery] GetNewsRequest request)
         {
-            return _mapper.Map<AppNewsDto>(await _service.GetNews(request.Count, request.MaxLength));
+            return _mapper.Map<AppNewsDto>(await _service.GetNews(request));
         }
 
         [HttpGet("GetAchivementStats")]
