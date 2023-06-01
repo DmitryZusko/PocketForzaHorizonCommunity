@@ -9,8 +9,9 @@ public class RatingProfile : Profile
 {
     public RatingProfile()
     {
-        CreateMap<PostRatingRequest, DesignRating>();
-        CreateMap<PostRatingRequest, TuneRating>();
-
+        CreateMap<PostRatingRequest, DesignRating>()
+            .ForMember(dest => dest.EntityId, opt => opt.MapFrom(src => src.GuideId));
+        CreateMap<PostRatingRequest, TuneRating>()
+            .ForMember(dest => dest.EntityId, opt => opt.MapFrom(src => src.GuideId));
     }
 }

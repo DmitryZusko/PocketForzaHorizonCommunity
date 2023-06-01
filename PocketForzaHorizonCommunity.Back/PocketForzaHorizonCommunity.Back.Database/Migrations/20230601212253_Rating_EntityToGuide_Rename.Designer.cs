@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PocketForzaHorizonCommunity.Back.Database;
 
@@ -11,9 +12,11 @@ using PocketForzaHorizonCommunity.Back.Database;
 namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230601212253_Rating_EntityToGuide_Rename")]
+    partial class Rating_EntityToGuide_Rename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -341,15 +344,15 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("EntityId")
+                    b.Property<Guid>("GuideEntityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.HasKey("UserId", "EntityId");
+                    b.HasKey("UserId", "GuideEntityId");
 
-                    b.HasIndex("EntityId");
+                    b.HasIndex("GuideEntityId");
 
                     b.ToTable("DesignsRating");
                 });
@@ -484,15 +487,15 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("EntityId")
+                    b.Property<Guid>("GuideEntityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.HasKey("UserId", "EntityId");
+                    b.HasKey("UserId", "GuideEntityId");
 
-                    b.HasIndex("EntityId");
+                    b.HasIndex("GuideEntityId");
 
                     b.ToTable("TunesRating");
                 });
@@ -799,9 +802,9 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.DesignRating", b =>
                 {
-                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", "Entity")
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", "GuideEntity")
                         .WithMany("Ratings")
-                        .HasForeignKey("EntityId")
+                        .HasForeignKey("GuideEntityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -811,7 +814,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Entity");
+                    b.Navigation("GuideEntity");
 
                     b.Navigation("User");
                 });
@@ -859,9 +862,9 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
 
             modelBuilder.Entity("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.TuneRating", b =>
                 {
-                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", "Entity")
+                    b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", "GuideEntity")
                         .WithMany("Ratings")
-                        .HasForeignKey("EntityId")
+                        .HasForeignKey("GuideEntityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -871,7 +874,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Entity");
+                    b.Navigation("GuideEntity");
 
                     b.Navigation("User");
                 });
