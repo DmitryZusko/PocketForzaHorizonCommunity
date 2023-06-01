@@ -33,7 +33,7 @@ let store: EnhancedStore;
 const persistConfig = {
   key: "root",
   storage: localforage,
-  whitelist: ["auth", "filterScheme", "settings"],
+  whitelist: ["auth", "settings"],
 };
 
 const rootReducer = combineReducers({

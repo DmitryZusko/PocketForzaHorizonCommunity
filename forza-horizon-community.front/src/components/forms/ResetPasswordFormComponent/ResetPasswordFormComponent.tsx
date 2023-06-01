@@ -14,12 +14,11 @@ const ResetPasswordFormComponent = () => {
           label="New Password"
           helperText={formik.touched.newPassword && formik.errors.newPassword}
           {...{
-            name: "confirmPassword",
-            type: "password",
-            value: formik.values.confirmPassword,
+            name: "newPassword",
+            value: formik.values.newPassword,
             onChange: formik.handleChange,
             onBlur: formik.handleBlur,
-            error: formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword),
+            error: formik.touched.newPassword && Boolean(formik.errors.newPassword),
           }}
         />
         <PasswordFieldComponent
@@ -27,7 +26,6 @@ const ResetPasswordFormComponent = () => {
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
           {...{
             name: "confirmPassword",
-            type: "password",
             value: formik.values.confirmPassword,
             onChange: formik.handleChange,
             onBlur: formik.handleBlur,

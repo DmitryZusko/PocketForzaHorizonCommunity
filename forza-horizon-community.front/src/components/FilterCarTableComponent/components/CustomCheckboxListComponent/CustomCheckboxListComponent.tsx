@@ -8,10 +8,13 @@ const CustomCheckboxListComponent = ({
   applyChanges,
   ...props
 }: ICustomCheckboxListComponentProprs) => {
-  const { handleChange } = useCustomCheckboxListComponent({ applyChanges });
+  const { sortedEntities, handleChange } = useCustomCheckboxListComponent({
+    entities,
+    applyChanges,
+  });
   return (
     <Container sx={styles.outerContainer} {...props}>
-      {entities.map((entity) => (
+      {sortedEntities.map((entity) => (
         <FormControlLabel
           key={entity}
           label={entity}

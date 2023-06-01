@@ -270,7 +270,7 @@ const AddNewTuneFormComponent = () => {
             handleBlur={formik.handleBlur}
           />
           <SparePartSelectComponent
-            imageSrc={"differentialIcon.png"}
+            imageSrc={"DifferentialIcon.png"}
             label="Differential"
             name="differential"
             value={formik.values.differential}
