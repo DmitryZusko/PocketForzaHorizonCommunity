@@ -36,7 +36,7 @@ const DesignBlockComponent = (props: BoxProps) => {
             >
               <Box>
                 <CustomTooltipComponent title="Go to Design" {...{ sx: styles.cardBlock }}>
-                  <Box>
+                  <Box maxWidth={{ xs: "90vw", md: "45vw", lg: "30vw" }}>
                     <NavigationCard
                       thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
                       cardTitle={design.title}
