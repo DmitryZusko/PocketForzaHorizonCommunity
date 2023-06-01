@@ -12,13 +12,12 @@ public class MailManager : IMailManager
 {
     private readonly IConfiguration _config;
 
-    public MailManager(IConfiguration config)
-    {
-        _config = config;
-    }
+    public MailManager(IConfiguration config) => _config = config;
+
     public void SendEmail(MessageOptionsBase messageOptions)
     {
         var message = GetMessage(messageOptions);
+
         using var smtp = new SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
         smtp.Authenticate(_config.GetValue<string>("Email:Address"), _config.GetValue<string>("Email:Password"));
@@ -44,6 +43,7 @@ public class MailManager : IMailManager
     private MimeMessage CreateEmailConfirmationMessage(EmailConfirmationOptions emailOptions)
     {
         var message = new MimeMessage();
+
         message.From.Add(MailboxAddress.Parse(_config["Email:Address"]));
         message.To.Add(MailboxAddress.Parse(emailOptions.DestinationEmail));
         message.Subject = "Email Confirmation";
@@ -57,6 +57,7 @@ public class MailManager : IMailManager
     private MimeMessage CreateResetPasswordMessage(ResetPasswordOptions emailOptions)
     {
         var message = new MimeMessage();
+
         message.From.Add(MailboxAddress.Parse(_config["Email:Address"]));
         message.To.Add(MailboxAddress.Parse(emailOptions.DestinationEmail));
         message.Subject = "Reset Password";

@@ -97,7 +97,6 @@ public class StatisticsGenerator : IStatisticsGenerator
 
     private async Task<CampaignStatistics> GenerateCampaignStatistics()
     {
-
         var rnd = new Random();
 
         var statistics = new CampaignStatistics
