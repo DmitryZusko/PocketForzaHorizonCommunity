@@ -305,16 +305,6 @@ const AddNewTuneFormComponent = () => {
       <Grid item xs={12}>
         <Box sx={styles.sparePartsBlock}>
           <SparePartSelectComponent
-            imageSrc={"TiresCompoundIcon.png"}
-            label="Tires Compound"
-            name="compound"
-            value={formik.values.compound}
-            enumerator={TiresCompoundType}
-            handleValueChange={formik.handleChange}
-            error={Boolean(formik.errors.compound)}
-            handleBlur={formik.handleBlur}
-          />
-          <SparePartSelectComponent
             imageSrc={"TiresWidthIcon.png"}
             label="Front Tires Width"
             name="frontTireWidth"
@@ -352,6 +342,16 @@ const AddNewTuneFormComponent = () => {
             enumerator={TrackWidthType}
             handleValueChange={formik.handleChange}
             error={Boolean(formik.errors.rearTrackWidth)}
+            handleBlur={formik.handleBlur}
+          />
+          <SparePartSelectComponent
+            imageSrc={"TiresCompoundIcon.png"}
+            label="Tires Compound"
+            name="compound"
+            value={formik.values.compound}
+            enumerator={TiresCompoundType}
+            handleValueChange={formik.handleChange}
+            error={Boolean(formik.errors.compound)}
             handleBlur={formik.handleBlur}
           />
         </Box>
