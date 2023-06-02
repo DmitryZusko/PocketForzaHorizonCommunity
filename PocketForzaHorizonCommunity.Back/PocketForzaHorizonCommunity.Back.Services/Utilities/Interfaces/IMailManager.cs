@@ -1,9 +1,9 @@
-﻿using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.EmailModels;
+﻿using MimeKit;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces
 {
     public interface IMailManager
     {
-        void SendEmail(MessageOptionsBase messageOptions);
+        void SendEmail(MimeMessage message);
     }
 }
