@@ -30,24 +30,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<TuneRating>()
-            .HasOne(r => r.User)
-            .WithMany(u => u.TunesRatings)
-            .OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<ApplicationUser>()
+            .HasMany(u => u.Tunes)
+            .WithOne(t => t.User)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.SetNull);
 
-        builder.Entity<TuneRating>()
-            .HasOne(r => r.Entity)
-            .WithMany(t => t.Ratings)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.Entity<DesignRating>()
-            .HasOne(r => r.User)
-            .WithMany(u => u.DesignsRatings)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.Entity<DesignRating>()
-            .HasOne(r => r.Entity)
-            .WithMany(r => r.Ratings)
-            .OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<ApplicationUser>()
+            .HasMany(u => u.Designs)
+            .WithOne(t => t.User)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }
