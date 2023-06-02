@@ -8,6 +8,6 @@ public class DesignOptions
     public Guid DesignId { get; set; }
     public Design Design { get; set; } = null!;
     public string? ThumbnailPath { get; set; } = null!;
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; } = string.Empty;
     public ICollection<GalleryImage> Gallery { get; set; } = new List<GalleryImage>();
 }

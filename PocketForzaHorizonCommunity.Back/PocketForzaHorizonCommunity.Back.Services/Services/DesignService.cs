@@ -122,7 +122,7 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     {
         foreach (var item in result.Entities)
         {
-            if (descriptionLimit < item.DesignOptions.Description.Length)
+            if (descriptionLimit < item.DesignOptions.Description?.Length)
             {
                 item.DesignOptions.Description = item.DesignOptions.Description
                     .Substring(0, descriptionLimit) + "...";

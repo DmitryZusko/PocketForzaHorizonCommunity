@@ -9,7 +9,7 @@ public class TuneOptions
     public Guid TuneId { get; set; }
     public Tune Tune { get; set; } = null!;
 
-    public string EngineDescription { get; set; } = string.Empty;
+    public string? EngineDescription { get; set; } = string.Empty;
     [Required]
     public EngineType Engine { get; set; }
     [Required]
@@ -23,7 +23,7 @@ public class TuneOptions
     [Required]
     public ExhaustType Exhaust { get; set; }
 
-    public string HandlingDescription { get; set; } = string.Empty;
+    public string? HandlingDescription { get; set; } = string.Empty;
     [Required]
     public BrakesType Brakes { get; set; }
     [Required]
@@ -33,7 +33,7 @@ public class TuneOptions
     [Required]
     public RollCageType RollCage { get; set; }
 
-    public string DrivetrainDescription { get; set; } = string.Empty;
+    public string? DrivetrainDescription { get; set; } = string.Empty;
     [Required]
     public ClutchType Clutch { get; set; }
     [Required]
@@ -41,7 +41,7 @@ public class TuneOptions
     [Required]
     public DifferentialType Differential { get; set; }
 
-    public string TiresDescription { get; set; } = string.Empty;
+    public string? TiresDescription { get; set; } = string.Empty;
     [Required]
     public TiresCompoundType Compound { get; set; }
     [Required]
