@@ -37,8 +37,9 @@ public class DesignMappingTests
     [Test]
     public void CreateDesignRequest_To_Design_Should_Map()
     {
-        var request = Boilerplate.GetCreateDesignRequestSample();
         var expected = Boilerplate.GetDesignSample();
+
+        var request = Boilerplate.GetCreateDesignRequestSample();
 
         var mapper = new MapperConfiguration(cfg => cfg.AddProfile<DesignProfile>()).CreateMapper();
 
@@ -60,7 +61,10 @@ public class DesignMappingTests
 
         designDto.Id = design.Id.ToString();
         designDto.Title = design.Title;
+        designDto.Description = design.DesignOptions.Description;
         designDto.ForzaShareCode = design.ForzaShareCode;
+        designDto.Rating = design.Ratings.Average(r => r.Rating);
+        designDto.CreationDate = design.CreationDate;
         designDto.AuthorUsername = design.User.UserName;
         designDto.CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}";
 
@@ -87,12 +91,13 @@ public class DesignMappingTests
         {
             Id = desginDto.Id.ToString(),
             Title = desginDto.Title,
+            Description = design.DesignOptions.Description,
             ForzaShareCode = desginDto.ForzaShareCode,
             Rating = desginDto.Rating,
+            CreationDate = desginDto.CreationDate,
             AuthorUsername = desginDto.AuthorUsername,
             CarModel = desginDto.CarModel,
             Thumbnail = desginDto.Thumbnail,
-            Description = design.DesignOptions.Description,
             Gallery = imageList,
         };
     }
@@ -138,6 +143,8 @@ public class DesignMappingTests
             if (property.Name == nameof(actual.Car)) continue;
             if (property.Name == nameof(actual.User)) continue;
             if (property.Name == nameof(actual.DesignOptions)) continue;
+            if (property.Name == nameof(actual.CreationDate)) continue;
+            if (property.Name == nameof(actual.Ratings)) continue;
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
         }
 

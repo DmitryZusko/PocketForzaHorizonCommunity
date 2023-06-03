@@ -115,6 +115,12 @@ internal static class Boilerplate
             Car = car,
         };
 
+        design.Ratings = new List<DesignRating>
+        {
+            new DesignRating {Rating = 5, UserId = user.Id, User = user, EntityId = design.Id, Entity = design},
+            new DesignRating {Rating = 2, UserId = user.Id, User = user, EntityId = design.Id, Entity = design},
+        };
+
         design.DesignOptions = new DesignOptions
         {
             DesignId = design.Id,
@@ -167,6 +173,13 @@ internal static class Boilerplate
             CarId = car.Id,
             Car = car,
         };
+
+        tune.Ratings = new List<TuneRating>
+            {
+                new TuneRating {Rating = 5, UserId = user.Id, User = user, EntityId = tune.Id, Entity = tune},
+                new TuneRating {Rating = 2, UserId = user.Id, User = user, EntityId = tune.Id, Entity = tune},
+
+            };
 
         tune.TuneOptions = new TuneOptions
         {

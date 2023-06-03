@@ -2,6 +2,6 @@
 
 public class GetNewsRequest
 {
-    public int Count { get; set; }
-    public int MaxLength { get; set; }
+    public int Count { get; set; } = 5;
+    public int MaxLength { get; set; } = 300;
 }

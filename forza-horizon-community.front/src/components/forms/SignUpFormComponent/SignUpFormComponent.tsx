@@ -37,8 +37,7 @@ const SignUpFormComponent = ({ signUpRole, formHeader = "Sign Up" }: ISignUpForm
           label="Password"
           helperText={formik.touched.password && formik.errors.password}
           {...{
-            name: "confirmPassword",
-            type: "password",
+            name: "password",
             value: formik.values.password,
             onChange: formik.handleChange,
             onBlur: formik.handleBlur,
@@ -50,7 +49,6 @@ const SignUpFormComponent = ({ signUpRole, formHeader = "Sign Up" }: ISignUpForm
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
           {...{
             name: "confirmPassword",
-            type: "password",
             value: formik.values.confirmPassword,
             onChange: formik.handleChange,
             onBlur: formik.handleBlur,

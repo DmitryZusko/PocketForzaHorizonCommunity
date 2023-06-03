@@ -81,7 +81,8 @@ public class TuneController : ApplicationControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<TuneFullInfoDto> SetRating([FromBody] PostRatingRequest request)
     {
-        var tune = _mapper.Map<TuneFullInfoDto>(await _service.SetRating(request));
+        var rating = _mapper.Map<TuneRating>(request);
+        var tune = _mapper.Map<TuneFullInfoDto>(await _service.SetRating(rating));
 
         Response.StatusCode = StatusCodes.Status201Created;
 

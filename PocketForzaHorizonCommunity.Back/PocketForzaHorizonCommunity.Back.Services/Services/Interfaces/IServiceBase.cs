@@ -1,5 +1,5 @@
-﻿using PocketForzaHorizonCommunity.Back.Database;
-using PocketForzaHorizonCommunity.Back.Database.Entities;
+﻿using PocketForzaHorizonCommunity.Back.Database.Entities;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 using PocketForzaHorizonCommunity.Back.DTO.Requests;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces

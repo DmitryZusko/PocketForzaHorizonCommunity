@@ -9,10 +9,13 @@ public class CreateManufactureRequestValidator : AbstractValidator<CreateManufac
     {
         RuleFor(x => x.Name)
             .NotEmpty()
-            .MaximumLength(64);
+            .MaximumLength(64)
+            .WithMessage("The manufacture name should be up to 64 characters long");
 
         RuleFor(x => x.Country)
             .NotEmpty()
-            .MaximumLength(64);
+            .MaximumLength(64)
+            .WithMessage("The country name should be up to 64 characters long");
+
     }
 }

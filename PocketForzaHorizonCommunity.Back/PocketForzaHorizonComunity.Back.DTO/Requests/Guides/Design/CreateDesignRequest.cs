@@ -10,5 +10,5 @@ public class CreateDesignRequest
     public string CarId { get; set; } = null!;
     public IFormFile Thumbnail { get; set; } = null!;
     public IList<IFormFile> Gallery { get; set; } = new List<IFormFile>();
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; } = string.Empty;
 }

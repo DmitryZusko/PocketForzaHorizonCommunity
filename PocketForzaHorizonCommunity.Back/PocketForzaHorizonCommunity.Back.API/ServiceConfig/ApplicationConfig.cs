@@ -9,6 +9,9 @@ using PocketForzaHorizonCommunity.Back.Services.Services;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.MailManager;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.MailManager.MessageFactory;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.MailManager.MessageFactory.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
 {
@@ -42,6 +45,8 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
 
             services.AddTransient<IImageManager, ImageManager>();
             services.AddTransient<IMailManager, MailManager>();
+            services.AddTransient<IResetPasswordsMessageFactory, ResetPasswordsMessageFactory>();
+            services.AddTransient<IEmailConfirmationMessageFactory, EmailConfirmationMessageFactory>();
             services.AddTransient<IStatisticsGenerator, StatisticsGenerator>();
         }
     }

@@ -27,7 +27,7 @@ const AddCarFormComponent = () => {
           <Grid item xs={12}>
             <ImageUploaderComponent
               buttonText={"Add Thumbnail"}
-              threshold={3}
+              threshold={1}
               maxImageSizeInMB={maxImageSizeInMB}
               isRequired={true}
               handleErrorChange={handleThumbnailErrorChange}

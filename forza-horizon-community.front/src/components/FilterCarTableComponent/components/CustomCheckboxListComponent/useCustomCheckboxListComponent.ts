@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ICustomCheckboxListComponentHook } from "../../types";
 
 export const useCustomCheckboxListComponent = ({
+  entities,
   applyChanges,
 }: ICustomCheckboxListComponentHook) => {
   const [selected, setSelected] = useState<string[]>([]);
@@ -17,9 +18,13 @@ export const useCustomCheckboxListComponent = ({
     [selected],
   );
 
+  const sortedEntities = useMemo(() => {
+    return entities.sort();
+  }, [entities]);
+
   useEffect(() => {
     applyChanges(selected);
   }, [selected, applyChanges]);
 
-  return { handleChange };
+  return { sortedEntities, handleChange };
 };

@@ -2,5 +2,5 @@
 
 public class FilteredCarsGetByIdsRequest : FilteredCarsGetRequest
 {
-    public List<Guid> Ids { get; set; } = new List<Guid>();
+    public string Ids { get; set; } = string.Empty;
 }

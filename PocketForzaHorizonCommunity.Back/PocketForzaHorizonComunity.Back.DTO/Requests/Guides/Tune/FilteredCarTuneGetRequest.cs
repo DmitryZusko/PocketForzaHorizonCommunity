@@ -2,5 +2,5 @@
 
 public class FilteredCarTuneGetRequest : FilteredTuneGetRequest
 {
-    public Guid CarId { get; set; }
+    public string CarId { get; set; }
 }

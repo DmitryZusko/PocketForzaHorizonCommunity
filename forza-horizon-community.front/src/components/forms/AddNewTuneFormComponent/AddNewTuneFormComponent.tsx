@@ -270,7 +270,7 @@ const AddNewTuneFormComponent = () => {
             handleBlur={formik.handleBlur}
           />
           <SparePartSelectComponent
-            imageSrc={"differentialIcon.png"}
+            imageSrc={"DifferentialIcon.png"}
             label="Differential"
             name="differential"
             value={formik.values.differential}
@@ -304,16 +304,6 @@ const AddNewTuneFormComponent = () => {
       </Grid>
       <Grid item xs={12}>
         <Box sx={styles.sparePartsBlock}>
-          <SparePartSelectComponent
-            imageSrc={"TiresCompoundIcon.png"}
-            label="Tires Compound"
-            name="compound"
-            value={formik.values.compound}
-            enumerator={TiresCompoundType}
-            handleValueChange={formik.handleChange}
-            error={Boolean(formik.errors.compound)}
-            handleBlur={formik.handleBlur}
-          />
           <SparePartSelectComponent
             imageSrc={"TiresWidthIcon.png"}
             label="Front Tires Width"
@@ -352,6 +342,16 @@ const AddNewTuneFormComponent = () => {
             enumerator={TrackWidthType}
             handleValueChange={formik.handleChange}
             error={Boolean(formik.errors.rearTrackWidth)}
+            handleBlur={formik.handleBlur}
+          />
+          <SparePartSelectComponent
+            imageSrc={"TiresCompoundIcon.png"}
+            label="Tires Compound"
+            name="compound"
+            value={formik.values.compound}
+            enumerator={TiresCompoundType}
+            handleValueChange={formik.handleChange}
+            error={Boolean(formik.errors.compound)}
             handleBlur={formik.handleBlur}
           />
         </Box>

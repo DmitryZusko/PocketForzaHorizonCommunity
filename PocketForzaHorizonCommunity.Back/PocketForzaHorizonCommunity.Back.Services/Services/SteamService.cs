@@ -16,12 +16,12 @@ public class SteamService : ISteamService
     private readonly IConfiguration _config;
     public SteamService(IConfiguration configuration) => _config = configuration;
 
-    public async Task<AppNews> GetNews(int count = 5, int maxLength = 300)
+    public async Task<AppNews> GetNews(GetNewsRequest request)
     {
         using var client = HttpClientFactory.Create();
         var response = await client.GetAsync(
             $"{ApplicationConstants.STEAM_BASE_URL}ISteamNews/GetNewsForApp/v0002/?appid={ApplicationConstants.APP_ID}" +
-            $"&count={count}&maxlength={maxLength}");
+            $"&count={request.Count}&maxlength={request.MaxLength}");
 
         if (!response.IsSuccessStatusCode) throw new ExceptionBase(response.ReasonPhrase, (int)response.StatusCode);
 
@@ -56,7 +56,7 @@ public class SteamService : ISteamService
     {
         var achivementSchemes = await GetAchivementScheme();
 
-        if (amount < 0) amount = achivementSchemes.Count;
+        if (amount < 1) amount = achivementSchemes.Count;
 
         var globalAchivementStats = new List<GlobalAchivement>();
 

@@ -6,7 +6,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services.Interfaces
 {
     public interface ISteamService
     {
-        Task<AppNews> GetNews(int count, int maxLength);
+        Task<AppNews> GetNews(GetNewsRequest request);
         Task<List<GlobalAchivement>> GetGlobalAchivementStats(GetAchievementsRequest request);
         Task<int> GetOnlineCount();
     }

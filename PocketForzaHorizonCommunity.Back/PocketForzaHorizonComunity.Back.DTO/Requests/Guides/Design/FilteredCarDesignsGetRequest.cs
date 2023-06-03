@@ -2,5 +2,5 @@
 
 public class FilteredCarDesignsGetRequest : FilteredDesignsGetRequest
 {
-    public Guid CarId { get; set; }
+    public string CarId { get; set; }
 }

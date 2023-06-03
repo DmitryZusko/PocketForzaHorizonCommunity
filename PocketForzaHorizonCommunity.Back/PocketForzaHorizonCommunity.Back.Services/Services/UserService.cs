@@ -7,8 +7,8 @@ using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Services.Interfaces;
 using PocketForzaHorizonCommunity.Back.Services.Utilities;
 using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
-using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.EmailModels;
-using PocketForzaHorizonCommunity.Back.Services.Utilities.Models.MessageOptions;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.MailManager.MessageFactory.Interfaces;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.Models;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
@@ -19,16 +19,21 @@ public class UserService : IUserService
     private readonly IStatisticsGenerator _statisticsGenerator;
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly IMailManager _mailManager;
+    private readonly IResetPasswordsMessageFactory _resetPasswordsMessageFactory;
+    private readonly IEmailConfirmationMessageFactory _emailConfirmationMessageFactory;
 
     public UserService(SignInManager<ApplicationUser> signInManager,
             ApplicationUserManager<ApplicationUser> userManager, IStatisticsGenerator statisticsGenerator,
-            RoleManager<ApplicationRole> roleManager, IMailManager mailManager)
+            RoleManager<ApplicationRole> roleManager, IMailManager mailManager,
+            IResetPasswordsMessageFactory resetPasswordsMessageFactory, IEmailConfirmationMessageFactory emailConfirmationMessageFactory)
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _statisticsGenerator = statisticsGenerator;
         _roleManager = roleManager;
         _mailManager = mailManager;
+        _resetPasswordsMessageFactory = resetPasswordsMessageFactory;
+        _emailConfirmationMessageFactory = emailConfirmationMessageFactory;
     }
 
     public async Task<ApplicationUser> SingInUserAsync(SignInRequest request)
@@ -96,14 +101,14 @@ public class UserService : IUserService
 
         var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-        var messageOptions = new EmailConfirmationOptions
+        var messageOptions = new MessageOptions
         {
             DestinationEmail = request.DestinationEmail,
             UserId = user.Id,
-            ConfirmationToken = confirmationToken,
+            Token = confirmationToken,
         };
 
-        _mailManager.SendEmail(messageOptions);
+        _mailManager.SendEmail(_emailConfirmationMessageFactory.CreateMessage(messageOptions));
     }
 
     public async Task ConfirmEmailAsync(EmailConfirmationRequest request)
@@ -127,14 +132,14 @@ public class UserService : IUserService
 
         var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-        var messageOptions = new ResetPasswordOptions
+        var messageOptions = new MessageOptions
         {
             DestinationEmail = user.Email,
             UserId = user.Id,
-            ResetToken = resetToken,
+            Token = resetToken,
         };
 
-        _mailManager.SendEmail(messageOptions);
+        _mailManager.SendEmail(_resetPasswordsMessageFactory.CreateMessage(messageOptions));
     }
 
     public async Task ResetPasswordAsync(ResetPasswordRequest request)

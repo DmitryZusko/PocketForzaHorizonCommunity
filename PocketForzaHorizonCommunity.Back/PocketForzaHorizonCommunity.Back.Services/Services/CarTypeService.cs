@@ -9,9 +9,7 @@ namespace PocketForzaHorizonCommunity.Back.Services.Services;
 
 public class CarTypeService : CrudServiceBase<ICarTypeRepository, CarType, PaginationGetRequestBase>, ICarTypeService
 {
-    public CarTypeService(ICarTypeRepository repository) : base(repository)
-    {
-    }
+    public CarTypeService(ICarTypeRepository repository) : base(repository) { }
 
     public async Task<CarType> UpdateAsync(CarType newCarType)
     {

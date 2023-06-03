@@ -8,7 +8,7 @@ public static class AuthenticationConfig
 {
     public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration config)
     {
-        var key = Encoding.UTF8.GetBytes(config["Security:Secret"]);
+        var key = Encoding.UTF8.GetBytes(config.GetValue<string>("Security:Secret"));
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -33,7 +33,7 @@ public static class AuthenticationConfig
                     {
                         if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
                         {
-                            context.Response.Headers.Add(config["Security:TokenExpiredHeader"], "true");
+                            context.Response.Headers.Add(config.GetValue<string>("Security:TokenExpiredHeader"), "true");
                         }
 
                         return Task.CompletedTask;

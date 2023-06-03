@@ -28,7 +28,6 @@ const SingInFormComponent = () => {
           helperText={formik.touched.password && formik.errors.password}
           {...{
             name: "password",
-            type: "password",
             value: formik.values.password,
             onChange: formik.handleChange,
             onBlur: formik.handleBlur,

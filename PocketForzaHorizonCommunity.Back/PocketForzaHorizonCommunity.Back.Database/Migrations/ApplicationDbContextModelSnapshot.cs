@@ -307,7 +307,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -325,7 +325,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbnailPath")
@@ -387,7 +386,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -426,14 +425,12 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DrivetrainDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Engine")
                         .HasColumnType("int");
 
                     b.Property<string>("EngineDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Exhaust")
@@ -446,7 +443,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("HandlingDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Ignition")
@@ -468,7 +464,6 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TiresDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Transmission")
@@ -595,7 +590,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.Property<int>("TotalVictories")
                         .HasColumnType("int");
 
-                    b.Property<int>("WeeklyChallengesComplited")
+                    b.Property<int>("WeeklyChallengesCompleted")
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
@@ -778,8 +773,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithMany("Designs")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Car");
 
@@ -802,13 +796,13 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities.Design", "Entity")
                         .WithMany("Ratings")
                         .HasForeignKey("EntityId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithMany("DesignsRatings")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Entity");
@@ -838,8 +832,7 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithMany("Tunes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Car");
 
@@ -862,13 +855,13 @@ namespace PocketForzaHorizonCommunity.Back.Database.Migrations
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities.Tune", "Entity")
                         .WithMany("Ratings")
                         .HasForeignKey("EntityId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PocketForzaHorizonCommunity.Back.Database.Entities.ApplicationUser", "User")
                         .WithMany("TunesRatings")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Entity");

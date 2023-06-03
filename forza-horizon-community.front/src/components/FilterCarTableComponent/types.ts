@@ -16,10 +16,10 @@ export interface ICustomRangeSliderComponentProps extends ICustomRangeSliderComp
 }
 
 export interface ICustomCheckboxListComponentHook {
+  entities: string[];
   applyChanges: (newEntry: string[]) => void;
 }
 
 export interface ICustomCheckboxListComponentProprs extends ICustomCheckboxListComponentHook {
-  entities: string[];
   props?: ContainerProps;
 }

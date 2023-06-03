@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Tune;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
 using PocketForzaHorizonCommunity.Back.Services.Extensions;
@@ -22,16 +21,20 @@ public class TuneService : CrudServiceBase<ITuneRepository, Tune, FilteredTuneGe
     public override async Task<PaginationModel<Tune>> GetAllAsync(FilteredTuneGetRequest request) =>
         await ApplyFiltersAsync(_repository.GetAll(), request);
 
-    public async Task<PaginationModel<Tune>> GetAllByCarIdAsync(FilteredCarTuneGetRequest request) =>
-        await ApplyFiltersAsync(_repository.GetAllByCarId(request.CarId), request);
+    public async Task<PaginationModel<Tune>> GetAllByCarIdAsync(FilteredCarTuneGetRequest request)
+    {
+        if (!Guid.TryParse(request.CarId, out var carId)) throw new EntityNotFoundException();
+
+        return await ApplyFiltersAsync(_repository.GetAllByCarId(carId), request);
+    }
 
     public async Task<List<Tune>> GetLastTunes(int tunesAmount) =>
         await _repository.GetAll().OrderByDescending(t => t.CreationDate).Take(tunesAmount).ToListAsync();
 
-    public async Task<Tune> SetRating(PostRatingRequest request)
+    public async Task<Tune> SetRating(TuneRating request)
     {
-        var tune = _repository.GetById(request.GuideId).FirstOrDefault() ?? throw new BadRequestException(Messages.BAD_REQUEST);
-        var rating = await _ratingRepository.GetByKey(request.UserId, request.GuideId);
+        var tune = _repository.GetById(request.EntityId).FirstOrDefault() ?? throw new BadRequestException(Messages.BAD_REQUEST);
+        var rating = await _ratingRepository.GetByKey(request.UserId, request.EntityId);
 
         if (rating != null)
         {
@@ -41,12 +44,7 @@ public class TuneService : CrudServiceBase<ITuneRepository, Tune, FilteredTuneGe
             return tune;
         }
 
-        rating = new TuneRating
-        {
-            UserId = request.UserId,
-            EntityId = request.GuideId,
-            Rating = request.Rating
-        };
+        rating = request;
 
         await _ratingRepository.CreateAsync(rating);
         await _ratingRepository.SaveAsync();

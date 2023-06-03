@@ -9,6 +9,7 @@ using System.Security.Claims;
 
 namespace PocketForzaHorizonCommunity.Back.API.Controllers
 {
+    [AllowAnonymous]
     public class AuthenticationController : ApplicationControllerBase
     {
         private readonly IUserService _userService;
@@ -23,7 +24,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("sign-in")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
@@ -37,7 +37,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("google-sign-in")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
@@ -51,7 +50,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("sign-up")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
@@ -68,6 +66,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("sign-up/admin")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
@@ -85,6 +84,7 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("sign-up/creator")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
@@ -103,7 +103,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
 
 
         [HttpPost("refresh")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -141,7 +140,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpGet("verify-email")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -153,7 +151,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("reset-password-message")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -164,7 +161,6 @@ namespace PocketForzaHorizonCommunity.Back.API.Controllers
         }
 
         [HttpPost("reset-password")]
-        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

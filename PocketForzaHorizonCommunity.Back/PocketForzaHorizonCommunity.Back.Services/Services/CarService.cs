@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
+using PocketForzaHorizonCommunity.Back.Database.Models;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 using PocketForzaHorizonCommunity.Back.Services.Exceptions;
@@ -34,8 +34,11 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
 
     public async Task<PaginationModel<Car>> GetByIds(FilteredCarsGetByIdsRequest request)
     {
+        var carIds = request.Ids.Split(',').ToList();
         var cars = _repository.GetAll();
-        cars = cars.Where(c => request.Ids.Contains(c.Id));
+
+        cars = cars.Where(c => carIds.Contains(c.Id.ToString()));
+
         return await AplyFiltersAsync(cars, request);
     }
 
