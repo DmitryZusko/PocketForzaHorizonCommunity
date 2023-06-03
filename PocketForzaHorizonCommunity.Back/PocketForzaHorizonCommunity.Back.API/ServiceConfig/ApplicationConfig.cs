@@ -3,6 +3,7 @@ using PocketForzaHorizonCommunity.Back.Database.Repos;
 using PocketForzaHorizonCommunity.Back.Database.Repos.CarRepos;
 using PocketForzaHorizonCommunity.Back.Database.Repos.GuideRepos.DesignRepos;
 using PocketForzaHorizonCommunity.Back.Database.Repos.GuideRepos.TuneRepos;
+using PocketForzaHorizonCommunity.Back.Database.Repos.ImageRepos;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.Database.Repos.StatisticsRepos;
 using PocketForzaHorizonCommunity.Back.Services.Services;
@@ -32,6 +33,7 @@ namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig
             services.AddTransient<IGeneralStatisticsRepository, GeneralStatisticsRepository>();
             services.AddTransient<IOnlineStatisticsRepository, OnlineStatisticsRepository>();
             services.AddTransient<IRecordsStatisticsRepository, RecordsStatisticsRepository>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
 
             services.AddTransient<ApplicationUserManager<ApplicationUser>>();
             services.AddTransient<IUserService, UserService>();
