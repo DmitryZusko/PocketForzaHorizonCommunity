@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
+using PocketForzaHorizonCommunity.Back.Database.Models.ImgurModels;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.Database.Seeders.Models;
 using System.Net.Http.Json;
 using System.Security.Claims;
 

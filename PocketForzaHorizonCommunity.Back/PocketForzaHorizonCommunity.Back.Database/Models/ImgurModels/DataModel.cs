@@ -1,4 +1,4 @@
-﻿namespace PocketForzaHorizonCommunity.Back.Database.Seeders.Models;
+﻿namespace PocketForzaHorizonCommunity.Back.Database.Models.ImgurModels;
 
 public class DataModel
 {
