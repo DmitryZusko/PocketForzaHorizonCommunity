@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
@@ -6,9 +7,11 @@ using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntit
 using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
 using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.Database.Seeders.Models;
+using System.Net.Http.Json;
 using System.Security.Claims;
 
-namespace PocketForzaHorizonCommunity.Back.Database;
+namespace PocketForzaHorizonCommunity.Back.Database.Seeders;
 
 public class DevelopmentEnvironmentSeeder
 {
@@ -20,6 +23,8 @@ public class DevelopmentEnvironmentSeeder
     private readonly IDesignRepository _designRepo;
     private readonly IGalleryRepository _galleryRepo;
     private readonly ITuneRepository _tuneRepo;
+    private readonly IAlbumRepository _albumRepo;
+    private readonly IConfiguration _config;
 
     public DevelopmentEnvironmentSeeder(
         RoleManager<ApplicationRole> roleManager,
@@ -29,7 +34,9 @@ public class DevelopmentEnvironmentSeeder
         ICarTypeRepository carTypeRepo,
         IDesignRepository designRepo,
         IGalleryRepository galleryRepo,
-        ITuneRepository tuneRepo)
+        ITuneRepository tuneRepo,
+        IAlbumRepository albumRepo,
+        IConfiguration configuration)
     {
         _roleManager = roleManager;
         _userManager = userManager;
@@ -39,17 +46,84 @@ public class DevelopmentEnvironmentSeeder
         _designRepo = designRepo;
         _galleryRepo = galleryRepo;
         _tuneRepo = tuneRepo;
+        _albumRepo = albumRepo;
+        _config = configuration;
     }
 
     public async Task Seed()
     {
+        await SeedAlbums();
         await SeedRoles();
-        //await SeedUsers();
+        await SeedUsers();
         await SeedManufacture();
         await SeedCarTypes();
         await SeedCars();
         await SeedDesigns();
         await SeedTunes();
+    }
+
+    private async Task SeedAlbums()
+    {
+        if (_albumRepo.GetAll().Any()) return;
+
+        using var client = HttpClientFactory.Create();
+        var content = JsonContent.Create(new
+        {
+            refresh_token = _config.GetValue<string>("ImgurApi:Refresh_Token"),
+            client_id = _config.GetValue<string>("ImgurApi:Client_Id"),
+            client_secret = _config.GetValue<string>("ImgurApi:Secret"),
+            grant_type = "refresh_token"
+        });
+
+        var response = await client.PostAsync("https://api.imgur.com/oauth2/token", content);
+
+        if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
+
+        var token = (await response.Content.ReadAsAsync<ImgurAuthResponse>()).Access_Token;
+
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+        //Hardcoding a thumbnail's id saves a lot of work, so be sure to upload image manualy to the imgur
+        var albumTitle = "Cars";
+        content = JsonContent.Create(new
+        {
+            Title = albumTitle,
+            Description = "Album for car's thumbnail",
+            Cover = "AuQUwch"
+        });
+
+        response = await client.PostAsync("https://api.imgur.com/3/album", content);
+
+        if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
+
+        var albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
+        await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
+        {
+            ImgurId = albumId,
+            Name = albumTitle,
+        });
+
+        //Hardcoding a thumbnail's id saves a lot of work, so be sure to upload image manualy to the imgur
+        albumTitle = "Designs";
+        content = JsonContent.Create(new
+        {
+            Title = albumTitle,
+            Description = "Album for design's thumbnail",
+            Cover = "YCHM0Cq"
+        });
+
+        response = await client.PostAsync("https://api.imgur.com/3/album", content);
+
+        if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
+
+        albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
+        await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
+        {
+            ImgurId = albumId,
+            Name = albumTitle,
+        });
+
+        await _albumRepo.SaveAsync();
     }
 
     private async Task SeedRoles()
@@ -87,16 +161,16 @@ public class DevelopmentEnvironmentSeeder
 
     private async Task SeedUsers()
     {
-        var user = await _userManager.FindByEmailAsync("googlkek@gmail.com");
+        var user = await _userManager.FindByEmailAsync("admin@g.com");
 
         if (user != null) return;
         user = new ApplicationUser
         {
-            Email = "googlkek@gmail.com",
-            UserName = "GooglKek",
+            Email = "admin@g.com",
+            UserName = "Admin",
         };
 
-        await _userManager.CreateAsync(user, "Qwerty123!");
+        await _userManager.CreateAsync(user, "Admin!22");
 
         if (!await _userManager.IsInRoleAsync(user, RoleType.ADMIN))
         {
@@ -104,17 +178,17 @@ public class DevelopmentEnvironmentSeeder
         }
 
 
-        user = await _userManager.FindByEmailAsync("elxf123@gmail.com");
+        user = await _userManager.FindByEmailAsync("user@g.com");
 
         if (user != null) return;
 
         user = new ApplicationUser
         {
-            Email = "elxf123@gmail.com",
-            UserName = "Elxf123",
+            Email = "user@g.com",
+            UserName = "User",
         };
 
-        await _userManager.CreateAsync(user, "Qwerty123!");
+        await _userManager.CreateAsync(user, "User!222");
         if (!await _userManager.IsInRoleAsync(user, RoleType.USER))
         {
             await _userManager.AddToRoleAsync(user, RoleType.USER);
@@ -167,22 +241,12 @@ public class DevelopmentEnvironmentSeeder
     {
         if (_carRepo.GetAll().Any()) return;
 
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-        var mazdaImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\cars\rx7.jpg");
-        var skylineImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\cars\skyliner34.jpg");
-        var golfImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\cars\golfr34.jpg");
-        var mazdaFullPath = Path.GetFullPath(mazdaImage);
-        var skylineFullPath = Path.GetFullPath(skylineImage);
-        var golfFullPath = Path.GetFullPath(golfImage);
-
 
         var mazda = new Car
         {
             Model = "Rx-7",
             Year = 1997,
             Price = 35_000,
-            ImagePath = mazdaFullPath,
             ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Mazda").FirstOrDefault().Id,
             CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Retro Sport Car").FirstOrDefault().Id,
         };
@@ -192,7 +256,6 @@ public class DevelopmentEnvironmentSeeder
             Model = "Skyline R34",
             Year = 1997,
             Price = 35_000,
-            ImagePath = skylineFullPath,
             ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Nissan").FirstOrDefault().Id,
             CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Retro Sport Car").FirstOrDefault().Id,
         };
@@ -202,7 +265,6 @@ public class DevelopmentEnvironmentSeeder
             Model = "Golf R34",
             Year = 1997,
             Price = 30_000,
-            ImagePath = golfFullPath,
             ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Volkswagen").FirstOrDefault().Id,
             CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Hot Hatch").FirstOrDefault().Id,
         };
@@ -228,18 +290,9 @@ public class DevelopmentEnvironmentSeeder
 
         await _designRepo.CreateAsync(mazdaDesign);
 
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-        var thumbnail = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\rx_thumbnail.png");
-        var designImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\rx_design.png");
-        var thumbPath = Path.GetFullPath(thumbnail);
-        var designPath = Path.GetFullPath(designImage);
-
-
         mazdaDesign.DesignOptions = new DesignOptions
         {
             DesignId = mazdaDesign.Id,
-            ThumbnailPath = thumbPath,
             Description = "My Rx-7 design!",
         };
 
@@ -248,7 +301,7 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = mazdaDesign.DesignOptions.DesignId,
-            ImagePath = designPath,
+            ImagePath = "",
         });
 
         await _galleryRepo.SaveAsync();
@@ -263,17 +316,9 @@ public class DevelopmentEnvironmentSeeder
 
         await _designRepo.CreateAsync(skylineDesign);
 
-        thumbnail = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\skyline_thumbnail.png");
-        designImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\skyline_design_1.png");
-        var designImageMore = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\skyline_design_2.png");
-        thumbPath = Path.GetFullPath(thumbnail);
-        designPath = Path.GetFullPath(designImage);
-        var designPathMore = Path.GetFullPath(designImageMore);
-
         skylineDesign.DesignOptions = new DesignOptions
         {
             DesignId = skylineDesign.Id,
-            ThumbnailPath = thumbPath,
             Description = "My Skyline R34 design!",
         };
 
@@ -282,13 +327,13 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = designPath,
+            ImagePath = "",
         });
 
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = designPathMore,
+            ImagePath = "",
         });
 
         await _galleryRepo.SaveAsync();

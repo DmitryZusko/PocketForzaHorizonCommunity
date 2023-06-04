@@ -4,6 +4,7 @@ using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
+using PocketForzaHorizonCommunity.Back.Database.Entities.ImageEntities;
 using PocketForzaHorizonCommunity.Back.Database.Entities.UserStatisticsEntitites;
 
 namespace PocketForzaHorizonCommunity.Back.Database;
@@ -25,6 +26,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<GeneralStatistics> GeneralStatistics => Set<GeneralStatistics>();
     public DbSet<OnlineStatistics> OnlineStatistics => Set<OnlineStatistics>();
     public DbSet<RecordsStatistics> RecordsStatistics => Set<RecordsStatistics>();
+    public DbSet<Album> Albums => Set<Album>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
