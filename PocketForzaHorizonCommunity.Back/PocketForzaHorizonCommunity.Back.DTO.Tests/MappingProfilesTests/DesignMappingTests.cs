@@ -50,42 +50,23 @@ public class DesignMappingTests
 
     private DesignDto MapDesignToDto(Design design)
     {
-        var designDto = new DesignDto();
-
-        using (var stream = new FileStream(design.DesignOptions.ThumbnailUrl, FileMode.Open))
+        return new DesignDto
         {
-            var thumbnail = new byte[stream.Length];
-            stream.Read(thumbnail);
-            designDto.Thumbnail = thumbnail;
-        }
-
-        designDto.Id = design.Id.ToString();
-        designDto.Title = design.Title;
-        designDto.Description = design.DesignOptions.Description;
-        designDto.ForzaShareCode = design.ForzaShareCode;
-        designDto.Rating = design.Ratings.Average(r => r.Rating);
-        designDto.CreationDate = design.CreationDate;
-        designDto.AuthorUsername = design.User.UserName;
-        designDto.CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}";
-
-        return designDto;
+            Id = design.Id.ToString(),
+            Title = design.Title,
+            ThumbnailUrl = design.DesignOptions.ThumbnailUrl,
+            Description = design.DesignOptions.Description,
+            ForzaShareCode = design.ForzaShareCode,
+            Rating = design.Ratings.Average(r => r.Rating),
+            CreationDate = design.CreationDate,
+            AuthorUsername = design.User.UserName,
+            CarModel = $"{design.Car.Manufacture.Name} {design.Car.Model} {design.Car.Year}",
+        };
     }
 
     private DesignFullInfoDto MapToDesignFullInfoDto(Design design)
     {
         var desginDto = MapDesignToDto(design);
-        var imageList = new List<byte[]>();
-
-        foreach (var image in design.DesignOptions.Gallery)
-        {
-            using (var stream = new FileStream(image.ImageUrl, FileMode.Open))
-            {
-                var nextImage = new byte[stream.Length];
-                stream.Read(nextImage);
-                imageList.Add(nextImage);
-            }
-        }
-
 
         return new DesignFullInfoDto
         {
@@ -97,8 +78,8 @@ public class DesignMappingTests
             CreationDate = desginDto.CreationDate,
             AuthorUsername = desginDto.AuthorUsername,
             CarModel = desginDto.CarModel,
-            Thumbnail = desginDto.Thumbnail,
-            Gallery = imageList,
+            ThumbnailUrl = desginDto.ThumbnailUrl,
+            Gallery = design.DesignOptions.Gallery.Select(x => x.ImageUrl).ToList(),
         };
     }
 
@@ -106,10 +87,6 @@ public class DesignMappingTests
     {
         foreach (var property in actual.GetType().GetProperties())
         {
-            if (property.Name == nameof(actual.Thumbnail))
-            {
-                if (Enumerable.SequenceEqual(actual.Thumbnail, expected.Thumbnail) == true) continue;
-            }
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
 
         }
@@ -121,10 +98,6 @@ public class DesignMappingTests
         foreach (var property in actual.GetType().GetProperties())
         {
             if (property.Name == nameof(actual.Gallery)) continue;
-            if (property.Name == nameof(actual.Thumbnail))
-            {
-                if (Enumerable.SequenceEqual(actual.Thumbnail, expected.Thumbnail) == true) continue;
-            }
             if (!property.GetValue(actual).Equals(property.GetValue(expected))) return false;
         }
 

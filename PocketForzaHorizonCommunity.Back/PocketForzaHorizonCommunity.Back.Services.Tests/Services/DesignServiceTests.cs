@@ -6,6 +6,7 @@ using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEnt
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Guides.Design;
 using PocketForzaHorizonCommunity.Back.Services.Services;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Tests.Services;
 
@@ -13,120 +14,122 @@ namespace PocketForzaHorizonCommunity.Back.Services.Tests.Services;
 public class DesignServiceTests
 {
 
-    //[Test]
-    //public async Task CreateAsync_NewEntity_Should_Have_Thumbnail()
-    //{
-    //    var expected = new Design
-    //    {
-    //        Id = new Guid(),
-    //        DesignOptions = new DesignOptions
-    //        {
-    //            ThumbnailUrl = @"thumbnail/path",
-    //        }
-    //    };
+    [Test]
+    public async Task CreateAsync_NewEntity_Should_Have_Thumbnail()
+    {
+        var expected = new Design
+        {
+            Id = new Guid(),
+            Title = "Title",
+            DesignOptions = new DesignOptions
+            {
+                ThumbnailUrl = @"thumbnail/path",
+            }
+        };
 
-    //    using var mock = AutoMock.GetLoose();
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.SaveDesignThumbnail(null, expected.Id))
-    //        .Returns(Task.Run(() => expected.DesignOptions.ThumbnailUrl));
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.SaveDesignGallery(null, expected.Id))
-    //        .Returns(Task.Run(() => new List<string>()));
-    //    mock.Mock<IGalleryRepository>()
-    //        .Setup(x => x.SaveAsync());
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.CreateAsync(expected));
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.SaveAsync());
+        using var mock = AutoMock.GetLoose();
+        mock.Mock<IImageManager>()
+            .Setup(x => x.SaveDesignThumbnail(null, null))
+            .Returns(Task.Run(() => expected.DesignOptions.ThumbnailUrl));
+        mock.Mock<IImageManager>()
+            .Setup(x => x.SaveDesignGallery(null, null))
+            .Returns(Task.Run(() => new List<string>()));
+        mock.Mock<IGalleryRepository>()
+            .Setup(x => x.SaveAsync());
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.CreateAsync(expected));
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.SaveAsync());
 
-    //    var designService = mock.Create<DesignService>();
+        var designService = mock.Create<DesignService>();
 
-    //    var actual = await designService.CreateAsync(new Design { Id = expected.Id, DesignOptions = new DesignOptions() }, null, null);
+        var actual = await designService.CreateAsync(new Design { Id = expected.Id, DesignOptions = new DesignOptions() }, null, null);
 
-    //    Assert.AreEqual(expected.DesignOptions.ThumbnailUrl, actual.DesignOptions.ThumbnailUrl);
+        Assert.AreEqual(expected.DesignOptions.ThumbnailUrl, actual.DesignOptions.ThumbnailUrl);
 
-    //}
+    }
 
-    //[Test]
-    //[TestCase(2)]
-    //[TestCase(0)]
-    //public async Task CreateAsync_Should_Handle_Gallery(int galleryImagesAmount)
-    //{
-    //    var design = new Design
-    //    {
-    //        Id = new Guid(),
-    //        DesignOptions = new DesignOptions
-    //        {
-    //        }
-    //    };
+    [Test]
+    [TestCase(2)]
+    [TestCase(0)]
+    public async Task CreateAsync_Should_Handle_Gallery(int galleryImagesAmount)
+    {
+        var design = new Design
+        {
+            Id = new Guid(),
+            Title = "Title",
+            DesignOptions = new DesignOptions
+            {
+            }
+        };
 
-    //    var gallery = new List<string>();
-    //    for (int i = 0; i < galleryImagesAmount; i++)
-    //    {
-    //        gallery.Add("path");
-    //    }
+        var gallery = new List<string>();
+        for (int i = 0; i < galleryImagesAmount; i++)
+        {
+            gallery.Add("path");
+        }
 
-    //    using var mock = AutoMock.GetLoose();
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.SaveDesignThumbnail(null, design.Id));
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.SaveDesignGallery(null, design.Id))
-    //        .Returns(Task.Run(() => gallery));
-    //    mock.Mock<IGalleryRepository>()
-    //        .Setup(x => x.CreateAsync(null));
-    //    mock.Mock<IGalleryRepository>()
-    //        .Setup(x => x.SaveAsync());
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.CreateAsync(design));
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.SaveAsync());
+        using var mock = AutoMock.GetLoose();
+        mock.Mock<IImageManager>()
+            .Setup(x => x.SaveDesignThumbnail(null, null));
+        mock.Mock<IImageManager>()
+            .Setup(x => x.SaveDesignGallery(null, null))
+            .Returns(Task.Run(() => gallery));
+        mock.Mock<IGalleryRepository>()
+            .Setup(x => x.CreateAsync(null));
+        mock.Mock<IGalleryRepository>()
+            .Setup(x => x.SaveAsync());
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.CreateAsync(design));
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.SaveAsync());
 
-    //    var designService = mock.Create<DesignService>();
+        var designService = mock.Create<DesignService>();
 
-    //    await designService.CreateAsync(new Design { Id = design.Id, DesignOptions = new DesignOptions() }, null, null);
+        await designService.CreateAsync(new Design { DesignOptions = new DesignOptions() }, null, null);
 
-    //    for (int i = 0; i < galleryImagesAmount; i++)
-    //    {
-    //        mock.Mock<IGalleryRepository>()
-    //            .Verify(x => x.CreateAsync(It.IsAny<GalleryImage>()), Times.Exactly(galleryImagesAmount));
+        for (int i = 0; i < galleryImagesAmount; i++)
+        {
+            mock.Mock<IGalleryRepository>()
+                .Verify(x => x.CreateAsync(It.IsAny<GalleryImage>()), Times.Exactly(galleryImagesAmount));
 
-    //    }
-    //}
+        }
+    }
 
-    //[Test]
-    //public async Task DeleteAsync_Should_Delete_All_Images()
-    //{
-    //    var entity = new Design
-    //    {
-    //        DesignOptions = new DesignOptions
-    //        {
-    //            ThumbnailUrl = @"thumbnail\path",
-    //            Gallery = new List<GalleryImage>(),
-    //        }
-    //    };
+    [Test]
+    public async Task DeleteAsync_Should_Delete_All_Images()
+    {
+        var entity = new Design
+        {
+            DesignOptions = new DesignOptions
+            {
+                ThumbnailUrl = @"thumbnail\path",
+                Gallery = new List<GalleryImage>(),
+            }
+        };
 
-    //    using var mock = AutoMock.GetLoose();
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.GetById(entity.Id))
-    //        .Returns(new List<Design> { entity }.BuildMock());
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.Delete(entity));
-    //    mock.Mock<IDesignRepository>()
-    //        .Setup(x => x.SaveAsync());
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.DeleteDesignImages(entity.DesignOptions.ThumbnailUrl, entity.DesignOptions.Gallery.ToList()));
-    //    mock.Mock<IGalleryRepository>()
-    //        .Setup(x => x.SaveAsync());
+        using var mock = AutoMock.GetLoose();
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.GetById(entity.Id))
+            .Returns(new List<Design> { entity }.BuildMock());
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.Delete(entity));
+        mock.Mock<IDesignRepository>()
+            .Setup(x => x.SaveAsync());
+        mock.Mock<IImageManager>()
+            .Setup(x => x.DeleteImages(new List<string>()));
+        mock.Mock<IGalleryRepository>()
+            .Setup(x => x.SaveAsync());
 
-    //    var desginService = mock.Create<DesignService>();
+        var desginService = mock.Create<DesignService>();
 
-    //    await desginService.DeleteAsync(entity.Id);
+        await desginService.DeleteAsync(entity.Id);
 
-    //    mock.Mock<IImageManager>()
-    //        .Verify(x => x.DeleteDesignImages(
-    //            entity.DesignOptions.ThumbnailUrl, entity.DesignOptions.Gallery.ToList()),
-    //            Times.Once);
-    //}
+        mock.Mock<IImageManager>()
+            .Verify(x => x.DeleteImages(
+                It.IsAny<List<string>>()),
+                Times.Once);
+    }
 
     [Test]
     [TestCase("", ExpectedResult = 2)]
