@@ -7,5 +7,5 @@ export interface IDesign {
   creationDate: Date;
   authorUsername: string;
   carModel: string;
-  thumbnail: string;
+  thumbnailUrl: string;
 }

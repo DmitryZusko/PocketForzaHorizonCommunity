@@ -1,4 +1,3 @@
-import { imageUtil } from "@/utilities";
 import { Grid, Slide } from "@mui/material";
 import { defaultAnimationDuration, extendedAnimationDuration } from "../constants";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
@@ -11,6 +10,9 @@ const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) 
   const { isLoading, selectedEntity, galleryInView, galleryRef } = useDesignDetailsComponent({
     id,
   });
+
+  console.log(selectedEntity);
+
   return (
     <>
       {isLoading ? (
@@ -20,7 +22,7 @@ const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) 
           <Slide in={true} direction="right" timeout={defaultAnimationDuration}>
             <Grid item xs={12}>
               <GuideDetailsHeader
-                thumbnail={imageUtil.addJpgHeader(selectedEntity?.thumbnail || "")}
+                thumbnail={selectedEntity?.thumbnailUrl || ""}
                 title={selectedEntity?.title || ""}
                 authorName={selectedEntity?.authorUsername || ""}
                 shareCode={selectedEntity?.forzaShareCode || ""}
@@ -33,7 +35,7 @@ const DesignDetailsComponent = ({ id, ...props }: IDesignDetailsComponentProps) 
             <Grid item xs={12} ref={galleryRef}>
               <DesignDetailsBodyComponent
                 description={selectedEntity?.description || ""}
-                gallery={[selectedEntity?.thumbnail ?? "", ...(selectedEntity?.gallery ?? [])]}
+                gallery={[selectedEntity?.thumbnailUrl ?? "", ...(selectedEntity?.gallery ?? [])]}
               />
             </Grid>
           </Slide>

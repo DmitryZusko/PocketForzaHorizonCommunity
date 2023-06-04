@@ -7,6 +7,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "steamcdn-a.akamaihd.net",
       },
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
+      },
     ],
   },
   env: {

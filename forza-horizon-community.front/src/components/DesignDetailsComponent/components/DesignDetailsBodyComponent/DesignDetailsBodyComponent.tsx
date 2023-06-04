@@ -1,4 +1,3 @@
-import { imageUtil } from "@/utilities";
 import Image from "next/image";
 
 import { Box, Grid } from "@mui/material";
@@ -35,20 +34,14 @@ const DesignDetailsBodyComponent = ({ description, gallery }: IDesignDetailsBody
         >
           {gallery.map((item, index) => (
             <a
-              href={imageUtil.addJpgHeader(item)}
+              href={item}
               key={index}
               style={{
                 padding: baseTheme.spacing(7),
               }}
             >
               <Box sx={styles.imageBox}>
-                <Image
-                  alt="image"
-                  src={imageUtil.addJpgHeader(item)}
-                  loading="lazy"
-                  fill
-                  className={classes.image}
-                />
+                <Image alt="image" src={item} loading="lazy" fill className={classes.image} />
               </Box>
             </a>
           ))}

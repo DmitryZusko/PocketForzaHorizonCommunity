@@ -5,7 +5,6 @@ import {
   NavigationCard,
 } from "@/components";
 import { CustomTooltipComponent } from "@/components/CustomTooltipComponent";
-import { imageUtil } from "@/utilities";
 import { Box, BoxProps, Grow, Slide, Typography } from "@mui/material";
 import { styles } from "./styles";
 import useDesignBlockComponent from "./useDesignBlockComponent";
@@ -38,7 +37,7 @@ const DesignBlockComponent = (props: BoxProps) => {
                 <CustomTooltipComponent title="Go to Design" {...{ sx: styles.cardBlock }}>
                   <Box maxWidth={{ xs: "90vw", md: "45vw", lg: "30vw" }}>
                     <NavigationCard
-                      thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
+                      thumbnail={design.thumbnailUrl}
                       cardTitle={design.title}
                       navigationLink={`/guides/designs/${design.id}`}
                       target={"_self"}

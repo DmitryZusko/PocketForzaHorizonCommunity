@@ -3,7 +3,7 @@ export interface ICar {
   model: string;
   year: number;
   price: number;
-  image: string;
+  imageUrl: string;
   manufacture: string;
   type: string;
   isOwnByUser: boolean;
