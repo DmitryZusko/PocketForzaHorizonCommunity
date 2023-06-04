@@ -34,7 +34,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("TestEnviroment")));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 builder.Services.ConfigureApplication(builder.Configuration);
@@ -55,6 +55,15 @@ if (app.Environment.IsDevelopment())
     }
 }
 
+if (app.Environment.IsProduction())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        scope.MigrateDatabase();
+        scope.RunProductionEnvironmentSeeder();
+    }
+}
+
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseRouting();
@@ -63,9 +72,9 @@ app.UseHttpsRedirection();
 
 app.UseCors();
 
-app.UseAuthorization();
-
 app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
