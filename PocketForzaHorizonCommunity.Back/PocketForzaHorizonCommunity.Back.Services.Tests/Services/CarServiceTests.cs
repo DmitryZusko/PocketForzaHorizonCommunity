@@ -1,63 +1,65 @@
 ﻿using Autofac.Extras.Moq;
 using MockQueryable.Moq;
+using Moq;
 using NUnit.Framework;
 using PocketForzaHorizonCommunity.Back.Database.Entities.CarEntities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
 using PocketForzaHorizonCommunity.Back.DTO.Requests.Car;
 using PocketForzaHorizonCommunity.Back.Services.Services;
+using PocketForzaHorizonCommunity.Back.Services.Utilities.Interfaces;
 
 namespace PocketForzaHorizonCommunity.Back.Services.Tests.Services;
 
 [TestFixture]
 public class CarServiceTests
 {
-    //[Test]
-    //public async Task CreateAsync_Car_Should_Have_Thumbnail()
-    //{
-    //    var entity = new Car();
+    [Test]
+    public async Task CreateAsync_Car_Should_Have_Thumbnail()
+    {
+        var entity = new Car { Model = "Model" };
 
-    //    var thumbnailPath = @"thumbnail\path";
-    //    using var mock = AutoMock.GetLoose();
-    //    mock.Mock<ICarRepository>()
-    //        .Setup(x => x.CreateAsync(entity));
-    //    mock.Mock<ICarRepository>()
-    //        .Setup(x => x.SaveAsync());
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.SaveCarThumbnail(null, entity.Id))
-    //        .Returns(Task.Run(() => thumbnailPath));
+        var thumbnailPath = @"thumbnail\path";
+        using var mock = AutoMock.GetLoose();
+        mock.Mock<ICarRepository>()
+            .Setup(x => x.CreateAsync(entity));
+        mock.Mock<ICarRepository>()
+            .Setup(x => x.SaveAsync());
+        mock.Mock<IImageManager>()
+            .Setup(x => x.SaveCarThumbnail(null, entity.Model))
+            .Returns(Task.Run(() => thumbnailPath));
 
-    //    var carService = mock.Create<CarService>();
+        var carService = mock.Create<CarService>();
 
-    //    await carService.CreateAsync(entity, null);
+        await carService.CreateAsync(entity, null);
 
-    //    Assert.IsTrue(entity.ImageUrl.Equals(thumbnailPath));
-    //}
+        Assert.IsTrue(entity.ImageUrl.Equals(thumbnailPath));
+    }
 
-    //[Test]
-    //public async Task DeleteAsync_Should_Delete_Thumbnail()
-    //{
-    //    var entity = new Car
-    //    {
-    //        ImageUrl = @"thumbnail\path",
-    //    };
+    [Test]
+    public async Task DeleteAsync_Should_Delete_Thumbnail()
+    {
+        var entity = new Car
+        {
+            ImageUrl = @"thumbnail\path",
+        };
 
-    //    using var mock = AutoMock.GetLoose();
-    //    mock.Mock<ICarRepository>()
-    //        .Setup(x => x.GetById(entity.Id))
-    //        .Returns(new List<Car> { entity }.BuildMock());
-    //    mock.Mock<ICarRepository>()
-    //        .Setup(x => x.Delete(entity));
-    //    mock.Mock<ICarRepository>()
-    //        .Setup(x => x.SaveAsync());
-    //    mock.Mock<IImageManager>()
-    //        .Setup(x => x.DeleteImages(entity.ImageUrl));
+        using var mock = AutoMock.GetLoose();
+        mock.Mock<ICarRepository>()
+            .Setup(x => x.GetById(entity.Id))
+            .Returns(new List<Car> { entity }.BuildMock());
+        mock.Mock<ICarRepository>()
+            .Setup(x => x.Delete(entity));
+        mock.Mock<ICarRepository>()
+            .Setup(x => x.SaveAsync());
+        mock.Mock<IImageManager>()
+            .Setup(x => x.DeleteImages(new List<string> { entity.ImageUrl }));
 
-    //    var carService = mock.Create<CarService>();
-    //    await carService.DeleteAsync(entity.Id);
+        var carService = mock.Create<CarService>();
+        await carService.DeleteAsync(entity.Id);
 
-    //    mock.Mock<IImageManager>()
-    //        .Verify(x => x.DeleteImages(entity.ImageUrl), Times.Once);
-    //}
+        mock.Mock<IImageManager>()
+            .Verify(x => x.DeleteImages(It.IsAny<List<string>>()), Times.Once);
+    }
 
     [Test]
     [TestCase(0, 10_000, ExpectedResult = 0)]
@@ -71,7 +73,8 @@ public class CarServiceTests
             {
                 Price = 50_000,
             },
-                        new Car
+
+            new Car
             {
                 Price = 500_000,
             }
