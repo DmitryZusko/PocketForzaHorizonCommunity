@@ -77,7 +77,9 @@ public class DevelopmentEnvironmentSeeder
 
         var response = await client.PostAsync("https://api.imgur.com/oauth2/token", content);
 
-        var token = (await response.Content.ReadAsAsync<ImgurAuthResponse>()).AccessToken;
+        if (!response.IsSuccessStatusCode) return;
+
+        var token = (await response.Content.ReadAsAsync<ImgurAuthResponse>()).Access_Token;
 
         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 

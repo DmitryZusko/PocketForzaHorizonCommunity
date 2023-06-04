@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PocketForzaHorizonCommunity.Back.Database;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
+using PocketForzaHorizonCommunity.Back.Database.Seeders;
 
 namespace PocketForzaHorizonCommunity.Back.API.ServiceConfig;
 
@@ -23,7 +24,9 @@ public static class DevelopmentEnviromentSeederConfig
                 scope.ServiceProvider.GetService<ICarTypeRepository>(),
                 scope.ServiceProvider.GetService<IDesignRepository>(),
                 scope.ServiceProvider.GetService<IGalleryRepository>(),
-                scope.ServiceProvider.GetService<ITuneRepository>()
+                scope.ServiceProvider.GetService<ITuneRepository>(),
+                scope.ServiceProvider.GetService<IAlbumRepository>(),
+                scope.ServiceProvider.GetService<IConfiguration>()
                 );
             seeder.Seed().Wait();
         }
