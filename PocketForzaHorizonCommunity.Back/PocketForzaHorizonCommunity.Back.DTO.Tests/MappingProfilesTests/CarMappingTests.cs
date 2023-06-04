@@ -50,7 +50,7 @@ public class CarMappingTests
     {
         var carDto = new CarDto();
 
-        using (var stream = new FileStream(car.ImagePath, FileMode.Open))
+        using (var stream = new FileStream(car.ImageUrl, FileMode.Open))
         {
             var image = new byte[stream.Length];
             stream.Read(image);
@@ -84,7 +84,7 @@ public class CarMappingTests
     {
         foreach (var property in expected.GetType().GetProperties())
         {
-            if (property.Name == nameof(expected.ImagePath)) continue;
+            if (property.Name == nameof(expected.ImageUrl)) continue;
             if (property.Name == nameof(expected.Manufacture)) continue;
             if (property.Name == nameof(expected.CarType)) continue;
             if (property.Name == nameof(expected.Tunes)) continue;
@@ -100,7 +100,7 @@ public class CarMappingTests
     {
         foreach (var property in expected.GetType().GetProperties())
         {
-            if (property.Name == nameof(expected.ImagePath)) continue;
+            if (property.Name == nameof(expected.ImageUrl)) continue;
             if (property.Name == nameof(expected.Manufacture)) continue;
             if (property.Name == nameof(expected.CarType)) continue;
             if (property.Name == nameof(expected.Tunes)) continue;

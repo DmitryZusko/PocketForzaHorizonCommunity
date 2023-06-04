@@ -22,7 +22,7 @@ internal static class Boilerplate
             Model = "RX-7",
             Year = 1997,
             Price = 35_000,
-            ImagePath = "images\\rx7.jpg",
+            ImageUrl = "images\\rx7.jpg",
             Manufacture = new Manufacture
             {
                 Name = "Mazda",
@@ -126,18 +126,18 @@ internal static class Boilerplate
             DesignId = design.Id,
             Design = design,
             Description = "Description",
-            ThumbnailPath = "images\\thumbnail.png",
+            ThumbnailUrl = "images\\thumbnail.png",
             Gallery = new List<GalleryImage>
             {
                 new GalleryImage
                 {
                     DesignOptionsId = design.Id,
-                    ImagePath = "images\\rx7.jpg",
+                    ImageUrl = "images\\rx7.jpg",
                 },
                 new GalleryImage
                 {
                     DesignOptionsId = design.Id,
-                    ImagePath = "images\\design_2.png",
+                    ImageUrl = "images\\design_2.png",
                 },
             },
         };

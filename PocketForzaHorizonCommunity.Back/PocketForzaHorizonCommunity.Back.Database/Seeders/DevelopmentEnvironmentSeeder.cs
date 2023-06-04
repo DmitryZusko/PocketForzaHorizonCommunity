@@ -301,7 +301,7 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = mazdaDesign.DesignOptions.DesignId,
-            ImagePath = "",
+            ImageUrl = "",
         });
 
         await _galleryRepo.SaveAsync();
@@ -327,13 +327,13 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = "",
+            ImageUrl = "",
         });
 
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = "",
+            ImageUrl = "",
         });
 
         await _galleryRepo.SaveAsync();

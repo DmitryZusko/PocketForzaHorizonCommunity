@@ -23,7 +23,7 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
         await _repository.SaveAsync();
 
 
-        entity.ImagePath = await _imageManager.SaveCarThumbnail(thumbnail, entity.Id);
+        entity.ImageUrl = await _imageManager.SaveCarThumbnail(thumbnail, entity.Model);
         await _repository.SaveAsync();
 
         return entity;
@@ -49,7 +49,7 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
         oldEntity.Model = newEntity.Model;
         oldEntity.Year = newEntity.Year;
         oldEntity.Price = newEntity.Price;
-        oldEntity.ImagePath = await _imageManager.SaveCarThumbnail(thumbnail, oldEntity.Id);
+        oldEntity.ImageUrl = await _imageManager.SaveCarThumbnail(thumbnail, newEntity.Model);
         oldEntity.ManufactureId = newEntity.ManufactureId;
         oldEntity.CarTypeId = newEntity.CarTypeId;
         await _repository.SaveAsync();
@@ -61,7 +61,7 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
     {
         var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
-        _imageManager.DeleteImages(entity.ImagePath);
+        await _imageManager.DeleteImages(new List<string> { entity.ImageUrl });
 
         _repository.Delete(entity);
         await _repository.SaveAsync();

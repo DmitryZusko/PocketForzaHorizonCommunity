@@ -13,14 +13,14 @@ public class DesignProfile : Profile
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
-            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)))
+            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailUrl)))
             .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => CalculateAvarage(src.Ratings)));
 
         CreateMap<Design, DesignFullInfoDto>()
             .ForMember(dest => dest.AuthorUsername, opt => opt.MapFrom(src => src.User.UserName))
             .ForMember(dest => dest.CarModel, opt => opt.MapFrom(src => $"{src.Car.Manufacture.Name} {src.Car.Model} {src.Car.Year}"))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.DesignOptions.Description))
-            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailPath)))
+            .ForMember(dest => dest.Thumbnail, opt => opt.MapFrom(src => LoadThumbnail(src.DesignOptions.ThumbnailUrl)))
             .ForMember(dest => dest.Gallery, opt => opt.MapFrom(src => LoadGallery(src.DesignOptions.Gallery)))
             .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => CalculateAvarage(src.Ratings)));
 
@@ -48,7 +48,7 @@ public class DesignProfile : Profile
 
         foreach (var image in gallery)
         {
-            using (var stream = new FileStream(image.ImagePath, FileMode.Open))
+            using (var stream = new FileStream(image.ImageUrl, FileMode.Open))
             {
                 var loadedImage = new byte[stream.Length];
                 stream.Read(loadedImage);

@@ -36,10 +36,10 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     public async Task<Design> CreateAsync(Design entity, IFormFile thumbnail, IList<IFormFile> gallery)
     {
         await _repository.CreateAsync(entity);
-        entity.DesignOptions.ThumbnailPath = await _imageManager.SaveDesignThumbnail(thumbnail, entity.Id);
+        entity.DesignOptions.ThumbnailUrl = await _imageManager.SaveDesignThumbnail(thumbnail, entity.Title);
         await _repository.SaveAsync();
 
-        await AddImagesToGallery(gallery, entity.Id);
+        await AddImagesToGallery(gallery, entity.Title, entity.Id);
 
         return entity;
     }
@@ -48,7 +48,9 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
     {
         var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
-        _imageManager.DeleteDesignImages(entity.DesignOptions.ThumbnailPath, entity.DesignOptions.Gallery?.ToList());
+        await _imageManager.DeleteImages(entity.DesignOptions.Gallery.Select(x => x.ImageUrl)
+                                                                     .Append(entity.DesignOptions.ThumbnailUrl)
+                                                                     .ToList());
 
         if (entity.DesignOptions.Gallery != null) await DeleteImagesFromGallery(entity.DesignOptions.Gallery.ToList());
 
@@ -84,13 +86,13 @@ public class DesignService : ServiceBase<IDesignRepository, Design, FilteredDesi
         return design;
     }
 
-    private async Task AddImagesToGallery(IList<IFormFile> gallery, Guid entityId)
+    private async Task AddImagesToGallery(IList<IFormFile> gallery, string designTitle, Guid designId)
     {
-        var galleryPath = await _imageManager.SaveDesignGallery(gallery, entityId);
+        var galleryUrls = await _imageManager.SaveDesignGallery(gallery, designTitle);
 
-        foreach (var path in galleryPath)
+        foreach (var path in galleryUrls)
         {
-            await _galleryRepository.CreateAsync(new GalleryImage { DesignOptionsId = entityId, ImagePath = path });
+            await _galleryRepository.CreateAsync(new GalleryImage { DesignOptionsId = designId, ImageUrl = path });
         }
 
         await _galleryRepository.SaveAsync();
