@@ -69,15 +69,15 @@ public class DevelopmentEnvironmentSeeder
         using var client = HttpClientFactory.Create();
         var content = JsonContent.Create(new
         {
-            refresh_token = _config.GetValue<string>("Imgur:Refresh_Token"),
-            client_id = _config.GetValue<string>("Imgur:Client_Id"),
-            client_secret = _config.GetValue<string>("Imgur:Secret"),
+            refresh_token = _config.GetValue<string>("ImgurApi:Refresh_Token"),
+            client_id = _config.GetValue<string>("ImgurApi:Client_Id"),
+            client_secret = _config.GetValue<string>("ImgurApi:Secret"),
             grant_type = "refresh_token"
         });
 
         var response = await client.PostAsync("https://api.imgur.com/oauth2/token", content);
 
-        if (!response.IsSuccessStatusCode) return;
+        if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
 
         var token = (await response.Content.ReadAsAsync<ImgurAuthResponse>()).Access_Token;
 
@@ -94,6 +94,8 @@ public class DevelopmentEnvironmentSeeder
 
         response = await client.PostAsync("https://api.imgur.com/3/album", content);
 
+        if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
+
         var albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
         await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
         {
@@ -106,11 +108,13 @@ public class DevelopmentEnvironmentSeeder
         content = JsonContent.Create(new
         {
             Title = albumTitle,
-            Description = "Album for car's thumbnail",
+            Description = "Album for design's thumbnail",
             Cover = "YCHM0Cq"
         });
 
         response = await client.PostAsync("https://api.imgur.com/3/album", content);
+
+        if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
 
         albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
         await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
