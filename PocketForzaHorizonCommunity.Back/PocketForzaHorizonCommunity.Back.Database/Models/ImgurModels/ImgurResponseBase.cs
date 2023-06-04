@@ -1,8 +1,8 @@
 ﻿namespace PocketForzaHorizonCommunity.Back.Database.Models.ImgurModels;
 
-public class ImgurResponseBase
+public class ImgurResponseBase<TEntity> where TEntity : DataModelBase
 {
-    public DataModel Data { get; set; } = null!;
+    public TEntity Data { get; set; } = null!;
     public bool Success { get; set; }
     public int Status { get; set; }
 }

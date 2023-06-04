@@ -75,7 +75,7 @@ public class ProductionEnviromentSeeder
 
             await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
             {
-                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id,
+                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id,
                 Name = carAlbumTitle,
             });
         }
@@ -96,7 +96,7 @@ public class ProductionEnviromentSeeder
 
             await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
             {
-                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id,
+                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id,
                 Name = designAlbumName,
             });
         }

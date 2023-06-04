@@ -61,7 +61,7 @@ public class CarService : ServiceBase<ICarRepository, Car, FilteredCarsGetReques
     {
         var entity = await _repository.GetById(id).FirstOrDefaultAsync() ?? throw new EntityNotFoundException();
 
-        _imageManager.DeleteCarThumbnail(entity.ImagePath);
+        _imageManager.DeleteImages(entity.ImagePath);
 
         _repository.Delete(entity);
         await _repository.SaveAsync();

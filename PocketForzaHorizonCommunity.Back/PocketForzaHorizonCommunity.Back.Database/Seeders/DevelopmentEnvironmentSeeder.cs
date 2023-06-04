@@ -96,7 +96,7 @@ public class DevelopmentEnvironmentSeeder
 
         if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
 
-        var albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
+        var albumId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id;
         await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
         {
             ImgurId = albumId,
@@ -116,7 +116,7 @@ public class DevelopmentEnvironmentSeeder
 
         if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
 
-        albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
+        albumId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id;
         await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
         {
             ImgurId = albumId,

@@ -52,13 +52,13 @@ public class CarServiceTests
         mock.Mock<ICarRepository>()
             .Setup(x => x.SaveAsync());
         mock.Mock<IImageManager>()
-            .Setup(x => x.DeleteCarThumbnail(entity.ImagePath));
+            .Setup(x => x.DeleteImages(entity.ImagePath));
 
         var carService = mock.Create<CarService>();
         await carService.DeleteAsync(entity.Id);
 
         mock.Mock<IImageManager>()
-            .Verify(x => x.DeleteCarThumbnail(entity.ImagePath), Times.Once);
+            .Verify(x => x.DeleteImages(entity.ImagePath), Times.Once);
     }
 
     [Test]
