@@ -118,16 +118,18 @@ public class ImageManager : IImageManager
         return (await response.Content.ReadAsAsync<ImgurAuthResponse>()).Access_Token;
     }
 
-    private JsonContent CreateContent(IFormFile image, string name, string albumId)
+    private MultipartFormDataContent CreateContent(IFormFile image, string name, string albumId)
     {
-        return JsonContent.Create(new
+        using var stream = new MemoryStream();
+        image.CopyTo(stream);
+        return new MultipartFormDataContent
         {
-            Image = image,
-            Type = "file",
-            Name = name,
-            Title = name,
-            Album = albumId
-        });
+            {new StringContent(Convert.ToBase64String(stream.ToArray())), "image" },
+            { new StringContent("base64"), "type" },
+            { new StringContent(name), "name" },
+            { new StringContent(name), "title" },
+            { new StringContent(albumId), "album"}
+        };
     }
 
     private string GetIdFromUrl(string url)
