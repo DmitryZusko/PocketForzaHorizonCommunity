@@ -235,22 +235,12 @@ public class DevelopmentEnvironmentSeeder
     {
         if (_carRepo.GetAll().Any()) return;
 
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-        var mazdaImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\cars\rx7.jpg");
-        var skylineImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\cars\skyliner34.jpg");
-        var golfImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\cars\golfr34.jpg");
-        var mazdaFullPath = Path.GetFullPath(mazdaImage);
-        var skylineFullPath = Path.GetFullPath(skylineImage);
-        var golfFullPath = Path.GetFullPath(golfImage);
-
 
         var mazda = new Car
         {
             Model = "Rx-7",
             Year = 1997,
             Price = 35_000,
-            ImagePath = mazdaFullPath,
             ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Mazda").FirstOrDefault().Id,
             CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Retro Sport Car").FirstOrDefault().Id,
         };
@@ -260,7 +250,6 @@ public class DevelopmentEnvironmentSeeder
             Model = "Skyline R34",
             Year = 1997,
             Price = 35_000,
-            ImagePath = skylineFullPath,
             ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Nissan").FirstOrDefault().Id,
             CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Retro Sport Car").FirstOrDefault().Id,
         };
@@ -270,7 +259,6 @@ public class DevelopmentEnvironmentSeeder
             Model = "Golf R34",
             Year = 1997,
             Price = 30_000,
-            ImagePath = golfFullPath,
             ManufactureId = _manufacturerRepo.GetAll().Where(t => t.Name == "Volkswagen").FirstOrDefault().Id,
             CarTypeId = _carTypeRepo.GetAll().Where(m => m.Name == "Hot Hatch").FirstOrDefault().Id,
         };
@@ -296,18 +284,9 @@ public class DevelopmentEnvironmentSeeder
 
         await _designRepo.CreateAsync(mazdaDesign);
 
-        var applicationDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-        var thumbnail = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\rx_thumbnail.png");
-        var designImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\rx_design.png");
-        var thumbPath = Path.GetFullPath(thumbnail);
-        var designPath = Path.GetFullPath(designImage);
-
-
         mazdaDesign.DesignOptions = new DesignOptions
         {
             DesignId = mazdaDesign.Id,
-            ThumbnailPath = thumbPath,
             Description = "My Rx-7 design!",
         };
 
@@ -316,7 +295,7 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = mazdaDesign.DesignOptions.DesignId,
-            ImagePath = designPath,
+            ImagePath = "",
         });
 
         await _galleryRepo.SaveAsync();
@@ -331,17 +310,9 @@ public class DevelopmentEnvironmentSeeder
 
         await _designRepo.CreateAsync(skylineDesign);
 
-        thumbnail = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\skyline_thumbnail.png");
-        designImage = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\skyline_design_1.png");
-        var designImageMore = Path.Combine(applicationDirectory, @"..\..\..\..\envseeder\designs\skyline_design_2.png");
-        thumbPath = Path.GetFullPath(thumbnail);
-        designPath = Path.GetFullPath(designImage);
-        var designPathMore = Path.GetFullPath(designImageMore);
-
         skylineDesign.DesignOptions = new DesignOptions
         {
             DesignId = skylineDesign.Id,
-            ThumbnailPath = thumbPath,
             Description = "My Skyline R34 design!",
         };
 
@@ -350,13 +321,13 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = designPath,
+            ImagePath = "",
         });
 
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = designPathMore,
+            ImagePath = "",
         });
 
         await _galleryRepo.SaveAsync();
