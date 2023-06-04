@@ -2,5 +2,5 @@
 
 public class DesignFullInfoDto : DesignDto
 {
-    public IList<byte[]> Gallery { get; set; } = new List<byte[]>();
+    public IList<string> Gallery { get; set; } = new List<string>();
 }
