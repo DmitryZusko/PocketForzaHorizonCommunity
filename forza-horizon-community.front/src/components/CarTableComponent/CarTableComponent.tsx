@@ -1,5 +1,4 @@
 import { ICar } from "@/data-transfer-objects";
-import { imageUtil } from "@/utilities";
 import {
   Chip,
   CircularProgress,
@@ -42,6 +41,8 @@ const CarTableComponent = (props?: TableContainerProps) => {
     handleSorting,
   } = useCarTableComponent();
 
+  console.log(maintainedCars);
+
   return (
     <TableContainer {...props} sx={styles.tableContainer}>
       <Table>
@@ -72,7 +73,7 @@ const CarTableComponent = (props?: TableContainerProps) => {
                   <TableCell>
                     <Image
                       alt="car"
-                      src={imageUtil.addJpgHeader(car.image)}
+                      src={car.imageUrl}
                       width={isTablet ? defaultImageSize.width : imageSizeSmall.width}
                       height={isTablet ? defaultImageSize.height : imageSizeSmall.height}
                       loading="lazy"

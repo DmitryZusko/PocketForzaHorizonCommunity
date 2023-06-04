@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using PocketForzaHorizonCommunity.Back.Database.Entities;
 using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
+using PocketForzaHorizonCommunity.Back.Database.Models.ImgurModels;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.Database.Seeders.Models;
 using System.Net.Http.Json;
 using System.Security.Claims;
 
@@ -75,7 +75,7 @@ public class ProductionEnviromentSeeder
 
             await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
             {
-                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id,
+                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id,
                 Name = carAlbumTitle,
             });
         }
@@ -96,7 +96,7 @@ public class ProductionEnviromentSeeder
 
             await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
             {
-                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id,
+                ImgurId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id,
                 Name = designAlbumName,
             });
         }

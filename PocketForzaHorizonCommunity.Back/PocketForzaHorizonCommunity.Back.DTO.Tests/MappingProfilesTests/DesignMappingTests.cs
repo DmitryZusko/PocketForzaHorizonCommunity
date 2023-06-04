@@ -52,7 +52,7 @@ public class DesignMappingTests
     {
         var designDto = new DesignDto();
 
-        using (var stream = new FileStream(design.DesignOptions.ThumbnailPath, FileMode.Open))
+        using (var stream = new FileStream(design.DesignOptions.ThumbnailUrl, FileMode.Open))
         {
             var thumbnail = new byte[stream.Length];
             stream.Read(thumbnail);
@@ -78,7 +78,7 @@ public class DesignMappingTests
 
         foreach (var image in design.DesignOptions.Gallery)
         {
-            using (var stream = new FileStream(image.ImagePath, FileMode.Open))
+            using (var stream = new FileStream(image.ImageUrl, FileMode.Open))
             {
                 var nextImage = new byte[stream.Length];
                 stream.Read(nextImage);
@@ -151,7 +151,7 @@ public class DesignMappingTests
         foreach (var property in actual.DesignOptions.GetType().GetProperties())
         {
             if (property.Name == nameof(actual.DesignOptions.Design)) continue;
-            if (property.Name == nameof(actual.DesignOptions.ThumbnailPath)) continue;
+            if (property.Name == nameof(actual.DesignOptions.ThumbnailUrl)) continue;
             if (property.Name == nameof(actual.DesignOptions.Gallery)) continue;
             if (!property.GetValue(actual.DesignOptions).Equals(property.GetValue(expected.DesignOptions))) return false;
         }

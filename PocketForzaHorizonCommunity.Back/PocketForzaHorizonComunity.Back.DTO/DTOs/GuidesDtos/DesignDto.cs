@@ -10,5 +10,5 @@ public class DesignDto
     public DateTime CreationDate { get; set; }
     public string AuthorUsername { get; set; } = string.Empty;
     public string CarModel { get; set; } = string.Empty;
-    public byte[] Thumbnail { get; set; } = null!;
+    public string ThumbnailUrl { get; set; } = null!;
 }

@@ -6,8 +6,8 @@ using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.DesignEnt
 using PocketForzaHorizonCommunity.Back.Database.Entities.GuideEntities.TuneEntities;
 using PocketForzaHorizonCommunity.Back.Database.Enums.Roles;
 using PocketForzaHorizonCommunity.Back.Database.Enums.SpareParts;
+using PocketForzaHorizonCommunity.Back.Database.Models.ImgurModels;
 using PocketForzaHorizonCommunity.Back.Database.Repos.Interfaces;
-using PocketForzaHorizonCommunity.Back.Database.Seeders.Models;
 using System.Net.Http.Json;
 using System.Security.Claims;
 
@@ -96,7 +96,7 @@ public class DevelopmentEnvironmentSeeder
 
         if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
 
-        var albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
+        var albumId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id;
         await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
         {
             ImgurId = albumId,
@@ -116,7 +116,7 @@ public class DevelopmentEnvironmentSeeder
 
         if (!response.IsSuccessStatusCode) throw new Exception($"{response.StatusCode} {response.ReasonPhrase}");
 
-        albumId = (await response.Content.ReadAsAsync<ImgurResponseBase>()).Data.Id;
+        albumId = (await response.Content.ReadAsAsync<ImgurResponseBase<DataModelBase>>()).Data.Id;
         await _albumRepo.CreateAsync(new Entities.ImageEntities.Album
         {
             ImgurId = albumId,
@@ -301,7 +301,7 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = mazdaDesign.DesignOptions.DesignId,
-            ImagePath = "",
+            ImageUrl = "",
         });
 
         await _galleryRepo.SaveAsync();
@@ -327,13 +327,13 @@ public class DevelopmentEnvironmentSeeder
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = "",
+            ImageUrl = "",
         });
 
         await _galleryRepo.CreateAsync(new GalleryImage
         {
             DesignOptionsId = skylineDesign.DesignOptions.DesignId,
-            ImagePath = "",
+            ImageUrl = "",
         });
 
         await _galleryRepo.SaveAsync();

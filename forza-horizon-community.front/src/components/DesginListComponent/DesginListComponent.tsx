@@ -5,7 +5,6 @@ import { useDesginListComponent } from "./useDesginListComponent";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InfiniteScrollEndComponent } from "../InfiniteScrollEndComponent";
 import { NavigationCard } from "../NavigationCard";
-import { imageUtil } from "@/utilities";
 import { GuideCardFooterComponent } from "../GuideCardFooterComponent";
 import { DefaultLoaderComponent } from "../DefaultLoaderComponent";
 import { styles } from "./styles";
@@ -72,7 +71,7 @@ const DesginListComponent = (props?: GridProps) => {
                     target={"_self"}
                     cardTitle={design.title}
                     body={<Typography variant="textBody">{design.description}</Typography>}
-                    thumbnail={imageUtil.addJpgHeader(design.thumbnail)}
+                    thumbnail={design.thumbnailUrl}
                     footer={
                       <GuideCardFooterComponent
                         shareCode={design.forzaShareCode}

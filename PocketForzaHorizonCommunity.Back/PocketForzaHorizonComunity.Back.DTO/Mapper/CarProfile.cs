@@ -11,8 +11,7 @@ public class CarProfile : Profile
     {
         CreateMap<Car, CarDto>()
             .ForMember(dest => dest.Manufacture, opt => opt.MapFrom(src => src.Manufacture.Name))
-            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.CarType.Name))
-            .ForMember(dest => dest.Image, opt => opt.MapFrom(src => LoadImage(src.ImagePath)));
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.CarType.Name));
 
         CreateMap<CreateCarRequest, Car>()
             .ForMember(dest => dest.ManufactureId, opt => opt.MapFrom(src => Guid.Parse(src.ManufactureId)))
@@ -26,16 +25,5 @@ public class CarProfile : Profile
 
         CreateMap<Car, SimplifiedCarDto>()
             .ForMember(dest => dest.CarName, opt => opt.MapFrom(src => $"{src.Manufacture.Name} {src.Model} {src.Year}"));
-    }
-
-    private static byte[] LoadImage(string path)
-    {
-        using (var stream = new FileStream(path, FileMode.Open))
-        {
-            var image = new byte[stream.Length];
-            stream.Read(image);
-            return image;
-        }
-
     }
 }
