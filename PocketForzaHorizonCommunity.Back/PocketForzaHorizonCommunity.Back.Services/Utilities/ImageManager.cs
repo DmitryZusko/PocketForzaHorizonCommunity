@@ -95,7 +95,7 @@ public class ImageManager : IImageManager
         {
             var id = GetIdFromUrl(url);
 
-            await client.DeleteAsync($"{_baseUrl}{id}");
+            await client.DeleteAsync($"{_baseUrl}3/image/{id}");
         }
     }
 
@@ -134,10 +134,10 @@ public class ImageManager : IImageManager
 
     private string GetIdFromUrl(string url)
     {
-        var regex = new Regex(@"\/\w{3, }\.");
+        var regex = new Regex(@"/\w{3,}.");
         return regex.Match(url)
                     .ToString()
-                    .Replace(@"\", "")
+                    .Replace("/", "")
                     .Replace(".", "");
     }
 }
