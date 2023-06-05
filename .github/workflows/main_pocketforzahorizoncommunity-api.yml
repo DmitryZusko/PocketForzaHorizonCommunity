@@ -27,7 +27,7 @@ jobs:
         run: dotnet build ./PocketForzaHorizonCommunity.Back.API/PocketForzaHorizonCommunity.Back.API.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./PocketForzaHorizonCommunity.Back.API/PocketForzaHorizonCommunity.Back.API.csproj Release -o "./release"
+        run: dotnet publish ./PocketForzaHorizonCommunity.Back.API/PocketForzaHorizonCommunity.Back.API.csproj -c Release -o "./release"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
