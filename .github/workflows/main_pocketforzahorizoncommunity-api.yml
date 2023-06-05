@@ -7,7 +7,7 @@ on:
     - main
   
 env:
-  AZURE_WEBAPP_NAME: "app-PocketForzaHorizonCommunity-api-westeu-dev-001"
+  AZURE_WEBAPP_NAME: "PocketForzaHorizonCommunity-API"
 
 jobs:
   build:
