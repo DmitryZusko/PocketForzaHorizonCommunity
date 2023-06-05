@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketForzaHorizonCommunity.Back.Database", "PocketForzaHorizonCommunity.Back.Database\PocketForzaHorizonCommunity.Back.Database.csproj", "{DBA58A2D-04E9-424A-868E-9C1AA7576163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.Database", "PocketForzaHorizonCommunity.Back.Database\PocketForzaHorizonCommunity.Back.Database.csproj", "{DBA58A2D-04E9-424A-868E-9C1AA7576163}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.DTO", "PocketForzaHorizonComunity.Back.DTO\PocketForzaHorizonCommunity.Back.DTO.csproj", "{309964E6-F70B-4D59-B104-478FF69D7A5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.Services", "PocketForzaHorizonCommunity.Back.Services\PocketForzaHorizonCommunity.Back.Services.csproj", "{BAC3D0A5-A32A-4559-9491-E43D467B0E96}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.API", "PocketForzaHorizonCommunity.Back.API\PocketForzaHorizonCommunity.Back.API.csproj", "{46C98EA4-60A9-4D7D-9C66-BCD539E3D6C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.DTO.Tests", "PocketForzaHorizonCommunity.Back.DTO.Tests\PocketForzaHorizonCommunity.Back.DTO.Tests.csproj", "{DCE8A39D-28B6-46B4-9A1C-3B330C0B7B10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketForzaHorizonCommunity.Back.Services.Tests", "PocketForzaHorizonCommunity.Back.Services.Tests\PocketForzaHorizonCommunity.Back.Services.Tests.csproj", "{670AB02D-A778-41A6-960D-5586C26EEB0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{DBA58A2D-04E9-424A-868E-9C1AA7576163}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA58A2D-04E9-424A-868E-9C1AA7576163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA58A2D-04E9-424A-868E-9C1AA7576163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309964E6-F70B-4D59-B104-478FF69D7A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC3D0A5-A32A-4559-9491-E43D467B0E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46C98EA4-60A9-4D7D-9C66-BCD539E3D6C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C98EA4-60A9-4D7D-9C66-BCD539E3D6C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C98EA4-60A9-4D7D-9C66-BCD539E3D6C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C98EA4-60A9-4D7D-9C66-BCD539E3D6C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE8A39D-28B6-46B4-9A1C-3B330C0B7B10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE8A39D-28B6-46B4-9A1C-3B330C0B7B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE8A39D-28B6-46B4-9A1C-3B330C0B7B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE8A39D-28B6-46B4-9A1C-3B330C0B7B10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670AB02D-A778-41A6-960D-5586C26EEB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670AB02D-A778-41A6-960D-5586C26EEB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670AB02D-A778-41A6-960D-5586C26EEB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670AB02D-A778-41A6-960D-5586C26EEB0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
