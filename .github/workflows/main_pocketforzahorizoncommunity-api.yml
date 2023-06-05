@@ -27,7 +27,7 @@ jobs:
         run: dotnet build ./PocketForzaHorizonCommunity.Back.API/PocketForzaHorizonCommunity.Back.API.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./PocketForzaHorizonCommunity.Back.API/PocketForzaHorizonCommunity.Back.API.csproj -c Release -o "./release"
+        run: dotnet publish ./PocketForzaHorizonCommunity.Back.API/PocketForzaHorizonCommunity.Back.API.csproj -c Release --output ./release
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -55,4 +55,4 @@ jobs:
           app-name: 'PocketForzaHorizonCommunity-API'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A56090578FCA45CBB84ED4640B5D507D }}
-          package: "./release"
+          package: ./release
