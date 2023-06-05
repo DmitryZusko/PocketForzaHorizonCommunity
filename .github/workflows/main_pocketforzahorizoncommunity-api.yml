@@ -1,57 +1,38 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy ASP.Net Core app to Azure Web App - PocketForzaHorizonCommunity-API
+name: Deploy API
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
-  workflow_dispatch:
+    - main
+  
+env:
+  AZURE_WEBAPP_NAME: "app-PocketForzaHorizonCommunity-api-westeu-dev-001"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
+      - uses: actions/checkout@v3
+      - name: Setup .Net
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.x'
-          include-prerelease: true
+          dotnet-version: 7.0.x
 
-      - name: Build with dotnet
+      - name: Install Dependencies
+        run: dotnet restore ./PocketForzaHorizonCommunity.Back/PocketForzaHorizonCommunity.Back.sln
+
+      - name: Build
         run: dotnet build ./PocketForzaHorizonCommunity.Back/PocketForzaHorizonCommunity.Back.sln --configuration Release --no-restore
-
-      - name: dotnet publish
+        
+      - name: Publish
         run: dotnet publish ./PocketForzaHorizonCommunity.Back/PocketForzaHorizonCommunity.Back.sln --configuration Release --output ./publish
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: .net-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      
+      - name: Deploy To Azure
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'PocketForzaHorizonCommunity-API'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1C43C50C91B345D496B61B3DDFDDBD5B }}
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.API_PUBLISH_SECRET }}
           package: ./publish
+      
+      
